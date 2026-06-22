@@ -1,1 +1,236 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
 
+body{
+    background:#f7f7f7;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    width:90%;
+    margin:auto;
+    padding:30px 0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* LOGO THINKING */
+.brand{
+
+    font-size:42px;
+    font-weight:900;
+
+    background: linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff,
+        #8c52ff
+    );
+
+    background-size:200% 100%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation: thinkingGlow 4s linear infinite;
+
+    cursor:pointer;
+}
+
+@keyframes thinkingGlow{
+    from{
+        background-position:0% center;
+    }
+    to{
+        background-position:200% center;
+    }
+}
+
+/* NAV LINKS */
+nav ul{
+    display:flex;
+    gap:15px;
+    list-style:none;
+}
+
+nav a{
+    text-decoration:none;
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    background:white;
+    border:1px solid #ddd;
+
+    color:#4b4bff;
+    font-weight:500;
+
+    transition:.3s;
+}
+
+nav a:hover{
+    transform:translateY(-3px);
+}
+
+/* BUTTONS */
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.login-btn{
+    padding:10px 18px;
+    border:2px solid #5a58ff;
+    background:white;
+    color:#5a58ff;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.signup-btn{
+    padding:10px 18px;
+    border:none;
+    background:linear-gradient(90deg,#7c4dff,#4f3fff);
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    width:90%;
+    margin:auto;
+    min-height:80vh;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero-content h1{
+    font-size:85px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.hero-content p{
+    margin-top:25px;
+    font-size:22px;
+    line-height:1.7;
+}
+
+/* AURORA TEXT */
+.hero-content h1 span{
+
+    background: linear-gradient(
+        90deg,
+        #9c75ff,
+        #7a66ff,
+        #3c53ff,
+        #26d8ff,
+        #3c53ff,
+        #7a66ff,
+        #9c75ff
+    );
+
+    background-size:400% 100%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation: aurora 15s linear infinite;
+}
+
+@keyframes aurora{
+    from{
+        background-position:0% center;
+    }
+    to{
+        background-position:400% center;
+    }
+}
+
+/* BUTTONS */
+.hero-buttons{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+}
+
+.start-btn{
+    width:260px;
+    height:65px;
+
+    border:none;
+    border-radius:15px;
+
+    background:linear-gradient(90deg,#7545ff,#4f3fff);
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.explore-btn{
+    width:220px;
+    height:65px;
+
+    border:2px solid #7c69ff;
+    background:white;
+
+    color:#6a57ff;
+    font-weight:600;
+
+    border-radius:15px;
+
+    cursor:pointer;
+}
+
+/* IMAGE */
+.hero-image{
+    width:500px;
+    display:flex;
+    justify-content:center;
+}
+
+.bulb{
+    width:420px;
+
+    animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* HOVER EFFECTS */
+button, a{
+    transition:.3s;
+}
+
+button:hover, a:hover{
+    transform:translateY(-3px);
+}
