@@ -87,22 +87,12 @@ nav a:hover{
     gap:10px;
 }
 
-Login.html{
-    padding:10px 18px;
-    border:2px solid #5a58ff;
-    background:white;
-    color:#5a58ff;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-Login.html{
-    padding:10px 18px;
-    border:none;
-    background:linear-gradient(90deg,#7c4dff,#4f3fff);
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
+.login-btn,
+.signup-btn{
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* =========================
