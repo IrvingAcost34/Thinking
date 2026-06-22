@@ -87,7 +87,7 @@ nav a:hover{
     gap:10px;
 }
 
-.login-btn{
+.Login.html{
     padding:10px 18px;
     border:2px solid #5a58ff;
     background:white;
@@ -96,7 +96,7 @@ nav a:hover{
     cursor:pointer;
 }
 
-.signup-btn{
+.Login.html{
     padding:10px 18px;
     border:none;
     background:linear-gradient(90deg,#7c4dff,#4f3fff);
