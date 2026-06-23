@@ -344,15 +344,27 @@ nav a:hover::before{
 
 /* IMAGE */
 .hero-image{
-    width:500px;
+
+    width:45%;
+
     display:flex;
+
     justify-content:center;
+
+    align-items:center;
+
 }
 
 .bulb{
-    width:420px;
 
-    animation: float 15s ease-in-out infinite;
+    width:100%;
+
+    max-width:650px;
+
+    height:auto;
+
+    animation:float 15s ease-in-out infinite;
+
 }
 
 @keyframes float{
@@ -613,4 +625,49 @@ button:hover, a:hover{
     color:#666;
 
     line-height:1.7;
+}
+
+/* =========================
+   RESPONSIVE HERO
+========================= */
+
+@media(max-width:768px){
+
+.hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.hero-content{
+
+    max-width:100%;
+}
+
+.hero-image{
+
+    width:80%;
+
+    margin-top:40px;
+}
+
+.hero-content h1{
+
+    font-size:55px;
+}
+
+.hero-content p{
+
+    font-size:18px;
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+}
+
 }
