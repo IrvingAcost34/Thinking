@@ -12,7 +12,7 @@ signupBtn.addEventListener("click", () => {
 });
 
 // BOTÓN START ASSESSMENT
-
+ 
 const startBtn = document.querySelector(".start-btn");
 
 startBtn.addEventListener("click", () => {
