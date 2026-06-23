@@ -124,6 +124,7 @@ nav a:hover{
 
     box-shadow:
         0 8px 20px rgba(140,82,255,.3);
+}
 
 /* ANIMACIÓN DEL BOTÓN SIGN UP */
 @keyframes buttonGlow{
