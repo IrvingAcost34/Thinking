@@ -804,53 +804,77 @@ button:hover, a:hover{
     margin-bottom:15px;
 }
 
+.section-subtitle{
+
+    max-width:700px;
+
+    margin:0 auto 60px;
+
+    color:#666;
+
+    font-size:20px;
+
+    line-height:1.8;
+}
+
+/* CONTENIDO PRINCIPAL */
+
 .about-main{
 
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
+
+    align-items:center;
 
     gap:60px;
 
-    margin-top:70px;
-    margin-bottom:70px;
+    margin-bottom:80px;
 }
 
 .about-text{
 
     flex:1;
+
     text-align:left;
 }
 
 .about-text h3{
 
-    font-size:38px;
-    color:#222;
+    font-size:40px;
 
     margin-bottom:20px;
+
+    color:#222;
 }
 
 .about-text p{
 
     color:#666;
 
-    line-height:1.9;
     font-size:18px;
+
+    line-height:1.9;
 
     margin-bottom:15px;
 }
+
+/* IMAGEN */
 
 .about-image{
 
     flex:1;
 
     display:flex;
+
     justify-content:center;
 }
 
 .about-image img{
 
-    width:350px;
+    width:500px;
+
+    max-width:100%;
 
     animation:float 15s ease-in-out infinite;
 }
@@ -860,7 +884,9 @@ button:hover, a:hover{
 .about-cards{
 
     display:flex;
+
     justify-content:center;
+
     gap:30px;
 
     flex-wrap:wrap;
@@ -886,6 +912,8 @@ button:hover, a:hover{
 
     transform:translateY(-10px);
 
+    border:2px solid #8c52ff;
+
     box-shadow:
         0 20px 40px rgba(140,82,255,.15);
 }
@@ -901,9 +929,9 @@ button:hover, a:hover{
 
     font-size:24px;
 
-    color:#222;
-
     margin-bottom:15px;
+
+    color:#222;
 }
 
 .about-card p{
@@ -920,7 +948,6 @@ button:hover, a:hover{
     .about-main{
 
         flex-direction:column;
-        text-align:center;
     }
 
     .about-text{
@@ -930,7 +957,6 @@ button:hover, a:hover{
 
     .about-image img{
 
-        width:280px;
+        width:300px;
     }
-
 }
