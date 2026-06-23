@@ -267,3 +267,8 @@ button, a{
 button:hover, a:hover{
     transform:translateY(-3px);
 }
+/*NAV BUTTONS*/
+.nav-buttons{
+    display:flex;
+    gap:15px;
+}
