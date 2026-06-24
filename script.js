@@ -1,42 +1,4 @@
-// BOTONES LOGIN Y SIGN UP
 
-const loginBtn = document.querySelector(".login-btn");
-const signupBtn = document.querySelector(".signup-btn");
-
-loginBtn.addEventListener("click", () => {
-    window.location.href = "Login.html";
-});
-
-signupBtn.addEventListener("click", () => {
-    window.location.href = "Login.html";
-});
-
-// BOTÓN START ASSESSMENT
-
-const startBtn = document.querySelector(".start-btn");
-
-startBtn.addEventListener("click", () => {
-    window.location.href = "Login.html";
-});
-
-// BOTÓN EXPLORE
-
-const exploreBtn = document.querySelector(".explore-btn");
-
-exploreBtn.addEventListener("click", () => {
-    alert("Learning Techniques section coming soon!");
-});
-
-// LOGO THINKING
-
-const brand = document.querySelector(".brand");
-
-brand.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
 // =========================
 // THINKING WEBSITE SCRIPT
 // =========================
@@ -133,3 +95,66 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 
 });
+// =========================
+// THEME TOGGLE
+// =========================
+
+const themeBtn =
+document.getElementById("theme-toggle");
+
+themeBtn.addEventListener("click", () => {
+
+    const currentTheme =
+    document.documentElement.getAttribute(
+        "data-theme"
+    );
+
+    if(currentTheme === "dark"){
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            "light"
+        );
+
+        themeBtn.innerHTML = "🌙";
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    }else{
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            "dark"
+        );
+
+        themeBtn.innerHTML = "☀️";
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+    }
+});
+
+// =========================
+// LOAD SAVED THEME
+// =========================
+
+const savedTheme =
+localStorage.getItem("theme");
+
+if(savedTheme){
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        savedTheme
+    );
+
+    if(savedTheme === "dark"){
+
+        themeBtn.innerHTML = "☀️";
+    }
+}
