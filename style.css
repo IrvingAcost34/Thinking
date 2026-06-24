@@ -1,3 +1,40 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root{
+
+    --bg-main:#f7f7f7;
+
+    --text-main:#222;
+
+    --text-secondary:#666;
+
+    --card-bg:white;
+
+    --border-color:#ddd;
+
+    --purple:#8c52ff;
+
+    --blue:#00c2ff;
+}
+
+[data-theme="dark"]{
+
+    --bg-main:#121212;
+
+    --text-main:#ffffff;
+
+    --text-secondary:#d0d0d0;
+
+    --card-bg:#1f1f1f;
+
+    --border-color:#333;
+
+    --purple:#a87cff;
+
+    --blue:#4ddcff;
+}
 *{
     margin:0;
     padding:0;
@@ -6,7 +43,12 @@
 }
 
 body{
-    background:#f7f7f7;
+
+    background:var(--bg-main);
+
+    color:var(--text-main);
+
+    transition:.5s;
 }
 
 /* =========================
@@ -440,7 +482,7 @@ button:hover, a:hover{
 
     padding:35px 25px;
 
-    background:white;
+    background:var(--card-bg);
 
     border-radius:25px;
 
@@ -509,12 +551,13 @@ button:hover, a:hover{
         0 10px 25px rgba(140,82,255,.3);
 }
 
+
 .step-card h3{
 
     font-size:22px;
     margin-bottom:15px;
 
-    color:#222;
+    color:var(--text-main);
 }
 
 .step-card p{
@@ -584,7 +627,7 @@ button:hover, a:hover{
 
     width:320px;
 
-    background:white;
+    background:var(--card-bg);
 
     padding:35px;
 
@@ -615,18 +658,17 @@ button:hover, a:hover{
 
     margin-bottom:15px;
 
-    color:#222;
+    color:var(--text-main);
 
     font-size:24px;
 }
 
 .style-card p{
 
-    color:#666;
+    color:var(--text-secondary);
 
     line-height:1.7;
 }
-
 /* =========================
    RESPONSIVE HERO
 ========================= */
@@ -715,7 +757,7 @@ button:hover, a:hover{
 
     width:320px;
 
-    background:white;
+    background:var(--card-bg);
 
     padding:35px;
 
@@ -758,7 +800,7 @@ button:hover, a:hover{
 
 .technique-card li{
 
-    color:#666;
+    color:var(--text-main);
 
     margin-bottom:12px;
 
@@ -896,7 +938,7 @@ button:hover, a:hover{
 
     width:320px;
 
-    background:white;
+    background:var(--card-bg);
 
     padding:35px;
 
@@ -931,7 +973,7 @@ button:hover, a:hover{
 
     margin-bottom:15px;
 
-    color:#222;
+    color:var(--text-main);
 }
 
 .about-card p{
@@ -959,4 +1001,44 @@ button:hover, a:hover{
 
         width:300px;
     }
+}
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-toggle-btn{
+
+    position:fixed;
+
+    bottom:25px;
+
+    left:25px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#8c52ff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:999;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+    transition:.3s;
+}
+
+.theme-toggle-btn:hover{
+
+    transform:scale(1.1);
 }
