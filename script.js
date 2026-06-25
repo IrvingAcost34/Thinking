@@ -158,3 +158,35 @@ if(savedTheme){
         themeBtn.innerHTML = "☀️";
     }
 }
+// =========================
+// BOMBI CHAT
+// =========================
+
+const bombiBtn =
+document.getElementById("bombi-btn");
+
+const bombiChat =
+document.getElementById("bombi-chat");
+
+const closeChat =
+document.getElementById("close-chat");
+
+if(bombiBtn){
+
+    bombiBtn.addEventListener("click", () => {
+
+        bombiChat.style.display = "block";
+
+    });
+
+}
+
+if(closeChat){
+
+    closeChat.addEventListener("click", () => {
+
+        bombiChat.style.display = "none";
+
+    });
+
+}
