@@ -1,3 +1,20 @@
+/* =========================
+   DARK MODE VARIABLES
+========================= */
+
+:root{
+  --bg-main:#f7f7f7;
+  --container-bg:white;
+  --text-main:#000;
+  --subtitle-color:#003366;
+}
+
+[data-theme="dark"]{
+  --bg-main:#121212;
+  --container-bg:#1f1f1f;
+  --text-main:white;
+  --subtitle-color:#b8d8ff;
+}
 * {
   margin: 0;
   padding: 0;
