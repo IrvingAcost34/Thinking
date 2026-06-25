@@ -1216,3 +1216,141 @@ button:hover, a:hover{
     }
 
 }
+/* =========================
+   AURORA BACKGROUND
+========================= */
+
+body{
+
+    background:var(--bg-color,#f7f7f7);
+
+    position:relative;
+
+    overflow-x:hidden;
+}
+
+/* Aurora 1 */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    top:-20%;
+    left:-20%;
+
+    width:700px;
+    height:700px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(140,82,255,.35),
+        transparent 70%
+    );
+
+    filter:blur(120px);
+
+    animation:auroraMove1 18s ease-in-out infinite;
+
+    z-index:-2;
+}
+
+/* Aurora 2 */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    bottom:-20%;
+    right:-20%;
+
+    width:700px;
+    height:700px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,194,255,.35),
+        transparent 70%
+    );
+
+    filter:blur(120px);
+
+    animation:auroraMove2 22s ease-in-out infinite;
+
+    z-index:-2;
+}
+
+@keyframes auroraMove1{
+
+    0%{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(120px,80px)
+        scale(1.2);
+    }
+
+    100%{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+}
+
+@keyframes auroraMove2{
+
+    0%{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(-120px,-80px)
+        scale(1.3);
+    }
+
+    100%{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+}
+/* =========================
+   DARK MODE AURORA
+========================= */
+
+[data-theme="dark"] body{
+
+    background:#070b1a;
+}
+
+[data-theme="dark"] body::before{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(140,82,255,.55),
+        transparent 70%
+    );
+}
+
+[data-theme="dark"] body::after{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,194,255,.55),
+        transparent 70%
+    );
+}
