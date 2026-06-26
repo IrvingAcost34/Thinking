@@ -1584,3 +1584,180 @@ Home botton
 .home-btn:hover{
     transform:scale(1.05);
 }
+/* ==========================================
+   RESPONSIVE
+==========================================*/
+
+/* Laptop pequeña */
+@media (max-width: 1200px){
+
+    .hero h1{
+        font-size:64px;
+    }
+
+    .thinking-gradient{
+        font-size:64px;
+    }
+
+    .hero p{
+        font-size:20px;
+    }
+
+    .right{
+        width:500px;
+    }
+
+}
+
+/* Tablets */
+@media (max-width: 992px){
+
+    body{
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    .page{
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+    }
+
+    .left{
+        width:100%;
+        height:auto;
+        padding:70px 40px 40px;
+        text-align:center;
+    }
+
+    .hero{
+        max-width:700px;
+    }
+
+    .hero h1{
+        font-size:56px;
+        line-height:1.1;
+    }
+
+    .thinking-gradient{
+        font-size:56px;
+    }
+
+    .hero p{
+        margin:auto;
+        margin-top:25px;
+        font-size:19px;
+    }
+
+    .right{
+        width:100%;
+        height:auto;
+        padding:40px;
+    }
+
+}
+
+/* Celulares grandes */
+@media (max-width: 768px){
+
+    .left{
+        padding:45px 25px 20px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .thinking-gradient{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:17px;
+        line-height:1.6;
+    }
+
+    .card{
+        max-width:100%;
+        padding:40px 28px;
+        border-radius:28px;
+    }
+
+    .card h2{
+        font-size:34px;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+    }
+
+    .logo img{
+        width:60%;
+    }
+
+    .bombi{
+        width:60px;
+        height:60px;
+        top:18px;
+        right:18px;
+    }
+
+    .bombi img{
+        width:50px;
+    }
+
+}
+
+/* Celulares pequeños */
+@media (max-width: 480px){
+
+    .left{
+        padding:30px 18px;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .thinking-gradient{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .right{
+        padding:20px 15px 35px;
+    }
+
+    .card{
+        padding:32px 20px;
+        border-radius:24px;
+    }
+
+    .card h2{
+        font-size:28px;
+    }
+
+    .subtitle{
+        font-size:14px;
+    }
+
+    .input-box{
+        height:54px;
+    }
+
+    .signin-btn,
+    .google-btn{
+        height:54px;
+        font-size:16px;
+    }
+
+    .bottom{
+        font-size:14px;
+    }
+
+}
