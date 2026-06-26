@@ -1,92 +1,149 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Thinking UI</title>
+<html lang="en">
 
-  <!-- Conectar CSS -->
-  <link rel="stylesheet" href="Login.css">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thinking | Sign In</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="signin.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
-
-  <div class="border-3">
-    <div class="border-2">
-      <div class="border-1">
-        <div class="container">
 <a href="index.html" class="home-btn">
-  ← Home
+    🏠 Home
 </a>
-          <h1>Thinking</h1>
+<div class="page">
 
-          <p class="subtitle" id="subtitle">
-            Discover Your Learning Style
-          </p>
+    <!-- LEFT SIDE -->
+    <section class="left">
 
-          <!-- SWITCH -->
-          <div class="switch">
-            <div class="slider" id="slider"></div>
-            <button id="btnUp" class="active">Sign Up</button>
-            <button id="btnIn">Sign In</button>
-          </div>
+        <div class="background-shapes">
+            <span class="shape circle"></span>
+            <span class="shape square"></span>
+            <span class="shape dot"></span>
+        </div>
 
-          <!-- FORM SIGN UP -->
-          <div id="signup" class="form active">
+        <div class="hero">
 
-            <p class="center">Create your account</p>
+            <h1>
+                Stay focused
+                on your goals
+                and keep
+              <span class="thinking-gradient">Thinking</span>
+            </h1>
 
-            <input class="input" type="text" placeholder="Full Name">
-
-            <input class="input" type="email" placeholder="Email">
-
-            <input class="input" type="password" placeholder="Password">
-
-            <input class="input" type="date">
-
-            <input class="input" type="text" placeholder="School">
-
-            <button class="main-btn">Sign Up</button>
-
-            <p class="center">Or</p>
-
-            <div class="google">
-              <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
-              <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-              <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
-            </div>
-
-          </div>
-
-          <!-- FORM SIGN IN -->
-          <div id="signin" class="form">
-
-            <p class="center">Welcome back with Thinking</p>
-
-            <input class="input" type="email" placeholder="Email">
-
-            <input class="input" type="password" placeholder="Password">
-
-            <button class="main-btn">Sign In</button>
-
-          </div>
+            <p>
+                Learn smarter. Stay motivated. Achieve your goals with Thinking and Bombi AI.
+            </p>
 
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Conectar JS -->
-  <script src="Login.js"></script>
-   <!-- Cambio de backround -->
-  <script>
-const savedTheme = localStorage.getItem("theme");
+    </section>
 
-if(savedTheme){
-    document.documentElement.setAttribute(
-        "data-theme",
-        savedTheme
-    );
-}
-</script>
+    <!-- RIGHT SIDE -->
+    <section class="right">
+
+        <div class="card">
+
+            <!-- BOMBI AI (ÚNICO, SIN DUPLICADOS) -->
+            <div class="bombi">
+
+                <div class="bombi-glow"></div>
+
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bombi">
+
+                <div class="tooltip">
+                    Hi! 👋 Need help?
+                </div>
+
+            </div>
+
+            <!-- LOGO -->
+            <div class="logo">
+                <img src="images/logo.png" alt="Thinking">
+            </div>
+
+            <!-- TITLE -->
+          <<h2>
+    Welcome <span class="thinking-gradient back-small">Back</span>
+</h2>
+
+            <p class="subtitle">
+                Sign in and continue your learning journey.
+            </p>
+
+            <!-- FORM -->
+            <form id="loginForm">
+
+                <label>Email</label>
+                <div class="input-box">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+
+                <label>Password</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input id="password" type="password" placeholder="Enter your password" required>
+
+                    <button id="togglePassword" type="button">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="forgot">
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button class="signin-btn" type="submit">
+                    Sign In
+                </button>
+
+            </form>
+
+            <!-- DIVIDER -->
+            <div class="divider">
+                <span></span>
+                <p>Continue with</p>
+                <span></span>
+            </div>
+
+            <!-- GOOGLE -->
+            <button class="google-btn">
+                <img src="images/google.png" alt="Google">
+                Continue with Google
+            </button>
+
+            <!-- BOTTOM -->
+            <div class="bottom">
+                Don't have an account?
+                <a href="signup.html">Create one</a>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="signin.js"></script>
+
 </body>
+
 </html>
