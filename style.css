@@ -300,19 +300,18 @@ nav a:hover::before{
 }
 
 .hero-content{
-    flex:1;
-    max-width:700px;
+    max-width:600px;
 }
 
 .hero-content h1{
-    font-size: clamp(45px, 6vw, 85px);
+    font-size:85px;
     line-height:1.1;
     font-weight:800;
 }
 
 .hero-content p{
     margin-top:25px;
-    font-size: clamp(16px, 2vw, 22px);
+    font-size:22px;
     line-height:1.7;
 }
 
@@ -386,17 +385,18 @@ nav a:hover::before{
 }
 
 /* IMAGE */
-.hero{
-    width:90%;
-    margin:auto;
-    min-height:85vh;
+.hero-image{
+
+    width:100%;
 
     display:flex;
-    justify-content:space-between;
+
+    justify-content:center;
+
     align-items:center;
 
-    gap:20px;
 }
+
 .bulb{
 
     width:100%;
@@ -1043,67 +1043,6 @@ button:hover, a:hover{
     transform:scale(1.1);
 }
 /* =========================
-   RESPONSIVE MOBILE
-========================= */
-
-@media (max-width: 768px){
-
-    .navbar{
-        flex-direction:column;
-        gap:20px;
-        width:95%;
-    }
-
-    nav ul{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px;
-    }
-
-    nav a{
-        padding:10px 15px;
-        font-size:14px;
-    }
-
-    .nav-buttons{
-        justify-content:center;
-    }
-
-    .hero{
-        flex-direction:column;
-        text-align:center;
-        padding-top:40px;
-    }
-
-    .hero-content{
-        max-width:100%;
-    }
-
-    .hero-content h1{
-        font-size:50px;
-    }
-
-    .hero-content p{
-        font-size:18px;
-    }
-
-    .hero-buttons{
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-
-    .hero-image{
-        width:100%;
-        margin-top:30px;
-        justify-content:center;
-    }
-
-    .bulb{
-        width:80%;
-        max-width:350px;
-    }
-}
-/* =========================
    BOMBI CHAT
 ========================= */
 
@@ -1353,4 +1292,291 @@ body::after{
         rgba(0,194,255,.55),
         transparent 70%
     );
+}
+.bombi-container{
+
+    position:relative;
+
+    width:500px;
+    height:500px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.bombi-container img{
+
+    width:320px;
+    position:relative;
+    z-index:10;
+
+}
+.circle{
+
+    position:absolute;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(140,82,255,.35);
+
+    top:20px;
+    left:90px;
+
+}
+.square{
+
+    position:absolute;
+
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #8c52ff,
+        #00c2ff
+    );
+
+    top:80px;
+    right:40px;
+
+}
+.semicircle{
+
+    position:absolute;
+
+    width:65px;
+    height:32px;
+
+    border-radius:65px 65px 0 0;
+
+    background:#43e9ff;
+
+    bottom:70px;
+    left:70px;
+
+}
+.triangle{
+
+    position:absolute;
+
+    width:0;
+    height:0;
+
+    border-left:22px solid transparent;
+    border-right:22px solid transparent;
+    border-bottom:40px solid #8c52ff;
+
+    bottom:90px;
+    right:60px;
+
+}
+.dot{
+
+    position:absolute;
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:#00c2ff;
+
+    top:180px;
+    left:20px;
+
+}
+.orb{
+
+    animation:floatAround 5s ease-in-out infinite;
+
+}
+
+.square{
+    animation-delay:1s;
+}
+
+.triangle{
+    animation-delay:2s;
+}
+
+.circle{
+    animation-delay:.5s;
+}
+
+.dot{
+    animation-delay:1.5s;
+}
+
+.semicircle{
+    animation-delay:2.5s;
+}
+
+@keyframes floatAround{
+
+    0%{
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-15px)
+            rotate(8deg);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+}
+.ring{
+
+    position:absolute;
+
+    width:42px;
+    height:42px;
+
+    border:5px solid #43e9ff;
+    border-radius:50%;
+
+    top:35px;
+    right:120px;
+
+}
+.diamond{
+
+    position:absolute;
+
+    width:32px;
+    height:32px;
+
+    background:linear-gradient(
+        135deg,
+        #8c52ff,
+        #43e9ff
+    );
+
+    transform:rotate(45deg);
+
+    bottom:110px;
+    left:40px;
+
+    border-radius:6px;
+
+}
+.plus{
+
+    position:absolute;
+
+    width:28px;
+    height:28px;
+
+    top:145px;
+    right:10px;
+
+}
+
+.plus::before,
+.plus::after{
+
+    content:"";
+
+    position:absolute;
+
+    background:#00c2ff;
+
+    border-radius:20px;
+
+}
+
+.plus::before{
+
+    width:28px;
+    height:6px;
+
+    top:11px;
+
+}
+
+.plus::after{
+
+    width:6px;
+    height:28px;
+
+    left:11px;
+
+}
+.hexagon{
+
+    position:absolute;
+
+    width:42px;
+    height:24px;
+
+    background:#8c52ff;
+
+    bottom:30px;
+    right:110px;
+
+}
+
+.hexagon::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-12px;
+    left:0;
+
+    border-left:21px solid transparent;
+    border-right:21px solid transparent;
+    border-bottom:12px solid #8c52ff;
+
+}
+
+.hexagon::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-12px;
+    left:0;
+
+    border-left:21px solid transparent;
+    border-right:21px solid transparent;
+    border-top:12px solid #8c52ff;
+
+}
+.ring{
+    animation-delay:3s;
+}
+
+.diamond{
+    animation-delay:1.8s;
+}
+
+.plus{
+    animation-delay:2.8s;
+}
+
+.hexagon{
+    animation-delay:4s;
 }
