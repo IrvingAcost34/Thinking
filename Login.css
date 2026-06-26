@@ -1,350 +1,1586 @@
-/* =========================
-   DARK MODE VARIABLES
-========================= */
+/* ==========================================
+   THINKING - SIGN IN
+   Version 1.0
+==========================================*/
+
+/* GOOGLE FONT */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+   VARIABLES
+==========================================*/
 
 :root{
-  --bg-main:#f7f7f7;
-  --container-bg:white;
-  --text-main:#000;
-  --subtitle-color:#003366;
+
+    --primary:#8c52ff;
+    --primary-dark:#6f3fe6;
+
+    --secondary:#00c2ff;
+
+    --cyan:#43e9ff;
+
+    --background:#f5f7ff;
+
+    --white:#ffffff;
+
+    --text:#1b2559;
+
+    --text-light:#667085;
+
+    --border:#e8e8ef;
+
+    --shadow:
+        0 20px 45px rgba(0,0,0,.10);
+
 }
 
-[data-theme="dark"]{
-  --bg-main:#121212;
-  --container-bg:#1f1f1f;
-  --text-main:white;
-  --subtitle-color:#b8d8ff;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-  
-/* Botón Atras  */
-.home-btn{
-  position:absolute;
-  top:15px;
-  left:15px;
+/* ==========================================
+   RESET
+==========================================*/
 
-  padding:8px 14px;
+*{
 
-  border-radius:12px;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 
-  background:white;
-  color:#8c52ff;
+    font-family:"Poppins",sans-serif;
 
-  text-decoration:none;
-  font-weight:bold;
-
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-
-  transition:all .3s ease;
 }
 
-.home-btn:hover{
-  background:#8c52ff;
-  color:white;
+html{
 
-  transform:translateY(-2px);
+    scroll-behavior:smooth;
+
 }
 
-/* FONDO ANIMADO (GAS) */
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+body{
+
+    min-height:100vh;
+
+    background:var(--background);
+
+    body{
+    min-height:100vh;
+    background:var(--background);
+    overflow-y:auto; /* o simplemente quítalo */
+    position:relative;
 }
+
+    position:relative;
+
+}
+
+/* ==========================================
+   AURORA BACKGROUND
+==========================================*/
+
 body::before{
-  background:rgba(0,194,255,0.08);
+
+    content:"";
+
+    position:fixed;
+
+    inset:-20%;
+
+    z-index:-3;
+
+    filter:blur(120px);
+
+    background:
+
+    radial-gradient(circle at 20% 30%,
+    rgba(140,82,255,.35),
+    transparent 45%),
+
+    radial-gradient(circle at 80% 20%,
+    rgba(0,194,255,.30),
+    transparent 40%),
+
+    radial-gradient(circle at 60% 80%,
+    rgba(67,233,255,.25),
+    transparent 45%);
+
+    animation:auroraMove 18s ease-in-out infinite alternate;
+
 }
 
 body::after{
-  background:rgba(140,82,255,0.08);
-}
-filter: blur(180px);
-@keyframes gas {
-  0% { background-position: 0% }
-  50% { background-position: 100% }
-  100% { background-position: 0% }
-}
 
-/* BURBUJAS */
-body::before,
-body::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  filter: blur(120px);
-  animation: float 20s infinite ease-in-out;
-}
+    content:"";
 
-body::before {
-  background: rgba(0, 255, 255, 0.25);
-}
+    position:fixed;
 
-body::after {
-  background: rgba(138, 43, 226, 0.25);
-  animation-delay: 10s;
-}
+    inset:0;
 
-@keyframes float {
-  0%,100% {
-    transform: translate(0,0) scale(1);
-  }
-  50% {
-    transform: translate(150px,-100px) scale(1.5);
-  }
-}
+    background:
 
-/* CAJA BLANCA */
-.container{
-  width:420px;
-  padding:30px;
-  border-radius:25px;
-  background:white;
-  position:relative;
-  z-index:1;
-}
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.45),
+        rgba(255,255,255,.12)
+    );
 
-/* BORDE / SOMBRA NEON LIQUIDA */
-/*Solo borde*/
-.container::before{
-  content:"";
-  position:absolute;
-  inset:-6px;
-
-  border-radius:30px;
-
-  background:
-  conic-gradient(
-    from 0deg,
-    #8c52ff,
-    #00c2ff,
-    #00ffff,
-    #8c52ff
-  );
-
-  animation:
-    liquid 8s linear infinite,
-    liquidBorder 5s ease-in-out infinite;
-
-  z-index:-1;
-}
-/* Encima del borde*/
-.container::after{
-  content:"";
-  position:absolute;
-
-  top:3px;
-  left:3px;
-  right:3px;
-  bottom:3px;
-
-  border-radius:22px;
-  background:white;
-
-  z-index:-1;
-}
-
-@keyframes liquidBorder {
-
-  0%{
-    border-radius:
-      25px 35px 25px 35px;
-  }
-
-  25%{
-    border-radius:
-      35px 25px 40px 20px;
-  }
-
-  50%{
-    border-radius:
-      25px 40px 25px 40px;
-  }
-
-  75%{
-    border-radius:
-      40px 20px 35px 25px;
-  }
-
-  100%{
-    border-radius:
-      25px 35px 25px 35px;
-  }
+    z-index:-2;
 
 }
 
-@@keyframes waterWave {
+/* ==========================================
+   AURORA ANIMATION
+==========================================*/
 
-  0%{
-    border-radius:
-    25px 30px 25px 30px;
-  }
+@keyframes auroraMove{
 
-  25%{
-    border-radius:
-    35px 20px 35px 20px;
-  }
+    0%{
 
-  50%{
-    border-radius:
-    20px 35px 20px 35px;
-  }
+        transform:
+        translate(-6%,-5%)
+        rotate(0deg)
+        scale(1);
 
-  75%{
-    border-radius:
-    30px 25px 30px 25px;
-  }
+    }
 
-  100%{
-    border-radius:
-    25px 30px 25px 30px;
-  }
+    50%{
+
+        transform:
+        translate(5%,4%)
+        rotate(8deg)
+        scale(1.15);
+
+    }
+
+    100%{
+
+        transform:
+        translate(-4%,8%)
+        rotate(-8deg)
+        scale(1.05);
+
+    }
 
 }
-/* TITULO */
-h1{
-  text-align:center;
-  font-size:42px;
-  font-weight:900;
 
-  background:linear-gradient(
-    90deg,
-    #8c52ff,
-    #00c2ff,
-    #8c52ff
-  );
+/* ==========================================
+   PAGE LAYOUT
+==========================================*/
 
-  background-size:200%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.page{
 
-  animation:titleMove 4s linear infinite;
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
 }
 
-@keyframes titleMove{
-  from{
-    background-position:0%;
-  }
-  to{
-    background-position:200%;
-  }
+/* ==========================================
+   LEFT SIDE
+==========================================*/
+
+.left{
+
+    flex:1.15;
+
+    height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:90px;
+
+    overflow:hidden;
+
 }
 
-.subtitle {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #003366;
-  transition: opacity 0.5s ease;
+/* ==========================================
+   RIGHT SIDE
+==========================================*/
+
+.right{
+
+    width:560px;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:45px;
+
+}
+/* ==========================================
+   HERO SECTION
+==========================================*/
+
+.left{
+
+    flex:1.15;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:90px;
+
+    overflow:hidden;
+
 }
 
-/* SWITCH */
-.switch {
-  position: relative;
-  display: flex;
-  border-radius: 20px;
-  background: linear-gradient(to right, #6a5acd, #5f5fc4);
-  margin: 20px 0;
-  overflow: hidden;
+/* Contenido */
+.hero{
+    position:relative;
+    z-index:5;
+    max-width:650px;
+    animation:fadeLeft 1s ease;
 }
 
-/* SLIDER */
-.slider {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: white;
-  border-radius: 20px;
-  transition: 0.5s;
+.hero h1{
+    font-size:82px;
+    line-height:1.05;
+    font-weight:800;
+    color:var(--text);
+    letter-spacing:-2px;
 }
 
-/* BOTONES */
-.switch button {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  background: none;
-  z-index: 1;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
+/* SOLO texto normal, sin glow global */
+.hero h1 span{
+    color: var(--text);
 }
 
-.switch button.active {
-  color: black;
-  font-weight: bold;
+/* SOLO el efecto especial */
+.thinking-gradient{
+    font-size: clamp(78px, 4vw, 45px);
+    font-weight:900;
+    display:inline-block;
+
+    background: linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff,
+        #43e9ff,
+        #8c52ff
+    );
+
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: thinkingFlow 6s ease-in-out infinite;
 }
 
-/* INPUTS */
-.input {
-  width: 100%;
-  padding: 15px;
-  margin: 12px 0;
-  border-radius: 15px;
-  border: 3px solid #1e5aa8;
-  outline: none;
-
-  animation: glow 8s infinite alternate;
+.hero p{
+    margin-top:30px;
+    font-size:22px;
+    line-height:1.8;
+    color:var(--text-light);
+    max-width:600px;
 }
 
-/* GLOW LENTO */
-@keyframes glow {
-  0% {
+/* ANIMACIONES */
+@keyframes thinkingFlow{
+    0%{
+        background-position:0% center;
+    }
+    50%{
+        background-position:100% center;
+    }
+    100%{
+        background-position:0% center;
+    }
+}
+
+@keyframes fadeLeft{
+    from{
+        opacity:0;
+        transform: translateX(-60px);
+    }
+    to{
+        opacity:1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================
+   FLOATING SHAPES
+==========================================*/
+
+.background-shapes{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+/* =========================
+   BASE SHAPE
+========================= */
+
+.shape{
+
+    position:absolute;
+
+    animation:float 8s ease-in-out infinite;
+
+}
+
+/* =========================
+   CIRCLE
+========================= */
+
+.circle{
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    border:6px solid rgba(140,82,255,.25);
+
+    top:8%;
+    left:12%;
+
+    animation-delay:0s;
+
+}
+
+/* =========================
+   SQUARE
+========================= */
+
+.square{
+
+    width:55px;
+    height:55px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00c2ff,
+        #43e9ff
+    );
+
+    border-radius:15px;
+
+    top:18%;
+    right:12%;
+
+    transform:rotate(25deg);
+
     box-shadow:
-      0 6px 0 #6ea4d3,
-      0 0 10px #6ecbff,
-      0 0 15px #6ecbff;
-  }
-  100% {
+
+        0 10px 30px
+        rgba(0,194,255,.30);
+
+    animation-delay:2s;
+
+}
+
+/* =========================
+   DOT
+========================= */
+
+.dot{
+
+    width:22px;
+    height:22px;
+
+    border-radius:50%;
+
+    background:#8c52ff;
+
+    bottom:20%;
+    left:10%;
+
+    animation-delay:1s;
+
+}
+
+/* =========================
+   SMALL DOTS
+========================= */
+
+.background-shapes::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#43e9ff;
+
+    top:72%;
+    right:18%;
+
     box-shadow:
-      0 8px    #00000,
-      0 0 25px #00000,
-      0 0 40px #00000;
-  }
+
+        -120px -250px 0 #8c52ff,
+
+        60px -180px 0 #43e9ff,
+
+        120px 50px 0 #8c52ff,
+
+        -60px 120px 0 #43e9ff,
+
+        170px -80px 0 #8c52ff;
+
 }
 
-/* BOTON PRINCIPAL */
-.main-btn {
-  width: 100%;
-  padding: 15px;
-  border-radius: 18px;
-  border: none;
-  background: linear-gradient(to right, #8c52ff, #7a7fdc);
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+/* =========================
+   LARGE GLOW
+========================= */
+
+.background-shapes::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        rgba(140,82,255,.20),
+
+        transparent 70%
+
+    );
+
+    bottom:-50px;
+
+    right:-80px;
+
+    filter:blur(20px);
+
 }
 
-/* FORMULARIOS */
-.form {
-  display: none;
+/* =========================
+   FLOAT ANIMATION
+========================= */
+
+@keyframes float{
+
+    0%{
+
+        transform:
+        translateY(0px)
+        rotate(0deg);
+
+    }
+
+    25%{
+
+        transform:
+        translateY(-12px)
+        rotate(4deg);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-24px)
+        rotate(-4deg);
+
+    }
+
+    75%{
+
+        transform:
+        translateY(-12px)
+        rotate(3deg);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0px)
+        rotate(0deg);
+
+    }
+
+}
+/* ==========================================
+   LOGIN CARD
+==========================================*/
+
+.card{
+
+    width:100%;
+
+    max-width:470px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:35px;
+
+    padding:55px 45px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.6);
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.12),
+
+        0 10px 30px rgba(140,82,255,.08);
+
+    animation:cardAppear 1s ease;
+
+    transition:.4s;
+
 }
 
-.form.active {
-  display: block;
+/* Hover */
+
+.card:hover{
+
+    transform:
+
+        translateY(-8px);
+
+    box-shadow:
+
+        0 35px 70px rgba(0,0,0,.15),
+
+        0 15px 45px rgba(140,82,255,.15);
+
 }
 
-/* TEXTO */
-.center {
-  text-align: center;
-  margin: 15px 0;
+/* ==========================================
+   GLOW BORDER
+==========================================*/
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:38px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(140,82,255,.4),
+
+        rgba(0,194,255,.3),
+
+        rgba(67,233,255,.4)
+
+    );
+
+    z-index:-2;
+
+    filter:blur(12px);
+
+    opacity:.7;
+
 }
 
-/* GOOGLE (opcional) */
-.google {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
+/* White Layer */
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    background:white;
+
+    border-radius:33px;
+
+    z-index:-1;
+
 }
 
-.google img {
-  width: 35px;
-  cursor: pointer;
+/* ==========================================
+   CARD ANIMATION
+==========================================*/
+
+@keyframes cardAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateX(60px)
+
+            scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+            translateX(0)
+
+            scale(1);
+
+    }
+
+}
+/* ==========================================
+   LOGO
+==========================================*/
+
+.logo{
+
+    width:110px;
+
+    height:110px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #8c52ff,
+        #00c2ff
+    );
+
+    animation:
+
+        logoFloat 5s ease-in-out infinite;
+
+    box-shadow:
+
+        0 15px 35px rgba(140,82,255,.25);
+
+}
+
+/* Glow */
+
+.logo::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-8px;
+
+    border-radius:50%;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(140,82,255,.35),
+
+        rgba(0,194,255,.30)
+
+    );
+
+    filter:blur(20px);
+
+    z-index:-1;
+
+}
+
+/* Imagen */
+
+.logo img{
+
+    width:65%;
+
+    height:auto;
+
+    object-fit:contain;
+
+}
+
+/* ==========================================
+   TITLES
+==========================================*/
+
+.card h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+}
+
+/* Tamaño letra Back */
+.back-small{
+    font-size: 42px; /* ajusta aquí */
+}
+
+.subtitle{
+
+    margin-top:12px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================================
+   ANIMATIONS
+==========================================*/
+
+@keyframes logoFloat{
+
+    0%{
+
+        transform:
+        translateY(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+@keyframes titleGradient{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:250%;
+
+    }
+
+}
+/* ==========================================
+   FORM
+==========================================*/
+
+form{
+
+    width:100%;
+
+}
+
+/* LABELS */
+
+form label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    margin-top:22px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+/* ==========================================
+   INPUT BOX
+==========================================*/
+
+.input-box{
+
+    position:relative;
+
+    width:100%;
+
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+
+    background:#f8f9ff;
+
+    border-radius:18px;
+
+    border:2px solid transparent;
+
+    transition:.35s;
+
+    overflow:hidden;
+
+}
+
+/* Línea animada */
+
+.input-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:0;
+
+    height:3px;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #8c52ff,
+
+        #00c2ff
+
+    );
+
+    transition:.45s;
+
+}
+
+/* Hover */
+
+.input-box:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 10px 25px rgba(140,82,255,.08);
+
+}
+
+/* Focus */
+
+.input-box:focus-within{
+
+    border-color:rgba(140,82,255,.25);
+
+    box-shadow:
+
+        0 0 20px rgba(140,82,255,.18);
+
+}
+
+/* Animación de la línea */
+
+.input-box:focus-within::before{
+
+    width:100%;
+
+}
+
+/* ==========================================
+   ICON
+==========================================*/
+
+.input-box i{
+
+    width:60px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    color:#8c52ff;
+
+}
+
+/* ==========================================
+   INPUT
+==========================================*/
+
+.input-box input{
+
+    flex:1;
+
+    height:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:16px;
+
+    color:var(--text);
+
+    padding-right:20px;
+
+}
+
+.input-box input::placeholder{
+
+    color:#a0a8c0;
+
+}
+
+/* ==========================================
+   PASSWORD BUTTON
+==========================================*/
+
+.input-box button{
+
+    width:55px;
+
+    height:100%;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    color:#8c52ff;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.input-box button:hover{
+
+    transform:scale(1.15);
+
+    color:#00c2ff;
+
+}
+/* ==========================================
+   FORGOT PASSWORD
+==========================================*/
+
+.forgot{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:15px;
+
+    margin-bottom:30px;
+
+}
+
+.forgot a{
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    position:relative;
+
+}
+
+.forgot a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-3px;
+
+    width:0;
+
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff
+    );
+
+    transition:.35s;
+
+}
+
+.forgot a:hover{
+
+    color:#00c2ff;
+
+}
+
+.forgot a:hover::after{
+
+    width:100%;
+
+}
+
+/* ==========================================
+   SIGN IN BUTTON
+==========================================*/
+
+.signin-btn{
+
+    width:100%;
+    height:60px;
+
+    border:none;
+    border-radius:18px;
+
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.5px;
+
+    /* 🔥 mismo estilo que Thinking */
+    background: linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff,
+        #43e9ff,
+        #8c52ff
+    );
+
+    background-size:300% 100%;
+    animation: thinkingFlow 6s ease-in-out infinite;
+
+    box-shadow:
+        0 15px 35px rgba(140,82,255,.30);
+
+    transition:.4s;
+}
+
+/* Hover */
+.signin-btn:hover{
+    transform: translateY(-4px);
+    box-shadow:
+        0 25px 45px rgba(140,82,255,.40);
+}
+
+/* Click */
+.signin-btn:active{
+    transform:scale(.98);
+}
+
+/* Shine Effect */
+.signin-btn::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:-120%;
+
+    width:70px;
+    height:100%;
+
+    background: rgba(255,255,255,.35);
+    transform:skewX(-25deg);
+
+    transition:.8s;
+}
+
+.signin-btn:hover::before{
+    left:130%;
+}
+/* ==========================================
+   DIVIDER
+==========================================*/
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:35px 0;
+
+}
+
+.divider span{
+
+    flex:1;
+
+    height:1.5px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(140,82,255,.35),
+        transparent
+    );
+
+}
+
+.divider p{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    font-weight:500;
+
+    white-space:nowrap;
+
+}
+
+/* ==========================================
+   GOOGLE BUTTON
+==========================================*/
+
+.google-btn{
+
+    width:100%;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    border-radius:18px;
+
+    border:2px solid rgba(140,82,255,.12);
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Glow */
+
+.google-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        120deg,
+
+        transparent,
+
+        rgba(255,255,255,.55),
+
+        transparent
+
+    );
+
+    transform:translateX(-130%);
+
+    transition:.8s;
+
+}
+
+.google-btn:hover::before{
+
+    transform:translateX(130%);
+
+}
+
+.google-btn:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#00c2ff;
+
+    box-shadow:
+
+        0 18px 35px rgba(0,194,255,.18);
+
+}
+
+/* Logo */
+
+.google-btn img{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+/* ==========================================
+   BOTTOM TEXT
+==========================================*/
+
+.bottom{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    color:var(--text-light);
+
+}
+
+.bottom a{
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+.bottom a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-3px;
+
+    width:0;
+
+    height:2px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff
+    );
+
+    transition:.35s;
+
+}
+
+.bottom a:hover{
+
+    color:#00c2ff;
+
+}
+
+.bottom a:hover::after{
+
+    width:100%;
+}
+
+/*==========================
+BOMBI AI
+==========================*/
+
+/* GLASS GLOW */
+.bombi-glow{
+    position:absolute;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background: radial-gradient(
+        circle,
+        rgba(140,82,255,.6),
+        rgba(0,194,255,.3),
+        transparent 70%
+    );
+    filter: blur(20px);
+    animation: bombiPulse 2.5s ease-in-out infinite;
+}
+
+/* IMAGEN */
+.bombi img{
+    width:62px;
+    position:relative;
+    z-index:5;
+    animation: bombiFloat 4s ease-in-out infinite;
+    transition:.35s;
+}
+
+/* HOVER EFECTO */
+.bombi:hover img{
+    transform: scale(1.1) rotate(8deg);
+}
+
+/* TOOLTIP */
+.tooltip{
+    position:absolute;
+    right:80px;
+    white-space:nowrap;
+    padding:12px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.9);
+    color:#333;
+    font-size:14px;
+    font-weight:600;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+    opacity:0;
+    transform:translateX(20px);
+    transition:.35s;
+}
+
+/* SHOW TOOLTIP */
+.bombi:hover .tooltip{
+    opacity:1;
+    transform:translateX(0);
+}
+
+/*==========================
+ANIMACIONES
+==========================*/
+
+.card{
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    overflow: hidden;
+}
+.card::before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    background: radial-gradient(circle, rgba(0,194,255,.25), transparent 60%);
+    pointer-events:none;
+    transform: translate(-50%, -50%);
+    top: var(--y);
+    left: var(--x);
+}
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:35px;
+    padding:2px;
+    background: linear-gradient(
+        135deg,
+        rgba(140,82,255,.4),
+        rgba(0,194,255,.3),
+        rgba(67,233,255,.4)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events:none;
+}
+.bombi{
+    position:absolute;
+    top:28px;
+    right:28px;
+    width:72px;
+    height:72px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    z-index:50;
+}
+
+.bombi-glow{
+    position:absolute;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background: radial-gradient(
+        circle,
+        rgba(140,82,255,.6),
+        rgba(0,194,255,.3),
+        transparent 70%
+    );
+    filter: blur(20px);
+    animation: bombiPulse 2.5s ease-in-out infinite;
+}
+
+.bombi img{
+    width:62px;
+    z-index:5;
+    animation: bombiFloat 4s ease-in-out infinite;
+}
+
+.bombi:hover img{
+    transform: scale(1.1) rotate(8deg);
+}
+
+.tooltip{
+    position:absolute;
+    right:80px;
+    padding:12px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.9);
+    font-size:14px;
+    opacity:0;
+    transform:translateX(20px);
+    transition:.35s;
+}
+
+.bombi:hover .tooltip{
+    opacity:1;
+    transform:translateX(0);
+}
+@keyframes bombiPulse{
+    0% { transform: scale(1); opacity: .6; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); opacity: .6; }
+}
+
+@keyframes bombiFloat{
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+/*==========================
+Home botton
+==========================*/
+.home-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+
+    padding:10px 16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#8c52ff,#00c2ff);
+    color:white;
+
+    font-size:14px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    z-index:999;
+
+    transition:.3s;
+}
+
+.home-btn:hover{
+    transform:scale(1.05);
 }
