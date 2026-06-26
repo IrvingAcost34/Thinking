@@ -1,66 +1,50 @@
-// REFERENCIAS
-const btnUp = document.getElementById("btnUp");
-const btnIn = document.getElementById("btnIn");
+const bombiText = document.getElementById("bombiText");
 
-const signup = document.getElementById("signup");
-const signin = document.getElementById("signin");
-
-const slider = document.getElementById("slider");
-
-// EVENTO SIGN UP
-btnUp.addEventListener("click", () => {
-
-  // Mostrar formulario
-  signup.classList.add("active");
-  signin.classList.remove("active");
-
-  // Mover slider
-  slider.style.left = "0%";
-
-  // Cambiar estilo botones
-  btnUp.classList.add("active");
-  btnIn.classList.remove("active");
-});
-
-// EVENTO SIGN IN
-btnIn.addEventListener("click", () => {
-
-  // Mostrar formulario
-  signin.classList.add("active");
-  signup.classList.remove("active");
-
-  // Mover slider
-  slider.style.left = "50%";
-
-  // Cambiar estilo botones
-  btnIn.classList.add("active");
-  btnUp.classList.remove("active");
-});
-
-const subtitle = document.getElementById("subtitle");
-
-const messages = [
-  "Discover Your Learning Style",
-  "Learn Smarter, Not Harder",
-  "Unlock Your Full Potential",
-  "Personalized Learning for Every Student",
-  "Study Better with Thinking",
-  "Visual, Auditory or Kinesthetic?",
-  "Find the Way You Learn Best",
-  "Turn Study Time into Success",
-  "Learning Made Simple",
-  "Your Journey Starts Here",
+const mensajes = [
+    "Hi! 👋 Need help?",
+    "I’m Bombi 🤖",
+    "Let’s build something cool 🚀",
+    "Thinking mode: ON 💡",
+    "You got this 🔥"
 ];
 
-let current = 0;
+document.querySelector(".bombi").addEventListener("mouseenter", () => {
+    let random = Math.floor(Math.random() * mensajes.length);
+    bombiText.textContent = mensajes[random];
+});
+const card = document.querySelector(".card");
+const bombi = document.querySelector(".bombi");
 
-setInterval(() => {
-  current++;
+let currentX = 0;
+let currentY = 0;
+let targetX = 0;
+let targetY = 0;
 
-  if(current >= messages.length){
-    current = 0;
-  }
+document.addEventListener("mousemove", (e) => {
+    targetX = (e.clientX / window.innerWidth - 0.5) * 15;
+    targetY = (e.clientY / window.innerHeight - 0.5) * -15;
 
-  subtitle.textContent = messages[current];
+    card.style.setProperty("--x", e.clientX + "px");
+    card.style.setProperty("--y", e.clientY + "px");
+});
 
-}, 3000);
+function animate() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    card.style.transform = `
+        rotateY(${currentX}deg)
+        rotateX(${currentY}deg)
+    `;
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+    bombi.style.transform = `translate(${x}px, ${y}px)`;
+});
