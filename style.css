@@ -1723,3 +1723,74 @@ body::after{
     }
 
 }
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
+
+.navbar{
+
+    position:sticky;
+    top:0;
+
+    width:100%;
+    padding:25px 5%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    transition:.35s ease;
+
+    z-index:1000;
+}
+
+.navbar.scrolled{
+
+    padding:15px 5%;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Logo */
+
+.brand{
+
+    transition:.35s;
+}
+
+.navbar.scrolled .brand{
+
+    font-size:34px;
+}
+
+/* Links */
+
+nav a{
+
+    transition:.35s;
+}
+
+.navbar.scrolled nav a{
+
+    padding:10px 20px;
+}
+
+/* Login */
+
+.login-btn,
+.signup-btn{
+
+    transition:.35s;
+}
+
+.navbar.scrolled .login-btn,
+.navbar.scrolled .signup-btn{
+
+    padding:9px 16px;
+}
