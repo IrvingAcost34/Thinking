@@ -567,23 +567,6 @@ button:hover, a:hover{
     font-size:15px;
 }
 /* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:768px){
-
-    .steps-container{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .step-card{
-        width:100%;
-        max-width:350px;
-    }
-
-}
-/* =========================
    LEARNING STYLES
 ========================= */
 
@@ -591,10 +574,9 @@ button:hover, a:hover{
 
     width:90%;
     max-width:1400px;
-
     margin:120px auto;
-
     text-align:center;
+
 }
 
 .learning-styles h2{
@@ -612,6 +594,7 @@ button:hover, a:hover{
     -webkit-text-fill-color:transparent;
 
     margin-bottom:15px;
+
 }
 
 .styles-container{
@@ -619,8 +602,8 @@ button:hover, a:hover{
     display:flex;
     justify-content:center;
     gap:30px;
-
     flex-wrap:wrap;
+
 }
 
 .style-card{
@@ -637,6 +620,7 @@ button:hover, a:hover{
         0 10px 30px rgba(0,0,0,.08);
 
     transition:.4s;
+
 }
 
 .style-card:hover{
@@ -645,6 +629,7 @@ button:hover, a:hover{
 
     box-shadow:
         0 20px 40px rgba(140,82,255,.15);
+
 }
 
 .style-icon{
@@ -652,6 +637,7 @@ button:hover, a:hover{
     font-size:60px;
 
     margin-bottom:20px;
+
 }
 
 .style-card h3{
@@ -661,6 +647,7 @@ button:hover, a:hover{
     color:var(--text-main);
 
     font-size:24px;
+
 }
 
 .style-card p{
@@ -668,49 +655,17 @@ button:hover, a:hover{
     color:var(--text-secondary);
 
     line-height:1.7;
+
 }
-/* =========================
-   RESPONSIVE HERO
-========================= */
 
 @media(max-width:768px){
 
-.hero{
+    .style-card{
 
-    flex-direction:column;
+        width:100%;
+        max-width:350px;
 
-    text-align:center;
-
-}
-
-.hero-content{
-
-    max-width:100%;
-}
-
-.hero-image{
-
-    width:80%;
-
-    margin-top:40px;
-}
-
-.hero-content h1{
-
-    font-size:55px;
-}
-
-.hero-content p{
-
-    font-size:18px;
-}
-
-.hero-buttons{
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-}
+    }
 
 }
 /* =========================
@@ -1579,4 +1534,192 @@ body::after{
 
 .hexagon{
     animation-delay:4s;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px){
+
+    .navbar{
+        width:95%;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:50px;
+        padding-top:30px;
+    }
+
+    .hero-content{
+        max-width:100%;
+    }
+
+    .hero-content h1{
+        font-size:60px;
+    }
+
+    .hero-content p{
+        font-size:20px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .hero-image{
+        width:100%;
+    }
+
+    .bombi-container{
+        width:400px;
+        height:400px;
+    }
+
+    .bombi-container img{
+        width:260px;
+    }
+
+    .about-main{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .about-text{
+        text-align:center;
+    }
+
+    .about-image img{
+        width:320px;
+    }
+
+    .steps-container,
+    .styles-container,
+    .techniques-container,
+    .about-cards{
+        justify-content:center;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .nav-buttons{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:48px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .start-btn,
+    .explore-btn{
+        width:280px;
+    }
+
+    .bombi-container{
+        width:320px;
+        height:320px;
+    }
+
+    .bombi-container img{
+        width:220px;
+    }
+
+    .step-card,
+    .style-card,
+    .technique-card,
+    .about-card{
+        width:100%;
+        max-width:340px;
+    }
+
+    h2{
+        font-size:40px !important;
+    }
+
+    #bombi-chat{
+        width:95%;
+        height:80vh;
+        right:2.5%;
+        bottom:90px;
+    }
+
+    #bombi-btn{
+        right:15px;
+        bottom:15px;
+    }
+
+    .theme-toggle-btn{
+        left:15px;
+        bottom:15px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .hero-content h1{
+        font-size:38px;
+    }
+
+    .hero-content p{
+        font-size:16px;
+    }
+
+    .bombi-container{
+        width:280px;
+        height:280px;
+    }
+
+    .bombi-container img{
+        width:190px;
+    }
+
+    .start-btn,
+    .explore-btn{
+        width:100%;
+        max-width:280px;
+        height:58px;
+    }
+
+    .brand{
+        font-size:34px;
+    }
+
+    h2{
+        font-size:34px !important;
+    }
+
 }
