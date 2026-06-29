@@ -1616,18 +1616,85 @@ body::after{
 @media (max-width:768px){
 
     .navbar{
+
         flex-direction:column;
-        gap:20px;
+
+        gap:15px;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        scrollbar-width:none;
+
+        -ms-overflow-style:none;
+
+    }
+
+    .navbar::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
+    nav{
+
+        width:100%;
+
+        overflow-x:auto;
+
+        scrollbar-width:none;
+
+        -ms-overflow-style:none;
+
+    }
+
+    nav::-webkit-scrollbar{
+
+        display:none;
+
     }
 
     nav ul{
-        flex-direction:column;
+
+        display:flex;
+
+        flex-direction:row;
+
+        flex-wrap:nowrap;
+
         align-items:center;
+
+        justify-content:flex-start;
+
+        white-space:nowrap;
+
+        width:max-content;
+
+        gap:12px;
+
+        padding:0 10px;
+
+    }
+
+    nav a{
+
+        font-size:15px;
+
+        padding:10px 18px;
+
+        white-space:nowrap;
+
+        flex-shrink:0;
+
     }
 
     .nav-buttons{
+
         flex-wrap:wrap;
+
         justify-content:center;
+
     }
 
     .hero-content h1{
@@ -1723,6 +1790,7 @@ body::after{
     }
 
 }
+
 /* =========================
    NAVBAR SCROLL EFFECT
 ========================= */
@@ -1730,18 +1798,23 @@ body::after{
 .navbar{
 
     position:sticky;
+
     top:0;
 
     width:100%;
+
     padding:25px 5%;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     transition:.35s ease;
 
     z-index:1000;
+
 }
 
 .navbar.scrolled{
@@ -1751,10 +1824,13 @@ body::after{
     background:rgba(255,255,255,.75);
 
     backdrop-filter:blur(18px);
+
     -webkit-backdrop-filter:blur(18px);
 
     box-shadow:
+
         0 10px 30px rgba(0,0,0,.08);
+
 }
 
 /* Logo */
@@ -1762,11 +1838,13 @@ body::after{
 .brand{
 
     transition:.35s;
+
 }
 
 .navbar.scrolled .brand{
 
     font-size:34px;
+
 }
 
 /* Links */
@@ -1774,11 +1852,13 @@ body::after{
 nav a{
 
     transition:.35s;
+
 }
 
 .navbar.scrolled nav a{
 
     padding:10px 20px;
+
 }
 
 /* Login */
@@ -1787,10 +1867,144 @@ nav a{
 .signup-btn{
 
     transition:.35s;
+
 }
 
 .navbar.scrolled .login-btn,
 .navbar.scrolled .signup-btn{
 
     padding:9px 16px;
+
+}
+
+/* =========================
+   MOBILE SCROLLED NAVBAR
+========================= */
+
+@media (max-width:768px){
+
+    .navbar.scrolled{
+
+        padding:10px 4%;
+
+    }
+
+    .navbar.scrolled .brand{
+
+        font-size:28px;
+
+    }
+
+    .navbar.scrolled nav a{
+
+        font-size:13px;
+
+        padding:8px 14px;
+
+    }
+
+    .navbar.scrolled .login-btn,
+    .navbar.scrolled .signup-btn{
+
+        padding:7px 12px;
+
+        font-size:13px;
+
+    }
+
+}
+/* ==========================
+   MOBILE NAV SCROLL
+==========================*/
+
+.nav-scroll{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+.nav-scroll::before,
+
+.nav-scroll::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    width:40px;
+
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:5;
+
+}
+
+.nav-scroll::before{
+
+    left:0;
+
+    background:linear-gradient(
+        to right,
+        rgba(255,255,255,.95),
+        transparent
+    );
+
+}
+
+.nav-scroll::after{
+
+    right:0;
+
+    background:linear-gradient(
+        to left,
+        rgba(255,255,255,.95),
+        transparent
+    );
+
+}
+
+nav{
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    -ms-overflow-style:none;
+
+}
+
+nav::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+nav ul{
+
+    display:flex;
+
+    flex-wrap:nowrap;
+
+    gap:14px;
+
+    width:max-content;
+
+    padding:0 20px;
+
+}
+
+nav a{
+
+    white-space:nowrap;
+
+    flex-shrink:0;
+
 }
