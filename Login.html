@@ -1,149 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Thinking | Sign In</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="Login.css">
-
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
-
 <body>
 <a href="index.html" class="home-btn">
     🏠 Home
 </a>
 <div class="page">
-
     <!-- LEFT SIDE -->
     <section class="left">
-
         <div class="background-shapes">
             <span class="shape circle"></span>
             <span class="shape square"></span>
             <span class="shape dot"></span>
         </div>
-
         <div class="hero">
-
             <h1>
                 Stay focused
                 on your goals
                 and keep
               <span class="thinking-gradient">Thinking</span>
             </h1>
-
             <p>
                 Learn smarter. Stay motivated. Achieve your goals with Thinking and Bombi AI.
             </p>
-
         </div>
-
     </section>
-
     <!-- RIGHT SIDE -->
     <section class="right">
-
         <div class="card">
-
             <!-- BOMBI AI (ÚNICO, SIN DUPLICADOS) -->
             <div class="bombi">
-
                 <div class="bombi-glow"></div>
-
                 <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bombi">
-
                 <div class="tooltip">
                     Hi! 👋 Need help?
                 </div>
-
             </div>
-
             <!-- LOGO -->
             <div class="logo">
                 <img src="ThinkingLogo.png" alt="Thinking">
             </div>
-
             <!-- TITLE -->
-          <<h2>
-    Welcome <span class="thinking-gradient back-small">Back</span>
-</h2>
-
+            <h2>
+                Welcome <span class="thinking-gradient back-small">Back</span>
+            </h2>
             <p class="subtitle">
                 Sign in and continue your learning journey.
             </p>
-
             <!-- FORM -->
             <form id="loginForm">
-
                 <label>Email</label>
                 <div class="input-box">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type="email" placeholder="Enter your email" required>
+                    <input id="si-email" type="email" placeholder="Enter your email" required>
                 </div>
-
                 <label>Password</label>
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
-                    <input id="password" type="password" placeholder="Enter your password" required>
-
+                    <input id="si-password" type="password" placeholder="Enter your password" required>
                     <button id="togglePassword" type="button">
                         <i class="fa-regular fa-eye"></i>
                     </button>
                 </div>
-
                 <div class="forgot">
                     <a href="#">Forgot Password?</a>
                 </div>
-
                 <button class="signin-btn" type="submit">
                     Sign In
                 </button>
-
             </form>
-
             <!-- DIVIDER -->
             <div class="divider">
                 <span></span>
                 <p>Continue with</p>
                 <span></span>
             </div>
-
             <!-- GOOGLE -->
             <button class="google-btn">
                 <img src="images/google.png" alt="Google">
                 Continue with Google
             </button>
-
             <!-- BOTTOM -->
             <div class="bottom">
                 Don't have an account?
                 <a href="REGISTER.html">Create one</a>
             </div>
-
         </div>
-
     </section>
-
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="Login.js"></script>
-
 </body>
-
 </html>
