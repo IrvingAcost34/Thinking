@@ -571,3 +571,37 @@ function drawConstellations(){
     }
 
 }
+const progressText = document.querySelector(".progress-circle span");
+
+if(progressText){
+
+    const values = ["20%","45%","75%","90%"];
+
+    let index = 0;
+
+    setInterval(()=>{
+
+        index++;
+
+        if(index >= values.length){
+
+            index = 0;
+
+        }
+
+        progressText.textContent = values[index];
+
+    },1000);
+
+}
+const discoverBtn = document.getElementById("discover-btn");
+
+if(discoverBtn){
+
+    discoverBtn.addEventListener("click",()=>{
+
+        window.location.href="Login.html";
+
+    });
+
+}
