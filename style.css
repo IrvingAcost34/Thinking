@@ -270,29 +270,36 @@ nav a:hover::before{
 ========================= */
 
 .hero{
-    width:90%;
+    width:min(92%,1400px);
     margin:auto;
-    min-height:80vh;
+    min-height:90vh;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:60px;
 }
 
 .hero-content{
-    max-width:600px;
+
+    flex:1;
+    max-width:650px;
+
 }
 
 .hero-content h1{
-    font-size:85px;
+
+    font-size:clamp(42px,6vw,85px);
     line-height:1.1;
     font-weight:800;
+
 }
 
 .hero-content p{
-    margin-top:25px;
-    font-size:22px;
+
+    font-size:clamp(16px,2vw,22px);
     line-height:1.7;
+
 }
 
 /* AURORA TEXT */
@@ -334,7 +341,7 @@ nav a:hover::before{
 }
 
 .start-btn{
-    width:260px;
+   width:min(100%,260px);
     height:65px;
 
     border:none;
@@ -350,7 +357,7 @@ nav a:hover::before{
 }
 
 .explore-btn{
-    width:220px;
+    width:min(100%,220px);  
     height:65px;
 
     border:2px solid #7c69ff;
@@ -599,7 +606,7 @@ button:hover, a:hover{
 
     margin-top:45px;
 
-    width:310px;
+   width:min(100%,310px);
 
     height:65px;
 
@@ -1265,7 +1272,7 @@ button:hover, a:hover{
 
 .style-card{
 
-    width:320px;
+   width:min(100%,320px);
 
     background:var(--card-bg);
 
@@ -1367,7 +1374,7 @@ button:hover, a:hover{
 
 .technique-card{
 
-    width:320px;
+   width:min(100%,320px);
 
     background:var(--card-bg);
 
@@ -1548,7 +1555,7 @@ button:hover, a:hover{
 
 .about-card{
 
-    width:320px;
+  width:min(100%,320px);
 
     background:var(--card-bg);
 
@@ -1907,22 +1914,21 @@ body::after{
 }
 .bombi-container{
 
-    position:relative;
-
-    width:500px;
-    height:500px;
+    width:min(100%,500px);
+    aspect-ratio:1;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
+    position:relative;
+
 }
 
 .bombi-container img{
 
-    width:320px;
-    position:relative;
-    z-index:10;
+    width:65%;
+    max-width:320px;
 
 }
 .circle{
@@ -2737,3 +2743,234 @@ nav a{
 }
 
 /*======================================================================================================================================================*/
+
+/* ==========================================================
+   WHY THINKING
+========================================================== */
+
+.why-thinking{
+
+    width:90%;
+    max-width:1450px;
+    margin:120px auto;
+    text-align:center;
+
+}
+
+.why-thinking h2{
+
+    font-size:72px;
+    font-weight:800;
+    margin-bottom:80px;
+    color:#111;
+
+}
+
+.why-thinking h2 span{
+
+    background: linear-gradient(
+        90deg,
+        #b68cff,
+        #7f63ff,
+        #00c2ff,
+        #b68cff
+    );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: whyThinkingMove 5s linear infinite;
+}
+
+
+.why-container{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+}
+
+.why-card{
+
+    flex:1;
+    padding:0 30px;
+
+}
+
+.why-icon{
+
+    font-size:95px;
+    margin-bottom:30px;
+
+}
+
+.why-card h3{
+
+    font-size:33px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:15px;
+
+}
+
+.why-card p{
+
+    font-size:24px;
+    line-height:1.6;
+    color:#444;
+    max-width:290px;
+    margin:auto;
+
+}
+
+.why-divider{
+
+    width:2px;
+    height:300px;
+
+    background:#ece9ff;
+
+    border-radius:10px;
+
+}
+
+/* DARK MODE */
+
+[data-theme="dark"] .why-thinking h2{
+
+    color:white;
+
+}
+
+[data-theme="dark"] .why-card h3{
+
+    color:white;
+
+}
+
+[data-theme="dark"] .why-card p{
+
+    color:#d8d8d8;
+
+}
+
+[data-theme="dark"] .why-divider{
+
+    background:#2d2d45;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .why-container{
+
+        flex-direction:column;
+        align-items:center;
+        gap:50px;
+
+    }
+
+    .why-divider{
+
+        width:80%;
+        height:2px;
+
+    }
+
+}
+/* ===================================
+   EXTRA RESPONSIVE
+=================================== */
+
+@media (max-width:1024px){
+
+    .hero{
+
+        flex-direction:column;
+        text-align:center;
+        gap:50px;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+        flex-wrap:wrap;
+
+    }
+
+    .hero-image{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .hero{
+
+        padding-top:30px;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+        align-items:center;
+
+    }
+
+    .thinking-v2{
+
+        flex-direction:column;
+
+    }
+
+    .about-main{
+
+        flex-direction:column;
+
+    }
+
+    .why-container{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+}
+
+@media (min-width:1600px){
+
+    .hero,
+    .thinking-v2,
+    .learning-styles,
+    .techniques,
+    .about-us,
+    .why-thinking{
+
+        max-width:1600px;
+
+    }
+
+}
+@keyframes whyThinkingMove{
+
+    0%{
+        background-position: 0% center;
+    }
+
+    100%{
+        background-position: 300% center;
+    }
+
+}
