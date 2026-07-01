@@ -117,7 +117,13 @@ loginForm.addEventListener("submit", async (e) => {
  
   msg.textContent = "✅ ¡Bienvenido!";
   msg.style.color = "green";
- 
+
+// pequeña pausa para UX (efecto app real)
+setTimeout(() => {
+
+  window.location.href = "../student-dashboard.html";
+
+}, 800);
   // Redirigir al dashboard si quieres:
   // window.location.href = "dashboard.html";
 });
