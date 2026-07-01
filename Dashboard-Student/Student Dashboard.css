@@ -1,1 +1,2205 @@
+/* ======================================================
+                    GOOGLE FONT
+====================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ======================================================
+                    RESET
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    transition:
+    background .6s ease,
+    color .6s ease;
+
+}
+
+/* ======================================================
+                    THEME VARIABLES
+====================================================== */
+
+:root{
+
+    --transition:.4s ease;
+
+    --radius:22px;
+
+    --sidebar-width:280px;
+
+}
+
+/* ======================================================
+                    DARK MODE
+====================================================== */
+
+body.dark-theme{
+
+    --background:#070B1D;
+
+    --surface:rgba(255,255,255,.06);
+
+    --surface-hover:rgba(255,255,255,.10);
+
+    --border:rgba(255,255,255,.10);
+
+    --title:#FFFFFF;
+
+    --text:#D7D7D7;
+
+    --primary:#7C5CFF;
+
+    --secondary:#00D4FF;
+
+    --shadow:0 20px 45px rgba(0,0,0,.35);
+
+}
+
+/* ======================================================
+                    LIGHT MODE
+====================================================== */
+
+body.light-theme{
+
+    --background:#F7FAFF;
+
+    --surface:rgba(255,255,255,.65);
+
+    --surface-hover:rgba(255,255,255,.92);
+
+    --border:rgba(255,255,255,.75);
+
+    --title:#1F2937;
+
+    --text:#5B6475;
+
+    --primary:#6C63FF;
+
+    --secondary:#3CCEFF;
+
+    --shadow:0 20px 45px rgba(108,99,255,.10);
+
+}
+
+/* ======================================================
+                    BODY
+====================================================== */
+
+body{
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+/* ======================================================
+                    APP
+====================================================== */
+
+.app{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+}
+
+/* ======================================================
+                    AURORA
+====================================================== */
+
+.aurora{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-10;
+
+    background:var(--background);
+
+}
+
+/* Aurora 1 */
+
+.aurora::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:750px;
+
+    height:750px;
+
+    left:-250px;
+
+    top:-180px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        var(--primary),
+        transparent 70%
+    );
+
+    filter:blur(120px);
+
+    opacity:.28;
+
+    animation:auroraOne 16s ease-in-out infinite alternate;
+
+}
+
+/* Aurora 2 */
+
+.aurora::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+
+    height:650px;
+
+    right:-180px;
+
+    bottom:-200px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        var(--secondary),
+        transparent 70%
+    );
+
+    filter:blur(130px);
+
+    opacity:.24;
+
+    animation:auroraTwo 18s ease-in-out infinite alternate;
+
+}
+
+/* ======================================================
+                    MAIN
+====================================================== */
+
+.main{
+
+    flex:1;
+
+    min-height:100vh;
+
+    margin-left:330px;
+
+    padding:25px;
+
+}
+/* ======================================================
+                    SIDEBAR
+====================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+    bottom:20px;
+
+    width:280px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:28px;
+
+    border-radius:32px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(35px);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    overflow:hidden;
+
+}
+
+/* Glow */
+
+.sidebar::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    top:-120px;
+
+    right:-100px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    transparent);
+
+    opacity:.30;
+
+    filter:blur(80px);
+
+}
+
+/* ======================================================
+                    LOGO
+====================================================== */
+
+.sidebar-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:45px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-logo img{
+
+    width:55px;
+
+}
+
+.logo-text h2{
+
+    color:var(--title);
+
+    font-size:25px;
+
+    font-weight:700;
+
+}
+
+.logo-text span{
+
+    color:var(--text);
+
+    font-size:13px;
+
+}
+
+/* ======================================================
+                    MENU
+====================================================== */
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    height:56px;
+
+    padding:0 18px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    transition:.35s;
+
+}
+
+.sidebar-menu a:hover{
+
+    transform:translateX(8px);
+
+    background:var(--surface-hover);
+
+}
+
+.sidebar-menu a.active{
+
+    color:white;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    box-shadow:0 10px 25px rgba(108,99,255,.35);
+
+}
+
+.sidebar-menu i{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+.sidebar-menu span{
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+/* ======================================================
+                USER CARD
+====================================================== */
+
+.sidebar-user{
+
+    margin-top:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.user-avatar{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:18px;
+
+}
+
+.user-info h3{
+
+    color:var(--title);
+
+    font-size:17px;
+
+}
+
+.user-info p{
+
+    color:var(--text);
+
+    font-size:13px;
+
+}
+
+/* ======================================================
+                FOOTER
+====================================================== */
+
+.sidebar-footer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.sidebar-footer a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    height:55px;
+
+    padding:0 18px;
+
+    border-radius:18px;
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    transition:.35s;
+
+}
+
+.sidebar-footer a:hover{
+
+    background:var(--surface-hover);
+
+}
+
+.sidebar-footer i{
+
+    width:20px;
+
+    height:20px;
+
+}
+/* ======================================================
+                    TOPBAR
+====================================================== */
+
+.topbar{
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+    width:420px;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:0 22px;
+
+    border-radius:18px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:var(--title);
+
+    font-size:15px;
+
+}
+
+.search-box input::placeholder{
+
+    color:var(--text);
+
+}
+
+/* RIGHT */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* ICON BUTTONS */
+
+.notification-btn,
+.theme-toggle{
+
+    width:56px;
+
+    height:56px;
+
+    border:none;
+
+    cursor:pointer;
+
+    position:relative;
+
+    border-radius:18px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--title);
+
+    transition:.35s;
+
+}
+
+.notification-btn:hover,
+.theme-toggle:hover{
+
+    transform:translateY(-3px);
+
+    background:var(--surface-hover);
+
+}
+
+/* NOTIFICATION */
+
+.notification-count{
+
+    position:absolute;
+
+    top:10px;
+
+    right:10px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#ff4f6d;
+
+    color:white;
+
+    font-size:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* USER */
+
+.user-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:10px 18px;
+
+    border-radius:18px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+}
+
+.user-profile img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.user-profile h4{
+
+    color:var(--title);
+
+    font-size:15px;
+
+}
+
+.user-profile span{
+
+    font-size:13px;
+
+    color:var(--text);
+
+}
+
+/* THEME */
+
+.theme-toggle{
+
+    width:95px;
+
+    justify-content:space-between;
+
+    padding:0 14px;
+
+}
+
+.toggle-circle{
+
+    position:absolute;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    left:11px;
+
+    transition:.4s;
+
+}
+/* ======================================================
+                    HERO
+====================================================== */
+
+.hero{
+
+    display:grid;
+
+    grid-template-columns:1.4fr .9fr;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+.hero-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.hero-subtitle{
+
+    color:var(--secondary);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+.hero-text h1{
+
+    color:var(--title);
+
+    font-size:52px;
+
+    line-height:1.1;
+
+    margin-bottom:18px;
+
+}
+
+.hero-text p{
+
+    width:80%;
+
+    color:var(--text);
+
+    line-height:1.8;
+
+}
+
+/* ======================================================
+                HERO CARD
+====================================================== */
+
+.hero-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(30px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.hero-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    top:-100px;
+
+    right:-80px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    opacity:.25;
+
+    filter:blur(80px);
+
+}
+
+.hero-card-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-card span{
+
+    color:var(--secondary);
+
+    font-weight:600;
+
+}
+
+.hero-card h2{
+
+    margin:15px 0;
+
+    color:var(--title);
+
+    font-size:32px;
+
+}
+
+.hero-card p{
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+.hero-card button{
+    box-shadow:0 12px 30px rgba(108,99,255,.35);
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:15px 28px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:600;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    transition:.35s;
+
+}
+
+.hero-card button:hover{
+
+    transform:translateY(-4px);
+    box-shadow:0 20px 45px rgba(108,99,255,.45);
+
+}
+/* ======================================================
+                HERO IMPROVEMENTS
+====================================================== */
+
+.hero-card{
+
+    min-height:320px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.hero-glow{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    right:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(108,99,255,.35),
+    transparent);
+
+    filter:blur(90px);
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#8da2ff;
+
+    margin-bottom:20px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+/* ###########################################################################
+#
+#                           12. STATS
+#
+############################################################################ */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    border-radius:26px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(25px);
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    top:-80px;
+
+    right:-80px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        transparent);
+
+    opacity:.18;
+
+    filter:blur(60px);
+
+}
+
+.stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary));
+
+}
+
+.stat-icon i{
+
+    width:24px;
+
+    height:24px;
+
+}
+
+.stat-card h3{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    margin-bottom:12px;
+
+}
+
+.stat-card h2{
+
+    color:var(--title);
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+}
+
+.stat-card p{
+
+    color:var(--text);
+
+    font-size:14px;
+
+}
+/* ======================================================
+                DASHBOARD GRID
+====================================================== */
+
+.dashboard-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+}
+
+.dashboard-left,
+.dashboard-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+/* ======================================================
+                PROGRESS BAR
+====================================================== */
+
+.progress-bar{
+
+    width:100%;
+
+    height:10px;
+
+    margin:18px 0;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary));
+
+}
+
+.progress-82{
+
+    width:82%;
+
+}
+.progress-47{
+
+    width:47%;
+
+}
+
+.progress-18{
+
+    width:18%;
+
+}
+/* ======================================================
+                DASHBOARD CARD
+====================================================== */
+
+.dashboard-card{
+    cursor:default;
+    transform-style:preserve-3d;
+    will-change:transform;
+    position:relative;
+
+    overflow:hidden;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    right:-120px;
+
+    top:-120px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        transparent
+    );
+
+    filter:blur(70px);
+
+    opacity:.15;
+
+    transition:.4s;
+
+}
+.dashboard-card::after{
+
+content:"";
+
+position:absolute;
+
+top:-150%;
+
+left:-40%;
+
+width:60%;
+
+height:300%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.08),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:.8s;
+
+}
+
+.dashboard-card:hover::before{
+
+    opacity:.35;
+
+}
+.dashboard-card:hover::after{
+
+left:140%;
+
+}
+
+.dashboard-card:hover{
+
+transform:
+
+translateY(-10px)
+
+rotateX(2deg)
+
+rotateY(-2deg)
+
+scale(1.015);
+
+}
+
+.dashboard-card h2{
+
+    color:var(--title);
+
+    margin-bottom:12px;
+
+}
+
+.dashboard-card p{
+
+    color:var(--text);
+
+}
+/* ======================================================
+                AURORA ANIMATION
+====================================================== */
+
+@keyframes auroraOne{
+
+    0%{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+    }
+
+    100%{
+
+        transform:
+        translate(180px,120px)
+        scale(1.25);
+
+    }
+
+}
+
+@keyframes auroraTwo{
+
+    0%{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+    }
+
+    100%{
+
+        transform:
+        translate(-170px,-130px)
+        scale(1.2);
+
+    }
+
+}
+/* ###########################################################################
+#
+#                           11. HERO BUTTONS
+#
+############################################################################ */
+/* ======================================================
+                    PRIMARY BUTTON
+====================================================== */
+
+.primary-btn{
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary));
+
+    box-shadow:0 12px 30px rgba(108,99,255,.35);
+
+    transition:all .35s ease;
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 45px rgba(108,99,255,.45);
+
+}
+
+/* ======================================================
+                    SECONDARY BUTTON
+====================================================== */
+
+.secondary-btn{
+
+    padding:15px 30px;
+
+    border-radius:16px;
+
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:var(--title);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .35s ease;
+
+}
+
+.secondary-btn:hover{
+
+    background:rgba(255,255,255,.06);
+
+    transform:translateY(-5px);
+
+}
+/* ###########################################################################
+#
+#                           15. LEARNING SECTION
+#
+############################################################################ */ 
+/* ======================================================
+                COURSE CARDS
+====================================================== */
+
+.course-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:25px;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid var(--border);
+
+    transition:.35s;
+
+}
+
+.course-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--primary);
+
+}
+
+.course-info{
+
+    flex:1;
+
+}
+
+.course-info h3{
+
+    color:var(--title);
+
+    margin:12px 0;
+
+}
+
+.course-info p{
+
+    margin-bottom:18px;
+
+    color:var(--text);
+
+}
+
+.course-tag{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:40px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:white;
+
+}
+/* ======================================================
+                COURSE COLORS
+====================================================== */
+
+.visual .course-tag{
+
+    background:#5B8CFF;
+
+}
+
+.auditory .course-tag{
+
+    background:#A855F7;
+
+}
+
+.kinesthetic .course-tag{
+
+    background:#22C55E;
+
+}
+
+/* ###########################################################################
+#
+#                           16. BOMBI AI
+#
+############################################################################ */
+/* ======================================================
+                    BOMBI CARD
+====================================================== */
+
+.bombi-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+/* Glow */
+
+.bombi-glow{
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    top:-100px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(108,99,255,.30),
+        transparent);
+
+    filter:blur(70px);
+
+}
+
+/* Avatar */
+
+.bombi-avatar{
+
+    width:170px;
+
+    margin:20px 0;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:bombiFloat 5s ease-in-out infinite;
+
+}
+
+/* Title */
+
+.bombi-card h2{
+
+    margin-top:10px;
+
+}
+
+/* Status */
+
+.bombi-status{
+
+    margin:10px 0 20px;
+
+    color:#46d369;
+
+    font-weight:600;
+
+}
+
+/* Text */
+
+.bombi-card p{
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+/* Button */
+
+.bombi-button{
+
+    width:100%;
+
+}
+/* ###########################################################################
+#
+#                           17. CHARTS
+#
+############################################################################ */
+/* ======================================================
+                PROGRESS PANEL
+====================================================== */
+
+.progress-wrapper{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+}
+
+.progress-circle{
+
+    position:relative;
+
+    width:170px;
+
+    height:170px;
+
+}
+
+.progress-circle svg{
+
+    transform:rotate(-90deg);
+
+}
+
+.circle-bg{
+
+    fill:none;
+
+    stroke:rgba(255,255,255,.08);
+
+    stroke-width:10;
+
+}
+
+.circle-progress{
+
+    fill:none;
+
+    stroke:url(#gradient);
+
+    stroke:#6C63FF;
+
+    stroke-width:10;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:440;
+
+    stroke-dashoffset:79;
+
+}
+
+.progress-number{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:var(--title);
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.progress-details{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.detail{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.detail span{
+
+    color:var(--text);
+
+}
+
+.detail strong{
+
+    color:var(--title);
+
+}
+/* ###########################################################################
+#
+#                           18. ACHIEVEMENTS
+#
+############################################################################ */
+/* ======================================================
+                ACHIEVEMENTS
+====================================================== */
+
+.achievement-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+
+}
+
+.achievement{
+
+    padding:25px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+
+}
+
+.achievement:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.achievement-icon{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.achievement h4{
+
+    color:var(--title);
+
+    margin-bottom:8px;
+
+}
+
+.achievement span{
+
+    font-size:14px;
+
+    color:var(--text);
+
+}
+/* ======================================================
+            ACHIEVEMENT COLORS
+====================================================== */
+
+.legendary{
+
+    border-color:#FFD54A;
+
+}
+
+.legendary .achievement-icon{
+
+    color:#FFD54A;
+
+}
+
+.epic{
+
+    border-color:#A855F7;
+
+}
+
+.epic .achievement-icon{
+
+    color:#A855F7;
+
+}
+
+.rare{
+
+    border-color:#3B82F6;
+
+}
+
+.rare .achievement-icon{
+
+    color:#3B82F6;
+
+}
+
+.locked{
+
+    opacity:.45;
+
+    filter:grayscale(1);
+
+}
+/* ======================================================
+            ACHIEVEMENT GLOW
+====================================================== */
+
+.achievement{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.achievement::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    top:-80px;
+
+    right:-80px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        transparent);
+
+    opacity:0;
+
+    transition:.4s;
+
+    filter:blur(60px);
+
+}
+
+.achievement:hover::before{
+
+    opacity:.35;
+
+}
+/* ###########################################################################
+#
+#                           19. Animation
+#
+############################################################################ */
+/* ======================================================
+                BOMBI FLOAT
+====================================================== */
+
+@keyframes bombiFloat{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+@keyframes particleFloat{
+
+0%{
+
+transform:translateY(110vh) scale(.5);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.5;
+
+}
+
+80%{
+
+opacity:.5;
+
+}
+
+100%{
+
+transform:translateY(-20vh) scale(1.4);
+
+opacity:0;
+
+}
+
+}
+/* ###########################################################################
+#
+#                           07.5 PARTICLES
+#
+############################################################################ */
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:-5;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    animation:particleFloat linear infinite;
+
+}
+.particles span:nth-child(1){
+
+left:8%;
+animation-duration:12s;
+animation-delay:0s;
+
+}
+
+.particles span:nth-child(2){
+
+left:20%;
+animation-duration:16s;
+animation-delay:2s;
+
+}
+
+.particles span:nth-child(3){
+
+left:35%;
+animation-duration:14s;
+animation-delay:5s;
+
+}
+
+.particles span:nth-child(4){
+
+left:52%;
+animation-duration:18s;
+animation-delay:1s;
+
+}
+
+.particles span:nth-child(5){
+
+left:68%;
+animation-duration:15s;
+animation-delay:3s;
+
+}
+
+.particles span:nth-child(6){
+
+left:80%;
+animation-duration:20s;
+animation-delay:7s;
+
+}
+
+.particles span:nth-child(7){
+
+left:90%;
+animation-duration:17s;
+animation-delay:2s;
+
+}
+
+.particles span:nth-child(8){
+
+left:96%;
+animation-duration:22s;
+animation-delay:6s;
+
+}
+/* ======================================================
+            FINAL LAYOUT POLISH
+====================================================== */
+
+.dashboard-content{
+
+    align-items:start;
+
+}
+
+.dashboard-left,
+.dashboard-right{
+
+    gap:25px;
+
+}
+
+/* asegura consistencia visual */
+.dashboard-card,
+.stat-card,
+.course-card,
+.achievement{
+
+    box-sizing:border-box;
+
+}
+/* ======================================================
+            SPACING SYSTEM FIX
+====================================================== */
+
+.dashboard-card{
+
+    margin:0;
+
+}
+
+section{
+
+    margin-bottom:25px;
+
+}
+/* ======================================================
+            SIDEBAR FINAL POLISH
+====================================================== */
+
+.sidebar-menu a{
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.06);
+
+    transform:translateX(5px);
+
+}
+
+.sidebar-menu a.active{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+}
+/* ======================================================
+            GLOBAL TRANSITIONS
+====================================================== */
+
+*{
+
+    transition:background .3s ease,
+               transform .3s ease,
+               box-shadow .3s ease;
+
+}
+/* ======================================================
+            ANIMATION CONTROL
+====================================================== */
+
+.dashboard-card:hover,
+.stat-card:hover,
+.course-card:hover,
+.achievement:hover{
+
+    transform:translateY(-6px);
+
+}
+/* ======================================================
+            FINAL VISUAL TOUCH
+====================================================== */
+
+body{
+
+    letter-spacing:0.2px;
+
+}
+
+h1,h2,h3{
+
+    letter-spacing:-0.5px;
+
+}
