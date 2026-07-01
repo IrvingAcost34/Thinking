@@ -1,1 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <!-- ==========================================
+                    META
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+                    TITLE
+    =========================================== -->
+
+    <title>Student Dashboard | Thinking</title>
+
+    <!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="student-dashboard.css">
+
+    <!-- ==========================================
+                GOOGLE FONTS
+    =========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================
+                LUCIDE ICONS
+    =========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<!-- ==========================================
+                    BODY
+========================================== -->
+
+<body class="dark-theme">
+
+    <!-- ==========================================
+                    APP
+    =========================================== -->
+
+    <div class="app">
+
+        <!-- ==========================================
+                AURORA BACKGROUND
+        =========================================== -->
+
+        <div class="aurora"></div>
+      <!-- Floating Particles -->
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar">
+
+            <!-- Logo -->
+
+            <div class="sidebar-logo">
+
+                <img src="../Images/ThinkingLogo.png" alt="Thinking Logo">
+
+                <div class="logo-text">
+
+                    <h2>Thinking</h2>
+
+                    <span>Student Dashboard</span>
+
+                </div>
+
+            </div>
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-menu">
+
+                <a href="#" class="active">
+
+                    <i data-lucide="layout-dashboard"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="brain"></i>
+
+                    <span>Learning Styles</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="book-open"></i>
+
+                    <span>Courses</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="chart-column"></i>
+
+                    <span>Progress</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="target"></i>
+
+                    <span>Daily Mission</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="calendar-days"></i>
+
+                    <span>Schedule</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="trophy"></i>
+
+                    <span>Achievements</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="bot"></i>
+
+                    <span>Bombi AI</span>
+
+                </a>
+
+            </nav>
+
+            <!-- User Card -->
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar">
+
+                    IA
+
+                </div>
+
+                <div class="user-info">
+
+                    <h3>Irving</h3>
+
+                    <p>Student</p>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+
+            <div class="sidebar-footer">
+
+                <a href="#">
+
+                    <i data-lucide="settings"></i>
+
+                    <span>Settings</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="log-out"></i>
+
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+          <!-- =====================================================
+                        TOPBAR
+====================================================== -->
+
+<header class="topbar">
+
+    <!-- Left Side -->
+
+    <div class="topbar-left">
+
+        <div class="search-box">
+
+            <i data-lucide="search"></i>
+
+            <input
+                type="text"
+                placeholder="Search courses, lessons, quizzes...">
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="topbar-right">
+
+        <!-- Notifications -->
+
+        <button class="notification-btn">
+
+            <i data-lucide="bell"></i>
+
+            <span class="notification-count">3</span>
+
+        </button>
+
+        <!-- Theme Toggle -->
+
+        <button class="theme-toggle">
+
+            <i data-lucide="sun"></i>
+
+            <div class="toggle-circle"></div>
+
+            <i data-lucide="moon"></i>
+
+        </button>
+
+        <!-- Profile -->
+
+        <div class="user-profile">
+
+            <img src="../Images/Bombi_EMOTIONweb.png" alt="Profile">
+
+            <div class="profile-info">
+
+                <h4>Irving</h4>
+
+                <p>Student</p>
+
+            </div>
+
+            <i data-lucide="chevron-down"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- =====================================================
+                    HERO SECTION
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <span class="hero-subtitle">
+
+            Welcome Back 👋
+
+        </span>
+
+        <h1 id="greeting">
+
+            Good Morning, Irving
+
+        </h1>
+
+        <p>
+
+            Continue your learning journey and complete today's mission.
+
+        </p>
+
+    </div>
+
+    <div class="hero-card">
+
+    <div class="hero-glow"></div>
+
+    <div class="hero-card-content">
+
+        <div class="hero-badge">
+
+            🔥 Daily Challenge
+
+        </div>
+
+        <h2>
+
+            Learn Smarter with Bombi AI
+
+        </h2>
+
+        <p>
+
+            Complete today's mission, earn XP, unlock achievements and discover your learning style.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn">
+
+                Start Learning
+
+            </button>
+
+            <button class="secondary-btn">
+
+                Explore
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <img
+        src="../Images/Bombi_EMOTIONweb.png"
+        class="hero-bombi"
+        alt="Bombi">
+
+</div>
+
+</section>
+
+<!-- =====================================================
+                    QUICK STATS
+====================================================== -->
+
+<!-- =====================================================
+                    SMART STATS
+====================================================== -->
+
+<section class="stats">
+
+    <!-- Card 1 -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i data-lucide="brain"></i>
+
+        </div>
+
+        <h3>Learning Progress</h3>
+
+        <h2>82%</h2>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill progress-82"></div>
+
+        </div>
+
+        <p>+12% this week</p>
+
+    </div>
+
+    <!-- Card 2 -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i data-lucide="flame"></i>
+
+        </div>
+
+        <h3>Current Streak</h3>
+
+        <h2>18 Days</h2>
+
+        <p>Keep learning every day 🔥</p>
+
+    </div>
+
+    <!-- Card 3 -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i data-lucide="star"></i>
+
+        </div>
+
+        <h3>Total XP</h3>
+
+        <h2>2,480 XP</h2>
+
+        <p>Almost Level 13</p>
+
+    </div>
+
+    <!-- Card 4 -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i data-lucide="trophy"></i>
+
+        </div>
+
+        <h3>Achievements</h3>
+
+        <h2>24</h2>
+
+        <p>3 new badges unlocked</p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+                DASHBOARD CONTENT
+====================================================== -->
+
+<!-- =====================================================
+                DASHBOARD CONTENT
+====================================================== -->
+
+<section class="dashboard-content">
+
+    <!-- =====================================
+            LEFT COLUMN
+    ====================================== -->
+
+    <div class="dashboard-left">
+
+        <!-- Continue Learning -->
+
+       <!-- =====================================================
+                CONTINUE LEARNING
+====================================================== -->
+
+<section class="dashboard-card continue-learning">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Continue Learning</h2>
+
+            <p>Continue exactly where you stopped.</p>
+
+        </div>
+
+    </div>
+
+    <div class="course-card visual">
+
+        <div class="course-info">
+
+            <span class="course-tag">
+
+                Visual
+
+            </span>
+
+            <h3>Visual Learning</h3>
+
+            <p>12 Lessons • 82% Completed</p>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill progress-82"></div>
+
+            </div>
+
+        </div>
+
+        <button class="primary-btn">
+
+            Continue
+
+        </button>
+
+    </div>
+
+    <div class="course-card auditory">
+
+        <div class="course-info">
+
+            <span class="course-tag">
+
+                Auditory
+
+            </span>
+
+            <h3>Auditory Learning</h3>
+
+            <p>9 Lessons • 47% Completed</p>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill progress-47"></div>
+
+            </div>
+
+        </div>
+
+        <button class="primary-btn">
+
+            Continue
+
+        </button>
+
+    </div>
+
+    <div class="course-card kinesthetic">
+
+        <div class="course-info">
+
+            <span class="course-tag">
+
+                Kinesthetic
+
+            </span>
+
+            <h3>Kinesthetic Learning</h3>
+
+            <p>15 Lessons • 18% Completed</p>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill progress-18"></div>
+
+            </div>
+
+        </div>
+
+        <button class="primary-btn">
+
+            Continue
+
+        </button>
+
+    </div>
+
+</section>
+       <!-- =====================================================
+                    STUDENT PROGRESS
+====================================================== -->
+
+<section class="dashboard-card progress-card">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Your Progress</h2>
+
+            <p>Keep improving every day.</p>
+
+        </div>
+
+    </div>
+
+    <div class="progress-wrapper">
+
+        <div class="progress-circle">
+
+            <svg width="170" height="170">
+
+                <circle
+                    class="circle-bg"
+                    cx="85"
+                    cy="85"
+                    r="70">
+                </circle>
+
+                <circle
+                    class="circle-progress"
+                    cx="85"
+                    cy="85"
+                    r="70">
+                </circle>
+
+            </svg>
+
+            <div class="progress-number">
+
+                82%
+
+            </div>
+
+        </div>
+
+        <div class="progress-details">
+
+            <div class="detail">
+
+                <span>Current Level</span>
+
+                <strong>12</strong>
+
+            </div>
+
+            <div class="detail">
+
+                <span>Total XP</span>
+
+                <strong>2480 XP</strong>
+
+            </div>
+
+            <div class="detail">
+
+                <span>Study Streak</span>
+
+                <strong>18 Days 🔥</strong>
+
+            </div>
+
+            <div class="detail">
+
+                <span>Next Goal</span>
+
+                <strong>Level 13</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+    </div>
+
+    <!-- =====================================
+            RIGHT COLUMN
+    ====================================== -->
+
+    <div class="dashboard-right">
+
+        <!-- Daily Mission -->
+
+        <section class="dashboard-card mission">
+
+            <h2>Today's Mission</h2>
+
+            <ul>
+
+                <li>✅ Finish 2 lessons</li>
+
+                <li>⬜ Complete one quiz</li>
+
+                <li>⬜ Chat with Bombi AI</li>
+
+            </ul>
+
+        </section>
+
+        <!-- =====================================================
+                    BOMBI AI
+====================================================== -->
+
+<section class="dashboard-card bombi-card">
+
+    <div class="bombi-glow"></div>
+
+    <img
+        src="../Images/Bombi_EMOTIONweb.png"
+        class="bombi-avatar"
+        alt="Bombi">
+
+    <h2>Bombi AI</h2>
+
+    <span class="bombi-status">
+
+        ● Online
+
+    </span>
+
+    <p id="bombi-message">
+
+        Ready to help you learn today.
+
+    </p>
+
+    <button class="primary-btn bombi-button">
+
+        Ask Bombi
+
+    </button>
+
+</section>
+
+       <!-- =====================================================
+                    ACHIEVEMENTS
+====================================================== -->
+
+<section class="dashboard-card achievements">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Achievements</h2>
+
+            <p>Your latest milestones</p>
+
+        </div>
+
+    </div>
+
+    <div class="achievement-grid">
+
+        <!-- Achievement -->
+
+        <div class="achievement legendary">
+
+            <div class="achievement-icon">
+
+                🏆
+
+            </div>
+
+            <h4>First Victory</h4>
+
+            <span>Legendary</span>
+
+        </div>
+
+        <!-- Achievement -->
+
+        <div class="achievement epic">
+
+            <div class="achievement-icon">
+
+                ⭐
+
+            </div>
+
+            <h4>7 Day Streak</h4>
+
+            <span>Epic</span>
+
+        </div>
+
+        <!-- Achievement -->
+
+        <div class="achievement rare">
+
+            <div class="achievement-icon">
+
+                🚀
+
+            </div>
+
+            <h4>Level Up</h4>
+
+            <span>Rare</span>
+
+        </div>
+
+        <!-- Locked -->
+
+        <div class="achievement locked">
+
+            <div class="achievement-icon">
+
+                🔒
+
+            </div>
+
+            <h4>Coming Soon</h4>
+
+            <span>Locked</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </div>
+
+</section>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================================
+                JAVASCRIPT
+    =========================================== -->
+
+    <script src="student-dashboard.js"></script>
+
+</body>
+
+</html>
