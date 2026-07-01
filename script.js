@@ -9,7 +9,7 @@ const loginBtn = document.querySelector(".login-btn");
 
 if(loginBtn){
     loginBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "Login/Login.html";
     });
 }
 
@@ -19,7 +19,7 @@ const signupBtn = document.querySelector(".signup-btn");
 
 if(signupBtn){
     signupBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "Register/REGISTER.html";
     });
 }
 
@@ -29,7 +29,7 @@ const startBtn = document.querySelector(".start-btn");
 
 if(startBtn){
     startBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "Login/Login.html";
     });
 }
 
