@@ -121,7 +121,7 @@ loginForm.addEventListener("submit", async (e) => {
 // pequeña pausa para UX (efecto app real)
 setTimeout(() => {
 
-  window.location.href = "../Student Dashboard.html";
+  window.location.href = "../Dashboard-Studen/Student Dashboard.html";
 
 }, 800);
   // Redirigir al dashboard si quieres:
