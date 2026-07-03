@@ -168,22 +168,27 @@
             <!-- User Card -->
 
             <div class="sidebar-user">
+<div class="sidebar-user">
 
-                <div class="user-avatar">
+    <div class="user-avatar" id="userAvatar">
 
-                    IA
+        IA
 
-                </div>
+    </div>
 
-                <div class="user-info">
+    <div class="user-info">
 
-                    <h3>Irving</h3>
+        <h3 id="userName">
 
-                    <p>Student</p>
+            Irving
 
-                </div>
+        </h3>
 
-            </div>
+        <p>Student</p>
+
+    </div>
+
+</div>
 
             <!-- Footer -->
 
@@ -270,12 +275,12 @@
 
             <div class="profile-info">
 
-                <h4>Irving</h4>
+              <h4 id="profileName">
+                 Irving
+             </h4>
+              <p>Student</p>
 
-                <p>Student</p>
-
-            </div>
-
+             </div>
             <i data-lucide="chevron-down"></i>
 
         </div>
@@ -827,7 +832,7 @@
     <!-- ==========================================
                 JAVASCRIPT
     =========================================== -->
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="Student Dashboard.js"></script>
 
 </body>
