@@ -4,7 +4,7 @@
 
 const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
 
-const SUPABASE_KEY = "TU_CLAVE_PUBLICA";
+const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
 
 const db = window.supabase.createClient(
     SUPABASE_URL,
@@ -195,23 +195,34 @@ if(progressCircle){
 
 async function loadUserData(){
 
-    const { data: sessionData } = await db.auth.getUser();
+    const { data: { session }, error: sessionError } = await db.auth.getSession();
 
-    if(!sessionData.user){
+console.log("SESSION:", session);
 
-        window.location.href="../Login/Login.html";
+if(sessionError){
 
-        return;
+    console.error(sessionError);
 
-    }
+}
 
+if(!session){
+
+    console.log("No hay sesión");
+
+    window.location.href="../Login/Login.html";
+
+    return;
+
+}
+
+const user = session.user;
     const { data, error } = await db
 
     .from("THINKING")
 
     .select("Nombre_Usuario")
 
-    .eq("id", sessionData.user.id)
+    .eq("id", user.id)
 
     .single();
 
