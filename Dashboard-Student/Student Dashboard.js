@@ -1,3 +1,15 @@
+// ======================================================
+// SUPABASE
+// ======================================================
+
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+
+const SUPABASE_KEY = "TU_CLAVE_PUBLICA";
+
+const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 /* ======================================================
                     THINKING
             STUDENT DASHBOARD V1.0
@@ -176,3 +188,73 @@ if(progressCircle){
     },500);
 
 }
+
+// ======================================================
+// LOAD USER DATA
+// ======================================================
+
+async function loadUserData(){
+
+    const { data: sessionData } = await db.auth.getUser();
+
+    if(!sessionData.user){
+
+        window.location.href="../Login/Login.html";
+
+        return;
+
+    }
+
+    const { data, error } = await db
+
+    .from("THINKING")
+
+    .select("Nombre_Usuario")
+
+    .eq("id", sessionData.user.id)
+
+    .single();
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+    const nombre = data.Nombre_Usuario;
+
+    // Sidebar
+
+    document.getElementById("userName").textContent = nombre;
+
+    // Topbar
+
+    document.getElementById("profileName").textContent = nombre;
+
+    // Hero
+
+    document.getElementById("greeting").textContent =
+
+    `Good Morning, ${nombre}`;
+
+    // Avatar
+
+    const iniciales = nombre
+
+    .split(" ")
+
+    .map(p=>p[0])
+
+    .join("")
+
+    .substring(0,2)
+
+    .toUpperCase();
+
+    document.getElementById("userAvatar").textContent = iniciales;
+
+}
+
+loadUserData();
