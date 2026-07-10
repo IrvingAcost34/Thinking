@@ -169,23 +169,73 @@ themeToggle.addEventListener("click", saveTheme);
 loadTheme();
 
 console.log("Thinking Student Dashboard Loaded 🚀");
-/* ======================================================
-                PROGRESS ANIMATION
-====================================================== */
 
-const progressCircle = document.querySelector(".circle-progress");
+// ======================================================
+// STREAK HELPERS
+// ======================================================
 
-if(progressCircle){
+// Devuelve la fecha de hoy en formato YYYY-MM-DD (sin hora)
+function getTodayDateString(){
 
-    progressCircle.style.strokeDashoffset = "440";
+    const now = new Date();
 
-    setTimeout(()=>{
+    const year = now.getFullYear();
 
-        progressCircle.style.transition="2s";
+    const month = String(now.getMonth() + 1).padStart(2, "0");
 
-        progressCircle.style.strokeDashoffset="79";
+    const day = String(now.getDate()).padStart(2, "0");
 
-    },500);
+    return `${year}-${month}-${day}`;
+
+}
+
+// Devuelve la fecha de ayer en formato YYYY-MM-DD
+function getYesterdayDateString(){
+
+    const now = new Date();
+
+    now.setDate(now.getDate() - 1);
+
+    const year = now.getFullYear();
+
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+// Calcula la nueva racha comparando la última fecha guardada
+function calculateNewStreak(lastActivityDate, currentStreak){
+
+    const today = getTodayDateString();
+
+    const yesterday = getYesterdayDateString();
+
+    // Si no hay fecha guardada todavía, es la primera vez
+    if(!lastActivityDate){
+
+        return { newStreak: 1, shouldUpdate: true };
+
+    }
+
+    // Ya entró hoy antes, no cambiamos nada
+    if(lastActivityDate === today){
+
+        return { newStreak: currentStreak, shouldUpdate: false };
+
+    }
+
+    // Entró ayer, la racha sigue viva y sube +1
+    if(lastActivityDate === yesterday){
+
+        return { newStreak: currentStreak + 1, shouldUpdate: true };
+
+    }
+
+    // Se saltó uno o más días, la racha se reinicia
+    return { newStreak: 1, shouldUpdate: true };
 
 }
 
@@ -197,75 +247,115 @@ async function loadUserData(){
 
     const { data: { session }, error: sessionError } = await db.auth.getSession();
 
-console.log("SESSION:", session);
+    console.log("SESSION:", session);
 
-if(sessionError){
+    if(sessionError){
+        console.error(sessionError);
+    }
 
-    console.error(sessionError);
+    if(!session){
+        console.log("No hay sesión");
+        window.location.href="../Login/Login.html";
+        return;
+    }
 
-}
+    const user = session.user;
 
-if(!session){
-
-    console.log("No hay sesión");
-
-    window.location.href="../Login/Login.html";
-
-    return;
-
-}
-
-const user = session.user;
     const { data, error } = await db
-
-    .from("THINKING")
-
-    .select("Nombre_Usuario")
-
-    .eq("id", user.id)
-
-    .single();
+        .from("THINKING")
+        .select("Nombre_Usuario, current_level, total_xp, progress_percent, study_streak, next_goal, achievements_count, last_activity_date")
+        .eq("id", user.id)
+        .single();
 
     if(error){
-
         console.error(error);
-
         return;
-
     }
 
     const nombre = data.Nombre_Usuario;
 
     // Sidebar
-
     document.getElementById("userName").textContent = nombre;
 
     // Topbar
-
     document.getElementById("profileName").textContent = nombre;
 
     // Hero
-
-    document.getElementById("greeting").textContent =
-
-    `Good Morning, ${nombre}`;
+    document.getElementById("greeting").textContent = `Good Morning, ${nombre}`;
 
     // Avatar
-
     const iniciales = nombre
-
-    .split(" ")
-
-    .map(p=>p[0])
-
-    .join("")
-
-    .substring(0,2)
-
-    .toUpperCase();
+        .split(" ")
+        .map(p=>p[0])
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
 
     document.getElementById("userAvatar").textContent = iniciales;
 
+    // ==================================================
+    // CALCULATE REAL STREAK
+    // ==================================================
+
+    const { newStreak, shouldUpdate } = calculateNewStreak(
+        data.last_activity_date,
+        data.study_streak ?? 0
+    );
+
+    if(shouldUpdate){
+
+        const { error: updateError } = await db
+            .from("THINKING")
+            .update({
+                study_streak: newStreak,
+                last_activity_date: getTodayDateString()
+            })
+            .eq("id", user.id);
+
+        if(updateError){
+            console.error("Error actualizando racha:", updateError);
+        }
+    }
+
+    // ==================================================
+    // PROGRESS DATA (usa la racha ya actualizada)
+    // ==================================================
+
+    const percent = data.progress_percent ?? 0;
+    const level = data.current_level ?? 1;
+    const xp = data.total_xp ?? 0;
+    const streak = newStreak;
+    const nextGoal = data.next_goal ?? "-";
+    const achievements = data.achievements_count ?? 0;
+
+    // Top stat cards
+    document.getElementById("stat-progress").textContent = `${percent}%`;
+    document.getElementById("stat-progress-fill").style.width = `${percent}%`;
+    document.getElementById("stat-streak").textContent = `${streak} Days`;
+    document.getElementById("stat-xp").textContent = `${xp.toLocaleString()} XP`;
+    document.getElementById("stat-achievements").textContent = achievements;
+
+    // "Your Progress" card
+    document.getElementById("progress-number").textContent = `${percent}%`;
+    document.getElementById("detail-level").textContent = level;
+    document.getElementById("detail-xp").textContent = `${xp} XP`;
+    document.getElementById("detail-streak").textContent = `${streak} Days 🔥`;
+    document.getElementById("detail-next-goal").textContent = nextGoal;
+
+    // Animate circle (circumference = 2 * PI * 70 ≈ 440)
+    const circumference = 440;
+    const offset = circumference - (percent / 100) * circumference;
+
+    const progressCircle = document.querySelector(".circle-progress");
+
+    if(progressCircle){
+        progressCircle.style.strokeDashoffset = circumference;
+
+        setTimeout(()=>{
+            progressCircle.style.transition = "2s";
+            progressCircle.style.strokeDashoffset = offset;
+        },500);
+    }
 }
 
 loadUserData();
