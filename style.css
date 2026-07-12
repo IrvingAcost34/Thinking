@@ -1319,11 +1319,7 @@ BACKGROUND
 
     left:-160px;
 
-    background:radial-gradient(circle,rgba(140,82,255,.35),transparent 70%);
-
-    filter:blur(10px);
-
-    animation:auroraMove1 18s ease-in-out infinite;
+    background:#f3ecff;
 
 }
 
@@ -1337,23 +1333,19 @@ BACKGROUND
 
     bottom:-220px;
 
-    background:radial-gradient(circle,rgba(0,194,255,.30),transparent 70%);
-
-    filter:blur(10px);
-
-    animation:auroraMove2 22s ease-in-out infinite;
+    background:#eef9ff;
 
 }
 
 [data-theme="dark"] .circle-1{
 
-    background:radial-gradient(circle,rgba(140,82,255,.22),transparent 70%);
+    background:rgba(140,82,255,.08);
 
 }
 
 [data-theme="dark"] .circle-2{
 
-    background:radial-gradient(circle,rgba(0,194,255,.20),transparent 70%);
+    background:rgba(0,194,255,.08);
 
 }
 
@@ -4170,6 +4162,150 @@ PIXEL PERFECT ADJUSTMENTS
         transform:none;
 
         transition:none;
+
+    }
+
+}
+
+/* =========================================================
+   FIX: RESPONSIVE LEARNING STYLES
+   (.card-image y .card-header h3 quedaban con reglas
+   fijas que rompían el orden en mobile, se reordena aquí)
+========================================================= */
+
+@media(max-width:768px){
+
+    .card-image{
+
+        position:relative;
+
+        right:auto;
+
+        bottom:auto;
+
+        width:100%;
+
+        height:auto;
+
+        display:flex;
+
+        justify-content:center;
+
+    }
+
+    .card-image img{
+
+        width:150px;
+
+        object-fit:contain;
+
+    }
+
+    .card-header h3{
+
+        font-size:22px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .card-header h3{
+
+        font-size:20px;
+
+    }
+
+}
+
+/* =========================================================
+   FIX: RESPONSIVE WHY THINKING
+   (no tenía ningún ajuste para mobile, quedaba con
+   tamaños de escritorio y se desordenaba)
+========================================================= */
+
+@media(max-width:768px){
+
+    .why-thinking h2{
+
+        font-size:42px;
+
+    }
+
+    .why-container{
+
+        gap:40px;
+
+    }
+
+    .why-card{
+
+        padding:0 10px;
+
+    }
+
+    .why-icon{
+
+        width:85px;
+
+        height:85px;
+
+        font-size:36px;
+
+        margin:0 auto 20px;
+
+    }
+
+    .why-card h3{
+
+        font-size:24px;
+
+    }
+
+    .why-card p{
+
+        font-size:17px;
+
+        max-width:100%;
+
+    }
+
+    .why-divider{
+
+        height:1px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .why-thinking h2{
+
+        font-size:34px;
+
+    }
+
+    .why-icon{
+
+        width:75px;
+
+        height:75px;
+
+        font-size:32px;
+
+    }
+
+    .why-card h3{
+
+        font-size:21px;
+
+    }
+
+    .why-card p{
+
+        font-size:16px;
 
     }
 
