@@ -1,1 +1,2570 @@
+/* ##########################################################################
+#
+#                           THINKING BOARD
+#
+############################################################################ */
 
+/* ======================================================
+                    RESET
+====================================================== */
+
+*{
+  
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+html,
+body{
+
+    width:100%;
+
+    min-height:100%;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
+
+}
+
+/* ======================================================
+                    VARIABLES
+====================================================== */
+
+:root{
+
+    --primary:#6C63FF;
+
+    --secondary:#4FD1FF;
+
+    --success:#22C55E;
+
+    --warning:#F59E0B;
+
+    --danger:#EF4444;
+
+    --shadow:
+
+        0 20px 60px rgba(0,0,0,.35);
+
+}
+
+/* ======================================================
+                DARK THEME TOKENS
+====================================================== */
+
+body.dark-theme{
+
+    --background:#070B18;
+
+    --title:#F8FAFC;
+
+    --text:#CBD5E1;
+
+    --surface:rgba(18,24,42,.72);
+
+    --chip:rgba(255,255,255,.05);
+
+    --chip-hover:rgba(255,255,255,.10);
+
+    --tool-bg:rgba(255,255,255,.04);
+
+    --border:rgba(255,255,255,.08);
+
+    --scrollbar-track:#0d1323;
+
+}
+
+/* ======================================================
+                LIGHT THEME TOKENS
+====================================================== */
+
+body.light-theme{
+
+    --background:#EEF1F8;
+
+    --title:#0F172A;
+
+    --text:#4B5566;
+
+    --surface:rgba(255,255,255,.72);
+
+    --chip:rgba(15,23,42,.05);
+
+    --chip-hover:rgba(15,23,42,.10);
+
+    --tool-bg:rgba(15,23,42,.04);
+
+    --border:rgba(15,23,42,.10);
+
+    --scrollbar-track:#e4e8f2;
+
+}
+
+/* ======================================================
+                    BODY
+====================================================== */
+
+body{
+
+    color:var(--title);
+
+    background:var(--background);
+
+    position:relative;
+
+    transition:background .4s ease, color .4s ease;
+
+}
+
+/* ======================================================
+                    APP
+====================================================== */
+
+.app{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:100vh;
+
+}
+/* ###########################################################################
+#
+#                           BACKGROUND EFFECTS
+#
+############################################################################ */
+
+/* ======================================================
+                    AURORA
+====================================================== */
+
+.aurora{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-3;
+
+}
+
+.aurora::before,
+.aurora::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:900px;
+
+    height:900px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.22;
+
+}
+
+.aurora::before{
+
+    top:-300px;
+
+    left:-250px;
+
+    background:
+
+        radial-gradient(circle,
+
+        var(--primary),
+
+        transparent 70%);
+
+    animation:auroraOne 18s linear infinite alternate;
+
+}
+
+.aurora::after{
+
+    right:-300px;
+
+    bottom:-250px;
+
+    background:
+
+        radial-gradient(circle,
+
+        var(--secondary),
+
+        transparent 70%);
+
+    animation:auroraTwo 20s linear infinite alternate;
+
+}
+
+/* ======================================================
+                FLOATING PARTICLES
+====================================================== */
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.18);
+
+    animation:particleFloat linear infinite;
+
+}
+
+/* Individual particles */
+
+.particles span:nth-child(1){
+
+left:8%;
+animation-duration:14s;
+animation-delay:0s;
+
+}
+
+.particles span:nth-child(2){
+
+left:20%;
+animation-duration:17s;
+animation-delay:3s;
+
+}
+
+.particles span:nth-child(3){
+
+left:34%;
+animation-duration:15s;
+animation-delay:5s;
+
+}
+
+.particles span:nth-child(4){
+
+left:50%;
+animation-duration:20s;
+animation-delay:1s;
+
+}
+
+.particles span:nth-child(5){
+
+left:65%;
+animation-duration:18s;
+animation-delay:4s;
+
+}
+
+.particles span:nth-child(6){
+
+left:78%;
+animation-duration:22s;
+animation-delay:2s;
+
+}
+
+.particles span:nth-child(7){
+
+left:90%;
+animation-duration:19s;
+animation-delay:6s;
+
+}
+
+.particles span:nth-child(8){
+
+left:97%;
+animation-duration:24s;
+animation-delay:8s;
+
+}
+/* ###########################################################################
+#
+#                           ANIMATIONS
+#
+############################################################################ */
+
+/* ======================================================
+                    AURORA
+====================================================== */
+
+@keyframes auroraOne{
+
+    0%{
+
+        transform:
+
+        translate(0,0)
+
+        scale(1);
+
+    }
+
+    100%{
+
+        transform:
+
+        translate(250px,160px)
+
+        scale(1.35);
+
+    }
+
+}
+
+@keyframes auroraTwo{
+
+    0%{
+
+        transform:
+
+        translate(0,0)
+
+        scale(1);
+
+    }
+
+    100%{
+
+        transform:
+
+        translate(-220px,-180px)
+
+        scale(1.30);
+
+    }
+
+}
+
+/* ======================================================
+                    PARTICLES
+====================================================== */
+
+@keyframes particleFloat{
+
+    0%{
+
+        transform:
+
+        translateY(110vh)
+
+        scale(.4);
+
+        opacity:0;
+
+    }
+
+    15%{
+
+        opacity:.45;
+
+    }
+
+    80%{
+
+        opacity:.45;
+
+    }
+
+    100%{
+
+        transform:
+
+        translateY(-15vh)
+
+        scale(1.6);
+
+        opacity:0;
+
+    }
+
+}
+/* ###########################################################################
+#
+#                           TOPBAR
+#
+############################################################################ */
+
+/* ======================================================
+                    TOPBAR
+====================================================== */
+
+.topbar{
+
+    position:absolute;
+
+    top:25px;
+
+    left:25px;
+
+    right:25px;
+
+    height:78px;
+
+    padding:0 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-radius:24px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    box-shadow:0 15px 45px rgba(0,0,0,.30);
+
+    z-index:100;
+
+}
+
+/* ======================================================
+                    LEFT
+====================================================== */
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.board-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.board-logo img{
+
+    width:56px;
+
+    height:56px;
+
+    object-fit:contain;
+
+}
+
+.logo-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.logo-text h2{
+
+    color:var(--title);
+
+    font-size:23px;
+
+    font-weight:700;
+
+}
+
+.logo-text span{
+
+    color:var(--text);
+
+    font-size:13px;
+
+}
+
+/* ======================================================
+                    CENTER
+====================================================== */
+
+.topbar-center{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.board-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+}
+
+.status-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    box-shadow:
+
+    0 0 12px #22C55E,
+
+    0 0 25px #22C55E;
+
+}
+
+.board-status span{
+
+    color:var(--text);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ======================================================
+                    RIGHT
+====================================================== */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+/* ======================================================
+                    TOP BUTTONS
+====================================================== */
+
+.top-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:16px;
+
+    border-radius:16px;
+
+    color:var(--title);
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+    transition:.35s;
+
+}
+.top-btn:hover{
+
+    transform:translateY(-4px);
+
+    border-color:var(--primary);
+
+    background:rgba(108,99,255,.15);
+
+    box-shadow:
+
+    0 10px 25px rgba(108,99,255,.35);
+
+}
+
+.top-btn svg{
+
+    width:22px;
+
+    height:22px;
+
+}
+/* ======================================================
+                THEME TOGGLE
+====================================================== */
+
+.theme-toggle{
+
+    position:relative;
+
+    width:88px;
+
+    height:46px;
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 12px;
+
+    border-radius:50px;
+
+    color:var(--title);
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+}
+
+.toggle-circle{
+
+    position:absolute;
+
+    left:6px;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+
+    135deg,
+
+    var(--primary),
+
+    var(--secondary));
+
+    transition:.35s;
+
+}
+/* ======================================================
+                USER PROFILE
+====================================================== */
+
+.user-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.user-profile:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--primary);
+
+}
+
+.user-profile img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.profile-info h4{
+
+    color:var(--title);
+
+    font-size:15px;
+
+}
+
+.profile-info p{
+
+    color:var(--text);
+
+    font-size:12px;
+
+}
+/* ###########################################################################
+#
+#                           DRAWING TOOLBAR
+#
+############################################################################ */
+
+/* ======================================================
+                    TOOLBAR
+====================================================== */
+
+.toolbar{
+
+    position:absolute;
+
+    top:120px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 22px;
+
+    border-radius:24px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    box-shadow:
+
+        0 18px 45px rgba(0,0,0,.30);
+
+    z-index:100;
+
+}
+/* ======================================================
+                    TOOL BUTTON
+====================================================== */
+
+.tool{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+   border-radius:18px;
+
+    color:var(--title);
+
+    background:var(--tool-bg);
+
+    border:1px solid transparent;
+
+    transition:.35s;
+
+}
+.tool:hover{
+
+    transform:
+
+        translateY(-5px)
+
+        scale(1.06);
+
+    background:rgba(108,99,255,.12);
+
+    border-color:var(--primary);
+
+    box-shadow:
+
+        0 12px 25px rgba(108,99,255,.35);
+
+}
+.tool.active{
+
+    color:white;
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        var(--secondary));
+
+    box-shadow:
+
+        0 15px 35px rgba(108,99,255,.45);
+
+}
+.tool svg{
+
+    width:22px;
+
+    height:22px;
+
+}
+/* ======================================================
+                TOOLBAR DIVIDER
+====================================================== */
+
+.toolbar-divider{
+
+    width:1px;
+
+    height:34px;
+
+    background:rgba(255,255,255,.08);
+
+}
+/* ###########################################################################
+#
+#                           BOARD CONTAINER
+#
+############################################################################ */
+
+/* ======================================================
+                    BOARD LAYOUT
+====================================================== */
+
+.board-container{
+
+    position:absolute;
+
+    top:205px;
+
+    left:25px;
+
+    right:25px;
+
+    bottom:85px;
+
+    display:grid;
+
+    grid-template-columns:1fr 340px;
+
+    gap:25px;
+
+}
+/* ======================================================
+                    CANVAS
+====================================================== */
+
+.canvas-wrapper{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.30);
+
+}
+/* ======================================================
+                OBJECT LAYER
+====================================================== */
+
+#objectLayer{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+}
+/* ======================================================
+                TEXT BOX
+====================================================== */
+
+.text-box{
+
+    position:absolute;
+
+    min-width:150px;
+
+    min-height:45px;
+
+    padding:10px 14px;
+
+    border:2px solid transparent;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:#ffffff;
+
+    font-family:"Poppins", sans-serif;
+
+    font-size:20px;
+
+    outline:none;
+
+    overflow:hidden;
+
+    cursor:move;
+
+    pointer-events:auto;
+
+    user-select:text;
+
+}
+/* ======================================================
+                    STICKY NOTE
+====================================================== */
+
+.sticky-note{
+
+    position:absolute;
+
+    pointer-events:auto;
+
+    width:240px;
+
+    min-height:180px;
+
+    padding:20px;
+
+    background:#FFE66D;
+
+    color:#333;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:18px;
+
+    line-height:32px;
+
+    border-radius:12px;
+
+    outline:none;
+
+    overflow:hidden;
+
+    cursor:move;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.20);
+
+    background-image:
+        repeating-linear-gradient(
+            transparent,
+            transparent 30px,
+            rgba(0,0,0,.12) 31px,
+            rgba(0,0,0,.12) 32px
+        );
+
+    background-size:100% 32px;
+
+}
+/* ======================================================
+                STICKY TOOLBAR
+====================================================== */
+
+.sticky-toolbar{
+
+    position:absolute;
+
+    top:-42px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:8px;
+
+    padding:6px 10px;
+
+    background:#1B1F2A;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.25s;
+
+    z-index:100;
+
+}
+
+.sticky-note.selected .sticky-toolbar{
+
+    opacity:1;
+  
+    pointer-events:auto;
+
+}
+
+.sticky-tool{
+
+    width:32px;
+
+    height:32px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.sticky-tool:hover{
+
+    background:#6C63FF;
+
+}
+
+
+
+
+
+/* ================================================================================================================================================== */
+.text-box:focus{
+
+    border:2px solid #6C63FF;
+
+}
+#whiteboard{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    cursor:crosshair;
+
+}
+/* ======================================================
+                TOOL PANEL
+====================================================== */
+
+.tool-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.30);
+
+}
+.tool-panel h3{
+
+    font-size:22px;
+
+    color:var(--title);
+
+    margin-bottom:10px;
+
+}
+/* ======================================================
+                TOOL GROUP
+====================================================== */
+
+.tool-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+.tool-group label{
+
+    color:var(--text);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+.tool-group input[type="color"]{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:14px;
+
+    background:none;
+
+}
+.tool-group input[type="range"]{
+
+    width:100%;
+
+    cursor:pointer;
+
+}
+.tool-group select{
+
+    padding:14px 16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    color:var(--title);
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+}
+#brushValue,
+#opacityValue,
+#zoomValue{
+
+    color:var(--secondary);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+/* ###########################################################################
+#
+#                       CANVAS BACKGROUNDS
+#
+############################################################################ */
+
+/* ======================================================
+                    WHITE
+====================================================== */
+
+.canvas-wrapper.white{
+
+    background:#ffffff;
+
+}
+
+/* ======================================================
+                    DOT GRID
+====================================================== */
+
+.canvas-wrapper.dots{
+
+    background-color:#ffffff;
+
+    background-image:
+
+        radial-gradient(
+
+            rgba(110,110,110,.35) 1px,
+
+            transparent 1px
+
+        );
+
+    background-size:25px 25px;
+
+}
+
+/* ======================================================
+                    SQUARE GRID
+====================================================== */
+
+.canvas-wrapper.grid{
+
+    background-color:#ffffff;
+
+    background-image:
+
+        linear-gradient(
+
+            rgba(140,140,140,.18) 1px,
+
+            transparent 1px
+
+        ),
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(140,140,140,.18) 1px,
+
+            transparent 1px
+
+        );
+
+    background-size:30px 30px;
+
+}
+
+/* ======================================================
+                    RULED PAPER
+====================================================== */
+
+.canvas-wrapper.lines{
+
+    background-color:#ffffff;
+
+    background-image:
+
+        repeating-linear-gradient(
+
+            to bottom,
+
+            transparent,
+
+            transparent 34px,
+
+            rgba(90,140,255,.28) 35px
+
+        );
+
+}
+
+/* ======================================================
+                    DARK GRID
+====================================================== */
+
+.canvas-wrapper.dark{
+
+    background-color:#121827;
+
+    background-image:
+
+        linear-gradient(
+
+            rgba(255,255,255,.06) 1px,
+
+            transparent 1px
+
+        ),
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(255,255,255,.06) 1px,
+
+            transparent 1px
+
+        );
+
+    background-size:30px 30px;
+
+}
+/* ======================================================
+                CANVAS TRANSITION
+====================================================== */
+
+.canvas-wrapper{
+
+    transition:
+
+        background .45s ease,
+
+        background-image .45s ease;
+
+}
+.canvas-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+
+            rgba(255,255,255,.08),
+
+            transparent 20%
+
+        );
+
+    opacity:.35;
+
+}
+.canvas-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+
+            rgba(255,255,255,.08),
+
+            transparent 20%
+
+        );
+
+    opacity:.35;
+
+}
+/* ======================================================
+                FOOTER COLUMNS
+====================================================== */
+
+.footer-left,
+.footer-center,
+.footer-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+/* ======================================================
+                FOOTER ITEM
+====================================================== */
+
+.footer-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--text);
+
+    font-size:14px;
+
+}
+
+.footer-item svg{
+
+    width:18px;
+
+    height:18px;
+
+    color:var(--secondary);
+
+}
+
+.footer-item strong{
+
+    color:var(--title);
+
+}
+/* ======================================================
+                ZOOM BUTTONS
+====================================================== */
+
+.zoom-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+   border-radius:12px;
+
+    color:var(--title);
+
+    background:var(--chip);
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+
+}
+
+.zoom-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(108,99,255,.15);
+
+    border-color:var(--primary);
+
+}
+#zoomLevel{
+
+    min-width:65px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:var(--title);
+
+}
+/* ###########################################################################
+#
+#                       GLOBAL EFFECTS
+#
+############################################################################ */
+
+.tool,
+.top-btn,
+.zoom-btn,
+.user-profile{
+
+    transition:
+
+        transform .3s,
+
+        background .3s,
+
+        box-shadow .3s,
+
+        border-color .3s;
+
+}
+::selection{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--scrollbar-track);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:20px;
+
+    background:linear-gradient(
+
+        var(--primary),
+
+        var(--secondary)
+
+    );
+
+}
+/* ======================================================
+                FLOATING TOOLBAR
+====================================================== */
+
+#floatingToolbar{
+
+    position:absolute;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 10px;
+
+    background:#1B1F2A;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.30);
+
+    z-index:9999;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transform:translateY(6px) scale(.94);
+
+    transition:
+
+        opacity .22s ease,
+
+        transform .22s cubic-bezier(.34,1.56,.64,1),
+
+        visibility .22s;
+
+}
+
+#floatingToolbar.visible{
+
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
+
+    transform:translateY(0) scale(1);
+
+}
+
+#floatingToolbar button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+#floatingToolbar button:hover{
+
+    background:#6C63FF;
+
+    transform:scale(1.12);
+
+}
+/* ======================================================
+                SELECTION / LOCK STATES
+====================================================== */
+
+.text-box.selected,
+.sticky-note.selected{
+
+    box-shadow:
+
+        0 0 0 3px var(--primary),
+
+        0 12px 30px rgba(0,0,0,.25);
+
+}
+
+.text-box.locked,
+.sticky-note.locked{
+
+    cursor:not-allowed;
+
+    outline:2px dashed rgba(255,255,255,.4);
+
+    outline-offset:3px;
+
+}
+
+/* ======================================================
+                OBJECT ENTRANCE / EXIT
+====================================================== */
+
+@keyframes popIn{
+
+    0%{ transform:scale(.6); opacity:0; }
+
+    70%{ transform:scale(1.05); opacity:1; }
+
+    100%{ transform:scale(1); opacity:1; }
+
+}
+
+.pop-in{
+
+    animation:popIn .3s cubic-bezier(.34,1.56,.64,1) both;
+
+}
+
+@keyframes popOut{
+
+    0%{ transform:scale(1); opacity:1; }
+
+    100%{ transform:scale(.5); opacity:0; }
+
+}
+
+.pop-out{
+
+    animation:popOut .18s ease forwards;
+
+}
+/* ======================================================
+                ZOOM LAYER
+====================================================== */
+
+#zoomLayer{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    transform-origin:center center;
+
+    transition:transform .25s ease;
+
+    will-change:transform;
+
+}
+
+/* ======================================================
+                IMAGE OBJECT
+====================================================== */
+
+.image-object{
+
+    position:absolute;
+
+    min-width:120px;
+
+    min-height:80px;
+
+    width:220px;
+
+    height:160px;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    cursor:move;
+
+    pointer-events:auto;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+    border:2px solid transparent;
+
+}
+
+.image-object img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    pointer-events:none;
+
+    user-select:none;
+
+}
+
+.image-object.selected{
+
+    border-color:var(--primary);
+
+}
+
+/* ======================================================
+                PDF OBJECT
+====================================================== */
+
+.pdf-object{
+
+    position:absolute;
+
+    width:200px;
+
+    height:70px;
+
+    min-width:120px;
+
+    min-height:56px;
+
+    padding:16px;
+
+    display:flex;
+ 
+
+    align-items:center;
+
+    gap:12px;
+
+    border-radius:14px;
+
+    background:#1B1F2A;
+
+    color:#fff;
+
+    cursor:move;
+
+    pointer-events:auto;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+    border:2px solid transparent;
+
+    overflow:hidden;
+
+}
+
+.pdf-object.selected{
+
+    border-color:var(--primary);
+
+}
+
+.pdf-object .pdf-icon{
+
+    font-size:28px;
+
+    pointer-events:none;
+
+}
+
+.pdf-object .pdf-name{
+
+    font-size:13px;
+
+    word-break:break-word;
+
+    pointer-events:none;
+
+}
+
+/* ======================================================
+                RESIZE HANDLES
+====================================================== */
+
+.resize-handle{
+
+    position:absolute;
+
+    width:14px;
+
+    height:14px;
+
+    background:#ffffff;
+
+    border:2px solid var(--primary);
+
+    border-radius:50%;
+
+    z-index:30;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:opacity .18s ease, transform .18s ease;
+
+}
+
+.selected .resize-handle{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+.resize-handle:hover{
+
+    transform:scale(1.25);
+
+    background:var(--primary);
+
+}
+
+.handle-nw{ top:-8px;    left:-8px;   cursor:nwse-resize; }
+.handle-ne{ top:-8px;    right:-8px;  cursor:nesw-resize; }
+.handle-sw{ bottom:-8px; left:-8px;   cursor:nesw-resize; }
+.handle-se{ bottom:-8px; right:-8px;  cursor:nwse-resize; }
+
+/* evita que el navegador muestre su propio ícono de resize */
+.text-box,
+.sticky-note,
+.image-object{
+
+    resize:none;
+
+}
+/* ======================================================
+                BOARD SIDEBAR
+====================================================== */
+
+#boardSidebar{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+    bottom:20px;
+
+    width:280px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:28px;
+
+    border-radius:32px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(35px);
+
+    -webkit-backdrop-filter:blur(35px);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    z-index:500;
+
+    transform:translateX(-130%);
+
+    transition:transform .45s cubic-bezier(.4,0,.2,1);
+
+}
+
+.app.sidebar-open #boardSidebar{
+
+    transform:translateX(0);
+
+}
+
+#boardSidebar::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    top:-120px;
+
+    right:-100px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        transparent);
+
+    opacity:.30;
+
+    filter:blur(80px);
+
+}
+
+/* Logo */
+
+.sidebar-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:35px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-logo img{
+
+    width:50px;
+
+}
+
+.sidebar-logo .logo-text h2{
+
+    color:var(--title);
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.sidebar-logo .logo-text span{
+
+    color:var(--text);
+
+    font-size:13px;
+
+}
+
+/* Menu */
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    height:52px;
+
+    padding:0 16px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    transition:.3s;
+
+}
+
+.sidebar-menu a:hover{
+
+    transform:translateX(6px);
+
+    background:var(--chip-hover);
+
+}
+
+.sidebar-menu a.active{
+
+    color:white;
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        var(--secondary));
+
+    box-shadow:0 10px 25px rgba(108,99,255,.35);
+
+}
+
+.sidebar-menu svg{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+.sidebar-menu span{
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+/* Empty placeholder */
+
+.sidebar-empty{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin:25px 0;
+
+    color:var(--text);
+
+    opacity:.5;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-empty svg{
+
+    width:26px;
+
+    height:26px;
+
+}
+
+.sidebar-empty p{
+
+    font-size:12px;
+
+    text-align:center;
+
+}
+
+/* Footer */
+
+.sidebar-footer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.sidebar-footer a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    height:50px;
+
+    padding:0 16px;
+
+    border-radius:16px;
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.sidebar-footer a:hover{
+
+    background:var(--chip-hover);
+
+}
+
+.sidebar-footer svg{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+/* ======================================================
+                SIDEBAR TOGGLE TAB
+====================================================== */
+
+#sidebarTab{
+
+    position:fixed;
+
+    top:50%;
+
+    left:20px;
+
+    transform:translateY(-50%);
+
+    width:32px;
+
+    height:72px;
+
+    border:1px solid var(--border);
+
+    border-left:none;
+
+    border-radius:0 18px 18px 0;
+
+    background:var(--surface);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:var(--shadow);
+
+    color:var(--title);
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:501;
+
+    transition:left .45s cubic-bezier(.4,0,.2,1);
+
+}
+
+#sidebarTab:hover{
+
+    background:rgba(108,99,255,.18);
+
+}
+
+#sidebarTab svg{
+
+    width:18px;
+
+    height:18px;
+
+    transition:transform .35s ease;
+
+}
+
+.app.sidebar-open #sidebarTab{
+
+    left:300px;
+
+}
+
+.app.sidebar-open #sidebarTab svg{
+
+    transform:rotate(180deg);
+
+}
+
+/* ======================================================
+                SIDEBAR OVERLAY (mobile-friendly dim)
+====================================================== */
+
+#sidebarOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:400;
+
+    transition:opacity .35s ease;
+
+}
+
+.app.sidebar-open #sidebarOverlay{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+/* ======================================================
+                CREATION PREVIEW (MARCHING ANTS)
+====================================================== */
+
+.creation-preview{
+
+    position:absolute;
+
+    pointer-events:none;
+
+    z-index:9998;
+
+    border-radius:12px;
+
+    overflow:visible;
+
+}
+
+.creation-preview svg{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:visible;
+
+}
+
+.creation-preview .ants-rect{
+
+    fill:rgba(124,92,255,.12);
+
+    stroke:var(--primary);
+
+    stroke-width:2;
+
+    stroke-dasharray:8 6;
+
+    animation:antsMove .6s linear infinite;
+
+}
+
+@keyframes antsMove{
+
+    to{ stroke-dashoffset:-28; }
+
+}
+
+.creation-preview .dim-label{
+
+    position:absolute;
+
+    right:0;
+
+    bottom:-26px;
+
+    padding:3px 9px;
+
+    border-radius:8px;
+
+    background:#1B1F2A;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+.creation-preview .ants-shape{
+
+    fill:rgba(124,92,255,.10);
+
+    stroke:var(--primary);
+
+    stroke-width:2;
+
+    stroke-dasharray:8 6;
+
+    vector-effect:non-scaling-stroke;
+
+    animation:antsMove .6s linear infinite;
+
+}
+
+/* ======================================================
+                BACKGROUND — INFINITE DOTS
+====================================================== */
+
+.canvas-wrapper.infinite{
+
+    --board-ink:#1B1F2A;
+
+    background-color:#fafafa;
+
+    background-image:
+
+        radial-gradient(
+
+            rgba(90,90,90,.35) 1.5px,
+
+            transparent 1.5px
+
+        );
+
+    background-size:22px 22px;
+
+}
+
+.canvas-wrapper.infinite::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        radial-gradient(
+
+            ellipse at center,
+
+            transparent 55%,
+
+            rgba(255,255,255,.85) 100%
+
+        );
+
+}
+
+/* ======================================================
+                BACKGROUND — BLUEPRINT
+====================================================== */
+
+.canvas-wrapper.blueprint{
+
+    --board-ink:#EAF2FF;
+
+    background-color:#0B3D91;
+
+    background-image:
+
+        linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+
+        linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px),
+
+        linear-gradient(rgba(255,255,255,.38) 1px, transparent 1px),
+
+        linear-gradient(90deg, rgba(255,255,255,.38) 1px, transparent 1px);
+
+    background-size:
+
+        20px 20px,
+
+        20px 20px,
+
+        100px 100px,
+
+        100px 100px;
+}
+
+/* ======================================================
+                BACKGROUND — CHALKBOARD
+====================================================== */
+
+.canvas-wrapper.chalkboard{
+
+    --board-ink:#FDFDF5;
+
+    background-color:#1B3B2F;
+
+    background-image:
+
+        repeating-linear-gradient(
+
+            0deg,
+
+            rgba(255,255,255,.025) 0px,
+
+            rgba(255,255,255,.025) 1px,
+
+            transparent 1px,
+
+            transparent 3px
+
+        ),
+
+        repeating-linear-gradient(
+
+            90deg,
+
+            rgba(255,255,255,.025) 0px,
+
+            rgba(255,255,255,.025) 1px,
+
+            transparent 1px,
+
+            transparent 3px
+
+        );
+
+}
+
+/* ======================================================
+                INK VARS FOR EXISTING BACKGROUNDS
+====================================================== */
+
+.canvas-wrapper.white,
+.canvas-wrapper.dots,
+.canvas-wrapper.grid,
+.canvas-wrapper.lines{
+
+    --board-ink:#1B1F2A;
+
+}
+
+.canvas-wrapper.dark{
+
+    --board-ink:#F5F5F7;
+
+}
