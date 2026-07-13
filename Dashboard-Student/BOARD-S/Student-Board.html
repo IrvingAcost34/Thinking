@@ -1,1 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <!-- ==========================================
+                        META
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+                        TITLE
+    =========================================== -->
+
+    <title>Thinking Board | Thinking</title>
+
+    <!-- ==========================================
+                        CSS
+    =========================================== -->
+
+    <link rel="stylesheet"
+          href="whiteboard.css">
+
+    <!-- ==========================================
+                    GOOGLE FONTS
+    =========================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- ==========================================
+                    LUCIDE ICONS
+    =========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body class="dark-theme">
+
+    <!-- ==========================================
+                    APP
+    =========================================== -->
+
+    <div class="app">
+
+        <!-- Aurora -->
+
+        <div class="aurora"></div>
+
+        <!-- Floating Particles -->
+
+        <div class="particles">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+    <!-- ==========================================
+                BOARD SIDEBAR
+=========================================== -->
+
+<aside class="sidebar" id="boardSidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <img src="../Images/ThinkingLogo.png" alt="Thinking Logo">
+
+        <div class="logo-text">
+
+            <h2>Thinking</h2>
+
+            <span>Board Menu</span>
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="../Dashboard/student-dashboard.html">
+
+            <i data-lucide="home"></i>
+
+            <span>Home</span>
+
+        </a>
+
+        <a href="whiteboard.html" class="active">
+
+            <i data-lucide="pen-tool"></i>
+
+            <span>Board</span>
+
+        </a>
+
+    </nav>
+
+    <!-- Empty space placeholder -->
+
+    <div class="sidebar-empty">
+
+        <i data-lucide="sparkles"></i>
+
+        <p>More tools coming soon</p>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="sidebar-footer">
+
+        <a href="#">
+
+            <i data-lucide="settings"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+        <a href="../Dashboard/student-dashboard.html">
+
+            <i data-lucide="log-out"></i>
+
+            <span>Exit Board</span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+<!-- Toggle Tab -->
+
+<button id="sidebarTab" title="Toggle Menu">
+  <div id="sidebarOverlay"></div>
+
+    <i data-lucide="chevron-right"></i>
+
+</button>
+    <!-- ==========================================
+                    TOP NAVIGATION
+    =========================================== -->
+
+    <header class="topbar">
+
+        <!-- Left -->
+
+        <div class="topbar-left">
+
+            <div class="board-logo">
+
+                <img
+                    src="../Images/ThinkingLogo.png"
+                    alt="Thinking Logo">
+
+                <div class="logo-text">
+
+                    <h2>Thinking Board</h2>
+
+                    <span>Interactive Whiteboard</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Center -->
+
+        <div class="topbar-center">
+
+            <div class="board-status">
+
+                <span class="status-dot"></span>
+
+                <span>Auto Saved</span>
+
+            </div>
+
+        </div>
+
+        <!-- Right -->
+
+        <div class="topbar-right">
+
+            <!-- Save -->
+<button class="top-btn" id="saveBtn" title="Save">
+
+    <i data-lucide="save"></i>
+
+</button>
+
+<!-- Download -->
+
+<button class="top-btn" id="downloadBtn" title="Download">
+
+    <i data-lucide="download"></i>
+
+</button>
+
+<!-- Share -->
+
+<button class="top-btn" id="shareBtn" title="Share">
+
+    <i data-lucide="share-2"></i>
+
+</button>
+
+            <!-- Theme -->
+
+            <button class="theme-toggle">
+
+                <i data-lucide="sun"></i>
+
+                <div class="toggle-circle"></div>
+
+                <i data-lucide="moon"></i>
+
+            </button>
+
+            <!-- Profile -->
+
+            <div class="user-profile">
+
+                <img
+                    src="../Images/Bombi_EMOTIONweb.png"
+                    alt="Profile">
+
+                <div class="profile-info">
+
+                    <h4>Irving</h4>
+
+                    <p>Student</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+        <!-- ==========================================
+                    DRAWING TOOLBAR
+    =========================================== -->
+
+    <section class="toolbar">
+
+        <!-- Draw -->
+
+<button
+    class="tool active"
+    id="pencilBtn"
+    title="Pencil">
+
+    <i data-lucide="pencil"></i>
+
+</button>
+
+        <!-- Highlighter -->
+
+ <button
+    class="tool"
+    id="highlighterBtn"
+    title="Highlighter">
+
+    <i data-lucide="highlighter"></i>
+
+</button>
+
+        <!-- Eraser -->
+
+  <button
+    class="tool"
+    id="eraserBtn"
+    title="Eraser">
+
+    <i data-lucide="eraser"></i>
+
+</button>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Line -->
+
+ <button
+    class="tool"
+    id="lineBtn"
+    title="Line">
+
+    <i data-lucide="slash"></i>
+
+</button>
+
+        <!-- Rectangle -->
+
+<button
+    class="tool"
+    id="rectangleBtn"
+    title="Rectangle">
+
+    <i data-lucide="square"></i>
+
+</button>
+
+        <!-- Circle -->
+
+<button
+    class="tool"
+    id="circleBtn"
+    title="Circle">
+
+    <i data-lucide="circle"></i>
+
+</button>
+        <!-- Triangle -->
+
+ <button
+    class="tool"
+    id="triangleBtn"
+    title="Triangle">
+
+    <i data-lucide="triangle"></i>
+
+</button>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Text -->
+
+ <button
+    class="tool"
+    id="textBtn"
+    title="Text">
+
+    <i data-lucide="type"></i>
+
+</button>
+
+        <!-- Sticky Notes -->
+<button
+    class="tool"
+    id="stickyBtn"
+    title="Sticky Note">
+
+    <i data-lucide="sticky-note"></i>
+
+</button>
+
+        <!-- Image -->
+
+<button
+    class="tool"
+    id="imageBtn"
+    title="Insert Image">
+
+    <i data-lucide="image"></i>
+
+</button>
+
+        <!-- Upload PDF -->
+<button
+    class="tool"
+    id="pdfBtn"
+    title="Upload PDF">
+
+    <i data-lucide="file-text"></i>
+
+</button>
+
+        <div class="toolbar-divider"></div>
+
+       <!-- Undo -->
+
+<button
+    class="tool"
+    id="undoBtn"
+    title="Undo">
+
+    <i data-lucide="undo-2"></i>
+
+</button>
+
+<!-- Redo -->
+
+<button
+    class="tool"
+    id="redoBtn"
+    title="Redo">
+
+    <i data-lucide="redo-2"></i>
+
+</button>
+
+<!-- Clear -->
+
+<button
+    class="tool"
+    id="clearBtn"
+    title="Clear Board">
+
+    <i data-lucide="trash-2"></i>
+
+</button>
+
+    </section>
+        <!-- ==========================================
+                    WHITEBOARD
+    =========================================== -->
+
+    <main class="board-container">
+
+        <!-- Canvas Area -->
+
+<section class="canvas-wrapper white" id="canvasWrapper">
+
+    <div id="zoomLayer">
+
+        <canvas id="whiteboard"></canvas>
+
+        <div id="objectLayer"></div>
+        <div id="selectionLayer"></div>
+
+    </div>
+
+    <div id="floatingToolbar">
+
+        <button id="toolbarColor">🎨</button>
+
+        <button id="toolbarDuplicate">📋</button>
+
+        <button id="toolbarPin">📌</button>
+
+        <button id="toolbarDelete">✖</button>
+
+    </div>
+
+    <input type="file" id="imageInput" accept="image/*" hidden>
+    <input type="file" id="pdfInput" accept="application/pdf" hidden>
+
+</section>
+
+<!-- ==========================================
+                TOOL PANEL
+========================================== -->
+
+<aside class="tool-panel">
+
+    <h3>Workspace</h3>
+
+        <!-- ==========================================
+                    TOOL PANEL
+        =========================================== -->
+<!-- ==========================================
+                WORKSPACE MODE
+========================================== -->
+
+<div class="tool-group">
+
+    <label>
+
+        Workspace Mode
+
+    </label>
+
+    <select id="workspaceMode">
+
+        <option value="notes">
+
+            📝 Notes
+
+        </option>
+
+        <option value="math">
+
+            📐 Mathematics
+
+        </option>
+
+        <option value="mindmap">
+
+            🧠 Mind Map
+
+        </option>
+
+        <option value="science">
+
+            🧪 Science
+
+        </option>
+
+        <option value="presentation">
+
+            📊 Presentation
+
+        </option>
+
+        <option value="creative">
+
+            🎨 Creative
+
+        </option>
+
+        <option value="coding">
+
+            💻 Programming
+
+        </option>
+
+        <option value="reading">
+
+            📖 Reading
+
+        </option>
+
+    </select>
+
+</div>
+<!-- ==========================================
+                CANVAS STYLE
+========================================== -->
+
+<div class="tool-group">
+
+    <label>
+
+        Canvas Background
+
+    </label>
+
+    <select id="canvasStyle">
+
+    <option value="white">
+
+        White
+
+    </option>
+
+    <option value="dots">
+
+        Dot Grid
+
+    </option>
+
+    <option value="grid">
+
+        Square Grid
+
+    </option>
+
+    <option value="lines">
+
+        Ruled Paper
+
+    </option>
+
+    <option value="dark">
+
+        Dark Grid
+
+    </option>
+
+    <option value="infinite">
+
+        Infinite Dots
+
+    </option>
+
+    <option value="blueprint">
+
+        Blueprint
+
+    </option>
+
+    <option value="chalkboard">
+
+        Chalkboard
+
+    </option>
+
+</select>
+
+</div>
+
+            <!-- Color -->
+
+            <div class="tool-group">
+
+                <label>
+
+                    Brush Color
+
+                </label>
+
+                <input
+                    type="color"
+                    id="colorPicker"
+                    value="#6C63FF">
+
+            </div>
+
+            <!-- Brush Size -->
+
+            <div class="tool-group">
+
+                <label>
+
+                    Brush Size
+
+                </label>
+
+                <input
+                    type="range"
+                    id="brushSize"
+                    min="1"
+                    max="50"
+                    value="5">
+
+                <span id="brushValue">
+
+                    5 px
+
+                </span>
+
+            </div>
+
+            <!-- Opacity -->
+
+            <div class="tool-group">
+
+                <label>
+
+                    Opacity
+
+                </label>
+
+                <input
+                    type="range"
+                    id="opacity"
+                    min="10"
+                    max="100"
+                    value="100">
+
+                <span id="opacityValue">
+
+                    100%
+
+                </span>
+
+            </div>
+
+            <!-- Zoom -->
+
+            <div class="tool-group">
+
+                <label>
+
+                    Zoom
+
+                </label>
+
+                <input
+                    type="range"
+                    id="zoom"
+                    min="50"
+                    max="200"
+                    value="100">
+
+                <span id="zoomValue">
+
+                    100%
+
+                </span>
+
+            </div>
+
+        </aside>
+
+    </main>
+          <!-- ==========================================
+                    BOARD FOOTER
+    =========================================== -->
+
+    <footer class="board-footer">
+
+        <!-- Left -->
+
+        <div class="footer-left">
+
+            <div class="footer-item">
+
+                <i data-lucide="mouse-pointer-2"></i>
+
+                <span>
+
+                    X: <strong id="mouseX">0</strong>
+
+                </span>
+
+            </div>
+
+            <div class="footer-item">
+
+                <i data-lucide="mouse-pointer-click"></i>
+
+                <span>
+
+                    Y: <strong id="mouseY">0</strong>
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Center -->
+
+        <div class="footer-center">
+
+            <button class="zoom-btn" id="zoomOut">
+
+                <i data-lucide="zoom-out"></i>
+
+            </button>
+
+            <span id="zoomLevel">
+
+                100%
+
+            </span>
+
+            <button class="zoom-btn" id="zoomIn">
+
+                <i data-lucide="zoom-in"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Right -->
+
+        <div class="footer-right">
+
+            <div class="footer-item">
+
+                <i data-lucide="wifi"></i>
+
+                <span>
+
+                    Online
+
+                </span>
+
+            </div>
+
+            <div class="footer-item">
+
+                <i data-lucide="save-all"></i>
+
+                <span>
+
+                    Auto Save
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+        </div>
+
+    <!-- ==========================================
+                    JAVASCRIPT
+    =========================================== -->
+
+    <script src="whiteboard.js"></script>
+
+</body>
+
+</html>
