@@ -45,3 +45,16 @@ window.location.href=
 "../LOGIN-Student/STUDENT LOGIN.html";
 
 });
+
+// =========================
+// CLIC PARA IR A STUDENT REGISTER
+// =========================
+const roleCards = document.querySelectorAll(".role-card");
+
+roleCards[1].addEventListener("click", () => {
+
+    window.location.href = "STUDENT_REGISTER.html";
+
+});
+
+
