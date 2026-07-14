@@ -12,7 +12,7 @@ backBtn.addEventListener("click",(e)=>{
 e.preventDefault();
 
 window.location.href=
-"REGISTER.html";
+"../index.html";
 
 });
 
@@ -32,7 +32,7 @@ document.querySelectorAll(".role-card");
 roleCards[0].addEventListener("click",()=>{
 
 window.location.href=
-"REGISTER_TEACHER.html";
+"../LOGIN Teacher/TEACHER LOGIN.html";
 
 });
 
@@ -42,6 +42,6 @@ window.location.href=
 roleCards[1].addEventListener("click",()=>{
 
 window.location.href=
-"REGISTER_STUDENT.html";
+"../LOGIN-Student/STUDENT LOGIN.html";
 
 });
