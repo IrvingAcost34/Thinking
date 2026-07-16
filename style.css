@@ -108,19 +108,6 @@ nav ul{
     list-style:none;
 }
 
-/* =========================
-   NAV LINKS
-========================= */
-
-nav ul{
-
-    display:flex;
-
-    gap:15px;
-
-    list-style:none;
-}
-
 /* BOTONES */
 
 nav a{
@@ -861,65 +848,9 @@ button:hover, a:hover{
     align-items:center;
 
 }
-.progress-circle{
-
-    animation:rotateChart 4s ease-in-out infinite;
-
-}
-
-@keyframes rotateChart{
-
-    0%{
-
-        background:
-        conic-gradient(
-            #8c52ff 0 20%,
-            #ececec 20% 100%
-        );
-
-    }
-
-    25%{
-
-        background:
-        conic-gradient(
-            #8c52ff 0 45%,
-            #ececec 45% 100%
-        );
-
-    }
-
-    50%{
-
-        background:
-        conic-gradient(
-            #8c52ff 0 75%,
-            #ececec 75% 100%
-        );
-
-    }
-
-    75%{
-
-        background:
-        conic-gradient(
-            #8c52ff 0 90%,
-            #ececec 90% 100%
-        );
-
-    }
-
-    100%{
-
-        background:
-        conic-gradient(
-            #8c52ff 0 20%,
-            #ececec 20% 100%
-        );
-
-    }
-
-}
+/* NOTA: se eliminó la animación CSS "rotateChart" que aquí
+   existía. Competía con el JS, que ahora es la única fuente
+   de verdad para el porcentaje y el color del círculo. */
 .progress-circle::before{
 
     content:"";
@@ -1936,282 +1867,6 @@ RESPONSIVE
         font-size:24px;
 
     }
-
-}
-/*==========================================================
-DECORACIONES
-==========================================================*/
-
-
-.learning-styles::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:600px;
-
-    height:600px;
-
-    border-radius:50%;
-
-    background:radial-gradient(
-        rgba(0,194,255,.08),
-        transparent 70%
-    );
-
-    right:-280px;
-
-    bottom:-280px;
-
-    z-index:-2;
-
-}
-
-/*==========================================================
-CARD BORDER
-==========================================================*/
-
-.learning-card{
-
-    border:1px solid #ececf5;
-
-}
-
-/*==========================================================
-HOVER
-==========================================================*/
-
-.learning-card:hover{
-
-    border-color:rgba(140,82,255,.25);
-
-}
-
-/*==========================================================
-ICON ANIMATION
-==========================================================*/
-
-.card-icon{
-
-    transition:.35s;
-
-}
-
-.learning-card:hover .card-icon{
-
-    transform:rotate(-8deg) scale(1.08);
-
-}
-
-/*==========================================================
-LIST
-==========================================================*/
-
-.card-info li::before{
-
-    content:"✓";
-
-    color:#7b61ff;
-
-    font-weight:700;
-
-    margin-right:10px;
-
-}
-
-.card-info li{
-
-    display:flex;
-
-    align-items:center;
-
-}
-
-/*==========================================================
-IMAGE SHADOW
-==========================================================*/
-
-.card-image img{
-
-    filter:drop-shadow(
-        0 20px 35px rgba(0,0,0,.15)
-    );
-
-}
-/*==========================================================
-PREMIUM EFFECTS
-==========================================================*/
-
-.learning-card{
-
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-}
-
-/*====================================
-TOP BORDER
-====================================*/
-
-.learning-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:4px;
-
-    background:linear-gradient(
-        90deg,
-        #8c52ff,
-        #00c2ff
-    );
-
-    opacity:0;
-
-    transition:.4s;
-
-}
-
-.learning-card:hover::before{
-
-    opacity:1;
-
-}
-
-/*====================================
-BADGE ANIMATION
-====================================*/
-
-.card-pill{
-
-    transition:.35s;
-
-}
-
-.learning-card:hover .card-pill{
-
-    background:#8c52ff;
-
-    color:white;
-
-}
-
-/*====================================
-TITLE
-====================================*/
-
-.card-header h3{
-
-    transition:.35s;
-
-}
-
-.learning-card:hover .card-header h3{
-
-    color:#8c52ff;
-
-}
-
-/*====================================
-BACKGROUND GLOW
-====================================*/
-
-.learning-card:hover{
-
-    background:
-
-    linear-gradient(
-
-        180deg,
-
-        rgba(255,255,255,1),
-
-        rgba(250,250,255,1)
-
-    );
-
-}
-
-/*====================================
-IMAGE FLOAT
-====================================*/
-
-@keyframes floatImage{
-
-    0%{
-
-        transform:translateY(0px);
-
-    }
-
-    50%{
-
-        transform:translateY(-10px);
-
-    }
-
-    100%{
-
-        transform:translateY(0px);
-
-    }
-
-}
-
-.card-image img{
-
-    animation:floatImage 4s ease-in-out infinite;
-
-}
-
-/*====================================
-TITLE SPACING
-====================================*/
-
-.learning-title{
-
-    letter-spacing:-3px;
-
-}
-
-.learning-title span{
-
-    font-weight:800;
-
-}
-
-/*====================================
-DESCRIPTION
-====================================*/
-
-.learning-description{
-
-    opacity:.85;
-
-}
-
-/*====================================
-CARD CONTENT
-====================================*/
-
-.card-info li{
-
-    transition:.3s;
-
-}
-
-.learning-card:hover .card-info li{
-
-    transform:translateX(4px);
 
 }
 /* =========================================================================================================================================================================
@@ -4306,6 +3961,230 @@ PIXEL PERFECT ADJUSTMENTS
     .why-card p{
 
         font-size:16px;
+
+    }
+
+}
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer{
+
+    width:100%;
+
+    margin-top:140px;
+
+    padding:70px 5% 0;
+
+    background:var(--card-bg);
+
+    border-top:1px solid var(--border-color);
+
+}
+
+.footer-top{
+
+    width:min(92%,1450px);
+
+    margin:0 auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:50px;
+
+    flex-wrap:wrap;
+
+    padding-bottom:50px;
+
+}
+
+.footer-brand{
+
+    flex:1.4;
+
+    min-width:240px;
+
+}
+
+.footer-logo{
+
+    font-size:32px;
+
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:14px;
+
+}
+
+.footer-brand p{
+
+    color:var(--text-secondary);
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    max-width:280px;
+
+}
+
+.footer-links{
+
+    flex:1;
+
+    min-width:140px;
+
+}
+
+.footer-links h4,
+.footer-social h4{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:var(--text-main);
+
+    margin-bottom:20px;
+
+}
+
+.footer-links ul{
+
+    list-style:none;
+
+}
+
+.footer-links li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-links a{
+
+    text-decoration:none;
+
+    color:var(--text-secondary);
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:#8c52ff;
+
+    transform:translateX(4px);
+
+}
+
+.footer-social{
+
+    flex:1;
+
+    min-width:140px;
+
+}
+
+.social-icons{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.social-icons a{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
+
+    transition:.35s;
+
+}
+
+.social-icons a:hover{
+
+    background:linear-gradient(135deg,#8c52ff,#00c2ff);
+
+    transform:translateY(-4px);
+
+}
+
+.footer-bottom{
+
+    border-top:1px solid var(--border-color);
+
+    padding:22px 0;
+
+    text-align:center;
+
+}
+
+.footer-bottom p{
+
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .footer-top{
+
+        flex-direction:column;
+
+        gap:35px;
+
+        text-align:center;
+
+    }
+
+    .footer-brand p{
+
+        max-width:100%;
+
+        margin:0 auto;
+
+    }
+
+    .social-icons{
+
+        justify-content:center;
 
     }
 
