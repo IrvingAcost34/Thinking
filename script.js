@@ -8,7 +8,7 @@ const loginBtn = document.querySelector(".login-btn");
 
 if(loginBtn){
     loginBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "TYPE ACOUNT/Choose-rol.html";
     });
 }
 
@@ -18,17 +18,17 @@ const signupBtn = document.querySelector(".signup-btn");
 
 if(signupBtn){
     signupBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "TYPE ACOUNT/Choose-rol.html";
     });
 }
 
 // BOTÓN START ASSESSMENT
 
-const startBtn = document.querySelector(".start-btn");
+const startBtn = document.getElementById("btn-assessment");
 
 if(startBtn){
     startBtn.addEventListener("click", () => {
-        window.location.href = "Login.html";
+        window.location.href = "TYPE ACOUNT/Choose-rol.html";
     });
 }
 
@@ -736,13 +736,32 @@ function drawLightParticles(){
 
 }
 
+// =========================
+// PROGRESS CIRCLE (texto + gráfico sincronizados)
+// =========================
+// Antes el texto (JS) y el círculo (animación CSS) cambiaban
+// de forma independiente y nunca coincidían entre sí.
+// Ahora un único bloque controla ambos al mismo tiempo.
+
+const progressCircle = document.querySelector(".progress-circle");
 const progressText = document.querySelector(".progress-circle span");
 
-if(progressText){
+if(progressCircle && progressText){
 
-    const values = ["20%","45%","75%","90%"];
+    const values = [20, 45, 75, 90];
 
     let index = 0;
+
+    function updateProgressCircle(percent){
+
+        progressText.textContent = percent + "%";
+
+        progressCircle.style.background =
+            `conic-gradient(#8c52ff 0 ${percent}%, #ececec ${percent}% 100%)`;
+
+    }
+
+    updateProgressCircle(values[index]);
 
     setInterval(()=>{
 
@@ -754,18 +773,21 @@ if(progressText){
 
         }
 
-        progressText.textContent = values[index];
+        updateProgressCircle(values[index]);
 
     },1000);
 
 }
+
+// BOTÓN DISCOVER MY LEARNING STYLE
+
 const discoverBtn = document.getElementById("discover-btn");
 
 if(discoverBtn){
 
     discoverBtn.addEventListener("click",()=>{
 
-        window.location.href="Login.html";
+        window.location.href="TYPE ACOUNT/Choose-rol.html";
 
     });
 
