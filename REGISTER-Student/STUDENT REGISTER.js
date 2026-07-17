@@ -84,7 +84,6 @@ form.addEventListener("submit", async function (e) {
     }, 1000);
 
 });
-
 // ======================
 // BOTÓN GOOGLE (placeholder, sin OAuth configurado todavía)
 // ======================
