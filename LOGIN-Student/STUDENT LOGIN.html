@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Thinking Student Login</title>
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
@@ -16,122 +13,67 @@
 <meta name="apple-mobile-web-app-title" content="Thinking">
 <meta name="application-name" content="Thinking">
 <link rel="stylesheet" href="STUDENT LOGIN.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
 <a href="../TYPE ACOUNT/Choose-rol" class="home-btn">
-
 🏠 BACK
-
 </a>
-
-
 <div class="container">
-
 <div class="left-side">
-
 <h1>
-
 Welcome back future
 <span>genius.</span>
-
 </h1>
-
 <p>
-
 Continue your learning journey, explore new study techniques and unlock your potential.
-
 </p>
-
 </div>
-
-
-
 <div class="right-side">
-
 <div class="brain-circle">
-
 🎓
-
 </div>
-
 <h2>
-
 Student Login
-
 </h2>
-
 <h3>
-
 Continue learning
-
 </h3>
-
 <p class="thinking-text">
-
 Sign in and continue <span>thinking.</span>
-
 </p>
-
-
 <form id="login-form">
-
 <label>Email</label>
-
 <input
 type="email"
+id="si-email"
 placeholder="Enter your email"
 required
 >
-
-
 <label>Password</label>
-
 <input
 type="password"
+id="si-password"
 placeholder="Enter your password"
 required
 >
-
 <a href="#" class="forgot">
-
 Forgot password?
-
 </a>
-
-
 <button
 type="submit"
 class="login-btn">
-
 Login
-
 </button>
-
 </form>
-
-
 <div class="divider">
-
 <span></span>
-
 Continue with
-
 <span></span>
-
 </div>
-
-
 <button class="google-btn">
-
 <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
-
 Continue with Google
-
 </button>
 <div>
   <!-- BOTTOM -->
@@ -140,7 +82,10 @@ Continue with Google
                 <a href="../REGISTER-Student/STUDENT REGISTER.html">Create one</a>
             </div>
 </div>
-<script src="STUDENT LOGIN.js"></script>
 
+<!-- Librería de Supabase (necesaria antes de STUDENT LOGIN.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="STUDENT LOGIN.js"></script>
 </body>
 </html>
