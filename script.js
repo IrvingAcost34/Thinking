@@ -1,7 +1,6 @@
 // =========================
 // THINKING WEBSITE SCRIPT
 // =========================
-
 // BOTÓN LOGIN
 
 const loginBtn = document.querySelector(".login-btn");
