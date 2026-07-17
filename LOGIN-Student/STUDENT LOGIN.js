@@ -1,99 +1,84 @@
 // ======================
-// STUDENT LOGIN
+// CONEXIÓN A SUPABASE
 // ======================
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC"; // clave pública (anon)
 
-const form=
-document.getElementById(
-"login-form"
-);
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-form.addEventListener(
-"submit",
-function(e){
+// ======================
+// ELEMENTOS DEL FORMULARIO
+// ======================
+const form = document.getElementById("login-form");
+const loginBtn = form.querySelector(".login-btn");
 
-e.preventDefault();
+// Mensaje de estado (se crea debajo del botón, sin tocar el HTML)
+const msg = document.createElement("p");
+msg.id = "msg-signin";
+msg.style.textAlign = "center";
+msg.style.marginTop = "10px";
+loginBtn.insertAdjacentElement("afterend", msg);
 
-const email=
-document.getElementById(
-"email"
-).value;
+// ======================
+// MOSTRAR / OCULTAR CONTRASEÑA
+// (solo se activa si existe el botón en el HTML)
+// ======================
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("si-password");
 
-const password=
-document.getElementById(
-"password"
-).value;
+if (togglePassword && passwordInput) {
+    togglePassword.addEventListener("click", () => {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
 
-
-// obtener estudiante guardado
-
-const savedStudent=
-
-JSON.parse(
-
-localStorage.getItem(
-"studentAccount"
-)
-
-);
-
-
-// verificar datos
-
-if(
-
-savedStudent &&
-email===savedStudent.email &&
-password===savedStudent.password
-
-){
-
-alert(
-
-"Welcome Student!"
-
-);
-
-
-// futura pantalla de verificación
-
-window.location.href=
-
-"VERIFICATION.html";
-
+        const icon = togglePassword.querySelector("i");
+        if (icon) {
+            icon.classList.toggle("fa-eye");
+            icon.classList.toggle("fa-eye-slash");
+        }
+    });
 }
 
-else{
+// ======================
+// INICIO DE SESIÓN (Sign In)
+// ======================
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-alert(
+    const email = document.getElementById("si-email").value.trim();
+    const password = document.getElementById("si-password").value;
 
-"Incorrect email or password"
+    if (!email || !password) {
+        msg.textContent = "⚠️ Llena todos los campos";
+        msg.style.color = "red";
+        return;
+    }
 
-);
+    const { data, error } = await db.auth.signInWithPassword({ email, password });
 
-}
+    if (error) {
+        console.error(error);
+        msg.textContent = "❌ Correo o contraseña incorrectos";
+        msg.style.color = "red";
+        return;
+    }
 
+    msg.textContent = "✅ ¡Bienvenido!";
+    msg.style.color = "green";
+
+    // pequeña pausa para UX (efecto app real)
+    setTimeout(() => {
+        window.location.href = "../Dashboard-Student/Student Dashboard.html";
+    }, 800);
 });
 
+// ======================
+// GOOGLE (placeholder, sin OAuth configurado todavía)
+// ======================
+const googleBtn = document.querySelector(".google-btn");
 
-
-// GOOGLE
-
-const googleBtn=
-
-document.querySelector(
-".google-btn"
-);
-
-if(googleBtn){
-
-googleBtn.addEventListener(
-"click",
-()=>{
-
-alert(
-"Google Login coming soon"
-);
-
-});
-
+if (googleBtn) {
+    googleBtn.addEventListener("click", () => {
+        alert("Google Login coming soon");
+    });
 }
