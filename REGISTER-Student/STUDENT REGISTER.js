@@ -80,7 +80,7 @@ form.addEventListener("submit", async function (e) {
 
     // pequeña pausa para UX antes de mandar al login
     setTimeout(() => {
-        window.location.href = "STUDENT LOGIN.html";
+        window.location.href = "../LOGIN-Student/STUDENT LOGIN.html";
     }, 1000);
 
 });
