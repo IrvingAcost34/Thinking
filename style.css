@@ -1,7 +1,6 @@
 /* =========================
    THEME VARIABLES
 ========================= */
-
 :root{
 
     --bg-main:#f7f7f7;
@@ -18,7 +17,6 @@
 
     --blue:#00c2ff;
 }
-
 [data-theme="dark"]{
 
     --bg-main:#121212;
