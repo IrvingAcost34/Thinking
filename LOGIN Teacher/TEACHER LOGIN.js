@@ -1,6 +1,6 @@
 const form=
 document.getElementById(
-"login-form"
+"teacher-login"
 );
 
 form.addEventListener(
@@ -19,42 +19,30 @@ document.getElementById(
 "password"
 ).value;
 
-
 // traer datos
-
 const savedTeacher=
-
 JSON.parse(
-
 localStorage.getItem(
 "teacherAccount"
 )
-
 );
 
-
 // verificar
-
 if(
-
 savedTeacher &&
 email===savedTeacher.email &&
 password===savedTeacher.password
-
 ){
 
 alert(
 "Welcome Teacher!"
 );
 
-
 // futura pantalla código
-
 window.location.href=
 "VERIFICATION.html";
 
 }
-
 else{
 
 alert(
