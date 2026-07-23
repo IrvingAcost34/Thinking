@@ -1,1 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <!-- ==========================================
+                    META
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+                    TITLE
+    =========================================== -->
+
+    <title>Schedule | Thinking</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="Images/LOGO1.png">
+<link rel="apple-touch-icon" sizes="180x180" href="Images/LOGO1.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Thinking">
+<meta name="application-name" content="Thinking">
+    <!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="Student Schedule.css">
+
+    <!-- ==========================================
+                GOOGLE FONTS
+    =========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================
+                LUCIDE ICONS
+    =========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<!-- ==========================================
+                    BODY
+========================================== -->
+
+<body class="dark-theme">
+
+    <!-- ==========================================
+                    APP
+    =========================================== -->
+
+    <div class="app">
+
+        <!-- ==========================================
+                AURORA BACKGROUND
+        =========================================== -->
+
+        <div class="aurora"></div>
+
+        <!-- Floating Particles -->
+
+        <div class="particles">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar">
+
+            <!-- Logo -->
+
+            <div class="sidebar-logo">
+
+                <img src="../Images/LOGO1.png" alt="Thinking Logo">
+
+                <div class="logo-text">
+
+                    <h2>Thinking</h2>
+
+                    <span>Student Dashboard</span>
+
+                </div>
+
+            </div>
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-menu">
+
+                <a href="Student Dashboard.html">
+
+                    <i data-lucide="layout-dashboard"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+                <a href="BOARD-S/Student-Board.html">
+
+                    <i data-lucide="pen-tool"></i>
+
+                    <span>Board</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="brain"></i>
+
+                    <span>Learning Styles</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="book-open"></i>
+
+                    <span>Courses</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="chart-column"></i>
+
+                    <span>Progress</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="target"></i>
+
+                    <span>Daily Mission</span>
+
+                </a>
+
+                <a href="Student Schedule.html" class="active">
+
+                    <i data-lucide="calendar-days"></i>
+
+                    <span>Schedule</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="trophy"></i>
+
+                    <span>Achievements</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="bot"></i>
+
+                    <span>Bombi AI</span>
+
+                </a>
+
+            </nav>
+
+            <!-- User Card -->
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar" id="userAvatar">
+
+                    IA
+
+                </div>
+
+                <div class="user-info">
+
+                    <h3 id="userName">
+
+                        Irving
+
+                    </h3>
+
+                    <p>Student</p>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+
+            <div class="sidebar-footer">
+
+                <a href="#">
+
+                    <i data-lucide="settings"></i>
+
+                    <span>Settings</span>
+
+                </a>
+
+                <a href="#">
+
+                    <i data-lucide="log-out"></i>
+
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+
+            <!-- =====================================================
+                        TOPBAR
+            ====================================================== -->
+
+            <header class="topbar">
+
+                <!-- Left Side -->
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <div class="search-box">
+
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="text"
+                            placeholder="Search courses, lessons, quizzes...">
+
+                    </div>
+
+                </div>
+
+                <!-- Right Side -->
+
+                <div class="topbar-right">
+
+                    <!-- Notifications -->
+
+                    <button class="notification-btn">
+
+                        <i data-lucide="bell"></i>
+
+                        <span class="notification-count">3</span>
+
+                    </button>
+
+                    <!-- Theme Toggle -->
+
+                    <button class="theme-toggle">
+
+                        <i data-lucide="sun"></i>
+
+                        <div class="toggle-circle"></div>
+
+                        <i data-lucide="moon"></i>
+
+                    </button>
+
+                    <!-- Profile -->
+
+                    <div class="user-profile">
+
+                        <img src="../Images/Bombi_EMOTIONweb.png" alt="Profile">
+
+                        <div class="profile-info">
+
+                            <h4 id="profileName">
+                                Irving
+                            </h4>
+                            <p>Student</p>
+
+                        </div>
+                        <i data-lucide="chevron-down"></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- =====================================================
+                        SCHEDULE HERO / SUMMARY
+            ====================================================== -->
+
+            <section class="schedule-banner dashboard-card">
+
+                <div class="schedule-banner-text">
+
+                    <span class="hero-subtitle">Welcome Back 👋</span>
+
+                    <h1 id="greeting">Good Morning, Irving</h1>
+
+                    <p>Today's got an amazing day to crush your goals.</p>
+
+                </div>
+
+                <div class="schedule-banner-pills">
+
+                    <div class="banner-pill">
+
+                        <div class="pill-icon">
+                            <i data-lucide="flame"></i>
+                        </div>
+
+                        <div>
+                            <span>Irving's Streak</span>
+                            <strong id="pill-streak">18 days</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="banner-pill">
+
+                        <div class="pill-icon secondary">
+                            <i data-lucide="target"></i>
+                        </div>
+
+                        <div>
+                            <span>Next Goal</span>
+                            <strong id="pill-goal">Level 13</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        SCHEDULE HEADER (title + search + add)
+            ====================================================== -->
+
+            <section class="schedule-toolbar">
+
+                <h1 class="page-title">Schedule</h1>
+
+                <div class="schedule-toolbar-right">
+
+                    <div class="search-box schedule-search">
+
+                        <i data-lucide="search"></i>
+
+                        <input type="text" id="scheduleSearch" placeholder="Search your schedule...">
+
+                    </div>
+
+                    <button class="primary-btn" id="addEventBtn">
+
+                        <i data-lucide="plus"></i>
+                        Add Event
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        SCHEDULE CONTENT
+            ====================================================== -->
+
+            <section class="schedule-content">
+
+                <!-- =====================================
+                        LEFT: CALENDAR + QUICK ADD
+                ====================================== -->
+
+                <div class="schedule-left">
+
+                    <!-- Calendar -->
+
+                    <div class="dashboard-card calendar-card">
+
+                        <div class="calendar-header">
+
+                            <button class="cal-nav" id="prevMonth">
+                                <i data-lucide="chevron-left"></i>
+                            </button>
+
+                            <h2 id="calendarMonthLabel">Month Year</h2>
+
+                            <button class="cal-nav" id="nextMonth">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+
+                        </div>
+
+                        <button class="today-btn" id="todayBtn">
+                            <i data-lucide="calendar-check"></i>
+                            Today
+                        </button>
+
+                        <div class="calendar-weekdays">
+
+                            <span>Sun</span>
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+
+                        </div>
+
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- días generados por JS -->
+                        </div>
+
+                    </div>
+
+                    <!-- Quick Add -->
+
+                    <div class="dashboard-card quick-add-card">
+
+                        <h2>Quick Add</h2>
+
+                        <div class="quick-add-grid">
+
+                            <button class="quick-add-btn study" data-type="study">
+                                <i data-lucide="book-open"></i>
+                                <span>Study</span>
+                            </button>
+
+                            <button class="quick-add-btn break" data-type="break">
+                                <i data-lucide="coffee"></i>
+                                <span>Break</span>
+                            </button>
+
+                            <button class="quick-add-btn task" data-type="task">
+                                <i data-lucide="clipboard-list"></i>
+                                <span>Task</span>
+                            </button>
+
+                            <button class="quick-add-btn reminder" data-type="reminder">
+                                <i data-lucide="bell"></i>
+                                <span>Reminder</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Upcoming this month -->
+
+                    <div class="dashboard-card upcoming-card">
+
+                        <h2>Upcoming</h2>
+
+                        <p>Next events this month</p>
+
+                        <div class="upcoming-list" id="upcomingList">
+                            <!-- generado por JS -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- =====================================
+                        RIGHT: DAY TIMELINE
+                ====================================== -->
+
+                <div class="dashboard-card schedule-right">
+
+                    <div class="section-title">
+
+                        <div>
+                            <h2 id="selectedDayLabel">Today</h2>
+                            <p>Your agenda for this day</p>
+                        </div>
+
+                    </div>
+
+                    <div class="type-filters" id="typeFilters">
+
+                        <button class="filter-chip active" data-filter="all">All</button>
+                        <button class="filter-chip study" data-filter="study">Study</button>
+                        <button class="filter-chip break" data-filter="break">Break</button>
+                        <button class="filter-chip task" data-filter="task">Task</button>
+                        <button class="filter-chip reminder" data-filter="reminder">Reminder</button>
+
+                    </div>
+
+                    <div class="timeline" id="timelineList">
+                        <!-- eventos generados por JS -->
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+                ADD EVENT MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="eventModalOverlay">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <h2>New Event</h2>
+
+                <button class="modal-close" id="modalCloseBtn">
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <form id="eventForm">
+
+                <div class="modal-field">
+
+                    <label for="eventTitle">Title</label>
+
+                    <input type="text" id="eventTitle" placeholder="e.g. SAT Math" required>
+
+                </div>
+
+                <div class="modal-row">
+
+                    <div class="modal-field">
+
+                        <label for="eventDate">Date</label>
+
+                        <input type="date" id="eventDate" required>
+
+                    </div>
+
+                    <div class="modal-field">
+
+                        <label for="eventTime">Time</label>
+
+                        <input type="time" id="eventTime" required>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-row">
+
+                    <div class="modal-field">
+
+                        <label for="eventDuration">Duration (minutes)</label>
+
+                        <input type="number" id="eventDuration" min="5" step="5" value="30" required>
+
+                    </div>
+
+                    <div class="modal-field">
+
+                        <label for="eventType">Type</label>
+
+                        <select id="eventType">
+
+                            <option value="study">Study</option>
+                            <option value="break">Break</option>
+                            <option value="task">Task</option>
+                            <option value="reminder">Reminder</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-field">
+
+                    <label>Importance</label>
+
+                    <div class="priority-options" id="priorityOptions">
+
+                        <button type="button" class="priority-btn low" data-priority="low">
+                            Low
+                        </button>
+
+                        <button type="button" class="priority-btn medium active" data-priority="medium">
+                            Medium
+                        </button>
+
+                        <button type="button" class="priority-btn high" data-priority="high">
+                            High
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-field">
+
+                    <label for="eventNotes">Notes (optional)</label>
+
+                    <textarea id="eventNotes" rows="3" placeholder="Anything important about this event..."></textarea>
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-btn" id="modalCancelBtn">Cancel</button>
+
+                    <button type="submit" class="primary-btn">
+                        <i data-lucide="check"></i>
+                        Save Event
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                JAVASCRIPT
+    =========================================== -->
+    <script src="Student Schedule.js"></script>
+
+</body>
+
+</html>
