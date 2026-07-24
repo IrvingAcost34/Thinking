@@ -208,6 +208,100 @@ const typeLabels = { study:"Study session", break:"Break", task:"Task", reminder
 const today = new Date();
 
 /* ======================================================
+                DATOS DEL USUARIO (nombre, racha, meta)
+    Viene de la misma tabla "THINKING" que usa el Dashboard
+====================================================== */
+
+async function loadUserBanner(){
+
+    const { data, error } = await db
+        .from("THINKING")
+        .select("Nombre_Usuario, study_streak, next_goal")
+        .eq("id", currentUserId)
+        .single();
+
+    if(error){
+
+        console.error("Error cargando datos del usuario:", error);
+
+        return;
+
+    }
+
+    const nombre = data.Nombre_Usuario;
+
+    const streak = data.study_streak ?? 0;
+
+    const nextGoal = data.next_goal ?? "-";
+
+    // Sidebar
+
+    const userNameEl = document.getElementById("userName");
+
+    if(userNameEl){
+
+        userNameEl.textContent = nombre;
+
+    }
+
+    // Topbar
+
+    const profileNameEl = document.getElementById("profileName");
+
+    if(profileNameEl){
+
+        profileNameEl.textContent = nombre;
+
+    }
+
+    // Banner greeting
+
+    const greetingEl = document.getElementById("greeting");
+
+    if(greetingEl){
+
+        greetingEl.textContent = `Good Morning, ${nombre}`;
+
+    }
+
+    // Avatar (iniciales)
+
+    const userAvatarEl = document.getElementById("userAvatar");
+
+    if(userAvatarEl){
+
+        const iniciales = nombre
+            .split(" ")
+            .map(p => p[0])
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+        userAvatarEl.textContent = iniciales;
+
+    }
+
+    // Banner pills (racha y meta)
+
+    const pillStreakEl = document.getElementById("pill-streak");
+
+    if(pillStreakEl){
+
+        pillStreakEl.textContent = `${streak} days`;
+
+    }
+
+    const pillGoalEl = document.getElementById("pill-goal");
+
+    if(pillGoalEl){
+
+        pillGoalEl.textContent = nextGoal;
+
+    }
+
+}
+
+/* ======================================================
                 EVENTOS (ahora vienen de Supabase)
     key: "YYYY-MM-DD"  ->  array de eventos
 ====================================================== */
@@ -952,6 +1046,8 @@ async function init(){
     }
 
     currentUserId = session.user.id;
+
+    await loadUserBanner();
 
     await loadEventsForUser();
 
