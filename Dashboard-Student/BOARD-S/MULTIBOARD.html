@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Boards | Thinking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
+
+    <link rel="stylesheet" href="My Boards.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="dark-theme">
+
+    <div class="app">
+
+        <div class="aurora"></div>
+
+        <div class="particles">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar" id="boardSidebar">
+
+            <div class="sidebar-logo">
+                <img src="../Images/LOGO1.png" alt="Thinking Logo">
+                <div class="logo-text">
+                    <h2>Thinking</h2>
+                    <span>Board Menu</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="../Dashboard-Student/Student%20Dashboard.html">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="My Boards.html" class="active">
+                    <i data-lucide="layout-grid"></i>
+                    <span>My Boards</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-empty">
+                <i data-lucide="sparkles"></i>
+                <p>More tools coming soon</p>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="../Dashboard-Student/Student%20Dashboard.html">
+                    <i data-lucide="log-out"></i>
+                    <span>Exit</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <button id="sidebarTab" title="Toggle Menu">
+            <i data-lucide="chevron-right"></i>
+        </button>
+
+        <div id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="boards-main">
+
+            <!-- Topbar -->
+            <header class="boards-topbar">
+
+                <div class="boards-title">
+                    <i data-lucide="layout-grid"></i>
+                    <div>
+                        <h1 id="pageTitle">My Boards</h1>
+                        <p id="pageSubtitle">Organize your whiteboards into groups.</p>
+                    </div>
+                </div>
+
+                <div class="boards-actions">
+                    <button class="ghost-btn" id="backToGroupsBtn" style="display:none;">
+                        <i data-lucide="arrow-left"></i>
+                        Back to groups
+                    </button>
+
+                    <button class="primary-action-btn" id="newItemBtn">
+                        <i data-lucide="plus"></i>
+                        <span id="newItemLabel">New Group</span>
+                    </button>
+                </div>
+
+            </header>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="crumb" data-crumb="root">My Boards</span>
+            </div>
+
+            <!-- Groups grid -->
+            <section class="grid-wrapper" id="groupsView">
+
+                <div class="cards-grid" id="groupsGrid"></div>
+
+                <div class="empty-state" id="groupsEmpty">
+                    <i data-lucide="folder-plus"></i>
+                    <h3>No groups yet</h3>
+                    <p>Create your first group to start organizing your boards.</p>
+                </div>
+
+            </section>
+
+            <!-- Boards grid (inside a group) -->
+            <section class="grid-wrapper" id="boardsView" style="display:none;">
+
+                <div class="cards-grid" id="boardsGrid"></div>
+
+                <div class="empty-state" id="boardsEmpty">
+                    <i data-lucide="pen-tool"></i>
+                    <h3>No boards yet</h3>
+                    <p>Create your first board inside this group.</p>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================================
+                MODAL (create / rename)
+    =========================================== -->
+
+    <div class="modal-overlay" id="modalOverlay">
+
+        <div class="modal-box">
+
+            <h3 id="modalTitle">New Group</h3>
+
+            <input type="text" id="modalInput" placeholder="Enter a name...">
+
+            <div class="modal-buttons">
+                <button class="ghost-btn" id="modalCancel">Cancel</button>
+                <button class="primary-action-btn" id="modalConfirm">Create</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="My Boards.js"></script>
+
+</body>
+
+</html>
