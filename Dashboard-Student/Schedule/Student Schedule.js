@@ -1,9 +1,24 @@
 /* ======================================================
                     THINKING
-                SCHEDULE SCREEN V1.1
-        (calendario y agenda = 100% funcional en el navegador,
-         eventos = datos de EJEMPLO, aun sin guardar en Supabase)
+                SCHEDULE SCREEN V2.0
+        (calendario y agenda 100% funcional,
+         eventos guardados y le\u00eddos desde Supabase)
 ====================================================== */
+
+// ======================================================
+// SUPABASE
+// ======================================================
+
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
+
+const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+let currentUserId = null;
 
 /* ======================================================
                     LUCIDE ICONS
@@ -157,6 +172,25 @@ function isSameDay(a,b){
 
 }
 
+// Convierte "14:30:00" (formato de Supabase) -> "2:30 PM" (formato bonito)
+function formatTimeDisplay(timeStr){
+
+    const [hh, mm] = timeStr.split(":").map(Number);
+
+    const period = hh >= 12 ? "PM" : "AM";
+
+    let hour12 = hh % 12;
+
+    if(hour12 === 0){
+
+        hour12 = 12;
+
+    }
+
+    return `${hour12}:${String(mm).padStart(2,"0")} ${period}`;
+
+}
+
 const monthNames = [
     "January","February","March","April","May","June",
     "July","August","September","October","November","December"
@@ -169,63 +203,60 @@ const monthNamesShort = [
 
 const weekdayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-/* ======================================================
-                DUMMY EVENTS (EJEMPLO)
-    key: "YYYY-MM-DD"  ->  array de eventos
-====================================================== */
+const typeLabels = { study:"Study session", break:"Break", task:"Task", reminder:"Reminder" };
 
 const today = new Date();
 
-function keyForOffset(offsetDays){
+/* ======================================================
+                EVENTOS (ahora vienen de Supabase)
+    key: "YYYY-MM-DD"  ->  array de eventos
+====================================================== */
 
-    const d = new Date();
+let scheduleEvents = {};
 
-    d.setDate(d.getDate() + offsetDays);
+// Trae todos los eventos del usuario logueado y arma scheduleEvents
+async function loadEventsForUser(){
 
-    return toDateKey(d.getFullYear(), d.getMonth(), d.getDate());
+    const { data, error } = await db
+        .from("events")
+        .select("*")
+        .eq("user_id", currentUserId)
+        .order("event_date", { ascending: true })
+        .order("event_time", { ascending: true });
+
+    if(error){
+
+        console.error("Error cargando eventos:", error);
+
+        return;
+
+    }
+
+    scheduleEvents = {};
+
+    data.forEach((row) => {
+
+        const key = row.event_date;
+
+        if(!scheduleEvents[key]){
+
+            scheduleEvents[key] = [];
+
+        }
+
+        scheduleEvents[key].push({
+            id: row.id,
+            time: formatTimeDisplay(row.event_time),
+            title: row.title,
+            subtitle: row.description || typeLabels[row.category] || "",
+            duration: `${row.duration_minutes} min`,
+            type: row.category,
+            priority: row.priority || "medium"
+        });
+
+    });
 
 }
-
-const scheduleEvents = {
-
-    [keyForOffset(0)]: [
-
-        { time:"10:30 AM", title:"SAT Math", subtitle:"Algebra & Fractions", duration:"80 min", type:"study" },
-        { time:"11:30 AM", title:"Break", subtitle:"Study Session", duration:"30 min", type:"break" },
-        { time:"12:30 PM", title:"Reading Practice", subtitle:"Comprehension drills", duration:"80 min", type:"study" },
-        { time:"1:00 PM", title:"Lunch", subtitle:"Time to recharge", duration:"60 min", type:"break" },
-        { time:"2:00 PM", title:"Homework", subtitle:"Math Problems", duration:"90 min", type:"task" },
-        { time:"3:30 PM", title:"Break", subtitle:"Relax & refresh", duration:"30 min", type:"break" },
-        { time:"4:00 PM", title:"Review Notes", subtitle:"Go over your notes", duration:"40 min", type:"reminder" }
-
-    ],
-
-    [keyForOffset(2)]: [
-
-        { time:"9:00 AM", title:"Vocabulary", subtitle:"New word list", duration:"45 min", type:"study" },
-        { time:"10:00 AM", title:"Quiz Reminder", subtitle:"Auditory Learning quiz", duration:"10 min", type:"reminder" }
-
-    ],
-
-    [keyForOffset(-1)]: [
-
-        { time:"5:00 PM", title:"Essay Draft", subtitle:"Finish first draft", duration:"60 min", type:"task" }
-
-    ],
-
-    [keyForOffset(5)]: [
-
-        { time:"11:00 AM", title:"Group Study", subtitle:"Kinesthetic activity", duration:"50 min", type:"study" }
-
-    ],
-
-    [keyForOffset(9)]: [
-
-        { time:"3:00 PM", title:"Mock Exam", subtitle:"Full practice test", duration:"120 min", type:"task" }
-
-    ]
-
-};
 
 /* ======================================================
                 ICONS PER TYPE
@@ -439,7 +470,7 @@ filterChips.forEach((chip) => {
 });
 
 /* ======================================================
-                RENDER TIMELINE (día seleccionado)
+                RENDER TIMELINE (d\u00eda seleccionado)
 ====================================================== */
 
 const timelineList = document.getElementById("timelineList");
@@ -485,8 +516,6 @@ function renderTimeline(){
 
     events.forEach((event) => {
 
-        const originalIndex = (scheduleEvents[key] || []).indexOf(event);
-
         const item = document.createElement("div");
 
         item.classList.add("timeline-item", event.type);
@@ -514,7 +543,7 @@ function renderTimeline(){
                         <i data-lucide="clock"></i>
                         ${event.duration}
                     </div>
-                    <button class="timeline-delete" data-key="${key}" data-index="${originalIndex}">
+                    <button class="timeline-delete" data-id="${event.id}">
                         <i data-lucide="trash-2"></i>
                     </button>
                 </div>
@@ -529,17 +558,24 @@ function renderTimeline(){
 
     document.querySelectorAll(".timeline-delete").forEach((btn) => {
 
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
 
-            const k = btn.dataset.key;
+            const eventId = btn.dataset.id;
 
-            const idx = parseInt(btn.dataset.index, 10);
+            const { error } = await db
+                .from("events")
+                .delete()
+                .eq("id", eventId);
 
-            if(scheduleEvents[k]){
+            if(error){
 
-                scheduleEvents[k].splice(idx, 1);
+                console.error("Error borrando evento:", error);
+
+                return;
 
             }
+
+            await loadEventsForUser();
 
             renderCalendar();
 
@@ -610,7 +646,7 @@ function renderUpcoming(){
             </div>
             <div class="upcoming-info">
                 <h4>${ev.title}</h4>
-                <p>${ev.time} • ${ev.duration}</p>
+                <p>${ev.time} \u2022 ${ev.duration}</p>
             </div>
         `;
 
@@ -635,44 +671,52 @@ function renderUpcoming(){
 }
 
 /* ======================================================
-                QUICK ADD (solo local, sin Supabase)
+                QUICK ADD (ahora guarda en Supabase)
 ====================================================== */
 
 const quickAddButtons = document.querySelectorAll(".quick-add-btn");
 
 const quickAddDefaults = {
 
-    study:{ title:"Study Session", subtitle:"Focused study time", duration:"45 min" },
-    break:{ title:"Break", subtitle:"Take a breather", duration:"15 min" },
-    task:{ title:"New Task", subtitle:"Something to finish", duration:"30 min" },
-    reminder:{ title:"Reminder", subtitle:"Don't forget this", duration:"5 min" }
+    study:{ title:"Study Session", subtitle:"Focused study time", durationMinutes:45 },
+    break:{ title:"Break", subtitle:"Take a breather", durationMinutes:15 },
+    task:{ title:"New Task", subtitle:"Something to finish", durationMinutes:30 },
+    reminder:{ title:"Reminder", subtitle:"Don't forget this", durationMinutes:5 }
 
 };
 
-function addQuickEvent(type){
+async function addQuickEvent(type){
 
     const key = toDateKey(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
 
-    if(!scheduleEvents[key]){
-
-        scheduleEvents[key] = [];
-
-    }
-
     const now = new Date();
 
-    const time = now.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
+    const timeString = `${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}:00`;
 
     const preset = quickAddDefaults[type];
 
-    scheduleEvents[key].push({
-        time,
-        title:preset.title,
-        subtitle:preset.subtitle,
-        duration:preset.duration,
-        type,
-        priority:"medium"
-    });
+    const { error } = await db
+        .from("events")
+        .insert({
+            user_id: currentUserId,
+            title: preset.title,
+            description: preset.subtitle,
+            event_date: key,
+            event_time: timeString,
+            duration_minutes: preset.durationMinutes,
+            category: type,
+            priority: "medium"
+        });
+
+    if(error){
+
+        console.error("Error guardando evento r\u00e1pido:", error);
+
+        return;
+
+    }
+
+    await loadEventsForUser();
 
     renderCalendar();
 
@@ -693,7 +737,7 @@ quickAddButtons.forEach((btn) => {
 });
 
 /* ======================================================
-                ADD EVENT MODAL
+                ADD EVENT MODAL (ahora guarda en Supabase)
 ====================================================== */
 
 const eventModalOverlay = document.getElementById("eventModalOverlay");
@@ -802,7 +846,7 @@ priorityButtons.forEach((btn) => {
 
 });
 
-eventForm.addEventListener("submit", (e) => {
+eventForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
@@ -814,48 +858,48 @@ eventForm.addEventListener("submit", (e) => {
 
     }
 
-    const [y,m,d] = eventDateInput.value.split("-").map(Number);
+    const eventDateValue = eventDateInput.value;
 
-    const eventDate = new Date(y, m - 1, d);
+    const eventTimeValue = eventTimeInput.value;
 
-    const key = toDateKey(y, m - 1, d);
-
-    if(!scheduleEvents[key]){
-
-        scheduleEvents[key] = [];
-
-    }
-
-    const [hh,mm] = eventTimeInput.value.split(":").map(Number);
-
-    const timeDate = new Date();
-
-    timeDate.setHours(hh, mm, 0, 0);
-
-    const time = timeDate.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
+    const durationMinutes = parseInt(eventDurationInput.value, 10);
 
     const type = eventTypeSelect.value;
 
     const notes = eventNotesInput.value.trim();
 
-    const typeLabels = { study:"Study session", break:"Break", task:"Task", reminder:"Reminder" };
+    const { error } = await db
+        .from("events")
+        .insert({
+            user_id: currentUserId,
+            title,
+            description: notes || typeLabels[type],
+            event_date: eventDateValue,
+            event_time: `${eventTimeValue}:00`,
+            duration_minutes: durationMinutes,
+            category: type,
+            priority: selectedPriority
+        });
 
-    scheduleEvents[key].push({
-        time,
-        title,
-        subtitle: notes || typeLabels[type],
-        duration: `${eventDurationInput.value} min`,
-        type,
-        priority: selectedPriority
-    });
+    if(error){
+
+        console.error("Error guardando evento:", error);
+
+        return;
+
+    }
 
     closeEventModal();
 
-    selectedDate = eventDate;
+    const [y,m,d] = eventDateValue.split("-").map(Number);
 
-    viewYear = eventDate.getFullYear();
+    selectedDate = new Date(y, m - 1, d);
 
-    viewMonth = eventDate.getMonth();
+    viewYear = selectedDate.getFullYear();
+
+    viewMonth = selectedDate.getMonth();
+
+    await loadEventsForUser();
 
     renderCalendar();
 
@@ -866,7 +910,7 @@ eventForm.addEventListener("submit", (e) => {
 });
 
 /* ======================================================
-                SEARCH (filtra el timeline del día actual)
+                SEARCH (filtra el timeline del d\u00eda actual)
 ====================================================== */
 
 document.getElementById("scheduleSearch").addEventListener("input", (e) => {
@@ -884,15 +928,41 @@ document.getElementById("scheduleSearch").addEventListener("input", (e) => {
 });
 
 /* ======================================================
-                INITIALIZE
-    (sin Supabase por ahora: nombre, racha y meta quedan
-    con los valores fijos de ejemplo del HTML)
+                INITIALIZE (revisa sesi\u00f3n y carga datos reales)
 ====================================================== */
 
-renderCalendar();
+async function init(){
 
-renderTimeline();
+    const { data: { session }, error: sessionError } = await db.auth.getSession();
 
-renderUpcoming();
+    if(sessionError){
 
-console.log("Thinking Schedule Screen Loaded 🚀");
+        console.error(sessionError);
+
+    }
+
+    if(!session){
+
+        console.log("No hay sesi\u00f3n");
+
+        window.location.href = "../Login/Login.html";
+
+        return;
+
+    }
+
+    currentUserId = session.user.id;
+
+    await loadEventsForUser();
+
+    renderCalendar();
+
+    renderTimeline();
+
+    renderUpcoming();
+
+    console.log("Thinking Schedule Screen Loaded \ud83d\ude80");
+
+}
+
+init();
