@@ -57,6 +57,21 @@ const boardSidebar = document.getElementById("boardSidebar");
 const sidebarTab = document.getElementById("sidebarTab");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 /* ======================================================
+                MULTI-BOARD SUPPORT
+====================================================== */
+
+const urlParams = new URLSearchParams(window.location.search);
+const currentBoardId = urlParams.get("board");
+const currentBoardName = urlParams.get("name");
+
+const BOARD_STORAGE_KEY = currentBoardId
+    ? ("thinkingBoardState_" + currentBoardId)
+    : "thinkingBoardState";
+
+if(currentBoardName){
+    document.querySelector(".logo-text span").textContent = currentBoardName;
+}
+/* ======================================================
                     VARIABLES
 ====================================================== */
 
@@ -1421,7 +1436,16 @@ document.getElementById("saveBtn").addEventListener("click", () => {
 
     };
 
-    localStorage.setItem("thinkingBoardState", JSON.stringify(state));
+    localStorage.setItem(BOARD_STORAGE_KEY, JSON.stringify(state));
+
+if(currentBoardId){
+    const boards = JSON.parse(localStorage.getItem("thinkingBoards") || "[]");
+    const board = boards.find(b => b.id === currentBoardId);
+    if(board){
+        board.updatedAt = new Date().toISOString();
+        localStorage.setItem("thinkingBoards", JSON.stringify(boards));
+    }
+}
 
     const btn = document.getElementById("saveBtn");
 
@@ -1481,7 +1505,7 @@ document.getElementById("shareBtn").addEventListener("click", async () => {
 
 function loadBoardState(){
 
-    const raw = localStorage.getItem("thinkingBoardState");
+    const raw = localStorage.getItem(BOARD_STORAGE_KEY);
 
     if(!raw) return;
 
