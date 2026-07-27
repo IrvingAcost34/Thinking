@@ -1,116 +1,1037 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thinking Teacher Login</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thinking | Teacher Dashboard</title>
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
-<link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="Images/LOGO1.png">
+<link rel="apple-touch-icon" sizes="180x180" href="Images/LOGO1.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Thinking">
 <meta name="application-name" content="Thinking">
-<link rel="stylesheet" href="TEACHER LOGIN.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboardteacher.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
+
 <body>
 
-<a href="../TYPE%20ACOUNT/Choose%20rol.html" class="home-btn">
-🏠 BACK
-</a>
+    <div class="dashboard">
 
-<div class="container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
 
-    <!-- IZQUIERDA -->
-    <div class="left-side">
+            <div class="logo">
 
-        <h1>
-        Guide your students and keep
-        <span>thinking.</span>
-        </h1>
+                <h2>Thinking</h2>
 
-        <p>
-        No matter where your teaching journey goes,
-        Thinking helps you organize, inspire,
-        and support your students.
-        </p>
+                <span>Teacher Portal</span>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                   <li id="dashboardLink" class="active">
+    <i data-lucide="layout-dashboard"></i>
+    <span>Dashboard</span>
+</li>
+
+<li id="classesLink">
+    <i data-lucide="book-open"></i>
+    <span>My Classes</span>
+</li>
+
+<li id="studentsLink">
+    <i data-lucide="graduation-cap"></i>
+    <span>Students</span>
+</li>
+
+<li id="assignmentsLink">
+    <i data-lucide="clipboard-list"></i>
+    <span>Assignments</span>
+</li>
+
+<li id="resourcesLink">
+    <i data-lucide="folder-open"></i>
+    <span>Resources</span>
+</li>
+
+<li id="scheduleLink">
+    <i data-lucide="calendar-days"></i>
+    <span>Schedule</span>
+</li>
+
+<li id="analyticsLink">
+    <i data-lucide="bar-chart-3"></i>
+    <span>Analytics</span>
+</li>
+
+<li id="bombiLink">
+    <i data-lucide="bot"></i>
+    <span>Bombi AI</span>
+</li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+          <section id="classesPage" class="page">
+
+    <h1>My Classes</h1>
+
+</section>
+
+<section id="studentsPage" class="page">
+
+    <h1>Students</h1>
+
+</section>
+
+<section id="assignmentsPage" class="page">
+
+    <h1>Assignments</h1>
+
+</section>
+
+<section id="resourcesPage" class="page">
+
+    <h1>Resources</h1>
+
+</section>
+
+<section id="schedulePage" class="page">
+
+    <h1>Schedule</h1>
+
+</section>
+
+<section id="analyticsPage" class="page">
+
+    <h1>Analytics</h1>
+
+</section>
+
+<section id="bombiPage" class="page">
+
+    <h1>Bombi AI</h1>
+
+</section>
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <div class="search-box">
+
+                    <i data-lucide="search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                    >
+
+                </div>
+
+                <div class="topbar-right">
+
+    <!-- Language -->
+
+    <button id="languageBtn" class="icon-btn">
+
+        <i data-lucide="languages"></i>
+
+        <span>EN</span>
+
+    </button>
+
+    <!-- Theme -->
+
+    <button id="themeBtn" class="icon-btn">
+
+        <i data-lucide="sun"></i>
+
+    </button>
+
+    <!-- Notifications -->
+
+    <button id="notificationBtn" class="icon-btn notification-btn">
+
+        <i data-lucide="bell"></i>
+
+        <span class="notification-dot"></span>
+
+    </button>
+
+    <!-- Profile -->
+
+    <div class="profile" id="profileMenu">
+
+        <img src="images/profile.png" alt="Teacher">
+
+        <div>
+
+            <strong>Allison</strong>
+
+            <p>Teacher</p>
+
+        </div>
+
+        <i data-lucide="chevron-down"></i>
 
     </div>
 
-    <!-- DERECHA -->
-    <div class="right-side">
+</div>
+</header>
+<div class="notifications-panel" id="notificationsPanel">
 
-        <div class="brain-circle">
-        🧠
+    <h3>Notifications</h3>
+
+    <div class="notification-item">
+
+        <i data-lucide="clipboard-check"></i>
+
+        <div>
+
+            <strong>12 assignments submitted</strong>
+
+            <p>5 minutes ago</p>
+
         </div>
 
-        <h2>
-        Welcome back
-        </h2>
+    </div>
 
-        <h3>
-        Teacher Login
-        </h3>
+    <div class="notification-item">
 
-        <p class="thinking-text">
-        Sign in and continue
-        <span>Thinking.</span>
-        </p>
+        <i data-lucide="calendar-days"></i>
 
-        <form id="teacher-login">
+        <div>
 
-            <label>Email</label>
-            <input
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            required
-            >
+            <strong>Faculty meeting at 11:00 AM</strong>
 
-            <label>Password</label>
-            <input
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-            required
-            >
+            <p>Today</p>
 
-            <a href="#" class="forgot">
-            Forgot your password?
-            </a>
-
-            <button
-            type="submit"
-            class="login-btn">
-            Sign In
-            </button>
-
-        </form>
-
-        <div class="divider">
-            <span></span>
-            Continue with
-            <span></span>
         </div>
 
-        <button class="google-btn">
-            <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png">
-            Continue with Google
-        </button>
+    </div>
 
-        <!-- BOTTOM -->
-        <div class="bottom">
-            Don't have an account?
-            <a href="../REGISTER-Teacher/TEACHER%20REGISTER.html">Create one</a>
+    <div class="notification-item">
+
+        <i data-lucide="brain"></i>
+
+        <div>
+
+            <strong>Bombi generated new insights.</strong>
+
+            <p>Just now</p>
+
+        </div>
+
+    </div>
+
+</div>
+          <div class="profile-dropdown" id="profileDropdown">
+
+    <a href="#">
+
+        <i data-lucide="user"></i>
+
+        My Profile
+
+    </a>
+
+    <a href="#">
+
+        <i data-lucide="settings"></i>
+
+        Settings
+
+    </a>
+
+    <a href="#">
+
+        <i data-lucide="circle-help"></i>
+
+        Help Center
+
+    </a>
+
+    <hr>
+
+    <a href="#">
+
+        <i data-lucide="log-out"></i>
+
+        Logout
+
+    </a>
+
+</div>
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-text">
+
+                    <span class="welcome">
+
+                        👋 Good Morning
+
+                    </span>
+
+                    <h1>
+
+                        Everything you need to teach in one place.
+
+                    </h1>
+
+                    <p>
+
+                        Organize your classes, assignments, schedules and student progress with Thinking.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button class="primary-btn">
+
+                            My Classes
+
+                        </button>
+
+                        <button class="secondary-btn">
+
+                            Analytics
+
+                        </button>
+
+                    </div>
+
+                </div>
+<div class="hero-summary">
+
+    <div class="summary-card">
+
+        <i data-lucide="book-open"></i>
+
+        <div>
+
+            <h3>3</h3>
+
+            <p>Classes Today</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i data-lucide="clipboard-check"></i>
+
+        <div>
+
+            <h3>12</h3>
+
+            <p>Pending Reviews</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i data-lucide="calendar-days"></i>
+
+        <div>
+
+            <h3>2</h3>
+
+            <p>Meetings</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <i data-lucide="graduation-cap"></i>
+
+        <div>
+
+            <h3>91%</h3>
+
+            <p>Average Grade</p>
+
+        </div>
+
+    </div>
+
+</div>
+                <div class="hero-image">
+
+    <div class="hero-placeholder">
+
+        <i data-lucide="brain-circuit"></i>
+
+        <h3>Bombi AI</h3>
+
+        <p>Your intelligent teaching assistant.</p>
+
+    </div>
+
+</div>
+            </section>
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+    <div class="stat-card">
+
+        <h3>Total Students</h3>
+
+        <h2>128</h2>
+
+        <p>+8 this week</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Active Classes</h3>
+
+        <h2>8</h2>
+
+        <p>2 today</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Assignments</h3>
+
+        <h2>24</h2>
+
+        <p>12 pending</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Average Grade</h3>
+
+        <h2>91%</h2>
+
+        <p>Excellent</p>
+
+    </div>
+
+</section>
+            <!-- GRID -->
+
+           <section class="dashboard-grid">
+
+    <!-- My Classes -->
+
+    <div class="card classes-card">
+
+    <div class="card-header">
+
+        <h2>My Classes</h2>
+
+        <a href="#">View All</a>
+
+    </div>
+
+    <div class="class-card">
+
+        <div class="class-top">
+
+            <div class="class-icon biology">
+
+                🧬
+
+            </div>
+
+            <span class="badge">Today</span>
+
+        </div>
+
+        <h3>Biology 101</h3>
+
+        <p>32 Students</p>
+
+        <div class="progress">
+
+            <div class="progress-fill" style="width:85%;"></div>
+
+        </div>
+
+        <div class="class-footer">
+
+            <span>9:00 AM</span>
+
+            <button>Open</button>
+
+        </div>
+
+    </div>
+
+    <div class="class-card">
+
+        <div class="class-top">
+
+            <div class="class-icon anatomy">
+
+                🫀
+
+            </div>
+
+            <span class="badge">Tomorrow</span>
+
+        </div>
+
+        <h3>Anatomy</h3>
+
+        <p>28 Students</p>
+
+        <div class="progress">
+
+            <div class="progress-fill" style="width:62%;"></div>
+
+        </div>
+
+        <div class="class-footer">
+
+            <span>11:00 AM</span>
+
+            <button>Open</button>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="card deadlines-card">
+
+    <div class="card-header">
+
+        <h2>Upcoming Deadlines</h2>
+
+        <a href="#">View All</a>
+
+    </div>
+
+    <div class="deadline-item">
+
+        <div class="deadline-icon assignment">
+
+            <i data-lucide="clipboard-list"></i>
+
+        </div>
+
+        <div class="deadline-info">
+
+            <h4>Biology Homework #5</h4>
+
+            <p>Due Today • 11:59 PM</p>
+
+        </div>
+
+        <span class="deadline-badge urgent">Today</span>
+
+    </div>
+
+    <div class="deadline-item">
+
+        <div class="deadline-icon quiz">
+
+            <i data-lucide="file-question"></i>
+
+        </div>
+
+        <div class="deadline-info">
+
+            <h4>Anatomy Quiz</h4>
+
+            <p>Tomorrow • 9:00 AM</p>
+
+        </div>
+
+        <span class="deadline-badge">Tomorrow</span>
+
+    </div>
+
+    <div class="deadline-item">
+
+        <div class="deadline-icon grades">
+
+            <i data-lucide="graduation-cap"></i>
+
+        </div>
+
+        <div class="deadline-info">
+
+            <h4>Submit Final Grades</h4>
+
+            <p>Friday</p>
+
+        </div>
+
+        <span class="deadline-badge">3 Days</span>
+
+    </div>
+
+</div>
+             
+    <!-- Schedule -->
+
+   <div class="card schedule-card">
+
+    <div class="card-header">
+
+        <h2>Today's Schedule</h2>
+
+        <span class="today-date">Friday</span>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item active">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+                <span class="time">09:00 AM</span>
+
+                <h3>Biology 101</h3>
+
+                <p>Room A-203</p>
+
+            </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+                <span class="time">11:00 AM</span>
+
+                <h3>Faculty Meeting</h3>
+
+                <p>Conference Room</p>
+
+            </div>
+
+        </div>
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+                <span class="time">2:00 PM</span>
+
+                <h3>Anatomy Lab</h3>
+
+                <p>Lab 4</p>
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
 
-<script src="TEACHER LOGIN.js"></s>
+    <!-- Performance -->
+
+    <div class="card analytics-card">
+
+    <div class="card-header">
+
+        <h2>Analytics</h2>
+
+        <span>This Month</span>
+
+    </div>
+
+    <div class="analytics-content">
+
+        <div class="progress-circle">
+
+            <div class="circle">
+
+                <span>91%</span>
+
+            </div>
+
+        </div>
+
+        <div class="analytics-info">
+
+            <div class="metric">
+
+                <div class="metric-title">
+
+                    <span>Attendance</span>
+
+                    <strong>95%</strong>
+
+                </div>
+
+                <div class="metric-bar">
+
+                    <div class="metric-fill attendance"></div>
+
+                </div>
+
+            </div>
+
+            <div class="metric">
+
+                <div class="metric-title">
+
+                    <span>Assignments</span>
+
+                    <strong>88%</strong>
+
+                </div>
+
+                <div class="metric-bar">
+
+                    <div class="metric-fill assignments"></div>
+
+                </div>
+
+            </div>
+
+            <div class="metric">
+
+                <div class="metric-title">
+
+                    <span>Participation</span>
+
+                    <strong>93%</strong>
+
+                </div>
+
+                <div class="metric-bar">
+
+                    <div class="metric-fill participation"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- Teacher Insights -->
+
+   <div class="card insights-card">
+
+    <div class="card-header">
+
+        <h2>Teacher Insights</h2>
+
+        <span class="ai-badge">
+
+            🤖 AI
+
+        </span>
+
+    </div>
+
+    <div class="insight success">
+
+        <div class="icon">
+
+            📈
+
+        </div>
+
+        <div>
+
+            <h4>Participation Increased</h4>
+
+            <p>
+
+                Student participation increased by 15% compared to last week.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="insight warning">
+
+        <div class="icon">
+
+            ⚠️
+
+        </div>
+
+        <div>
+
+            <h4>Homework Alert</h4>
+
+            <p>
+
+                Homework #4 has only a 72% completion rate.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="insight bombi">
+
+        <div class="icon">
+
+            🤖
+
+        </div>
+
+        <div>
+
+            <h4>Bombi Recommendation</h4>
+
+            <p>
+
+                Create a 5-minute review activity before tomorrow's Biology class.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- Activity -->
+
+    <div class="card attention-card">
+
+    <div class="card-header">
+
+        <h2>Students Needing Attention</h2>
+
+        <span class="attention-count">3</span>
+
+    </div>
+
+    <div class="student-alert high">
+
+        <div class="student-avatar">
+
+            AM
+
+        </div>
+
+        <div class="student-info">
+
+            <h4>Ana Miller</h4>
+
+            <p>Missing 3 assignments</p>
+
+        </div>
+
+        <span class="status high-status">
+
+            High
+
+        </span>
+
+    </div>
+
+    <div class="student-alert medium">
+
+        <div class="student-avatar">
+
+            JL
+
+        </div>
+
+        <div class="student-info">
+
+            <h4>John Lewis</h4>
+
+            <p>Attendance 74%</p>
+
+        </div>
+
+        <span class="status medium-status">
+
+            Medium
+
+        </span>
+
+    </div>
+
+    <div class="student-alert low">
+
+        <div class="student-avatar">
+
+            SM
+
+        </div>
+
+        <div class="student-info">
+
+            <h4>Sophia Martin</h4>
+
+            <p>Average dropped 8%</p>
+
+        </div>
+
+        <span class="status low-status">
+
+            Low
+
+        </span>
+
+    </div>
+
+</div>
+
+    <!-- Bombi -->
+
+   <div class="card quick-actions">
+
+    <div class="card-header">
+
+        <h2>Quick Actions</h2>
+
+    </div>
+
+    <div class="actions-grid">
+
+        <button class="action-btn">
+
+            <i data-lucide="clipboard-plus"></i>
+
+            <span>Create Assignment</span>
+
+        </button>
+
+        <button class="action-btn">
+
+            <i data-lucide="book-open"></i>
+
+            <span>New Lesson</span>
+
+        </button>
+
+        <button class="action-btn">
+
+            <i data-lucide="folder-up"></i>
+
+            <span>Upload Resource</span>
+
+        </button>
+
+        <button class="action-btn">
+
+            <i data-lucide="calendar-check"></i>
+
+            <span>Take Attendance</span>
+
+        </button>
+
+    </div>
+
+</div>
+<div class="card recent-card">
+
+    <div class="card-header">
+
+        <h2>Recent Activity</h2>
+
+        <a href="#">View All</a>
+
+    </div>
+
+    <div class="activity-item">
+
+        <i data-lucide="clipboard-check"></i>
+
+        <div>
+
+            <h4>Homework #5 Submitted</h4>
+
+            <p>Maria Lopez • 5 min ago</p>
+
+        </div>
+
+    </div>
+
+    <div class="activity-item">
+
+        <i data-lucide="user-plus"></i>
+
+        <div>
+
+            <h4>New Student Joined</h4>
+
+            <p>Daniel Smith • 20 min ago</p>
+
+        </div>
+
+    </div>
+
+    <div class="activity-item">
+
+        <i data-lucide="calendar-check"></i>
+
+        <div>
+
+            <h4>Attendance Completed</h4>
+
+            <p>Biology 101 • Today</p>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+          
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
 
 </body>
+
 </html>
