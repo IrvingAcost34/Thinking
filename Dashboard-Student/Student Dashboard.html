@@ -45,14 +45,11 @@
             <span></span>
         </div>
 
-        <!-- Overlay que oscurece el fondo cuando el sidebar está abierto -->
-        <div id="sidebarOverlay" class="sidebar-overlay"></div>
-
         <!-- ==========================================
                     SIDEBAR
         =========================================== -->
 
-        <aside class="sidebar" id="dashboardSidebar">
+        <aside class="sidebar">
 
             <div class="sidebar-logo">
                 <img src="../Images/LOGO1.png" alt="Thinking Logo">
@@ -132,6 +129,8 @@
 
         </aside>
 
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- ==========================================
                     MAIN
         =========================================== -->
@@ -142,8 +141,7 @@
 
                 <div class="topbar-left">
 
-                    <!-- Botón de menú: SIEMPRE visible, en cualquier tamaño de pantalla -->
-                    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Abrir menú">
+                    <button class="menu-toggle" id="menuToggle">
                         <i data-lucide="menu"></i>
                     </button>
 
@@ -188,7 +186,7 @@
                     <p>Continue your learning journey and complete today's mission.</p>
                 </div>
 
-                <div class="hero-card">
+                <div class="hero-card dashboard-card">
 
                     <div class="hero-glow"></div>
 
@@ -210,7 +208,7 @@
 
             <section class="stats">
 
-                <div class="stat-card">
+                <div class="stat-card dashboard-card">
                     <div class="stat-icon"><i data-lucide="brain"></i></div>
                     <h3>Learning Progress</h3>
                     <h2 id="stat-progress">82%</h2>
@@ -220,21 +218,21 @@
                     <p>+12% this week</p>
                 </div>
 
-                <div class="stat-card">
+                <div class="stat-card dashboard-card">
                     <div class="stat-icon"><i data-lucide="flame"></i></div>
                     <h3>Current Streak</h3>
                     <h2 id="stat-streak">18 Days</h2>
                     <p>Keep learning every day 🔥</p>
                 </div>
 
-                <div class="stat-card">
+                <div class="stat-card dashboard-card">
                     <div class="stat-icon"><i data-lucide="star"></i></div>
                     <h3>Total XP</h3>
                     <h2 id="stat-xp">2,480 XP</h2>
                     <p>Almost Level 13</p>
                 </div>
 
-                <div class="stat-card">
+                <div class="stat-card dashboard-card">
                     <div class="stat-icon"><i data-lucide="trophy"></i></div>
                     <h3>Achievements</h3>
                     <h2 id="stat-achievements">24</h2>
