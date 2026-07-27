@@ -1,408 +1,122 @@
-// ======================================================
-// SUPABASE
-// ======================================================
-
-const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
-
-const db = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-/* ======================================================
-                    THINKING
-            STUDENT DASHBOARD V1.0
-====================================================== */
-
-/* ======================================================
-                    LUCIDE ICONS
-====================================================== */
-
-lucide.createIcons();
-/* ======================================================
-                BOMBI MESSAGES
-====================================================== */
-
-const bombiMessages = [
-
-    "Ready to help you learn today! 🚀",
-
-    "Let's improve your learning style.",
-
-    "Keep your learning streak alive! 🔥",
-
-    "You're doing an amazing job!",
-
-    "Learning every day makes you stronger.",
-
-    "Let's complete today's mission!",
-
-    "Need help? Ask me anything."
-
-];
-
-const bombiMessage = document.querySelector("#bombi-message");
-
-let bombiIndex = 0;
-
-setInterval(() => {
-
-    bombiIndex++;
-
-    if(bombiIndex >= bombiMessages.length){
-
-        bombiIndex = 0;
-
-    }
-
-    bombiMessage.textContent = bombiMessages[bombiIndex];
-
-},5000);
-
-/* ======================================================
-                    ELEMENTS
-====================================================== */
-
-const body = document.body;
-
-const themeToggle = document.querySelector(".theme-toggle");
-
-const toggleCircle = document.querySelector(".toggle-circle");
-
-/* ======================================================
-                MOBILE SIDEBAR TOGGLE
-====================================================== */
-// FIX: el sidebar no tenía forma de ocultarse/mostrarse en
-// pantallas angostas, por eso ocupaba espacio fijo siempre y
-// aplastaba el contenido. Ahora se puede abrir/cerrar como menú
-// deslizable en móvil.
-
-const appEl = document.querySelector(".app");
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-function openMobileSidebar(){
-    appEl.classList.add("sidebar-open");
-}
-
-function closeMobileSidebar(){
-    appEl.classList.remove("sidebar-open");
-}
-
-if(mobileMenuBtn){
-
-    mobileMenuBtn.addEventListener("click", () => {
-
-        if(appEl.classList.contains("sidebar-open")){
-            closeMobileSidebar();
-        } else {
-            openMobileSidebar();
-        }
-
+* ---------------- Stars ---------------- */
+  const starField = document.getElementById('starField');
+  const STAR_COUNT = 120;
+  for(let i=0;i<STAR_COUNT;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = (Math.random()*2 + 1).toFixed(1);
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.top = Math.random()*100+'%';
+    s.style.left = Math.random()*100+'%';
+    s.style.animationDuration = (Math.random()*3 + 2).toFixed(1)+'s';
+    s.style.animationDelay = (Math.random()*4).toFixed(1)+'s';
+    starField.appendChild(s);
+  }
+ 
+  /* ---------------- Theme toggle ---------------- */
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+ 
+  /* ---------------- Dropdowns ---------------- */
+  function setupDropdown(btnId, dropdownId){
+    const btn = document.getElementById(btnId);
+    const dd = document.getElementById(dropdownId);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dd.classList.contains('open');
+      document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+      if(!isOpen) dd.classList.add('open');
     });
-
-}
-
-if(sidebarOverlay){
-
-    sidebarOverlay.addEventListener("click", closeMobileSidebar);
-
-}
-
-// Cierra el menú automáticamente al tocar un enlace (útil en móvil)
-document.querySelectorAll(".sidebar-menu a, .sidebar-footer a").forEach(link => {
-
-    link.addEventListener("click", closeMobileSidebar);
-
-});
-
-/* ======================================================
-                    THEME
-====================================================== */
-
-function enableDarkMode(){
-
-    body.classList.remove("light-theme");
-
-    body.classList.add("dark-theme");
-
-    toggleCircle.style.left = "11px";
-
-}
-
-function enableLightMode(){
-
-    body.classList.remove("dark-theme");
-
-    body.classList.add("light-theme");
-
-    toggleCircle.style.left = "49px";
-
-}
-
-/* ======================================================
-                THEME BUTTON
-====================================================== */
-
-themeToggle.addEventListener("click", () => {
-
-    if(body.classList.contains("dark-theme")){
-
-        enableLightMode();
-
+  }
+  setupDropdown('notifBtn', 'notifDropdown');
+  setupDropdown('profileBtn', 'profileDropdown');
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+  });
+ 
+  /* ---------------- Language toggle ---------------- */
+  const translations = {
+    en: {
+      nav_home:"Home", nav_test:"Test", nav_students:"Students", nav_assignments:"Assigments",
+      nav_resources:"Resources", nav_schedule:"Schedule", nav_bombi:"Bombi AI",
+      role_teacher:"Teacher",
+      search_ph:"Search",
+      notif_title:"Notifications",
+      notif1_title:"Anatomy Quiz tomorrow", notif1_time:"10 minutes ago",
+      notif2_title:"3 new submissions in Biology 101", notif2_time:"1 hour ago",
+      notif3_title:"Faculty meeting moved to 11:00 AM", notif3_time:"Yesterday",
+      menu_profile:"View Profile", menu_settings:"Settings", menu_logout:"Log out",
+      good_morning:"Good Morning",
+      hero_title:"Everything you need to teach in one place.",
+      hero_sub:"Organize your classes, assignments, schedules and student progress with Thinking.",
+      btn_myclasses:"My classes", btn_analytics:"Analytics",
+      bombi_title:"Bombi AI", bombi_sub:"Get instant teaching support with Bombi.", btn_ask_bombi:"Ask Bombi",
+      schedule_title:"Today's Schedule", monday:"Monday",
+      event1_title:"Biology 101", event1_room:"Room A-203",
+      event2_title:"Faculty Meeting", event2_room:"Coference Room",
+      event3_title:"Anatomy Lab", event3_room:"Lab 4",
+      myclasses_title:"My Classes", view_all:"View All",
+      students_word:"Students", status_open:"Open",
+      quickactions_title:"Quick Actions",
+      qa1:"Create a assigment", qa2:"New lesson", qa3:"uploan Resource",
+      deadlines_title:"Upcoming Deadlines",
+      deadline1_title:"Biology Homework #5", deadline1_time:"Due Today- 11:59",
+      deadline2_title:"Anatomy Quiz", deadline2_time:"Tomorrow",
+      deadline3_title:"Submit Final Grades", deadline3_time:"Friday",
+      view_more:"View More"
+    },
+    es: {
+      nav_home:"Inicio", nav_test:"Examen", nav_students:"Estudiantes", nav_assignments:"Tareas",
+      nav_resources:"Recursos", nav_schedule:"Horario", nav_bombi:"Bombi IA",
+      role_teacher:"Profesor",
+      search_ph:"Buscar",
+      notif_title:"Notificaciones",
+      notif1_title:"Examen de Anatomía mañana", notif1_time:"Hace 10 minutos",
+      notif2_title:"3 entregas nuevas en Biología 101", notif2_time:"Hace 1 hora",
+      notif3_title:"Reunión de facultad movida a las 11:00 AM", notif3_time:"Ayer",
+      menu_profile:"Ver Perfil", menu_settings:"Configuración", menu_logout:"Cerrar sesión",
+      good_morning:"Buenos Días",
+      hero_title:"Todo lo que necesitas para enseñar en un solo lugar.",
+      hero_sub:"Organiza tus clases, tareas, horarios y el progreso de tus estudiantes con Thinking.",
+      btn_myclasses:"Mis clases", btn_analytics:"Analítica",
+      bombi_title:"Bombi IA", bombi_sub:"Obtén ayuda docente al instante con Bombi.", btn_ask_bombi:"Preguntar a Bombi",
+      schedule_title:"Horario de Hoy", monday:"Lunes",
+      event1_title:"Biología 101", event1_room:"Salón A-203",
+      event2_title:"Reunión de Facultad", event2_room:"Sala de Conferencias",
+      event3_title:"Laboratorio de Anatomía", event3_room:"Lab 4",
+      myclasses_title:"Mis Clases", view_all:"Ver Todo",
+      students_word:"Estudiantes", status_open:"Abierto",
+      quickactions_title:"Acciones Rápidas",
+      qa1:"Crear una tarea", qa2:"Nueva lección", qa3:"Subir recurso",
+      deadlines_title:"Próximas Entregas",
+      deadline1_title:"Tarea de Biología #5", deadline1_time:"Vence Hoy - 11:59",
+      deadline2_title:"Examen de Anatomía", deadline2_time:"Mañana",
+      deadline3_title:"Entregar Calificaciones Finales", deadline3_time:"Viernes",
+      view_more:"Ver Más"
     }
-
-    else{
-
-        enableDarkMode();
-
-    }
-
-});
-
-/* ======================================================
-                SAVE THEME
-====================================================== */
-
-function saveTheme(){
-
-    if(body.classList.contains("dark-theme")){
-
-        localStorage.setItem("thinking-theme","dark");
-
-    }
-
-    else{
-
-        localStorage.setItem("thinking-theme","light");
-
-    }
-
-}
-
-/* ======================================================
-                LOAD THEME
-====================================================== */
-
-function loadTheme(){
-
-    const savedTheme = localStorage.getItem("thinking-theme");
-
-    if(savedTheme === "light"){
-
-        enableLightMode();
-
-    }
-
-    else{
-
-        enableDarkMode();
-
-    }
-
-}
-
-/* ======================================================
-            SAVE AUTOMATICALLY
-====================================================== */
-
-themeToggle.addEventListener("click", saveTheme);
-
-/* ======================================================
-                INITIALIZE
-====================================================== */
-
-loadTheme();
-
-console.log("Thinking Student Dashboard Loaded 🚀");
-
-// ======================================================
-// STREAK HELPERS
-// ======================================================
-
-// Devuelve la fecha de hoy en formato YYYY-MM-DD (sin hora)
-function getTodayDateString(){
-
-    const now = new Date();
-
-    const year = now.getFullYear();
-
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-
-    const day = String(now.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-
-}
-
-// Devuelve la fecha de ayer en formato YYYY-MM-DD
-function getYesterdayDateString(){
-
-    const now = new Date();
-
-    now.setDate(now.getDate() - 1);
-
-    const year = now.getFullYear();
-
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-
-    const day = String(now.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-
-}
-
-// Calcula la nueva racha comparando la última fecha guardada
-function calculateNewStreak(lastActivityDate, currentStreak){
-
-    const today = getTodayDateString();
-
-    const yesterday = getYesterdayDateString();
-
-    // Si no hay fecha guardada todavía, es la primera vez
-    if(!lastActivityDate){
-
-        return { newStreak: 1, shouldUpdate: true };
-
-    }
-
-    // Ya entró hoy antes, no cambiamos nada
-    if(lastActivityDate === today){
-
-        return { newStreak: currentStreak, shouldUpdate: false };
-
-    }
-
-    // Entró ayer, la racha sigue viva y sube +1
-    if(lastActivityDate === yesterday){
-
-        return { newStreak: currentStreak + 1, shouldUpdate: true };
-
-    }
-
-    // Se saltó uno o más días, la racha se reinicia
-    return { newStreak: 1, shouldUpdate: true };
-
-}
-
-// ======================================================
-// LOAD USER DATA
-// ======================================================
-
-async function loadUserData(){
-
-    const { data: { session }, error: sessionError } = await db.auth.getSession();
-
-    console.log("SESSION:", session);
-
-    if(sessionError){
-        console.error(sessionError);
-    }
-
-    if(!session){
-        console.log("No hay sesión");
-        window.location.href="../LOGIN-Student/STUDENT LOGIN.html";
-        return;
-    }
-
-    const user = session.user;
-
-    const { data, error } = await db
-        .from("THINKING")
-        .select("Nombre_Usuario, current_level, total_xp, progress_percent, study_streak, next_goal, achievements_count, last_activity_date")
-        .eq("id", user.id)
-        .single();
-
-    if(error){
-        console.error(error);
-        return;
-    }
-
-    const nombre = data.Nombre_Usuario;
-
-    // Sidebar
-    document.getElementById("userName").textContent = nombre;
-
-    // Topbar
-    document.getElementById("profileName").textContent = nombre;
-
-    // Hero
-    document.getElementById("greeting").textContent = `Good Morning, ${nombre}`;
-
-    // Avatar
-    const iniciales = nombre
-        .split(" ")
-        .map(p=>p[0])
-        .join("")
-        .substring(0,2)
-        .toUpperCase();
-
-    document.getElementById("userAvatar").textContent = iniciales;
-
-    // ==================================================
-    // CALCULATE REAL STREAK
-    // ==================================================
-
-    const { newStreak, shouldUpdate } = calculateNewStreak(
-        data.last_activity_date,
-        data.study_streak ?? 0
-    );
-
-    if(shouldUpdate){
-
-        const { error: updateError } = await db
-            .from("THINKING")
-            .update({
-                study_streak: newStreak,
-                last_activity_date: getTodayDateString()
-            })
-            .eq("id", user.id);
-
-        if(updateError){
-            console.error("Error actualizando racha:", updateError);
-        }
-    }
-
-    // ==================================================
-    // PROGRESS DATA (usa la racha ya actualizada)
-    // ==================================================
-
-    const percent = data.progress_percent ?? 0;
-    const level = data.current_level ?? 1;
-    const xp = data.total_xp ?? 0;
-    const streak = newStreak;
-    const nextGoal = data.next_goal ?? "-";
-    const achievements = data.achievements_count ?? 0;
-
-    // Top stat cards
-    document.getElementById("stat-progress").textContent = `${percent}%`;
-    document.getElementById("stat-progress-fill").style.width = `${percent}%`;
-    document.getElementById("stat-streak").textContent = `${streak} Days`;
-    document.getElementById("stat-xp").textContent = `${xp.toLocaleString()} XP`;
-    document.getElementById("stat-achievements").textContent = achievements;
-
-    // "Your Progress" card
-    document.getElementById("progress-number").textContent = `${percent}%`;
-    document.getElementById("detail-level").textContent = level;
-    document.getElementById("detail-xp").textContent = `${xp} XP`;
-    document.getElementById("detail-streak").textContent = `${streak} Days 🔥`;
-    document.getElementById("detail-next-goal").textContent = nextGoal;
-  
-    // Animate circle (circumference = 2 * PI * 70 ≈ 440)
-    const circumference = 440;
-    const offset = circumference - (percent / 100) * circumference;
-
-    const progressCircle = document.querySelector(".circle-progress");
-
-    if(progressCircle){
-        progressCircle.style.strokeDashoffset = circumference;
-
-        setTimeout(()=>{
-            progressCircle.style.transition = "2s";
-            progressCircle.style.strokeDashoffset = offset;
-        },500);
-    }
-}
-
-loadUserData();
+  };
+ 
+  let currentLang = 'en';
+  function applyLanguage(lang){
+    const dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if(dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+    document.getElementById('langLabel').textContent = lang.toUpperCase();
+    document.documentElement.lang = lang;
+  }
+ 
+  document.getElementById('langToggle').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    applyLanguage(currentLang);
+  });
+ 
+  applyLanguage(currentLang);
