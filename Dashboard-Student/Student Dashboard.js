@@ -10,36 +10,25 @@ const db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-/* ======================================================
-                    THINKING
-            STUDENT DASHBOARD V1.0
-====================================================== */
 
 /* ======================================================
                     LUCIDE ICONS
 ====================================================== */
 
 lucide.createIcons();
+
 /* ======================================================
                 BOMBI MESSAGES
 ====================================================== */
 
 const bombiMessages = [
-
     "Ready to help you learn today! 🚀",
-
     "Let's improve your learning style.",
-
     "Keep your learning streak alive! 🔥",
-
     "You're doing an amazing job!",
-
     "Learning every day makes you stronger.",
-
     "Let's complete today's mission!",
-
     "Need help? Ask me anything."
-
 ];
 
 const bombiMessage = document.querySelector("#bombi-message");
@@ -51,14 +40,12 @@ setInterval(() => {
     bombiIndex++;
 
     if(bombiIndex >= bombiMessages.length){
-
         bombiIndex = 0;
-
     }
 
     bombiMessage.textContent = bombiMessages[bombiIndex];
 
-},5000);
+}, 5000);
 
 /* ======================================================
                     ELEMENTS
@@ -70,101 +57,106 @@ const themeToggle = document.querySelector(".theme-toggle");
 
 const toggleCircle = document.querySelector(".toggle-circle");
 
+const appEl = document.querySelector(".app");
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+/* ======================================================
+        MENÚ / SIDEBAR (siempre deslizable)
+====================================================== */
+// El botón de menú es SIEMPRE visible, en cualquier ancho de
+// pantalla, y controla el mismo sidebar deslizable — esto evita
+// depender de detectar si la pantalla es "móvil" o "escritorio".
+
+function openSidebar(){
+    appEl.classList.add("sidebar-open");
+}
+
+function closeSidebar(){
+    appEl.classList.remove("sidebar-open");
+}
+
+function toggleSidebar(){
+
+    if(appEl.classList.contains("sidebar-open")){
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+
+}
+
+if(mobileMenuBtn){
+    mobileMenuBtn.addEventListener("click", toggleSidebar);
+}
+
+if(sidebarOverlay){
+    sidebarOverlay.addEventListener("click", closeSidebar);
+}
+
+// Cierra el menú al tocar cualquier enlace dentro de él
+document.querySelectorAll(".sidebar-menu a, .sidebar-footer a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+});
+
+// Cierra el menú con la tecla Escape
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        closeSidebar();
+    }
+});
+
 /* ======================================================
                     THEME
 ====================================================== */
 
 function enableDarkMode(){
-
     body.classList.remove("light-theme");
-
     body.classList.add("dark-theme");
-
-    toggleCircle.style.left = "11px";
-
+    toggleCircle.style.left = "10px";
 }
 
 function enableLightMode(){
-
     body.classList.remove("dark-theme");
-
     body.classList.add("light-theme");
-
-    toggleCircle.style.left = "49px";
-
+    toggleCircle.style.left = "48px";
 }
-
-/* ======================================================
-                THEME BUTTON
-====================================================== */
 
 themeToggle.addEventListener("click", () => {
 
     if(body.classList.contains("dark-theme")){
-
         enableLightMode();
-
-    }
-
-    else{
-
+    } else {
         enableDarkMode();
-
     }
+
+    saveTheme();
 
 });
-
-/* ======================================================
-                SAVE THEME
-====================================================== */
 
 function saveTheme(){
 
     if(body.classList.contains("dark-theme")){
-
-        localStorage.setItem("thinking-theme","dark");
-
-    }
-
-    else{
-
-        localStorage.setItem("thinking-theme","light");
-
+        localStorage.setItem("thinking-theme", "dark");
+    } else {
+        localStorage.setItem("thinking-theme", "light");
     }
 
 }
-
-/* ======================================================
-                LOAD THEME
-====================================================== */
 
 function loadTheme(){
 
     const savedTheme = localStorage.getItem("thinking-theme");
 
     if(savedTheme === "light"){
-
         enableLightMode();
-
-    }
-
-    else{
-
+    } else {
         enableDarkMode();
-
     }
 
 }
-
-/* ======================================================
-            SAVE AUTOMATICALLY
-====================================================== */
-
-themeToggle.addEventListener("click", saveTheme);
-
-/* ======================================================
-                INITIALIZE
-====================================================== */
 
 loadTheme();
 
@@ -174,67 +166,47 @@ console.log("Thinking Student Dashboard Loaded 🚀");
 // STREAK HELPERS
 // ======================================================
 
-// Devuelve la fecha de hoy en formato YYYY-MM-DD (sin hora)
 function getTodayDateString(){
 
     const now = new Date();
-
     const year = now.getFullYear();
-
     const month = String(now.getMonth() + 1).padStart(2, "0");
-
     const day = String(now.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 
 }
 
-// Devuelve la fecha de ayer en formato YYYY-MM-DD
 function getYesterdayDateString(){
 
     const now = new Date();
-
     now.setDate(now.getDate() - 1);
 
     const year = now.getFullYear();
-
     const month = String(now.getMonth() + 1).padStart(2, "0");
-
     const day = String(now.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 
 }
 
-// Calcula la nueva racha comparando la última fecha guardada
 function calculateNewStreak(lastActivityDate, currentStreak){
 
     const today = getTodayDateString();
-
     const yesterday = getYesterdayDateString();
 
-    // Si no hay fecha guardada todavía, es la primera vez
     if(!lastActivityDate){
-
         return { newStreak: 1, shouldUpdate: true };
-
     }
 
-    // Ya entró hoy antes, no cambiamos nada
     if(lastActivityDate === today){
-
         return { newStreak: currentStreak, shouldUpdate: false };
-
     }
 
-    // Entró ayer, la racha sigue viva y sube +1
     if(lastActivityDate === yesterday){
-
         return { newStreak: currentStreak + 1, shouldUpdate: true };
-
     }
 
-    // Se saltó uno o más días, la racha se reinicia
     return { newStreak: 1, shouldUpdate: true };
 
 }
@@ -255,7 +227,7 @@ async function loadUserData(){
 
     if(!session){
         console.log("No hay sesión");
-        window.location.href="../Login/Login.html";
+        window.location.href = "../LOGIN-Student/STUDENT LOGIN.html";
         return;
     }
 
@@ -274,28 +246,18 @@ async function loadUserData(){
 
     const nombre = data.Nombre_Usuario;
 
-    // Sidebar
     document.getElementById("userName").textContent = nombre;
-
-    // Topbar
     document.getElementById("profileName").textContent = nombre;
-
-    // Hero
     document.getElementById("greeting").textContent = `Good Morning, ${nombre}`;
 
-    // Avatar
     const iniciales = nombre
         .split(" ")
-        .map(p=>p[0])
+        .map(p => p[0])
         .join("")
-        .substring(0,2)
+        .substring(0, 2)
         .toUpperCase();
 
     document.getElementById("userAvatar").textContent = iniciales;
-
-    // ==================================================
-    // CALCULATE REAL STREAK
-    // ==================================================
 
     const { newStreak, shouldUpdate } = calculateNewStreak(
         data.last_activity_date,
@@ -315,11 +277,8 @@ async function loadUserData(){
         if(updateError){
             console.error("Error actualizando racha:", updateError);
         }
-    }
 
-    // ==================================================
-    // PROGRESS DATA (usa la racha ya actualizada)
-    // ==================================================
+    }
 
     const percent = data.progress_percent ?? 0;
     const level = data.current_level ?? 1;
@@ -328,34 +287,34 @@ async function loadUserData(){
     const nextGoal = data.next_goal ?? "-";
     const achievements = data.achievements_count ?? 0;
 
-    // Top stat cards
     document.getElementById("stat-progress").textContent = `${percent}%`;
     document.getElementById("stat-progress-fill").style.width = `${percent}%`;
     document.getElementById("stat-streak").textContent = `${streak} Days`;
     document.getElementById("stat-xp").textContent = `${xp.toLocaleString()} XP`;
     document.getElementById("stat-achievements").textContent = achievements;
 
-    // "Your Progress" card
     document.getElementById("progress-number").textContent = `${percent}%`;
     document.getElementById("detail-level").textContent = level;
     document.getElementById("detail-xp").textContent = `${xp} XP`;
     document.getElementById("detail-streak").textContent = `${streak} Days 🔥`;
     document.getElementById("detail-next-goal").textContent = nextGoal;
 
-    // Animate circle (circumference = 2 * PI * 70 ≈ 440)
     const circumference = 440;
     const offset = circumference - (percent / 100) * circumference;
 
     const progressCircle = document.querySelector(".circle-progress");
 
     if(progressCircle){
+
         progressCircle.style.strokeDashoffset = circumference;
 
-        setTimeout(()=>{
+        setTimeout(() => {
             progressCircle.style.transition = "2s";
             progressCircle.style.strokeDashoffset = offset;
-        },500);
+        }, 500);
+
     }
+
 }
 
 loadUserData();
