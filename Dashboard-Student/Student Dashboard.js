@@ -48,7 +48,7 @@ setInterval(() => {
 }, 5000);
 
 /* ======================================================
-                    ELEMENTS
+                    THEME (igual al Schedule)
 ====================================================== */
 
 const body = document.body;
@@ -57,71 +57,24 @@ const themeToggle = document.querySelector(".theme-toggle");
 
 const toggleCircle = document.querySelector(".toggle-circle");
 
-const appEl = document.querySelector(".app");
-
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-
-const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-/* ======================================================
-        MENÚ / SIDEBAR (siempre deslizable)
-====================================================== */
-// El botón de menú es SIEMPRE visible, en cualquier ancho de
-// pantalla, y controla el mismo sidebar deslizable — esto evita
-// depender de detectar si la pantalla es "móvil" o "escritorio".
-
-function openSidebar(){
-    appEl.classList.add("sidebar-open");
-}
-
-function closeSidebar(){
-    appEl.classList.remove("sidebar-open");
-}
-
-function toggleSidebar(){
-
-    if(appEl.classList.contains("sidebar-open")){
-        closeSidebar();
-    } else {
-        openSidebar();
-    }
-
-}
-
-if(mobileMenuBtn){
-    mobileMenuBtn.addEventListener("click", toggleSidebar);
-}
-
-if(sidebarOverlay){
-    sidebarOverlay.addEventListener("click", closeSidebar);
-}
-
-// Cierra el menú al tocar cualquier enlace dentro de él
-document.querySelectorAll(".sidebar-menu a, .sidebar-footer a").forEach(link => {
-    link.addEventListener("click", closeSidebar);
-});
-
-// Cierra el menú con la tecla Escape
-document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape"){
-        closeSidebar();
-    }
-});
-
-/* ======================================================
-                    THEME
-====================================================== */
-
 function enableDarkMode(){
+
     body.classList.remove("light-theme");
+
     body.classList.add("dark-theme");
-    toggleCircle.style.left = "10px";
+
+    toggleCircle.style.left = "11px";
+
 }
 
 function enableLightMode(){
+
     body.classList.remove("dark-theme");
+
     body.classList.add("light-theme");
-    toggleCircle.style.left = "48px";
+
+    toggleCircle.style.left = "49px";
+
 }
 
 themeToggle.addEventListener("click", () => {
@@ -159,6 +112,56 @@ function loadTheme(){
 }
 
 loadTheme();
+
+/* ======================================================
+                MOBILE SIDEBAR TOGGLE
+    (idéntico mecanismo al de Student Schedule.js)
+====================================================== */
+
+const sidebarEl = document.querySelector(".sidebar");
+
+const menuToggle = document.getElementById("menuToggle");
+
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+function openSidebar(){
+
+    sidebarEl.classList.add("open");
+
+    sidebarOverlay.classList.add("open");
+
+}
+
+function closeSidebar(){
+
+    sidebarEl.classList.remove("open");
+
+    sidebarOverlay.classList.remove("open");
+
+}
+
+menuToggle.addEventListener("click", () => {
+
+    if(sidebarEl.classList.contains("open")){
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+
+});
+
+sidebarOverlay.addEventListener("click", closeSidebar);
+
+// Cierra el menú al tocar cualquier enlace dentro de él
+document.querySelectorAll(".sidebar-menu a, .sidebar-footer a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+});
+
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        closeSidebar();
+    }
+});
 
 console.log("Thinking Student Dashboard Loaded 🚀");
 
