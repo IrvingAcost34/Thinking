@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================
+                    META
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+                    TITLE
+    =========================================== -->
+
+    <title>Students | Thinking</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Thinking">
+<meta name="application-name" content="Thinking">
+    <!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ==========================================
+                GOOGLE FONTS
+    =========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================
+                LUCIDE ICONS
+    =========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<!-- ==========================================
+                    BODY
+========================================== -->
+
+<body class="dark-theme">
+  
+<div class="app">
+
+    <!-- ==========================================
+            AURORA BACKGROUND
+    =========================================== -->
+
+    <div class="aurora"></div>
+
+    <div class="particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+    <!-- ==========================================
+                SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-mark"></div>
+
+            <div class="logo-text">
+
+                <h2>Thinking</h2>
+
+                <span>Teacher Dashboard</span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="#">
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span>Home</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="file-check"></i>
+
+                <span>Test</span>
+
+            </a>
+
+            <a href="#" class="active">
+
+                <i data-lucide="users"></i>
+
+                <span>Students</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="clipboard-list"></i>
+
+                <span>Assigments</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="folder-open"></i>
+
+                <span>Resources</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="calendar-days"></i>
+
+                <span>Schedule</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="bot"></i>
+
+                <span>Bombi AI</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar" id="userAvatar">IA</div>
+
+            <div class="user-info">
+
+                <h3 id="userName">Irving</h3>
+
+                <p>Teacher</p>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+
+            <a href="#">
+
+                <i data-lucide="settings"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="log-out"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ==========================================
+                MAIN
+    =========================================== -->
+
+    <main class="main">
+
+        <!-- =====================================================
+                    TOPBAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="page-heading">
+
+                    <h1>Students <i data-lucide="sparkles" class="title-spark"></i></h1>
+
+                    <p>Explore your classrooms and students in a dynamic way</p>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="search-box topbar-search">
+
+                    <i data-lucide="search"></i>
+
+                    <input type="text" id="classroomSearch" placeholder="Search classrooms...">
+
+                </div>
+
+                <button class="notification-btn">
+
+                    <i data-lucide="bell"></i>
+
+                    <span class="notification-count">3</span>
+
+                </button>
+
+                <button class="theme-toggle" id="themeToggle">
+
+                    <i data-lucide="sun"></i>
+
+                    <div class="toggle-circle"></div>
+
+                    <i data-lucide="moon"></i>
+
+                </button>
+
+                <div class="user-profile">
+
+                    <div class="profile-avatar" id="profileAvatar">IA</div>
+
+                    <div class="profile-info">
+
+                        <h4 id="profileName">Irving</h4>
+                        <p>Teacher</p>
+
+                    </div>
+                    <i data-lucide="chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- =====================================================
+                    CONTENT GRID (learning spaces + preview)
+        ====================================================== -->
+
+        <section class="students-top-grid">
+
+            <!-- =====================================
+                    LEFT: LEARNING SPACES
+            ====================================== -->
+
+            <div class="dashboard-card learning-spaces-card">
+
+                <div class="section-title">
+
+                    <div>
+                        <h2>Learning Spaces <i data-lucide="info" class="info-icon"></i></h2>
+                        <p>Select a classroom to explore students, progress and insights.</p>
+                    </div>
+
+                    <button class="primary-btn" id="createClassroomBtn">
+                        <i data-lucide="plus"></i>
+                        Create Classroom
+                    </button>
+
+                </div>
+
+                <div class="classrooms-row-wrap">
+
+                    <div class="classrooms-row" id="classroomsRow">
+                        <!-- generado por JS -->
+                    </div>
+
+                    <button class="row-nav" id="classroomsNext">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+
+                </div>
+
+                <div class="inside-classroom-header">
+
+                    <h2>Inside <span id="insideClassName">12A</span></h2>
+
+                    <span class="inside-count" id="insideCount">28 Students</span>
+
+                </div>
+
+                <div class="inside-toolbar">
+
+                    <div class="view-tabs" id="viewTabs">
+
+                        <button class="view-tab active" data-view="grid">
+                            <i data-lucide="layout-grid"></i> Grid
+                        </button>
+
+                        <button class="view-tab" data-view="seats">
+                            <i data-lucide="grid-3x3"></i> Seats
+                        </button>
+
+                        <button class="view-tab" data-view="timeline">
+                            <i data-lucide="git-commit-horizontal"></i> Timeline
+                        </button>
+
+                        <button class="view-tab" data-view="analytics">
+                            <i data-lucide="bar-chart-3"></i> Analytics
+                        </button>
+
+                    </div>
+
+                    <div class="inside-toolbar-right">
+
+                        <div class="search-box students-search">
+
+                            <i data-lucide="search"></i>
+
+                            <input type="text" id="studentSearch" placeholder="Search students...">
+
+                        </div>
+
+                        <button class="secondary-btn filter-btn" id="filterBtn">
+                            <i data-lucide="sliders-horizontal"></i>
+                            Filter
+                            <i data-lucide="chevron-down"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="students-grid" id="studentsGrid">
+                    <!-- generado por JS -->
+                </div>
+
+                <button class="secondary-btn view-more-btn" id="viewMoreBtn">
+                    View More Students
+                    <i data-lucide="chevron-down"></i>
+                </button>
+
+            </div>
+
+            <!-- =====================================
+                    RIGHT: CLASSROOM PREVIEW
+            ====================================== -->
+
+            <div class="students-right">
+
+                <div class="dashboard-card preview-card">
+
+                    <div class="section-title">
+
+                        <div>
+                            <h2>Classroom Preview <i data-lucide="sparkles" class="title-spark small"></i></h2>
+                        </div>
+
+                        <select class="classroom-select" id="classroomSelect"></select>
+
+                    </div>
+
+                    <div class="preview-illustration" id="previewIllustration">
+                        <!-- generado por JS -->
+                    </div>
+
+                    <h3 class="stats-heading">Quick Stats</h3>
+
+                    <div class="quick-stats-grid" id="quickStatsGrid">
+                        <!-- generado por JS -->
+                    </div>
+
+                    <h3 class="stats-heading">Learning Styles Distribution</h3>
+
+                    <div class="learning-donut-wrap">
+
+                        <div class="learning-donut" id="learningDonut"></div>
+
+                        <ul class="learning-legend" id="learningLegend">
+                            <!-- generado por JS -->
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+    <!-- ==========================================
+                JAVASCRIPT
+    =========================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
