@@ -83,13 +83,15 @@
 
         <div class="sidebar-logo">
 
-            <div class="logo-mark"></div>
+            <div class="logo-mark">
+                <i data-lucide="brain-circuit"></i>
+            </div>
 
             <div class="logo-text">
 
                 <h2>Thinking</h2>
 
-                <span>Teacher Dashboard</span>
+                <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
 
             </div>
 
@@ -101,7 +103,7 @@
 
                 <i data-lucide="layout-dashboard"></i>
 
-                <span>Home</span>
+                <span data-i18n="navHome">Home</span>
 
             </a>
 
@@ -109,7 +111,7 @@
 
                 <i data-lucide="file-check"></i>
 
-                <span>Test</span>
+                <span data-i18n="navTest">Test</span>
 
             </a>
 
@@ -117,7 +119,7 @@
 
                 <i data-lucide="users"></i>
 
-                <span>Students</span>
+                <span data-i18n="navStudents">Students</span>
 
             </a>
 
@@ -125,7 +127,7 @@
 
                 <i data-lucide="clipboard-list"></i>
 
-                <span>Assigments</span>
+                <span data-i18n="navAssigments">Assigments</span>
 
             </a>
 
@@ -133,7 +135,7 @@
 
                 <i data-lucide="folder-open"></i>
 
-                <span>Resources</span>
+                <span data-i18n="navResources">Resources</span>
 
             </a>
 
@@ -141,7 +143,7 @@
 
                 <i data-lucide="calendar-days"></i>
 
-                <span>Schedule</span>
+                <span data-i18n="navSchedule">Schedule</span>
 
             </a>
 
@@ -149,7 +151,7 @@
 
                 <i data-lucide="bot"></i>
 
-                <span>Bombi AI</span>
+                <span data-i18n="navBombi">Bombi AI</span>
 
             </a>
 
@@ -157,13 +159,15 @@
 
         <div class="sidebar-user">
 
-            <div class="user-avatar" id="userAvatar">IA</div>
+            <div class="user-avatar">
+                <i data-lucide="user-round"></i>
+            </div>
 
             <div class="user-info">
 
                 <h3 id="userName">Irving</h3>
 
-                <p>Teacher</p>
+                <p data-i18n="roleTeacher">Teacher</p>
 
             </div>
 
@@ -175,7 +179,7 @@
 
                 <i data-lucide="settings"></i>
 
-                <span>Settings</span>
+                <span data-i18n="footerSettings">Settings</span>
 
             </a>
 
@@ -183,7 +187,7 @@
 
                 <i data-lucide="log-out"></i>
 
-                <span>Logout</span>
+                <span data-i18n="footerLogout">Logout</span>
 
             </a>
 
@@ -213,9 +217,9 @@
 
                 <div class="page-heading">
 
-                    <h1>Students <i data-lucide="sparkles" class="title-spark"></i></h1>
+                    <h1><span data-i18n="pageTitle">Students</span> <i data-lucide="sparkles" class="title-spark"></i></h1>
 
-                    <p>Explore your classrooms and students in a dynamic way</p>
+                    <p data-i18n="pageSubtitle">Explore your classrooms and students in a dynamic way</p>
 
                 </div>
 
@@ -227,16 +231,27 @@
 
                     <i data-lucide="search"></i>
 
-                    <input type="text" id="classroomSearch" placeholder="Search classrooms...">
+                    <input type="text" id="classroomSearch" data-i18n-placeholder="searchClassrooms" placeholder="Search classrooms...">
 
                 </div>
 
-                <button class="notification-btn">
+                <div class="dropdown-wrap">
 
-                    <i data-lucide="bell"></i>
+                    <button class="notification-btn" id="notificationBtn">
 
-                    <span class="notification-count">3</span>
+                        <i data-lucide="bell"></i>
 
+                        <span class="notification-count">3</span>
+
+                    </button>
+
+                    <div class="dropdown-panel" id="notificationPanel"></div>
+
+                </div>
+
+                <button class="lang-toggle" id="langToggle">
+                    <i data-lucide="languages"></i>
+                    <span id="langLabel">EN</span>
                 </button>
 
                 <button class="theme-toggle" id="themeToggle">
@@ -249,17 +264,25 @@
 
                 </button>
 
-                <div class="user-profile">
+                <div class="dropdown-wrap">
 
-                    <div class="profile-avatar" id="profileAvatar">IA</div>
+                    <div class="user-profile" id="profileBtn">
 
-                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i data-lucide="user-round"></i>
+                        </div>
 
-                        <h4 id="profileName">Irving</h4>
-                        <p>Teacher</p>
+                        <div class="profile-info">
+
+                            <h4 id="profileName">Irving</h4>
+                            <p data-i18n="roleTeacher">Teacher</p>
+
+                        </div>
+                        <i data-lucide="chevron-down"></i>
 
                     </div>
-                    <i data-lucide="chevron-down"></i>
+
+                    <div class="dropdown-panel" id="profilePanel"></div>
 
                 </div>
 
@@ -282,13 +305,13 @@
                 <div class="section-title">
 
                     <div>
-                        <h2>Learning Spaces <i data-lucide="info" class="info-icon"></i></h2>
-                        <p>Select a classroom to explore students, progress and insights.</p>
+                        <h2><span data-i18n="learningSpaces">Learning Spaces</span> <i data-lucide="info" class="info-icon"></i></h2>
+                        <p data-i18n="learningSpacesSub">Select a classroom to explore students, progress and insights.</p>
                     </div>
 
                     <button class="primary-btn" id="createClassroomBtn">
                         <i data-lucide="plus"></i>
-                        Create Classroom
+                        <span data-i18n="createClassroom">Create Classroom</span>
                     </button>
 
                 </div>
@@ -307,9 +330,23 @@
 
                 <div class="inside-classroom-header">
 
-                    <h2>Inside <span id="insideClassName">12A</span></h2>
+                    <h2><span data-i18n="insideLabel">Inside</span> <span id="insideClassName">12A</span></h2>
 
-                    <span class="inside-count" id="insideCount">28 Students</span>
+                    <div class="inside-header-right">
+
+                        <span class="inside-count" id="insideCount">28 Students</span>
+
+                        <button class="secondary-btn add-student-btn" id="addStudentBtn">
+                            <i data-lucide="user-plus"></i>
+                            <span data-i18n="addStudent">Add Student</span>
+                        </button>
+
+                        <button class="secondary-btn add-student-btn" id="inviteLinkBtn">
+                            <i data-lucide="link-2"></i>
+                            <span data-i18n="inviteLink">Invite Link</span>
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -318,19 +355,19 @@
                     <div class="view-tabs" id="viewTabs">
 
                         <button class="view-tab active" data-view="grid">
-                            <i data-lucide="layout-grid"></i> Grid
+                            <i data-lucide="layout-grid"></i> <span data-i18n="viewGrid">Grid</span>
                         </button>
 
                         <button class="view-tab" data-view="seats">
-                            <i data-lucide="grid-3x3"></i> Seats
+                            <i data-lucide="grid-3x3"></i> <span data-i18n="viewSeats">Seats</span>
                         </button>
 
                         <button class="view-tab" data-view="timeline">
-                            <i data-lucide="git-commit-horizontal"></i> Timeline
+                            <i data-lucide="git-commit-horizontal"></i> <span data-i18n="viewTimeline">Timeline</span>
                         </button>
 
                         <button class="view-tab" data-view="analytics">
-                            <i data-lucide="bar-chart-3"></i> Analytics
+                            <i data-lucide="bar-chart-3"></i> <span data-i18n="viewAnalytics">Analytics</span>
                         </button>
 
                     </div>
@@ -341,15 +378,21 @@
 
                             <i data-lucide="search"></i>
 
-                            <input type="text" id="studentSearch" placeholder="Search students...">
+                            <input type="text" id="studentSearch" data-i18n-placeholder="searchStudents" placeholder="Search students...">
 
                         </div>
 
-                        <button class="secondary-btn filter-btn" id="filterBtn">
-                            <i data-lucide="sliders-horizontal"></i>
-                            Filter
-                            <i data-lucide="chevron-down"></i>
-                        </button>
+                        <div class="dropdown-wrap">
+
+                            <button class="secondary-btn filter-btn" id="filterBtn">
+                                <i data-lucide="sliders-horizontal"></i>
+                                <span data-i18n="filter">Filter</span>
+                                <i data-lucide="chevron-down"></i>
+                            </button>
+
+                            <div class="dropdown-panel" id="filterPanel"></div>
+
+                        </div>
 
                     </div>
 
@@ -360,7 +403,7 @@
                 </div>
 
                 <button class="secondary-btn view-more-btn" id="viewMoreBtn">
-                    View More Students
+                    <span data-i18n="viewMore">View More Students</span>
                     <i data-lucide="chevron-down"></i>
                 </button>
 
@@ -377,7 +420,7 @@
                     <div class="section-title">
 
                         <div>
-                            <h2>Classroom Preview <i data-lucide="sparkles" class="title-spark small"></i></h2>
+                            <h2><span data-i18n="classroomPreview">Classroom Preview</span> <i data-lucide="sparkles" class="title-spark small"></i></h2>
                         </div>
 
                         <select class="classroom-select" id="classroomSelect"></select>
@@ -388,13 +431,13 @@
                         <!-- generado por JS -->
                     </div>
 
-                    <h3 class="stats-heading">Quick Stats</h3>
+                    <h3 class="stats-heading" data-i18n="quickStats">Quick Stats</h3>
 
                     <div class="quick-stats-grid" id="quickStatsGrid">
                         <!-- generado por JS -->
                     </div>
 
-                    <h3 class="stats-heading">Learning Styles Distribution</h3>
+                    <h3 class="stats-heading" data-i18n="learningStyles">Learning Styles Distribution</h3>
 
                     <div class="learning-donut-wrap">
 
@@ -413,6 +456,326 @@
         </section>
 
     </main>
+
+</div>
+
+<!-- =====================================================
+            TOASTS (confirmaciones no intrusivas)
+====================================================== -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- =====================================================
+            STUDENT PROFILE MODAL (View profile)
+====================================================== -->
+
+<div class="modal-overlay" id="profileViewModalOverlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2 data-i18n="modalStudentNameLabel">Student</h2>
+
+            <button class="modal-close" id="profileViewCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div id="profileViewBody"></div>
+
+        <div class="modal-actions">
+
+            <button type="button" class="secondary-btn" id="profileViewOkBtn" data-i18n="modalCancel">Close</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+            MESSAGE PARENT MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="messageModalOverlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2 id="messageModalTitle" data-i18n="studentMenuMessage">Message parent</h2>
+
+            <button class="modal-close" id="messageModalCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="messageForm">
+
+            <div class="message-history" id="messageHistory"></div>
+
+            <div class="modal-field">
+
+                <label for="messageTextarea" data-i18n="messageLabel">Message</label>
+
+                <textarea id="messageTextarea" rows="3" data-i18n-placeholder="messagePlaceholder" placeholder="Write a message..." required></textarea>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="secondary-btn" id="messageCancelBtn" data-i18n="modalCancel">Cancel</button>
+
+                <button type="submit" class="primary-btn">
+                    <i data-lucide="send"></i>
+                    <span data-i18n="messageSend">Send</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+            INVITE LINK MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="inviteModalOverlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2 data-i18n="inviteModalTitle">Invite students to this classroom</h2>
+
+            <button class="modal-close" id="inviteModalCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <p class="confirm-message" data-i18n="inviteModalDesc">Share this link with your students. When they register, they'll join this classroom automatically.</p>
+
+        <div class="modal-field">
+
+            <label data-i18n="inviteLinkLabel">Class link</label>
+
+            <div class="invite-link-row">
+
+                <input type="text" id="inviteLinkInput" readonly>
+
+                <button type="button" class="primary-btn" id="copyInviteBtn">
+                    <i data-lucide="copy"></i>
+                    <span data-i18n="copyBtn">Copy</span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button type="button" class="secondary-btn" id="inviteModalCloseBtn2" data-i18n="modalCancel">Close</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+            GLOBAL FLOATING MENU (men\u00fa flotante \u00fanico)
+    Se reutiliza para el kebab de cada estudiante. Vive
+    fuera de cualquier tarjeta para que su position:fixed
+    nunca quede atrapado por un ancestro con transform
+    (lo que romp\u00eda el posicionamiento antes).
+====================================================== -->
+
+<div class="dropdown-panel" id="floatingStudentMenu"></div>
+
+<!-- =====================================================
+            CREATE CLASSROOM MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="classroomModalOverlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2 data-i18n="modalCreateTitle">Create Classroom</h2>
+
+            <button class="modal-close" id="modalCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="classroomForm">
+
+            <div class="modal-field">
+
+                <label for="classroomNameInput" data-i18n="modalNameLabel">Classroom name</label>
+
+                <input type="text" id="classroomNameInput" data-i18n-placeholder="modalNamePlaceholder" placeholder="e.g. 10B" required>
+
+            </div>
+
+            <div class="modal-field">
+
+                <label data-i18n="modalColorLabel">Color</label>
+
+                <div class="color-options" id="colorOptions">
+
+                    <button type="button" class="color-btn active" data-color="#7C5CFF" style="background:#7C5CFF;"></button>
+                    <button type="button" class="color-btn" data-color="#00D4FF" style="background:#00D4FF;"></button>
+                    <button type="button" class="color-btn" data-color="#22C55E" style="background:#22C55E;"></button>
+                    <button type="button" class="color-btn" data-color="#F59E0B" style="background:#F59E0B;"></button>
+                    <button type="button" class="color-btn" data-color="#F43F5E" style="background:#F43F5E;"></button>
+
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="secondary-btn" id="modalCancelBtn" data-i18n="modalCancel">Cancel</button>
+
+                <button type="submit" class="primary-btn">
+                    <i data-lucide="check"></i>
+                    <span data-i18n="modalCreate">Create</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+            ADD STUDENT MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="studentModalOverlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2 data-i18n="modalAddStudentTitle">Add Student</h2>
+
+            <button class="modal-close" id="studentModalCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <form id="studentForm">
+
+            <div class="modal-field">
+
+                <label for="studentNameInput" data-i18n="modalStudentNameLabel">Student name</label>
+
+                <input type="text" id="studentNameInput" data-i18n-placeholder="modalStudentNamePlaceholder" placeholder="e.g. Ana Ru\u00edz" required>
+
+            </div>
+
+            <div class="modal-row">
+
+                <div class="modal-field">
+
+                    <label for="studentStyleSelect" data-i18n="modalStyleLabel">Learning style</label>
+
+                    <select id="studentStyleSelect">
+
+                        <option value="visual" data-i18n="visual">Visual</option>
+                        <option value="auditory" data-i18n="auditory">Auditory</option>
+                        <option value="kinesthetic" data-i18n="kinesthetic">Kinesthetic</option>
+
+                    </select>
+
+                </div>
+
+                <div class="modal-field">
+
+                    <label for="studentProgressInput" data-i18n="modalProgressLabel">Progress (%)</label>
+
+                    <input type="number" id="studentProgressInput" min="0" max="100" value="75" required>
+
+                </div>
+
+            </div>
+
+            <div class="modal-field">
+
+                <label data-i18n="modalStatusLabel">Status</label>
+
+                <div class="priority-options" id="studentStatusOptions">
+
+                    <button type="button" class="priority-btn low active" data-status="active" data-i18n="active">Active</button>
+                    <button type="button" class="priority-btn high" data-status="needs-help" data-i18n="needsHelp">Needs Help</button>
+
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="secondary-btn" id="studentModalCancelBtn" data-i18n="modalCancel">Cancel</button>
+
+                <button type="submit" class="primary-btn">
+                    <i data-lucide="check"></i>
+                    <span data-i18n="modalCreate">Create</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+            GENERIC CONFIRM MODAL (delete classroom / student)
+====================================================== -->
+
+<div class="modal-overlay" id="confirmModalOverlay">
+
+    <div class="modal-card confirm-card">
+
+        <div class="modal-header">
+
+            <h2 id="confirmModalTitle">Delete?</h2>
+
+            <button class="modal-close" id="confirmModalCloseBtn">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <p id="confirmModalMessage" class="confirm-message"></p>
+
+        <div class="modal-actions">
+
+            <button type="button" class="secondary-btn" id="confirmCancelBtn" data-i18n="modalCancel">Cancel</button>
+
+            <button type="button" class="primary-btn danger-btn" id="confirmDeleteBtn">
+                <i data-lucide="trash-2"></i>
+                <span data-i18n="confirmDeleteBtn">Delete</span>
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
