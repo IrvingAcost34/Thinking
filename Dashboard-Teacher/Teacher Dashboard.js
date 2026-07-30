@@ -1,122 +1,762 @@
-* ---------------- Stars ---------------- */
-  const starField = document.getElementById('starField');
-  const STAR_COUNT = 120;
-  for(let i=0;i<STAR_COUNT;i++){
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = (Math.random()*2 + 1).toFixed(1);
-    s.style.width = size+'px';
-    s.style.height = size+'px';
-    s.style.top = Math.random()*100+'%';
-    s.style.left = Math.random()*100+'%';
-    s.style.animationDuration = (Math.random()*3 + 2).toFixed(1)+'s';
-    s.style.animationDelay = (Math.random()*4).toFixed(1)+'s';
-    starField.appendChild(s);
-  }
- 
-  /* ---------------- Theme toggle ---------------- */
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
- 
-  /* ---------------- Dropdowns ---------------- */
-  function setupDropdown(btnId, dropdownId){
-    const btn = document.getElementById(btnId);
-    const dd = document.getElementById(dropdownId);
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = dd.classList.contains('open');
-      document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-      if(!isOpen) dd.classList.add('open');
-    });
-  }
-  setupDropdown('notifBtn', 'notifDropdown');
-  setupDropdown('profileBtn', 'profileDropdown');
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-  });
- 
-  /* ---------------- Language toggle ---------------- */
-  const translations = {
-    en: {
-      nav_home:"Home", nav_test:"Test", nav_students:"Students", nav_assignments:"Assigments",
-      nav_resources:"Resources", nav_schedule:"Schedule", nav_bombi:"Bombi AI",
-      role_teacher:"Teacher",
-      search_ph:"Search",
-      notif_title:"Notifications",
-      notif1_title:"Anatomy Quiz tomorrow", notif1_time:"10 minutes ago",
-      notif2_title:"3 new submissions in Biology 101", notif2_time:"1 hour ago",
-      notif3_title:"Faculty meeting moved to 11:00 AM", notif3_time:"Yesterday",
-      menu_profile:"View Profile", menu_settings:"Settings", menu_logout:"Log out",
-      good_morning:"Good Morning",
-      hero_title:"Everything you need to teach in one place.",
-      hero_sub:"Organize your classes, assignments, schedules and student progress with Thinking.",
-      btn_myclasses:"My classes", btn_analytics:"Analytics",
-      bombi_title:"Bombi AI", bombi_sub:"Get instant teaching support with Bombi.", btn_ask_bombi:"Ask Bombi",
-      schedule_title:"Today's Schedule", monday:"Monday",
-      event1_title:"Biology 101", event1_room:"Room A-203",
-      event2_title:"Faculty Meeting", event2_room:"Coference Room",
-      event3_title:"Anatomy Lab", event3_room:"Lab 4",
-      myclasses_title:"My Classes", view_all:"View All",
-      students_word:"Students", status_open:"Open",
-      quickactions_title:"Quick Actions",
-      qa1:"Create a assigment", qa2:"New lesson", qa3:"uploan Resource",
-      deadlines_title:"Upcoming Deadlines",
-      deadline1_title:"Biology Homework #5", deadline1_time:"Due Today- 11:59",
-      deadline2_title:"Anatomy Quiz", deadline2_time:"Tomorrow",
-      deadline3_title:"Submit Final Grades", deadline3_time:"Friday",
-      view_more:"View More"
-    },
-    es: {
-      nav_home:"Inicio", nav_test:"Examen", nav_students:"Estudiantes", nav_assignments:"Tareas",
-      nav_resources:"Recursos", nav_schedule:"Horario", nav_bombi:"Bombi IA",
-      role_teacher:"Profesor",
-      search_ph:"Buscar",
-      notif_title:"Notificaciones",
-      notif1_title:"Examen de Anatomía mañana", notif1_time:"Hace 10 minutos",
-      notif2_title:"3 entregas nuevas en Biología 101", notif2_time:"Hace 1 hora",
-      notif3_title:"Reunión de facultad movida a las 11:00 AM", notif3_time:"Ayer",
-      menu_profile:"Ver Perfil", menu_settings:"Configuración", menu_logout:"Cerrar sesión",
-      good_morning:"Buenos Días",
-      hero_title:"Todo lo que necesitas para enseñar en un solo lugar.",
-      hero_sub:"Organiza tus clases, tareas, horarios y el progreso de tus estudiantes con Thinking.",
-      btn_myclasses:"Mis clases", btn_analytics:"Analítica",
-      bombi_title:"Bombi IA", bombi_sub:"Obtén ayuda docente al instante con Bombi.", btn_ask_bombi:"Preguntar a Bombi",
-      schedule_title:"Horario de Hoy", monday:"Lunes",
-      event1_title:"Biología 101", event1_room:"Salón A-203",
-      event2_title:"Reunión de Facultad", event2_room:"Sala de Conferencias",
-      event3_title:"Laboratorio de Anatomía", event3_room:"Lab 4",
-      myclasses_title:"Mis Clases", view_all:"Ver Todo",
-      students_word:"Estudiantes", status_open:"Abierto",
-      quickactions_title:"Acciones Rápidas",
-      qa1:"Crear una tarea", qa2:"Nueva lección", qa3:"Subir recurso",
-      deadlines_title:"Próximas Entregas",
-      deadline1_title:"Tarea de Biología #5", deadline1_time:"Vence Hoy - 11:59",
-      deadline2_title:"Examen de Anatomía", deadline2_time:"Mañana",
-      deadline3_title:"Entregar Calificaciones Finales", deadline3_time:"Viernes",
-      view_more:"Ver Más"
+/* ======================================================
+                    THINKING
+        TEACHER HOME SCREEN — v1 (i18n + botones)
+====================================================== */
+
+// ======================================================
+// SUPABASE
+// ======================================================
+
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
+
+let db = null;
+
+if(window.supabase){
+
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+}
+else{
+
+    console.warn("supabase-js no se cargó. Agrégalo en Settings > JS > Add External Scripts:\nhttps://cdn.jsdelivr.net/npm/@supabase/supabase-js@2");
+
+}
+
+let currentUserId = null;
+
+/* ======================================================
+                    LUCIDE ICONS
+====================================================== */
+
+function refreshIcons(){
+
+    if(window.lucide){
+
+        lucide.createIcons();
+
     }
-  };
- 
-  let currentLang = 'en';
-  function applyLanguage(lang){
-    const dict = translations[lang];
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if(dict[key] !== undefined) el.textContent = dict[key];
+
+}
+
+refreshIcons();
+
+/* ======================================================
+                    IDIOMA (EN / ES)
+====================================================== */
+
+let currentLang = "en";
+
+const I18N = {
+
+    en:{
+
+        sidebarSubtitle:"Teacher Dashboard",
+        navHome:"Home",
+        navTest:"Test",
+        navStudents:"Students",
+        navAssigments:"Assigments",
+        navResources:"Resources",
+        navSchedule:"Schedule",
+        navBombi:"Bombi AI",
+        roleTeacher:"Teacher",
+        footerSettings:"Settings",
+        footerLogout:"Logout",
+        pageTitle:"Home",
+        pageSubtitle:"Welcome back, here's what's happening today",
+        searchHome:"Search...",
+        heroGreeting:"Good Morning",
+        heroTitle:"Everything you need to teach in one place.",
+        heroSub:"Organize your classes, assignments, schedules and student progress with Thinking.",
+        btnMyClasses:"My classes",
+        btnAnalytics:"Analytics",
+        bombiTitle:"Bombi AI",
+        bombiSub:"Get instant teaching support with Bombi.",
+        askBombi:"Ask Bombi",
+        scheduleTitle:"Today's Schedule",
+        scheduleDay:"Monday",
+        myClassesTitle:"My Classes",
+        viewAllClasses:"View All",
+        studentsWord:"Students",
+        statusOpen:"Open",
+        quickActionsTitle:"Quick Actions",
+        qaAssignment:"Create an Assignment",
+        qaLesson:"New Lesson",
+        qaResource:"Upload Resource",
+        deadlinesTitle:"Upcoming Deadlines",
+        viewMoreDeadlines:"View More",
+        notifTitle:"Notifications",
+        notif1Title:"Anatomy Quiz tomorrow",
+        notif1Sub:"Don't forget to prepare Biology 102's quiz",
+        notif2Title:"3 new submissions",
+        notif2Sub:"Biology 101 just got new homework submissions",
+        notif3Title:"Faculty meeting moved",
+        notif3Sub:"Today's meeting is now at 11:00 AM",
+        profileSettings:"Account settings",
+        profileHelp:"Help & support",
+        profileLogout:"Log out",
+        comingSoonGeneric:"This isn't connected yet — coming soon.",
+        viewAllToast:"Full classes list is coming soon."
+
+    },
+
+    es:{
+
+        sidebarSubtitle:"Panel del Maestro",
+        navHome:"Inicio",
+        navTest:"Examen",
+        navStudents:"Estudiantes",
+        navAssigments:"Tareas",
+        navResources:"Recursos",
+        navSchedule:"Horario",
+        navBombi:"Bombi IA",
+        roleTeacher:"Maestro",
+        footerSettings:"Ajustes",
+        footerLogout:"Cerrar sesión",
+        pageTitle:"Inicio",
+        pageSubtitle:"Bienvenido de nuevo, esto es lo que pasa hoy",
+        searchHome:"Buscar...",
+        heroGreeting:"Buenos Días",
+        heroTitle:"Todo lo que necesitas para enseñar en un solo lugar.",
+        heroSub:"Organiza tus clases, tareas, horarios y el progreso de tus estudiantes con Thinking.",
+        btnMyClasses:"Mis clases",
+        btnAnalytics:"Analítica",
+        bombiTitle:"Bombi IA",
+        bombiSub:"Obtén ayuda docente al instante con Bombi.",
+        askBombi:"Preguntar a Bombi",
+        scheduleTitle:"Horario de Hoy",
+        scheduleDay:"Lunes",
+        myClassesTitle:"Mis Clases",
+        viewAllClasses:"Ver Todo",
+        studentsWord:"Estudiantes",
+        statusOpen:"Abierto",
+        quickActionsTitle:"Acciones Rápidas",
+        qaAssignment:"Crear una Tarea",
+        qaLesson:"Nueva Lección",
+        qaResource:"Subir Recurso",
+        deadlinesTitle:"Próximas Entregas",
+        viewMoreDeadlines:"Ver Más",
+        notifTitle:"Notificaciones",
+        notif1Title:"Examen de Anatomía mañana",
+        notif1Sub:"No olvides preparar el examen de Biología 102",
+        notif2Title:"3 entregas nuevas",
+        notif2Sub:"Biología 101 recibió nuevas tareas entregadas",
+        notif3Title:"Reunión de facultad movida",
+        notif3Sub:"La reunión de hoy ahora es a las 11:00 AM",
+        profileSettings:"Configuración de cuenta",
+        profileHelp:"Ayuda y soporte",
+        profileLogout:"Cerrar sesión",
+        comingSoonGeneric:"Esto aún no está conectado — próximamente.",
+        viewAllToast:"La lista completa de clases estará disponible pronto."
+
+    }
+
+};
+
+function t(key){
+
+    return I18N[currentLang][key];
+
+}
+
+function applyStaticTranslations(){
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+
+        const key = el.getAttribute("data-i18n");
+
+        if(I18N[currentLang][key] !== undefined){
+
+            el.textContent = I18N[currentLang][key];
+
+        }
+
     });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if(dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+
+        const key = el.getAttribute("data-i18n-placeholder");
+
+        if(I18N[currentLang][key] !== undefined){
+
+            el.setAttribute("placeholder", I18N[currentLang][key]);
+
+        }
+
     });
-    document.getElementById('langLabel').textContent = lang.toUpperCase();
-    document.documentElement.lang = lang;
-  }
- 
-  document.getElementById('langToggle').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'es' : 'en';
-    applyLanguage(currentLang);
-  });
- 
-  applyLanguage(currentLang);
+
+    const langLabel = document.getElementById("langLabel");
+
+    langLabel.textContent = currentLang.toUpperCase();
+
+}
+
+document.getElementById("langToggle").addEventListener("click", () => {
+
+    currentLang = currentLang === "en" ? "es" : "en";
+
+    applyStaticTranslations();
+
+    renderAll();
+
+    closeAllDropdowns();
+
+});
+
+/* ======================================================
+                    THEME
+====================================================== */
+
+const body = document.body;
+
+body.classList.add("dark-theme");
+
+const themeToggle = document.getElementById("themeToggle");
+
+const toggleCircle = themeToggle.querySelector(".toggle-circle");
+
+function enableDarkMode(){
+
+    body.classList.remove("light-theme");
+
+    body.classList.add("dark-theme");
+
+    toggleCircle.style.left = "11px";
+
+}
+
+function enableLightMode(){
+
+    body.classList.remove("dark-theme");
+
+    body.classList.add("light-theme");
+
+    toggleCircle.style.left = "49px";
+
+}
+
+themeToggle.addEventListener("click", () => {
+
+    body.classList.contains("dark-theme") ? enableLightMode() : enableDarkMode();
+
+});
+
+/* ======================================================
+                MOBILE SIDEBAR TOGGLE
+====================================================== */
+
+const sidebarEl = document.querySelector(".sidebar");
+
+const menuToggle = document.getElementById("menuToggle");
+
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+function openSidebar(){
+
+    sidebarEl.classList.add("open");
+
+    sidebarOverlay.classList.add("open");
+
+}
+
+function closeSidebar(){
+
+    sidebarEl.classList.remove("open");
+
+    sidebarOverlay.classList.remove("open");
+
+}
+
+menuToggle.addEventListener("click", () => {
+
+    sidebarEl.classList.contains("open") ? closeSidebar() : openSidebar();
+
+});
+
+sidebarOverlay.addEventListener("click", closeSidebar);
+
+/* ======================================================
+                DROPDOWNS (notificaciones / perfil)
+====================================================== */
+
+const notificationBtn = document.getElementById("notificationBtn");
+
+const notificationPanel = document.getElementById("notificationPanel");
+
+const profileBtn = document.getElementById("profileBtn");
+
+const profilePanel = document.getElementById("profilePanel");
+
+function closeAllDropdowns(){
+
+    [notificationPanel, profilePanel].forEach((p) => p.classList.remove("open"));
+
+}
+
+function toggleDropdown(panel){
+
+    const wasOpen = panel.classList.contains("open");
+
+    closeAllDropdowns();
+
+    if(!wasOpen){
+
+        panel.classList.add("open");
+
+    }
+
+}
+
+function renderNotificationPanel(){
+
+    notificationPanel.innerHTML = `
+        <div class="dropdown-panel-title">${t("notifTitle")}</div>
+        <button class="dropdown-item">
+            <i data-lucide="calendar-clock"></i>
+            <span>
+                ${t("notif1Title")}
+                <div class="item-sub">${t("notif1Sub")}</div>
+            </span>
+        </button>
+        <button class="dropdown-item">
+            <i data-lucide="clipboard-check"></i>
+            <span>
+                ${t("notif2Title")}
+                <div class="item-sub">${t("notif2Sub")}</div>
+            </span>
+        </button>
+        <button class="dropdown-item">
+            <i data-lucide="users"></i>
+            <span>
+                ${t("notif3Title")}
+                <div class="item-sub">${t("notif3Sub")}</div>
+            </span>
+        </button>
+    `;
+
+    refreshIcons();
+
+}
+
+function renderProfilePanel(){
+
+    profilePanel.innerHTML = `
+        <button class="dropdown-item">
+            <i data-lucide="settings"></i>
+            <span>${t("profileSettings")}</span>
+        </button>
+        <button class="dropdown-item">
+            <i data-lucide="circle-help"></i>
+            <span>${t("profileHelp")}</span>
+        </button>
+        <button class="dropdown-item">
+            <i data-lucide="log-out"></i>
+            <span>${t("profileLogout")}</span>
+        </button>
+    `;
+
+    refreshIcons();
+
+}
+
+notificationBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    renderNotificationPanel();
+
+    toggleDropdown(notificationPanel);
+
+});
+
+profileBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    renderProfilePanel();
+
+    toggleDropdown(profilePanel);
+
+});
+
+document.addEventListener("click", () => {
+
+    closeAllDropdowns();
+
+});
+
+/* ======================================================
+                TOASTS
+====================================================== */
+
+const toastContainer = document.getElementById("toastContainer");
+
+function showToast(message, icon){
+
+    const toast = document.createElement("div");
+
+    toast.classList.add("toast");
+
+    toast.innerHTML = `
+        <div class="toast-icon"><i data-lucide="${icon}"></i></div>
+        <span>${message}</span>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    refreshIcons();
+
+    setTimeout(() => {
+
+        toast.classList.add("leaving");
+
+        setTimeout(() => toast.remove(), 250);
+
+    }, 3200);
+
+}
+
+/* ======================================================
+                DATOS DE EJEMPLO
+====================================================== */
+
+let scheduleEvents = [
+
+    { time:"09:00 AM", title:"Biology 101", room:"Room A-203" },
+    { time:"11:00 AM", title:"Faculty Meeting", room:"Coference Room" },
+    { time:"2:00 PM", title:"Anatomy Lab", room:"Lab 4" }
+
+];
+
+let myClasses = [
+
+    { id:1, name:"Biology 101", studentsCount:32, color:"#7C5CFF" },
+    { id:2, name:"Biology 102", studentsCount:19, color:"#00D4FF" },
+    { id:3, name:"Biology 102", studentsCount:24, color:"#22C55E" }
+
+];
+
+let deadlines = [
+
+    { icon:"clipboard-list", title:"Biology Homework #5", due:"Due Today - 11:59" },
+    { icon:"help-circle", title:"Anatomy Quiz", due:"Tomorrow" },
+    { icon:"graduation-cap", title:"Submit Final Grades", due:"Friday" }
+
+];
+
+let quickActions = [
+
+    { key:"qaAssignment", icon:"plus" },
+    { key:"qaLesson", icon:"plus" },
+    { key:"qaResource", icon:"plus" }
+
+];
+
+/* ======================================================
+        FUTURO: CARGA REAL DESDE SUPABASE
+====================================================== */
+
+async function loadScheduleEvents(){
+
+    // TODO: reemplazar por consulta real a la tabla "events", ej:
+    // const { data, error } = await db
+    //     .from("events")
+    //     .select("time, title, room")
+    //     .eq("teacher_id", currentUserId)
+    //     .eq("event_date", new Date().toISOString().slice(0,10))
+    //     .order("time", { ascending:true });
+    //
+    // if(error){ console.error("Error cargando el horario:", error); return; }
+    // scheduleEvents = data;
+
+    return scheduleEvents;
+
+}
+
+async function loadClasses(){
+
+    // TODO: reemplazar por consulta real a la tabla "classrooms", ej:
+    // const { data, error } = await db
+    //     .from("classrooms")
+    //     .select("id, name, students_count, color")
+    //     .eq("teacher_id", currentUserId);
+    //
+    // if(error){ console.error("Error cargando clases:", error); return; }
+    // myClasses = data;
+
+    return myClasses;
+
+}
+
+async function loadDeadlines(){
+
+    // TODO: reemplazar por consulta real a una tabla "assignments" o "deadlines", ej:
+    // const { data, error } = await db
+    //     .from("assignments")
+    //     .select("icon, title, due")
+    //     .eq("teacher_id", currentUserId)
+    //     .order("due_date", { ascending:true });
+    //
+    // if(error){ console.error("Error cargando entregas:", error); return; }
+    // deadlines = data;
+
+    return deadlines;
+
+}
+
+/* ======================================================
+                RENDER: SCHEDULE
+====================================================== */
+
+const scheduleList = document.getElementById("scheduleList");
+
+function renderSchedule(){
+
+    if(scheduleEvents.length === 0){
+
+        scheduleList.innerHTML = `<div class="grid-empty">—</div>`;
+
+        return;
+
+    }
+
+    scheduleList.innerHTML = scheduleEvents.map((ev) => `
+        <div class="schedule-item">
+            <span class="schedule-dot"></span>
+            <div class="schedule-time">${ev.time}</div>
+            <div class="schedule-title">${ev.title}</div>
+            <div class="schedule-room">${ev.room}</div>
+        </div>
+    `).join("");
+
+}
+
+/* ======================================================
+                RENDER: MY CLASSES
+====================================================== */
+
+const classList = document.getElementById("classList");
+
+function renderClasses(){
+
+    classList.innerHTML = myClasses.map((c) => `
+        <div class="class-item" style="--class-color:${c.color};" data-id="${c.id}">
+            <h3>${c.name}</h3>
+            <div class="class-students">${c.studentsCount} ${t("studentsWord")}</div>
+            <span class="class-status">${t("statusOpen")}</span>
+        </div>
+    `).join("");
+
+    classList.querySelectorAll(".class-item").forEach((item) => {
+
+        item.addEventListener("click", () => {
+
+            // TODO: cuando conectes navegación real, redirige a
+            // Students-Teacher.html?classroom=<id> usando item.dataset.id.
+
+            window.location.href = "Students-Teacher.html";
+
+        });
+
+    });
+
+}
+
+/* ======================================================
+                RENDER: QUICK ACTIONS
+====================================================== */
+
+const quickActionsList = document.getElementById("quickActionsList");
+
+function renderQuickActions(){
+
+    quickActionsList.innerHTML = quickActions.map((qa) => `
+        <button class="qa-btn" data-key="${qa.key}">
+            <span>${t(qa.key)}</span>
+            <i data-lucide="${qa.icon}"></i>
+        </button>
+    `).join("");
+
+    quickActionsList.querySelectorAll(".qa-btn").forEach((btn) => {
+
+        btn.addEventListener("click", () => {
+
+            // TODO: conectar cada acción a su propio flujo real
+            // (crear tarea, nueva lección, subir recurso).
+
+            showToast(t("comingSoonGeneric"), "info");
+
+        });
+
+    });
+
+    refreshIcons();
+
+}
+
+/* ======================================================
+                RENDER: DEADLINES
+====================================================== */
+
+const deadlineList = document.getElementById("deadlineList");
+
+const viewMoreDeadlinesBtn = document.getElementById("viewMoreDeadlinesBtn");
+
+function renderDeadlines(){
+
+    if(deadlines.length === 0){
+
+        deadlineList.innerHTML = `<div class="grid-empty">—</div>`;
+
+        return;
+
+    }
+
+    deadlineList.innerHTML = deadlines.map((d) => `
+        <div class="deadline-item">
+            <div class="d-icon"><i data-lucide="${d.icon}"></i></div>
+            <div>
+                <div class="d-title">${d.title}</div>
+                <div class="d-time">${d.due}</div>
+            </div>
+        </div>
+    `).join("");
+
+    refreshIcons();
+
+}
+
+viewMoreDeadlinesBtn.addEventListener("click", () => {
+
+    // TODO: cuando haya más de 3 entregas reales, pagina aquí.
+
+    showToast(t("comingSoonGeneric"), "info");
+
+});
+
+/* ======================================================
+                RENDER: BOMBI MASCOT
+====================================================== */
+
+const bombiIllustration = document.getElementById("bombiIllustration");
+
+function renderBombiMascot(){
+
+    bombiIllustration.innerHTML = `
+        <svg width="110" height="110" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="bombiBodyGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" style="stop-color:var(--primary);"></stop>
+                    <stop offset="1" style="stop-color:var(--secondary);"></stop>
+                </linearGradient>
+            </defs>
+            <circle cx="60" cy="46" r="30" fill="#ffd54a"></circle>
+            <path d="M46 90c0 8 6 12 14 12s14-4 14-12" stroke="#7a4b1f" stroke-width="4" stroke-linecap="round"></path>
+            <line x1="60" y1="76" x2="60" y2="90" stroke="#7a4b1f" stroke-width="4" stroke-linecap="round"></line>
+            <circle cx="46" cy="46" r="9" fill="none" stroke="#7a3f2a" stroke-width="3"></circle>
+            <circle cx="74" cy="46" r="9" fill="none" stroke="#7a3f2a" stroke-width="3"></circle>
+            <line x1="55" y1="46" x2="65" y2="46" stroke="#7a3f2a" stroke-width="3"></line>
+            <circle cx="46" cy="46" r="3" fill="#3a2b1f"></circle>
+            <circle cx="74" cy="46" r="3" fill="#3a2b1f"></circle>
+            <path d="M52 58c3 4 13 4 16 0" stroke="#7a3f2a" stroke-width="3" stroke-linecap="round" fill="none"></path>
+            <rect x="34" y="96" width="52" height="20" rx="4" fill="url(#bombiBodyGrad)"></rect>
+            <rect x="38" y="92" width="20" height="10" rx="2" fill="#ffffff"></rect>
+            <rect x="62" y="92" width="20" height="10" rx="2" fill="#e4e0ff"></rect>
+        </svg>
+    `;
+
+}
+
+/* ======================================================
+                HERO + BOMBI BUTTONS
+====================================================== */
+
+document.getElementById("heroMyClassesBtn").addEventListener("click", () => {
+
+    window.location.href = "Students-Teacher.html";
+
+});
+
+document.getElementById("heroAnalyticsBtn").addEventListener("click", () => {
+
+    // TODO: enlazar a la futura pantalla de Analytics.
+
+    showToast(t("comingSoonGeneric"), "info");
+
+});
+
+document.getElementById("askBombiBtn").addEventListener("click", () => {
+
+    // TODO: enlazar a la pantalla real de Bombi AI.
+
+    showToast(t("comingSoonGeneric"), "bot");
+
+});
+
+document.getElementById("viewAllClassesBtn").addEventListener("click", () => {
+
+    window.location.href = "Students-Teacher.html";
+
+});
+
+/* ======================================================
+                RENDER ALL (helper central)
+====================================================== */
+
+function renderAll(){
+
+    renderSchedule();
+
+    renderClasses();
+
+    renderQuickActions();
+
+    renderDeadlines();
+
+}
+
+/* ======================================================
+                INITIALIZE
+====================================================== */
+
+async function init(){
+
+    if(db){
+
+        try{
+
+            const { data:{ session } } = await db.auth.getSession();
+
+            if(session){
+
+                currentUserId = session.user.id;
+
+            }
+
+        }
+        catch(err){
+
+            console.warn("Supabase no disponible en este entorno, usando datos de ejemplo.", err);
+
+        }
+
+    }
+
+    await loadScheduleEvents();
+
+    await loadClasses();
+
+    await loadDeadlines();
+
+    applyStaticTranslations();
+
+    renderBombiMascot();
+
+    renderAll();
+
+    console.log("Thinking Teacher Home Screen Loaded 🚀");
+
+}
+
+init();
