@@ -42,6 +42,6 @@ window.location.href=
 roleCards[1].addEventListener("click",()=>{
 
 window.location.href=
-"../LOGIN-Student/STUDENT LOGIN.html";
+"../Dashboard-Teacher/Teacher Dashboard.html";
 
 });
