@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignments | Thinking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
+
+    <link rel="stylesheet" href="Teacher Assignments.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="dark-theme">
+
+    <div class="app">
+
+        <div class="aurora"></div>
+
+        <div class="particles">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
+
+<!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="style.css">
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-mark">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2>Thinking</h2>
+                    <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="Teacher Dashboard.html">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span data-i18n="navHome">Home</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="file-check"></i>
+                    <span data-i18n="navTest">Test</span>
+                </a>
+
+                <a href="Teacher Students.html">
+                    <i data-lucide="users"></i>
+                    <span data-i18n="navStudents">Students</span>
+                </a>
+
+                <a href="Teacher Assignments.html" class="active">
+                    <i data-lucide="clipboard-list"></i>
+                    <span data-i18n="navAssignments">Assigments</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="folder-open"></i>
+                    <span data-i18n="navResources">Resources</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="calendar-days"></i>
+                    <span data-i18n="navSchedule">Schedule</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="bot"></i>
+                    <span data-i18n="navBombi">Bombi AI</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar"><i data-lucide="user-round"></i></div>
+                <div class="user-info">
+                    <h3 id="userName">Irving</h3>
+                    <p data-i18n="roleTeacher">Teacher</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i data-lucide="settings"></i>
+                    <span data-i18n="footerSettings">Settings</span>
+                </a>
+                <a href="#">
+                    <i data-lucide="log-out"></i>
+                    <span data-i18n="footerLogout">Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+
+            <!-- =====================================================
+                        TOPBAR
+            ====================================================== -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <div class="page-heading">
+                        <h1><span data-i18n="pageTitle">Assignments</span> <i data-lucide="sparkles" class="title-spark"></i></h1>
+                        <p data-i18n="pageSubtitle">Create, assign and track student work</p>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="search-box topbar-search">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="assignmentSearch" data-i18n-placeholder="searchPlaceholder" placeholder="Search assignments...">
+                    </div>
+
+                    <button class="primary-btn" id="newAssignmentBtn">
+                        <i data-lucide="plus"></i>
+                        <span data-i18n="newAssignmentBtn">New Assignment</span>
+                    </button>
+
+                    <div class="dropdown-wrap">
+                        <button class="notification-btn" id="notificationBtn">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="dropdown-panel" id="notificationPanel"></div>
+                    </div>
+
+                    <button class="lang-toggle" id="langToggle">
+                        <i data-lucide="languages"></i>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-lucide="sun"></i>
+                        <div class="toggle-circle"></div>
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <div class="dropdown-wrap">
+                        <div class="user-profile" id="profileBtn">
+                            <div class="profile-avatar"><i data-lucide="user-round"></i></div>
+                            <div class="profile-info">
+                                <h4 id="profileName">Irving</h4>
+                                <p data-i18n="roleTeacher">Teacher</p>
+                            </div>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                        <div class="dropdown-panel" id="profilePanel"></div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- =====================================================
+                        STATS ROW
+            ====================================================== -->
+
+            <section class="assign-stats-row" id="assignStatsRow">
+                <!-- generado por JS -->
+            </section>
+
+            <!-- =====================================================
+                        CONTENT GRID (lista + panel derecho)
+            ====================================================== -->
+
+            <section class="assign-content-grid">
+
+                <!-- =====================================
+                        LEFT: LISTA DE ASIGNACIONES
+                ====================================== -->
+
+                <div class="dashboard-card assign-list-card">
+
+                    <div class="assign-toolbar">
+
+                        <div class="assign-tabs" id="assignTabs">
+                            <button class="assign-tab active" data-status="all" data-i18n="tabAll">All Assignments</button>
+                            <button class="assign-tab" data-status="draft" data-i18n="tabDrafts">Drafts</button>
+                            <button class="assign-tab" data-status="published" data-i18n="tabPublished">Published</button>
+                            <button class="assign-tab" data-status="completed" data-i18n="tabCompleted">Completed</button>
+                            <button class="assign-tab" data-status="archived" data-i18n="tabArchived">Archived</button>
+                        </div>
+
+                        <div class="dropdown-wrap">
+                            <button class="secondary-btn filter-btn" id="filterBtn">
+                                <i data-lucide="sliders-horizontal"></i>
+                                <span data-i18n="filterBtn">Filter</span>
+                                <i data-lucide="chevron-down"></i>
+                            </button>
+                            <div class="dropdown-panel" id="filterPanel"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="assign-list" id="assignList">
+                        <!-- generado por JS -->
+                    </div>
+
+                    <button class="secondary-btn view-more-btn" id="loadMoreBtn">
+                        <span data-i18n="loadMore">Load more assignments</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+
+                </div>
+
+                <!-- =====================================
+                        RIGHT: OVERVIEW / STATUS / ACTIONS / TIP
+                ====================================== -->
+
+                <div class="assign-right">
+
+                    <div class="dashboard-card">
+
+                        <h2 class="panel-title" data-i18n="assignmentOverview">Assignment Overview</h2>
+
+                        <div class="overview-donut-wrap">
+                            <div class="overview-donut" id="overviewDonut">
+                                <div class="overview-donut-center">
+                                    <strong id="overviewTotal">24</strong>
+                                    <span data-i18n="total">Total</span>
+                                </div>
+                            </div>
+                            <ul class="overview-legend" id="overviewLegend">
+                                <!-- generado por JS -->
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-card">
+
+                        <h2 class="panel-title" data-i18n="submissionStatus">Submission Status</h2>
+
+                        <div class="submission-status-list" id="submissionStatusList">
+                            <!-- generado por JS -->
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-card">
+
+                        <h2 class="panel-title" data-i18n="quickActions">Quick Actions</h2>
+
+                        <div class="quick-actions-grid">
+
+                            <button class="quick-action-btn" id="qaNewAssignment">
+                                <div class="qa-icon primary"><i data-lucide="plus"></i></div>
+                                <span data-i18n="newAssignmentBtn">New Assignment</span>
+                            </button>
+
+                            <button class="quick-action-btn" id="qaImport">
+                                <div class="qa-icon pink"><i data-lucide="upload"></i></div>
+                                <span data-i18n="importAssignment">Import Assignment</span>
+                            </button>
+
+                            <button class="quick-action-btn" id="qaQuestionBank">
+                                <div class="qa-icon blue"><i data-lucide="clipboard-list"></i></div>
+                                <span data-i18n="fromQuestionBank">From Question Bank</span>
+                            </button>
+
+                            <button class="quick-action-btn" id="qaAnalytics">
+                                <div class="qa-icon indigo"><i data-lucide="bar-chart-3"></i></div>
+                                <span data-i18n="assignmentAnalytics">Assignment Analytics</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-card tip-card">
+
+                        <h2 class="panel-title"><i data-lucide="lightbulb" class="tip-icon"></i> <span data-i18n="thinkingTip">Thinking Tip</span></h2>
+
+                        <p class="tip-text" data-i18n="tipText">Use Bombi AI to create personalized assignments based on learning styles.</p>
+
+                        <button class="primary-btn tip-btn" id="tryBombiBtn">
+                            <span data-i18n="tryBombi">Try with Bombi AI</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+                NEW ASSIGNMENT MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="assignModalOverlay">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2 id="assignModalTitle" data-i18n="newAssignmentModalTitle">New Assignment</h2>
+                <button class="modal-close" id="assignModalCloseBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <form id="assignForm">
+
+                <div class="modal-field">
+                    <label for="assignTitleInput" data-i18n="fieldTitle">Title</label>
+                    <input type="text" id="assignTitleInput" data-i18n-placeholder="fieldTitlePlaceholder" placeholder="e.g. Linear Equations Practice" required>
+                </div>
+
+                <div class="modal-field">
+                    <label for="assignDescInput" data-i18n="fieldDescription">Description</label>
+                    <textarea id="assignDescInput" rows="3" data-i18n-placeholder="fieldDescPlaceholder" placeholder="What should students do?"></textarea>
+                </div>
+
+                <div class="modal-row">
+
+                    <div class="modal-field">
+                        <label for="assignTypeSelect" data-i18n="fieldType">Type</label>
+                        <select id="assignTypeSelect">
+                            <option value="Quiz" data-i18n="tagQuiz">Quiz</option>
+                            <option value="Homework" data-i18n="tagHomework">Homework</option>
+                            <option value="Essay" data-i18n="tagEssay">Essay</option>
+                            <option value="Lab Report" data-i18n="tagLabReport">Lab Report</option>
+                            <option value="Project" data-i18n="tagProject">Project</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-field">
+                        <label for="assignClassSelect" data-i18n="fieldClass">Class</label>
+                        <select id="assignClassSelect">
+                            <option value="12A - Mathematics">12A - Mathematics</option>
+                            <option value="12B - Science">12B - Science</option>
+                            <option value="11A - English">11A - English</option>
+                            <option value="11B - Biology">11B - Biology</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-row">
+
+                    <div class="modal-field">
+                        <label for="assignDueInput" data-i18n="fieldDueDate">Due date</label>
+                        <input type="date" id="assignDueInput" required>
+                    </div>
+
+                    <div class="modal-field">
+                        <label for="assignStudentsInput" data-i18n="fieldStudents">Students</label>
+                        <input type="number" id="assignStudentsInput" min="1" value="28" required>
+                    </div>
+
+                </div>
+
+                <div class="modal-field">
+                    <label data-i18n="fieldStatus">Status</label>
+                    <div class="priority-options" id="assignStatusOptions">
+                        <button type="button" class="priority-btn low active" data-status="draft" data-i18n="statusDraft">Draft</button>
+                        <button type="button" class="priority-btn high" data-status="published" data-i18n="statusPublished">Published</button>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" id="assignModalCancelBtn" data-i18n="modalCancel">Cancel</button>
+                    <button type="submit" class="primary-btn">
+                        <i data-lucide="check"></i>
+                        <span data-i18n="modalCreate">Create</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+                GENERIC CONFIRM MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="confirmModalOverlay">
+
+        <div class="modal-card confirm-card">
+
+            <div class="modal-header">
+                <h2 id="confirmModalTitle">Delete?</h2>
+                <button class="modal-close" id="confirmModalCloseBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <p id="confirmModalMessage" class="confirm-message"></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="confirmCancelBtn" data-i18n="modalCancel">Cancel</button>
+                <button type="button" class="primary-btn danger-btn" id="confirmDeleteBtn">
+                    <i data-lucide="trash-2"></i>
+                    <span data-i18n="confirmDeleteBtn">Delete</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+                TOASTS
+    ====================================================== -->
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- =====================================================
+                GLOBAL FLOATING MENU (kebab de cada assignment)
+    ====================================================== -->
+
+    <div class="dropdown-panel" id="floatingAssignMenu"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
