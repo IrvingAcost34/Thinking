@@ -636,39 +636,6 @@ viewMoreDeadlinesBtn.addEventListener("click", () => {
 });
 
 /* ======================================================
-                RENDER: BOMBI MASCOT
-====================================================== */
-
-const bombiIllustration = document.getElementById("bombiIllustration");
-
-function renderBombiMascot(){
-
-    bombiIllustration.innerHTML = `
-        <svg width="110" height="110" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="bombiBodyGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" style="stop-color:var(--primary);"></stop>
-                    <stop offset="1" style="stop-color:var(--secondary);"></stop>
-                </linearGradient>
-            </defs>
-            <circle cx="60" cy="46" r="30" fill="#ffd54a"></circle>
-            <path d="M46 90c0 8 6 12 14 12s14-4 14-12" stroke="#7a4b1f" stroke-width="4" stroke-linecap="round"></path>
-            <line x1="60" y1="76" x2="60" y2="90" stroke="#7a4b1f" stroke-width="4" stroke-linecap="round"></line>
-            <circle cx="46" cy="46" r="9" fill="none" stroke="#7a3f2a" stroke-width="3"></circle>
-            <circle cx="74" cy="46" r="9" fill="none" stroke="#7a3f2a" stroke-width="3"></circle>
-            <line x1="55" y1="46" x2="65" y2="46" stroke="#7a3f2a" stroke-width="3"></line>
-            <circle cx="46" cy="46" r="3" fill="#3a2b1f"></circle>
-            <circle cx="74" cy="46" r="3" fill="#3a2b1f"></circle>
-            <path d="M52 58c3 4 13 4 16 0" stroke="#7a3f2a" stroke-width="3" stroke-linecap="round" fill="none"></path>
-            <rect x="34" y="96" width="52" height="20" rx="4" fill="url(#bombiBodyGrad)"></rect>
-            <rect x="38" y="92" width="20" height="10" rx="2" fill="#ffffff"></rect>
-            <rect x="62" y="92" width="20" height="10" rx="2" fill="#e4e0ff"></rect>
-        </svg>
-    `;
-
-}
-
-/* ======================================================
                 HERO + BOMBI BUTTONS
 ====================================================== */
 
@@ -750,8 +717,6 @@ async function init(){
     await loadDeadlines();
 
     applyStaticTranslations();
-
-    renderBombiMascot();
 
     renderAll();
 
