@@ -32,6 +32,17 @@ body{
 
 }
 
+/* Los navegadores NO heredan autom\u00e1ticamente la tipograf\u00eda del
+   body en button/input/select/textarea (comportamiento est\u00e1ndar
+   de sus hojas de estilo internas). Esta regla lo arregla de ra\u00edz
+   para TODA la p\u00e1gina, en vez de agregar font-family botón por botón. */
+
+button, input, select, textarea{
+
+    font-family:inherit;
+
+}
+
 /* ======================================================
                     THEME VARIABLES
 ====================================================== */
@@ -733,6 +744,8 @@ body{
     font-size:14px;
 
     font-weight:700;
+
+    font-family:'Poppins',sans-serif;
 
 }
 
@@ -2752,6 +2765,40 @@ body.light-theme .modal-card{
     padding:13px 18px;
 
     white-space:nowrap;
+
+}
+
+.invite-share-row{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.share-channel-btn{
+
+    flex:1;
+
+}
+
+.share-channel-btn.whatsapp{
+
+    color:#25D366;
+
+    border-color:rgba(37,211,102,.35);
+
+}
+
+.share-channel-btn.whatsapp:hover{
+
+    background:rgba(37,211,102,.12);
+
+}
+
+.share-channel-btn.whatsapp i{
+
+    color:#25D366;
 
 }
 
