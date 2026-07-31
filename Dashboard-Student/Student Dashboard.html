@@ -51,8 +51,12 @@
 
         <aside class="sidebar">
 
+            <!-- Logo: ícono con fondo degradado, en vez
+                 de la imagen LOGO1.png -->
             <div class="sidebar-logo">
-                <img src="../Images/LOGO1.png" alt="Thinking Logo">
+                <div class="logo-mark">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
                 <div class="logo-text">
                     <h2>Thinking</h2>
                     <span>Student Dashboard</span>
@@ -121,7 +125,7 @@
                     <i data-lucide="settings"></i>
                     <span>Settings</span>
                 </a>
-                <a href="#">
+                <a href="#" id="logoutBtnSidebar">
                     <i data-lucide="log-out"></i>
                     <span>Logout</span>
                 </a>
@@ -147,17 +151,40 @@
 
                     <div class="search-box">
                         <i data-lucide="search"></i>
-                        <input type="text" placeholder="Search courses, lessons, quizzes...">
+                        <input type="text" id="courseSearch" placeholder="Search courses, lessons, quizzes...">
                     </div>
 
                 </div>
 
                 <div class="topbar-right">
 
-                    <button class="notification-btn">
-                        <i data-lucide="bell"></i>
-                        <span class="notification-count">3</span>
-                    </button>
+                    <div class="dropdown-wrap">
+
+                        <button class="notification-btn" id="notificationBtn">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+
+                        <div class="dropdown-panel" id="notificationsPanel">
+
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="trophy"></i>
+                                <span>New achievement unlocked!</span>
+                            </a>
+
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="flame"></i>
+                                <span>Keep your streak alive today</span>
+                            </a>
+
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="bot"></i>
+                                <span>Bombi has a new study tip for you</span>
+                            </a>
+
+                        </div>
+
+                    </div>
 
                     <button class="theme-toggle">
                         <i data-lucide="sun"></i>
@@ -165,13 +192,38 @@
                         <i data-lucide="moon"></i>
                     </button>
 
-                    <div class="user-profile">
-                        <img src="../Images/Bombi_EMOTIONweb.png" alt="Profile">
-                        <div class="profile-info">
-                            <h4 id="profileName">Irving</h4>
-                            <p>Student</p>
+                    <!-- Perfil con menú desplegable
+                         (My Profile / Settings / Logout) -->
+                    <div class="dropdown-wrap">
+
+                        <div class="user-profile" id="profileBtn">
+                            <img src="../Images/Bombi_EMOTIONweb.png" alt="Profile">
+                            <div class="profile-info">
+                                <h4 id="profileName">Irving</h4>
+                                <p>Student</p>
+                            </div>
+                            <i data-lucide="chevron-down"></i>
                         </div>
-                        <i data-lucide="chevron-down"></i>
+
+                        <div class="dropdown-panel" id="profilePanel">
+
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="user"></i>
+                                <span>My Profile</span>
+                            </a>
+
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="settings"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <a href="#" id="logoutBtn" class="dropdown-item">
+                                <i data-lucide="log-out"></i>
+                                <span>Logout</span>
+                            </a>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -183,7 +235,7 @@
                 <div class="hero-text">
                     <span class="hero-subtitle">Welcome Back </span>
                     <h1 id="greeting">Good Morning, Irving</h1>
-                    <p>Continue your learning journey and complete today's mission.</p>
+                    <p id="hero-subtext">Continue your learning journey and complete today's mission.</p>
                 </div>
 
                 <div class="hero-card dashboard-card">
@@ -322,7 +374,7 @@
                                 </div>
                                 <div class="detail">
                                     <span>Study Streak</span>
-                                    <strong id="detail-streak">18 Days </strong>
+                                    <strong id="detail-streak">18 Days 🔥</strong>
                                 </div>
                                 <div class="detail">
                                     <span>Next Goal</span>
@@ -409,19 +461,3 @@
 </body>
 
 </html>
-const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
-
-const db = window.supabase.createClient(
-
-    SUPABASE_URL,
-
-    SUPABASE_KEY
-
-);
-
-
-
-eso es lo de el supabase, pero no lo pongo ahi pq en el codepen no puede entrar a ello, y me sale un error, y no deja ver lo q estoy haciendo.
-
