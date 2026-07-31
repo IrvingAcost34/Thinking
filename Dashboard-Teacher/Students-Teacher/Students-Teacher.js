@@ -161,8 +161,14 @@ const I18N = {
         seatEmpty:"Empty seat",
         inviteLink:"Invite Link",
         inviteModalTitle:"Invite students to this classroom",
-        inviteModalDesc:"Share this link with your students. When they register through it, they'll join this classroom automatically \u2014 make sure your registration page reads the classroom code from the URL.",
+        inviteModalDesc:"Share this link with your students. If they're already logged in, opening it will show a \u2018Join Classroom\u2019 confirmation on their Dashboard \u2014 make sure the link points to your real Student Dashboard page.",
         inviteLinkLabel:"Class link",
+        shareViaLabel:"Or share directly",
+        shareWhatsapp:"WhatsApp", shareEmail:"Email", shareMore:"More",
+        whatsappShareText:(roomName, link) => `Hi! Please join our classroom "${roomName}" on Thinking so I can track your learning progress. Tap this link: ${link}`,
+        emailShareSubject:(roomName) => `Join our classroom "${roomName}" on Thinking`,
+        emailShareBody:(roomName, link) => `Hi!\n\nPlease join our classroom "${roomName}" on Thinking using this link:\n${link}\n\nSee you there!`,
+        toastShareOpened:"Opening share options...",
         copyBtn:"Copy",
         linkCopiedToast:"Link copied to clipboard.",
         noMessagesYet:"No messages yet. Say hello!",
@@ -281,8 +287,14 @@ const I18N = {
         seatEmpty:"Asiento vac\u00edo",
         inviteLink:"Link de Invitaci\u00f3n",
         inviteModalTitle:"Invita estudiantes a este sal\u00f3n",
-        inviteModalDesc:"Comparte este link con tus estudiantes. Cuando se registren con \u00e9l, se unir\u00e1n autom\u00e1ticamente a este sal\u00f3n \u2014 aseg\u00farate de que tu p\u00e1gina de registro lea el c\u00f3digo del sal\u00f3n desde la URL.",
+        inviteModalDesc:"Comparte este link con tus estudiantes. Si ya tienen sesi\u00f3n iniciada, al abrirlo les aparecer\u00e1 una confirmaci\u00f3n de \u201cUnirse al Sal\u00f3n\u201d en su Dashboard \u2014 aseg\u00farate de que el link apunte a tu p\u00e1gina real del Student Dashboard.",
         inviteLinkLabel:"Link del sal\u00f3n",
+        shareViaLabel:"O comparte directo",
+        shareWhatsapp:"WhatsApp", shareEmail:"Correo", shareMore:"M\u00e1s",
+        whatsappShareText:(roomName, link) => `\u00a1Hola! Un\u00e9te a nuestro sal\u00f3n "${roomName}" en Thinking para que pueda dar seguimiento a tu aprendizaje. Toca este link: ${link}`,
+        emailShareSubject:(roomName) => `\u00danete a nuestro sal\u00f3n "${roomName}" en Thinking`,
+        emailShareBody:(roomName, link) => `\u00a1Hola!\n\nUn\u00e9te a nuestro sal\u00f3n "${roomName}" en Thinking usando este link:\n${link}\n\n\u00a1Nos vemos ah\u00ed!`,
+        toastShareOpened:"Abriendo opciones para compartir...",
         copyBtn:"Copiar",
         linkCopiedToast:"Link copiado al portapapeles.",
         noMessagesYet:"A\u00fan no hay mensajes. \u00a1Escribe el primero!",
@@ -2241,11 +2253,17 @@ const inviteLinkInput = document.getElementById("inviteLinkInput");
 
 function buildInviteLink(room){
 
-    // TODO: reemplaza este origin/ruta por la URL real de tu
-    // p\u00e1gina de registro de estudiante en GitHub Pages, ej:
-    // "https://irvingacost34.github.io/Thinking/REGISTER-Student/Register.html"
+    // TODO: ajusta esta ruta a la ubicaci\u00f3n REAL de tu
+    // Student Dashboard dentro de tu repo de GitHub Pages.
+    // Seg\u00fan tu estructura de carpetas deber\u00eda ser algo como:
+    // "https://irvingacost34.github.io/Thinking/Dashboard-Student/Student%20Dashboard.html"
+    //
+    // Si el estudiante NO tiene sesi\u00f3n iniciada, el Dashboard lo
+    // manda a Login y se pierden estos par\u00e1metros de la URL \u2014
+    // en ese caso el estudiante tendr\u00eda que unirse a mano despu\u00e9s
+    // con el bot\u00f3n "Join Classroom" usando el c\u00f3digo de abajo.
 
-    const baseUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, "REGISTER-Student/Register.html");
+    const baseUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, "../Dashboard-Student/Student%20Dashboard.html");
 
     const code = room.name.replace(/\s+/g, "").toUpperCase();
 
@@ -2334,6 +2352,76 @@ document.getElementById("copyInviteBtn").addEventListener("click", () => {
     }
 
     showToast(t("linkCopiedToast"), "copy");
+
+});
+
+document.getElementById("shareWhatsappBtn").addEventListener("click", () => {
+
+    const room = getSelectedClassroom();
+
+    if(!room){ return; }
+
+    const message = t("whatsappShareText")(room.name, inviteLinkInput.value);
+
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+
+});
+
+document.getElementById("shareEmailBtn").addEventListener("click", () => {
+
+    const room = getSelectedClassroom();
+
+    if(!room){ return; }
+
+    const subject = t("emailShareSubject")(room.name);
+
+    const bodyText = t("emailShareBody")(room.name, inviteLinkInput.value);
+
+    const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
+    window.location.href = mailtoUrl;
+
+});
+
+document.getElementById("shareNativeBtn").addEventListener("click", async () => {
+
+    const room = getSelectedClassroom();
+
+    if(!room){ return; }
+
+    // navigator.share abre el men\u00fa nativo de compartir del sistema
+    // (funciona en celulares y en varios navegadores de escritorio).
+    // Si no est\u00e1 disponible, caemos de vuelta a copiar el link.
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+
+                title: t("inviteModalTitle"),
+                text: t("whatsappShareText")(room.name, inviteLinkInput.value),
+                url: inviteLinkInput.value
+
+            });
+
+        }
+        catch(err){
+
+            // El usuario cancel\u00f3 el share sheet; no hacemos nada.
+
+        }
+
+    }
+    else{
+
+        document.getElementById("copyInviteBtn").click();
+
+        showToast(t("toastShareOpened"), "share-2");
+
+    }
 
 });
 
