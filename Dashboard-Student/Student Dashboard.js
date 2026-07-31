@@ -2,6 +2,9 @@
 // SUPABASE
 // ======================================================
 
+
+
+/* 
 const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
@@ -10,8 +13,7 @@ const db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
-/* ======================================================
+======================================================
                     LUCIDE ICONS
 ====================================================== */
 
@@ -46,6 +48,53 @@ setInterval(() => {
     bombiMessage.textContent = bombiMessages[bombiIndex];
 
 }, 5000);
+
+/* ======================================================
+            SALUDO DINÁMICO DEL HERO
+    1) Elige "Good Morning / Afternoon / Evening" según
+       la hora real del dispositivo.
+    2) Elige una frase distinta al azar cada vez que
+       entras, para que no se sienta repetitivo.
+====================================================== */
+
+const heroSubtitles = [
+    "Continue your learning journey and complete today's mission.",
+    "Every lesson today gets you one step closer to your goal.",
+    "Your streak is waiting for you — let's keep it alive!",
+    "Small steps every day lead to big results.",
+    "Ready to discover something new today?",
+    "Let's make today count towards your next level."
+];
+
+function getTimeBasedGreeting(){
+
+    const hour = new Date().getHours();
+
+    if(hour < 12){
+        return "Good Morning";
+    }
+
+    if(hour < 18){
+        return "Good Afternoon";
+    }
+
+    return "Good Evening";
+
+}
+
+function applyRandomHeroSubtitle(){
+
+    const heroSubtextEl = document.getElementById("hero-subtext");
+
+    if(!heroSubtextEl){
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * heroSubtitles.length);
+
+    heroSubtextEl.textContent = heroSubtitles[randomIndex];
+
+}
 
 /* ======================================================
                     THEME (igual al Schedule)
@@ -165,6 +214,51 @@ document.addEventListener("keydown", (e) => {
 
 console.log("Thinking Student Dashboard Loaded 🚀");
 
+/* ======================================================
+                DROPDOWN DEL PERFIL
+====================================================== */
+
+const profileBtn = document.getElementById("profileBtn");
+
+const profilePanel = document.getElementById("profilePanel");
+
+profileBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    profilePanel.classList.toggle("open");
+
+});
+
+// Cierra el panel si le das clic a cualquier otro lado de la página
+document.addEventListener("click", () => {
+
+    profilePanel.classList.remove("open");
+
+});
+
+/* ======================================================
+                LOGOUT REAL
+====================================================== */
+
+async function handleLogout(e){
+
+    e.preventDefault();
+
+    if(typeof db !== "undefined" && db.auth){
+
+        await db.auth.signOut();
+
+    }
+
+    window.location.href = "../LOGIN-Student/STUDENT LOGIN.html";
+
+}
+
+document.getElementById("logoutBtn").addEventListener("click", handleLogout);
+
+document.getElementById("logoutBtnSidebar").addEventListener("click", handleLogout);
+
 // ======================================================
 // STREAK HELPERS
 // ======================================================
@@ -251,7 +345,12 @@ async function loadUserData(){
 
     document.getElementById("userName").textContent = nombre;
     document.getElementById("profileName").textContent = nombre;
-    document.getElementById("greeting").textContent = `Good Morning, ${nombre}`;
+
+    // Saludo dinámico: cambia según la hora real, y el
+    // subtítulo de abajo rota entre varias frases.
+    document.getElementById("greeting").textContent = `${getTimeBasedGreeting()}, ${nombre}`;
+
+    applyRandomHeroSubtitle();
 
     const iniciales = nombre
         .split(" ")
