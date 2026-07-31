@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test | Thinking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="dark-theme">
+
+    <div class="app">
+
+        <div class="aurora"></div>
+
+        <div class="particles">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-mark">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2>Thinking</h2>
+                    <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="Teacher Dashboard.html">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span data-i18n="navHome">Home</span>
+                </a>
+
+                <a href="Teacher Test.html" class="active">
+                    <i data-lucide="file-check"></i>
+                    <span data-i18n="navTest">Test</span>
+                </a>
+
+                <a href="Teacher Students.html">
+                    <i data-lucide="users"></i>
+                    <span data-i18n="navStudents">Students</span>
+                </a>
+
+                <a href="Teacher Assignments.html">
+                    <i data-lucide="clipboard-list"></i>
+                    <span data-i18n="navAssignments">Assigments</span>
+                </a>
+
+                <a href="Teacher Resources.html">
+                    <i data-lucide="folder-open"></i>
+                    <span data-i18n="navResources">Resources</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="calendar-days"></i>
+                    <span data-i18n="navSchedule">Schedule</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="bot"></i>
+                    <span data-i18n="navBombi">Bombi AI</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar"><i data-lucide="user-round"></i></div>
+                <div class="user-info">
+                    <h3 id="userName">Irving</h3>
+                    <p data-i18n="roleTeacher">Teacher</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i data-lucide="settings"></i>
+                    <span data-i18n="footerSettings">Settings</span>
+                </a>
+                <a href="#">
+                    <i data-lucide="log-out"></i>
+                    <span data-i18n="footerLogout">Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+
+            <!-- =====================================================
+                        TOPBAR
+            ====================================================== -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <a href="Teacher Dashboard.html" class="back-link">
+                        <i data-lucide="arrow-left"></i>
+                        <span data-i18n="backToDashboard">Back to Dashboard</span>
+                    </a>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="dropdown-wrap">
+                        <button class="notification-btn" id="notificationBtn">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="dropdown-panel" id="notificationPanel"></div>
+                    </div>
+
+                    <button class="lang-toggle" id="langToggle">
+                        <i data-lucide="languages"></i>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-lucide="sun"></i>
+                        <div class="toggle-circle"></div>
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <div class="dropdown-wrap">
+                        <div class="user-profile" id="profileBtn">
+                            <div class="profile-avatar"><i data-lucide="user-round"></i></div>
+                            <div class="profile-info">
+                                <h4 id="profileName">Irving</h4>
+                                <p data-i18n="roleTeacher">Teacher</p>
+                            </div>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                        <div class="dropdown-panel" id="profilePanel"></div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- =====================================================
+                        HERO
+            ====================================================== -->
+
+            <section class="test-hero dashboard-card">
+
+                <div class="test-hero-left">
+                    <h1 class="test-title" data-i18n="testTitle">Learning Style Assessment</h1>
+                    <p data-i18n="testSubtitle">Discover how you learn best so we can personalize your experience.</p>
+                </div>
+
+                <div class="test-hero-bombi"><i data-lucide="lightbulb"></i></div>
+
+                <div class="test-progress-card">
+                    <span class="test-progress-label" data-i18n="progress">Progress</span>
+                    <strong class="test-progress-pct" id="heroProgressPct">0%</strong>
+                    <div class="progress-bar"><div class="progress-fill" id="heroProgressFill" style="width:0%;"></div></div>
+                    <span class="test-progress-sub" id="heroProgressSub">0 of 30 questions</span>
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        STEP TRACKER
+            ====================================================== -->
+
+            <section class="dashboard-card step-tracker-card">
+
+                <div class="step-tracker" id="stepTracker">
+                    <!-- generado por JS -->
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        STEP: INTRO
+            ====================================================== -->
+
+            <section class="dashboard-card intro-card" id="introStep">
+
+                <h2 data-i18n="introTitle">About this assessment</h2>
+                <p class="intro-desc" data-i18n="introDesc">Answer 30 quick questions about how you like to learn. There are no right or wrong answers \u2014 just be honest to get the most accurate results.</p>
+
+                <div class="intro-sections" id="introSections">
+                    <!-- generado por JS -->
+                </div>
+
+                <button class="primary-btn intro-start-btn" id="startTestBtn">
+                    <span data-i18n="startTest">Start Test</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+            </section>
+
+            <!-- =====================================================
+                        STEP: QUESTIONS
+            ====================================================== -->
+
+            <section class="question-content-grid" id="questionStep">
+
+                <!-- LEFT -->
+                <div class="question-left">
+
+                    <div class="dashboard-card">
+                        <h2 class="panel-title" data-i18n="testSections">Test Sections</h2>
+                        <div class="section-list" id="sectionList">
+                            <!-- generado por JS -->
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card help-card">
+                        <h3 data-i18n="needHelp">Need help?</h3>
+                        <p data-i18n="needHelpDesc">Watch this short video to understand how the test works.</p>
+                        <button class="secondary-btn watch-video-btn" id="watchVideoBtn">
+                            <i data-lucide="play-circle"></i>
+                            <span data-i18n="watchVideo">Watch video</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- CENTER -->
+                <div class="dashboard-card question-card">
+
+                    <div class="question-top">
+                        <span class="question-counter" id="questionCounter">Question 1 of 30</span>
+                        <button class="flag-btn" id="flagBtn">
+                            <i data-lucide="flag"></i>
+                            <span data-i18n="flagQuestion">Flag question</span>
+                        </button>
+                    </div>
+
+                    <h2 class="question-text" id="questionText">Question text</h2>
+
+                    <div class="options-list" id="optionsList">
+                        <!-- generado por JS -->
+                    </div>
+
+                    <div class="question-actions">
+                        <button class="secondary-btn" id="prevBtn">
+                            <i data-lucide="arrow-left"></i>
+                            <span data-i18n="previous">Previous</span>
+                        </button>
+                        <button class="primary-btn" id="nextBtn">
+                            <span data-i18n="nextQuestion">Next Question</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="question-right">
+
+                    <div class="dashboard-card">
+                        <h2 class="panel-title" data-i18n="yourProgress">Your Progress</h2>
+                        <div class="mini-progress-ring-wrap">
+                            <div class="mini-progress-ring" id="miniProgressRing">
+                                <div class="mini-progress-ring-inner">
+                                    <strong id="miniProgressCount">0</strong>
+                                    <span data-i18n="of30">of 30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="encourage-text" id="encourageText" data-i18n="encourage1">Keep going! You're doing great.</p>
+                    </div>
+
+                    <div class="dashboard-card estimated-time-card">
+                        <div class="est-time-icon"><i data-lucide="clock"></i></div>
+                        <div>
+                            <h3 data-i18n="estimatedTime">Estimated Time</h3>
+                            <p id="estimatedTimeText">15 min remaining</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card tip-card">
+                        <div class="tip-card-icon"><i data-lucide="lightbulb"></i></div>
+                        <div>
+                            <h3 data-i18n="takeYourTime">Take your time!</h3>
+                            <p data-i18n="takeYourTimeDesc">There is no time limit for this assessment.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        STEP: RESULTS
+            ====================================================== -->
+
+            <section class="dashboard-card results-card" id="resultsStep">
+
+                <h2 data-i18n="resultsTitle">Your Learning Style Results</h2>
+                <p class="intro-desc" data-i18n="resultsDesc">Here's how you learn best, based on your answers.</p>
+
+                <div class="results-body">
+
+                    <div class="results-donut-wrap">
+                        <div class="results-donut" id="resultsDonut">
+                            <div class="results-donut-center">
+                                <strong id="dominantStyleLabel">Visual</strong>
+                                <span data-i18n="dominantStyle">Dominant style</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="results-legend" id="resultsLegend">
+                        <!-- generado por JS -->
+                    </ul>
+
+                </div>
+
+                <button class="primary-btn" id="seeRecommendationsBtn">
+                    <span data-i18n="seeRecommendations">See Recommendations</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+            </section>
+
+            <!-- =====================================================
+                        STEP: RECOMMENDATIONS
+            ====================================================== -->
+
+            <section class="dashboard-card recommendations-card" id="recommendationsStep">
+
+                <h2 id="recTitle" data-i18n="recTitle">Personalized Recommendations</h2>
+                <p class="intro-desc" id="recSubtitle"></p>
+
+                <div class="rec-grid" id="recGrid">
+                    <!-- generado por JS -->
+                </div>
+
+                <div class="rec-actions">
+                    <button class="secondary-btn" id="retakeTestBtn">
+                        <i data-lucide="rotate-ccw"></i>
+                        <span data-i18n="retakeTest">Retake Test</span>
+                    </button>
+                    <a href="Teacher Dashboard.html" class="primary-btn">
+                        <span data-i18n="backToDashboard">Back to Dashboard</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+                TOASTS
+    ====================================================== -->
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+  </html>
