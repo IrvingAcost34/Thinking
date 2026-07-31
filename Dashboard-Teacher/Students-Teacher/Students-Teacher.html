@@ -28,7 +28,7 @@
                     CSS
     =========================================== -->
 
-    <link rel="stylesheet" href="Students-Teacher.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- ==========================================
                 GOOGLE FONTS
@@ -579,6 +579,31 @@
 
         </div>
 
+        <div class="modal-field">
+
+            <label data-i18n="shareViaLabel">Or share directly</label>
+
+            <div class="invite-share-row">
+
+                <button type="button" class="secondary-btn share-channel-btn whatsapp" id="shareWhatsappBtn">
+                    <i data-lucide="message-circle"></i>
+                    <span data-i18n="shareWhatsapp">WhatsApp</span>
+                </button>
+
+                <button type="button" class="secondary-btn share-channel-btn" id="shareEmailBtn">
+                    <i data-lucide="mail"></i>
+                    <span data-i18n="shareEmail">Email</span>
+                </button>
+
+                <button type="button" class="secondary-btn share-channel-btn" id="shareNativeBtn">
+                    <i data-lucide="share-2"></i>
+                    <span data-i18n="shareMore">More</span>
+                </button>
+
+            </div>
+
+        </div>
+
         <div class="modal-actions">
 
             <button type="button" class="secondary-btn" id="inviteModalCloseBtn2" data-i18n="modalCancel">Close</button>
@@ -783,7 +808,7 @@
                 JAVASCRIPT
     =========================================== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="Students-Teacher.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
