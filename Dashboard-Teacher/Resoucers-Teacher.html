@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resources | Thinking</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
+
+    <link rel="stylesheet" href="Teacher Resources.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="dark-theme">
+
+    <div class="app">
+
+        <div class="aurora"></div>
+
+        <div class="particles">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
+<!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="style.css">
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-mark">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2>Thinking</h2>
+                    <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="Teacher Dashboard.html">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span data-i18n="navHome">Home</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="file-check"></i>
+                    <span data-i18n="navTest">Test</span>
+                </a>
+
+                <a href="Teacher Students.html">
+                    <i data-lucide="users"></i>
+                    <span data-i18n="navStudents">Students</span>
+                </a>
+
+                <a href="Teacher Assignments.html">
+                    <i data-lucide="clipboard-list"></i>
+                    <span data-i18n="navAssignments">Assigments</span>
+                </a>
+
+                <a href="Teacher Resources.html" class="active">
+                    <i data-lucide="folder-open"></i>
+                    <span data-i18n="navResources">Resources</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="calendar-days"></i>
+                    <span data-i18n="navSchedule">Schedule</span>
+                </a>
+
+                <a href="#">
+                    <i data-lucide="bot"></i>
+                    <span data-i18n="navBombi">Bombi AI</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar"><i data-lucide="user-round"></i></div>
+                <div class="user-info">
+                    <h3 id="userName">Irving</h3>
+                    <p data-i18n="roleTeacher">Teacher</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i data-lucide="settings"></i>
+                    <span data-i18n="footerSettings">Settings</span>
+                </a>
+                <a href="#">
+                    <i data-lucide="log-out"></i>
+                    <span data-i18n="footerLogout">Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+
+            <!-- =====================================================
+                        TOPBAR
+            ====================================================== -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <div class="search-box topbar-search">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="resourceSearch" data-i18n-placeholder="searchPlaceholder" placeholder="Search resources...">
+                        <span class="search-kbd">Ctrl /</span>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="dropdown-wrap">
+                        <button class="notification-btn" id="notificationBtn">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="dropdown-panel" id="notificationPanel"></div>
+                    </div>
+
+                    <button class="lang-toggle" id="langToggle">
+                        <i data-lucide="languages"></i>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-lucide="sun"></i>
+                        <div class="toggle-circle"></div>
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <div class="dropdown-wrap">
+                        <div class="user-profile" id="profileBtn">
+                            <div class="profile-avatar"><i data-lucide="user-round"></i></div>
+                            <div class="profile-info">
+                                <h4 id="profileName">Irving</h4>
+                                <p data-i18n="roleTeacher">Teacher</p>
+                            </div>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                        <div class="dropdown-panel" id="profilePanel"></div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- =====================================================
+                        HERO
+            ====================================================== -->
+
+            <section class="resources-hero dashboard-card">
+
+                <div class="resources-hero-left">
+
+                    <div class="resources-hero-icon"><i data-lucide="folder-open"></i></div>
+
+                    <div>
+                        <h1 class="resources-title" data-i18n="pageTitle">Resources</h1>
+                        <p data-i18n="pageSubtitle">Discover, create and share resources to enhance learning.</p>
+                    </div>
+
+                </div>
+
+                <div class="resources-hero-bombi">
+                    <i data-lucide="lightbulb"></i>
+                </div>
+
+                <button class="primary-btn" id="addResourceBtn">
+                    <i data-lucide="plus"></i>
+                    <span data-i18n="addResource">Add Resource</span>
+                </button>
+
+            </section>
+
+            <!-- =====================================================
+                        QUICK ACTION CARDS
+            ====================================================== -->
+
+            <section class="quick-cards-row" id="quickCardsRow">
+                <!-- generado por JS -->
+            </section>
+
+            <!-- =====================================================
+                        BROWSE BY CATEGORY
+            ====================================================== -->
+
+            <section class="dashboard-card category-card">
+
+                <div class="category-header">
+                    <h2 class="panel-title" data-i18n="browseByCategory">Browse by Category</h2>
+                    <button class="view-all-link" id="viewAllBtn">
+                        <span data-i18n="viewAll">View all</span>
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" data-type="all">
+                        <i data-lucide="layout-grid"></i>
+                        <span data-i18n="catAll">All</span>
+                    </button>
+                    <button class="category-tab" data-type="document">
+                        <i data-lucide="file-text"></i>
+                        <span data-i18n="catDocuments">Documents</span>
+                    </button>
+                    <button class="category-tab" data-type="presentation">
+                        <i data-lucide="monitor"></i>
+                        <span data-i18n="catPresentations">Presentations</span>
+                    </button>
+                    <button class="category-tab" data-type="video">
+                        <i data-lucide="play"></i>
+                        <span data-i18n="catVideos">Videos</span>
+                    </button>
+                    <button class="category-tab" data-type="worksheet">
+                        <i data-lucide="file-text"></i>
+                        <span data-i18n="catWorksheets">Worksheets</span>
+                    </button>
+                    <button class="category-tab" data-type="link">
+                        <i data-lucide="link"></i>
+                        <span data-i18n="catLinks">Links</span>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                        RESOURCE LIBRARY
+            ====================================================== -->
+
+            <section class="dashboard-card library-card">
+
+                <div class="library-header">
+                    <h2 class="panel-title" data-i18n="resourceLibrary">Resource Library</h2>
+
+                    <div class="dropdown-wrap">
+                        <button class="secondary-btn sort-btn" id="sortBtn">
+                            <i data-lucide="arrow-down-up"></i>
+                            <span id="sortLabel" data-i18n="sortRecent">Most Recent</span>
+                            <i data-lucide="chevron-down"></i>
+                        </button>
+                        <div class="dropdown-panel" id="sortPanel"></div>
+                    </div>
+                </div>
+
+                <div class="resource-grid" id="resourceGrid">
+                    <!-- generado por JS -->
+                </div>
+
+                <button class="secondary-btn view-more-btn" id="loadMoreBtn">
+                    <span data-i18n="loadMore">Load more resources</span>
+                    <i data-lucide="chevron-down"></i>
+                </button>
+
+            </section>
+
+            <!-- =====================================================
+                        SHARE BANNER
+            ====================================================== -->
+
+            <section class="dashboard-card share-banner">
+
+                <div class="share-banner-icon"><i data-lucide="sparkles"></i></div>
+
+                <div class="share-banner-text">
+                    <h2 data-i18n="shareBannerTitle">Share knowledge, inspire minds</h2>
+                    <p data-i18n="shareBannerSub">Upload and share resources that make a difference in your students' learning journey.</p>
+                </div>
+
+                <button class="secondary-btn share-banner-btn" id="learnShareBtn">
+                    <span data-i18n="learnShare">Learn how to share</span>
+                    <i data-lucide="chevron-right"></i>
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+                ADD / EDIT RESOURCE MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="resourceModalOverlay">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2 id="resourceModalTitle" data-i18n="addResourceModalTitle">Add Resource</h2>
+                <button class="modal-close" id="resourceModalCloseBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <form id="resourceForm">
+
+                <div class="modal-field">
+                    <label for="resourceTitleInput" data-i18n="fieldName">Name</label>
+                    <input type="text" id="resourceTitleInput" data-i18n-placeholder="fieldNamePlaceholder" placeholder="e.g. Study Techniques Guide" required>
+                </div>
+
+                <div class="modal-row">
+
+                    <div class="modal-field">
+                        <label for="resourceTypeSelect" data-i18n="fieldType">Type</label>
+                        <select id="resourceTypeSelect">
+                            <option value="document" data-i18n="catDocuments">Documents</option>
+                            <option value="presentation" data-i18n="catPresentations">Presentations</option>
+                            <option value="video" data-i18n="catVideos">Videos</option>
+                            <option value="worksheet" data-i18n="catWorksheets">Worksheets</option>
+                            <option value="link" data-i18n="catLinks">Links</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-field">
+                        <label for="resourceTagInput" data-i18n="fieldTag">Tag</label>
+                        <input type="text" id="resourceTagInput" data-i18n-placeholder="fieldTagPlaceholder" placeholder="e.g. Study Skills">
+                    </div>
+
+                </div>
+
+                <div class="modal-field">
+                    <label for="resourceSizeInput" data-i18n="fieldSize">File size label</label>
+                    <input type="text" id="resourceSizeInput" placeholder="e.g. 2.4 MB" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" id="resourceModalCancelBtn" data-i18n="modalCancel">Cancel</button>
+                    <button type="submit" class="primary-btn">
+                        <i data-lucide="check"></i>
+                        <span data-i18n="modalCreate">Create</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+                RENAME MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="renameModalOverlay">
+
+        <div class="modal-card confirm-card">
+
+            <div class="modal-header">
+                <h2 data-i18n="renameModalTitle">Rename resource</h2>
+                <button class="modal-close" id="renameModalCloseBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <form id="renameForm">
+
+                <div class="modal-field">
+                    <label for="renameInput" data-i18n="fieldName">Name</label>
+                    <input type="text" id="renameInput" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" id="renameModalCancelBtn" data-i18n="modalCancel">Cancel</button>
+                    <button type="submit" class="primary-btn">
+                        <i data-lucide="check"></i>
+                        <span data-i18n="modalSave">Save</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+                GENERIC CONFIRM MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="confirmModalOverlay">
+
+        <div class="modal-card confirm-card">
+
+            <div class="modal-header">
+                <h2 id="confirmModalTitle">Delete?</h2>
+                <button class="modal-close" id="confirmModalCloseBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <p id="confirmModalMessage" class="confirm-message"></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="confirmCancelBtn" data-i18n="modalCancel">Cancel</button>
+                <button type="button" class="primary-btn danger-btn" id="confirmDeleteBtn">
+                    <i data-lucide="trash-2"></i>
+                    <span data-i18n="confirmDeleteBtn">Delete</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+                TOASTS
+    ====================================================== -->
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- =====================================================
+                GLOBAL FLOATING MENU (kebab de cada recurso)
+    ====================================================== -->
+
+    <div class="dropdown-panel" id="floatingResourceMenu"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
