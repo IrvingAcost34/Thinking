@@ -17,9 +17,9 @@
 
     <title>Students | Thinking</title>
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
-<link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../Images/LOGO1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../Images/LOGO1.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../Images/LOGO1.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Thinking">
@@ -28,7 +28,7 @@
                     CSS
     =========================================== -->
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Teacher Dashboard.css">
 
     <!-- ==========================================
                 GOOGLE FONTS
@@ -99,7 +99,7 @@
 
         <nav class="sidebar-menu">
 
-            <a href="#">
+            <a href="../Teacher Dashboard.html">
 
                 <i data-lucide="layout-dashboard"></i>
 
@@ -115,7 +115,7 @@
 
             </a>
 
-            <a href="#" class="active">
+            <a href="./Students-Teacher.html" class="active">
 
                 <i data-lucide="users"></i>
 
@@ -615,11 +615,11 @@
 </div>
 
 <!-- =====================================================
-            GLOBAL FLOATING MENU (men\u00fa flotante \u00fanico)
+            GLOBAL FLOATING MENU (menú flotante único)
     Se reutiliza para el kebab de cada estudiante. Vive
     fuera de cualquier tarjeta para que su position:fixed
     nunca quede atrapado por un ancestro con transform
-    (lo que romp\u00eda el posicionamiento antes).
+    (lo que rompía el posicionamiento antes).
 ====================================================== -->
 
 <div class="dropdown-panel" id="floatingStudentMenu"></div>
@@ -709,7 +709,7 @@
 
                 <label for="studentNameInput" data-i18n="modalStudentNameLabel">Student name</label>
 
-                <input type="text" id="studentNameInput" data-i18n-placeholder="modalStudentNamePlaceholder" placeholder="e.g. Ana Ru\u00edz" required>
+                <input type="text" id="studentNameInput" data-i18n-placeholder="modalStudentNamePlaceholder" placeholder="e.g. Ana Ruíz" required>
 
             </div>
 
@@ -808,7 +808,7 @@
                 JAVASCRIPT
     =========================================== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+    <script src="../Teacher Dashboard.js"></script>
 
 </body>
 
