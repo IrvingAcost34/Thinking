@@ -3,7 +3,6 @@
 // Conecta la pantalla del profesor con el backend (Render)
 // que analiza documentos y genera materiales con IA.
 // ============================================================
-
 // --------- Configuración ---------
 const API_BASE = "https://thinking-backend-qvmz.onrender.com";
 
