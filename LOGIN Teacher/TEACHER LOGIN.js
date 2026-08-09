@@ -62,23 +62,16 @@ form.addEventListener("submit", async (e) => {
         return;
     }
 
-    // Paso 2: verificar que esta cuenta sea de un PROFESOR
+    // Paso 2: verificar que esta cuenta exista en la tabla exclusiva "teachers"
     // (evita que una cuenta de estudiante entre por accidente aquí)
     const { data: perfil, error: errorPerfil } = await db
-        .from("THINKING")
-        .select("role")
+        .from("teachers")
+        .select("id")
         .eq("E-mail", email)
         .single();
 
     if (errorPerfil || !perfil) {
-        msg.textContent = "❌ No se encontró tu perfil. Contacta soporte.";
-        msg.style.color = "red";
-        await db.auth.signOut();
-        return;
-    }
-
-    if (perfil.role !== "teacher") {
-        msg.textContent = "❌ Esta cuenta no es de profesor. Usa el login de estudiante.";
+        msg.textContent = "❌ Esta cuenta no está registrada como profesor.";
         msg.style.color = "red";
         await db.auth.signOut(); // cerramos la sesión para no dejarla "a medias"
         return;
