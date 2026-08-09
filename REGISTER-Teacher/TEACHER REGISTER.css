@@ -303,6 +303,10 @@ width:500px;
 
 padding:50px;
 
+max-height:100vh;
+
+overflow-y:auto;
+
 }
 
 
@@ -446,6 +450,41 @@ box-shadow:
 255,
 0.35
 );
+
+}
+
+.create-btn:disabled{
+
+opacity:.6;
+
+cursor:not-allowed;
+
+transform:none;
+
+}
+
+
+/* =========================
+BOTTOM
+========================= */
+
+.bottom{
+
+text-align:center;
+
+margin-top:20px;
+
+color:#666;
+
+}
+
+.bottom a{
+
+color:#8c52ff;
+
+font-weight:600;
+
+text-decoration:none;
 
 }
 
