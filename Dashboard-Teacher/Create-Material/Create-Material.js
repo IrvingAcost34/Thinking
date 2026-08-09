@@ -11,7 +11,7 @@ const API_BASE = "https://thinking-backend-qvmz.onrender.com";
 // En CodePen, comenta estas 3 líneas si te da problemas de redirección;
 // en GitHub Pages, déjalas activas.
 const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
-const SUPABASE_ANON_KEY = "PON_AQUI_TU_ANON_KEY_PUBLICA"; // la "anon public", nunca la service_role
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpaHdqcWNpbXl5c3hsbHVpd2NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTI0NzksImV4cCI6MjA5NjgyODQ3OX0.en4T9cfm19VdIkJaa6vCA1UfCSGWJepRFnTd0A6HeF4"; // la "anon public", nunca la service_role
 let db = null;
 try {
   db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
