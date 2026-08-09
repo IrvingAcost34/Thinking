@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Thinking Teacher Register</title>
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
@@ -16,139 +13,86 @@
 <meta name="apple-mobile-web-app-title" content="Thinking">
 <meta name="application-name" content="Thinking">
 <link rel="stylesheet" href="TEACHER REGISTER.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
-<a href="ROLE.html" class="home-btn">
-
+<a href="../TYPE ACOUNT/Choose-rol" class="home-btn">
 🏠 BACK
-
 </a>
-
 <div class="container">
-
 <div class="left-side">
-
-<div class="students-tag">
-
-👨‍🏫 Join thousands of teachers
-
-</div>
-
+<span class="students-tag">For Teachers</span>
 <h1>
-
-Empower students and shape their
-<span>future.</span>
-
+Join Thinking
+<span>as a Teacher.</span>
 </h1>
-
 <p>
-
-Create your teacher account and access
-personalized educational tools.
-
+Create adaptive study materials, understand how your students learn, and help every one of them reach their potential.
 </p>
-
 </div>
-
-
 <div class="right-side">
-
-<h2>
-
-Teacher Register
-
-</h2>
-
-<h3>
-
-Create your account
-
-</h3>
-
+<h2>Teacher Register</h2>
+<h3>Create your account</h3>
 <p class="thinking-text">
-
-Start teaching with
-<span>Thinking.</span>
-
+Sign up and start <span>thinking.</span>
 </p>
-
-
 <form id="teacher-form">
-
-<label>Full Name</label>
-
+<label>Full name</label>
 <input
 type="text"
 id="name"
 placeholder="Enter your full name"
 required
 >
-
 <label>Email</label>
-
 <input
 type="email"
 id="email"
 placeholder="Enter your email"
 required
 >
-
-<label>School / Institution</label>
-
+<label>School</label>
 <input
 type="text"
 id="school"
-placeholder="Enter your school"
+placeholder="Enter your school's name"
 required
 >
-
-<label>Subject</label>
-
+<label>Subject you teach</label>
 <input
 type="text"
 id="subject"
-placeholder="Example: Mathematics"
-required
+placeholder="Ex: Mathematics, Science, History"
 >
-
 <label>Password</label>
-
 <input
 type="password"
 id="password"
-placeholder="Create password"
+placeholder="Create a password"
 required
+minlength="6"
 >
-
-<label>Confirm Password</label>
-
+<label>Confirm password</label>
 <input
 type="password"
 id="confirm-password"
-placeholder="Confirm password"
+placeholder="Repeat your password"
 required
+minlength="6"
 >
-
-<button
-type="submit"
-class="create-btn">
-
-Create Teacher Account
-
+<button type="submit" class="create-btn">
+Create account
 </button>
-
 </form>
-
+<div class="bottom">
+Already have an account?
+<a href="../LOGIN%20Teacher/TEACHER%20LOGIN.html">Sign in</a>
+</div>
+</div>
 </div>
 
-</div>
-
+<!-- Librería de Supabase (necesaria antes de TEACHER REGISTER.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="TEACHER REGISTER.js"></script>
-
 </body>
 </html>
