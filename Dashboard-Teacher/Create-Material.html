@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crear Material · Thinking</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="Create-Material.css" />
+</head>
+<body>
+
+<div class="aurora-bg">
+  <div class="aurora-blob blob-purple"></div>
+  <div class="aurora-blob blob-cyan"></div>
+</div>
+
+<header class="topbar">
+  <a href="../Teacher%20Dashboard.html" class="back-link">
+    <i data-lucide="arrow-left"></i>
+    <span>Teacher Dashboard</span>
+  </a>
+  <div class="topbar-title">
+    <i data-lucide="sparkles"></i>
+    <span>Crear Material</span>
+  </div>
+  <div class="topbar-spacer"></div>
+</header>
+
+<main class="page">
+
+  <!-- Encabezado -->
+  <section class="page-intro">
+    <h1>Convierte tus documentos en materiales adaptados</h1>
+    <p>Sube un archivo educativo y deja que la IA lo transforme en materiales pensados para cada estilo de aprendizaje.</p>
+  </section>
+
+  <!-- Indicador de pasos -->
+  <ol class="stepper" id="stepper">
+    <li class="step active" data-step="upload">
+      <span class="step-dot">1</span><span class="step-label">Subir archivo</span>
+    </li>
+    <li class="step" data-step="analyzing">
+      <span class="step-dot">2</span><span class="step-label">Analizar</span>
+    </li>
+    <li class="step" data-step="style-select">
+      <span class="step-dot">3</span><span class="step-label">Elegir estilo</span>
+    </li>
+    <li class="step" data-step="result">
+      <span class="step-dot">4</span><span class="step-label">Descargar</span>
+    </li>
+  </ol>
+
+  <!-- PASO 1: Subida de archivo -->
+  <section class="card panel" id="panel-upload">
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" accept="application/pdf" hidden />
+      <i data-lucide="upload-cloud" class="dropzone-icon"></i>
+      <p class="dropzone-title">Arrastra tu archivo aquí</p>
+      <p class="dropzone-subtitle">o haz clic para seleccionarlo desde tu computadora</p>
+      <span class="format-tag">Formato aceptado en esta versión: PDF</span>
+    </div>
+
+    <div class="file-preview" id="filePreview" hidden>
+      <i data-lucide="file-text"></i>
+      <div class="file-info">
+        <p class="file-name" id="fileName">documento.pdf</p>
+        <p class="file-size" id="fileSize">0 KB</p>
+      </div>
+      <button class="icon-btn" id="removeFileBtn" aria-label="Quitar archivo">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="analyzeBtn" disabled>
+      Analizar documento
+      <i data-lucide="arrow-right"></i>
+    </button>
+  </section>
+
+  <!-- PASO 2: Analizando -->
+  <section class="card panel" id="panel-analyzing" hidden>
+    <div class="loading-block">
+      <div class="spinner"></div>
+      <p class="loading-title">Thinking está leyendo tu documento…</p>
+      <p class="loading-subtitle">Identificando el tema principal y los conceptos clave</p>
+    </div>
+  </section>
+
+  <!-- PASO 3: Selección de estilo -->
+  <section class="card panel" id="panel-style" hidden>
+    <div class="analysis-summary">
+      <span class="eyebrow">Tema detectado</span>
+      <h2 id="temaDetectado">—</h2>
+      <p id="resumenDetectado">—</p>
+    </div>
+
+    <h3 class="section-title">¿Cómo deseas generar el material?</h3>
+
+    <div class="style-grid">
+      <button class="style-card" data-style="todos" disabled>
+        <i data-lucide="layers"></i>
+        <span class="style-name">Los tres estilos</span>
+        <span class="style-desc">Genera Visual, Auditivo y Kinestésico a la vez</span>
+        <span class="soon-badge">Próximamente</span>
+      </button>
+
+      <button class="style-card" data-style="visual">
+        <i data-lucide="eye"></i>
+        <span class="style-name">Visual</span>
+        <span class="style-desc">Resumen, conceptos clave y flashcards</span>
+      </button>
+
+      <button class="style-card" data-style="auditivo" disabled>
+        <i data-lucide="headphones"></i>
+        <span class="style-name">Auditivo</span>
+        <span class="style-desc">Guion de narración y preguntas y respuestas</span>
+        <span class="soon-badge">Próximamente</span>
+      </button>
+
+      <button class="style-card" data-style="kinestesico" disabled>
+        <i data-lucide="activity"></i>
+        <span class="style-name">Kinestésico</span>
+        <span class="style-desc">Actividades prácticas y retos</span>
+        <span class="soon-badge">Próximamente</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- PASO 4: Generando -->
+  <section class="card panel" id="panel-generating" hidden>
+    <div class="loading-block">
+      <div class="spinner"></div>
+      <p class="loading-title">Generando tu material visual…</p>
+      <p class="loading-subtitle">Esto puede tardar unos segundos</p>
+    </div>
+  </section>
+
+  <!-- PASO 5: Resultado -->
+  <section class="card panel" id="panel-result" hidden>
+    <div class="result-block">
+      <div class="result-icon"><i data-lucide="check-circle-2"></i></div>
+      <h2>Tu material está listo</h2>
+      <p>Se generó el material en estilo <strong>Visual</strong>, listo para descargar o compartir con tus estudiantes.</p>
+      <a href="#" id="downloadLink" class="btn btn-primary" target="_blank" rel="noopener">
+        <i data-lucide="download"></i>
+        Descargar PDF
+      </a>
+      <button class="btn btn-ghost" id="restartBtn">
+        Crear otro material
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- Contenedor de notificaciones tipo toast -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Cliente de Supabase (usado para obtener el ID del profesor logueado) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="Create-Material.js"></script>
+</body>
+</html>
