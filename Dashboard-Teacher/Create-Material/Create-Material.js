@@ -3,14 +3,15 @@
 // Conecta la pantalla del profesor con el backend (Render)
 // que analiza documentos y genera materiales con IA.
 // ============================================================
+
 // --------- Configuración ---------
-const API_BASE = "https://thinking-backend-bxdc.onrender.com";
+const API_BASE = "https://thinking-backend-qvmz.onrender.com";
 
 // Datos de Supabase (los mismos que usa el resto del sitio).
 // En CodePen, comenta estas 3 líneas si te da problemas de redirección;
 // en GitHub Pages, déjalas activas.
 const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
+const SUPABASE_ANON_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC"; // la "anon public", nunca la service_role
 let db = null;
 try {
   db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -233,7 +234,13 @@ document.querySelectorAll(".style-card").forEach((boton) => {
         throw new Error(datos.error || "No se pudo generar el material.");
       }
 
-      downloadLink.href = datos.url_archivo;
+      // En vez de un link de descarga, mostramos un botón para ver las
+      // flashcards interactivas dentro del mismo Thinking.
+      downloadLink.href = `../../../Flashcards-Viewer/Flashcards-Viewer.html?material_id=${datos.material_id}`;
+      downloadLink.target = "_self";
+      downloadLink.innerHTML = '<i data-lucide="sparkles"></i> Ver flashcards';
+      if (window.lucide) lucide.createIcons();
+
       irAlPaso("result");
       mostrarToast("¡Material generado con éxito!", "success");
     } catch (error) {
