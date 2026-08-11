@@ -5,7 +5,7 @@
 // ============================================================
 
 // --------- Configuración ---------
-const API_BASE = "https://thinking-backend-bxdc.onrender.com";
+const API_BASE = "https://thinking-backend-qvmz.onrender.com";
 
 // Datos de Supabase (los mismos que usa el resto del sitio).
 // En CodePen, comenta estas 3 líneas si te da problemas de redirección;
@@ -236,7 +236,7 @@ document.querySelectorAll(".style-card").forEach((boton) => {
 
       // En vez de un link de descarga, mostramos un botón para ver las
       // flashcards interactivas dentro del mismo Thinking.
-      downloadLink.href = `../../../Flashcards-Viewer/Flashcards-Viewer.html?material_id=${datos.material_id}`;
+      downloadLink.href = `../../Dashboard-Student/Flashcards-Viewer/Flashcards-Viewer.html?material_id=${datos.material_id}`;
       downloadLink.target = "_self";
       downloadLink.innerHTML = '<i data-lucide="sparkles"></i> Ver flashcards';
       if (window.lucide) lucide.createIcons();
