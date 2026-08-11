@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flashcards · Thinking</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Flashcards-Viewer.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" id="backLink" class="back-link">
+    <i data-lucide="x"></i>
+  </a>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="counter" id="counter">0 / 0</div>
+</header>
+
+<main class="page">
+
+  <!-- Estado: cargando -->
+  <section class="state-block" id="stateLoading">
+    <div class="spinner"></div>
+    <p>Cargando tus flashcards…</p>
+  </section>
+
+  <!-- Estado: error -->
+  <section class="state-block" id="stateError" hidden>
+    <div class="state-icon">😕</div>
+    <p id="errorMessage">No se pudo cargar este material.</p>
+  </section>
+
+  <!-- Contenido principal -->
+  <section class="deck-wrapper" id="deckWrapper" hidden>
+
+    <div class="intro-block" id="introBlock">
+      <span class="eyebrow">Estilo Visual</span>
+      <h1 id="tituloMaterial">Título del material</h1>
+      <p id="resumenMaterial">Resumen del material.</p>
+
+      <div class="concepts-row" id="conceptsRow"></div>
+
+      <button class="btn btn-primary btn-block" id="startBtn">
+        Empezar
+        <i data-lucide="arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="card-stage" id="cardStage" hidden>
+      <div class="flip-card" id="flipCard">
+        <div class="flip-card-inner" id="flipCardInner">
+          <div class="flip-card-face flip-card-front">
+            <span class="card-tag">Pregunta</span>
+            <p class="card-text" id="frontText">—</p>
+            <span class="tap-hint">Toca para ver la respuesta</span>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <span class="card-tag">Respuesta</span>
+            <p class="card-text" id="backText">—</p>
+            <span class="tap-hint">Toca para volver</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-nav" id="prevBtn" aria-label="Anterior">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button class="btn btn-primary" id="nextBtn">
+          Siguiente
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pantalla final -->
+    <div class="finish-block" id="finishBlock" hidden>
+      <div class="finish-icon">🎉</div>
+      <h2>¡Terminaste todas las flashcards!</h2>
+      <p>Repásalas otra vez o vuelve a tu Dashboard.</p>
+      <button class="btn btn-primary btn-block" id="restartBtn">
+        Repasar de nuevo
+      </button>
+      <a href="../Student%20Dashboard.html" class="btn btn-ghost btn-block">
+        Volver al Dashboard
+      </a>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="Flashcards-Viewer.js"></script>
+</body>
+</html>
