@@ -5,7 +5,7 @@
 // ============================================================
 
 // --------- Configuración ---------
-const API_BASE = "https://thinking-backend-qvmz.onrender.com";
+const API_BASE = "https://thinking-backend-bxdc.onrender.com";
 
 // Datos de Supabase (los mismos que usa el resto del sitio).
 // En CodePen, comenta estas 3 líneas si te da problemas de redirección;
