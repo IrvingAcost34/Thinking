@@ -799,7 +799,7 @@ if(discoverBtn){
 ==========================*/
 
 const revealTargets = document.querySelectorAll(
-    ".learning-card, .technique-card, .about-card, .why-card, .info-card"
+    ".learning-card, .technique-card, .about-card, .why-card"
 );
 
 revealTargets.forEach((el, i) => {
