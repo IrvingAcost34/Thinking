@@ -50,6 +50,55 @@ body{
 }
 
 /* =========================
+   SECTION TITLES (unified)
+========================= */
+
+.section-title{
+
+    font-size:clamp(34px, 4.2vw, 60px);
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    letter-spacing:-1.5px;
+
+    color:var(--text-main);
+
+}
+
+.section-title span{
+
+    background:linear-gradient(
+        90deg,
+        #8c52ff,
+        #00c2ff,
+        #5b7cff,
+        #8c52ff
+    );
+
+    background-size:300% 100%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:titleGradient 5s linear infinite;
+
+}
+
+@keyframes titleGradient{
+
+    from{
+        background-position:0% center;
+    }
+
+    to{
+        background-position:300% center;
+    }
+
+}
+
+/* =========================
    NAVBAR
 ========================= */
 
@@ -453,6 +502,15 @@ button:hover, a:hover{
 
 }
 
+.thinking-pill img{
+
+    width:18px;
+    height:18px;
+
+    object-fit:contain;
+
+}
+
 [data-theme="dark"] .thinking-pill{
 
     background:rgba(140,82,255,.15);
@@ -460,43 +518,7 @@ button:hover, a:hover{
 }
 .thinking-left h2{
 
-    font-size:68px;
-    line-height:1.08;
-    font-weight:800;
     max-width:700px;
-    letter-spacing:-2px;
-    color:var(--text-main);
-
-}
-
-.thinking-left h2 span{
-
-    background: linear-gradient(
-        90deg,
-        #8c52ff,
-        #00c2ff,
-        #5b7cff,
-        #8c52ff
-    );
-
-    background-size:300% 100%;
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    animation:thinkingGradient 5s linear infinite;
-
-}
-
-@keyframes thinkingGradient{
-
-    0%{
-        background-position:0%;
-    }
-
-    100%{
-        background-position:300%;
-    }
 
 }
 
@@ -512,78 +534,6 @@ button:hover, a:hover{
     color:var(--text-secondary);
 
     max-width:650px;
-
-}
-
-.info-list{
-
-    margin-top:45px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:22px;
-
-}
-
-.info-card{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:18px;
-
-}
-
-.icon-box{
-
-    width:62px;
-
-    height:62px;
-
-    border-radius:18px;
-
-    background:linear-gradient(
-        135deg,
-        #8c52ff,
-        #00c2ff
-    );
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:28px;
-
-    flex-shrink:0;
-
-    box-shadow:
-
-        0 15px 25px rgba(140,82,255,.20);
-
-}
-
-.info-card h3{
-
-    font-size:21px;
-
-    margin-bottom:8px;
-
-}
-
-.info-card p{
-
-    font-size:16px;
-
-    color:var(--text-secondary);
-
-    line-height:1.7;
 
 }
 
@@ -707,7 +657,14 @@ button:hover, a:hover{
     justify-content:center;
     align-items:center;
 
-    font-size:48px;
+}
+
+.bulb-card img{
+
+    width:48px;
+    height:48px;
+
+    object-fit:contain;
 
 }
 
@@ -999,7 +956,14 @@ button:hover, a:hover{
 
     align-items:center;
 
-    font-size:42px;
+}
+
+.books-card img{
+
+    width:42px;
+    height:42px;
+
+    object-fit:contain;
 
 }
 
@@ -1146,7 +1110,35 @@ button:hover, a:hover{
 
         width:100%;
 
-        height:760px;
+        height:auto;
+
+        flex-wrap:wrap;
+
+        gap:22px;
+
+        padding:30px 0 50px;
+
+    }
+
+    .thinking-right .center-character{
+
+        position:static;
+
+        order:-1;
+
+        flex-basis:100%;
+
+        display:flex;
+
+        justify-content:center;
+
+    }
+
+    .thinking-right .floating{
+
+        position:static;
+
+        max-width:92vw;
 
     }
 
@@ -1160,35 +1152,9 @@ button:hover, a:hover{
 
     }
 
-    .info-card{
-
-        text-align:left;
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .thinking-right{
-
-        transform:scale(.82);
-
-        height:620px;
-
-    }
-
 }
 
 @media(max-width:520px){
-
-    .thinking-right{
-
-        transform:scale(.62);
-
-        height:500px;
-
-    }
 
     .discover-btn{
 
@@ -1325,65 +1291,22 @@ BADGE
 
 }
 
+.badge-icon img{
+
+    width:14px;
+    height:14px;
+
+    object-fit:contain;
+
+}
+
 /*==============================
 TITLE
 ==============================*/
 
 .learning-title{
 
-    font-size:76px;
-
-    font-weight:800;
-
-    line-height:1.08;
-
-    letter-spacing:-3px;
-
-    color:var(--text-main);
-
     margin-bottom:26px;
-
-}
-
-.learning-title span{
-
-    background:linear-gradient(
-
-        90deg,
-
-        #9c6dff,
-
-        #6d6bff,
-
-        #00c8ff,
-
-        #9c6dff
-
-    );
-
-    background-size:300%;
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    animation:gradientMove 4s linear infinite;
-
-}
-
-@keyframes gradientMove{
-
-    from{
-
-        background-position:0%;
-
-    }
-
-    to{
-
-        background-position:300%;
-
-    }
 
 }
 
@@ -1782,12 +1705,6 @@ RESPONSIVE
 
 @media(max-width:768px){
 
-    .learning-title{
-
-        font-size:52px;
-
-    }
-
     .learning-description{
 
         font-size:16px;
@@ -1848,12 +1765,6 @@ RESPONSIVE
 
 @media(max-width:480px){
 
-    .learning-title{
-
-        font-size:40px;
-
-    }
-
     .learning-card{
 
         padding:22px;
@@ -1886,18 +1797,6 @@ RESPONSIVE
     position:relative;
 
     display:inline-block;
-
-    font-size:55px;
-    font-weight:800;
-
-    background:linear-gradient(
-        90deg,
-        #8c52ff,
-        #00c2ff
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
 
     margin-bottom:15px;
 }
@@ -1983,8 +1882,6 @@ RESPONSIVE
 
     margin:0 auto 20px;
 
-    font-size:38px;
-
     border-radius:50%;
 
     background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
@@ -1992,6 +1889,15 @@ RESPONSIVE
     box-shadow:0 12px 24px rgba(140,82,255,.14);
 
     transition:.4s;
+}
+
+.technique-icon img{
+
+    width:40px;
+    height:40px;
+
+    object-fit:contain;
+
 }
 
 .technique-card:hover .technique-icon{
@@ -2058,18 +1964,6 @@ RESPONSIVE
     position:relative;
 
     display:inline-block;
-
-    font-size:55px;
-    font-weight:800;
-
-    background:linear-gradient(
-        90deg,
-        #8c52ff,
-        #00c2ff
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
 
     margin-bottom:15px;
 }
@@ -2207,8 +2101,6 @@ RESPONSIVE
 
     margin:0 auto 20px;
 
-    font-size:38px;
-
     border-radius:50%;
 
     background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
@@ -2216,6 +2108,15 @@ RESPONSIVE
     box-shadow:0 12px 24px rgba(140,82,255,.14);
 
     transition:.4s;
+}
+
+.about-icon img{
+
+    width:40px;
+    height:40px;
+
+    object-fit:contain;
+
 }
 
 .about-card:hover .about-icon{
@@ -3041,10 +2942,6 @@ body::after{
         max-width:340px;
     }
 
-    h2{
-        font-size:40px !important;
-    }
-
     #bombi-chat{
         width:95%;
         height:80vh;
@@ -3092,10 +2989,6 @@ body::after{
 
     .brand{
         font-size:34px;
-    }
-
-    h2{
-        font-size:34px !important;
     }
 
 }
@@ -3395,10 +3288,7 @@ nav a{
 
     position:relative;
 
-    font-size:72px;
-    font-weight:800;
     margin-bottom:80px;
-    color:var(--text-main);
 
 }
 
@@ -3420,25 +3310,6 @@ nav a{
     animation:underlineGrow 3s ease-in-out infinite alternate;
 
 }
-
-.why-thinking h2 span{
-
-    background: linear-gradient(
-        90deg,
-        #b68cff,
-        #7f63ff,
-        #00c2ff,
-        #b68cff
-    );
-
-    background-size: 300% 100%;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation: whyThinkingMove 5s linear infinite;
-}
-
 
 .why-container{
 
@@ -3466,8 +3337,6 @@ nav a{
 
     margin:0 auto 30px;
 
-    font-size:46px;
-
     border-radius:50%;
 
     background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
@@ -3475,6 +3344,15 @@ nav a{
     box-shadow:0 15px 30px rgba(140,82,255,.15);
 
     transition:.4s;
+
+}
+
+.why-icon img{
+
+    width:48px;
+    height:48px;
+
+    object-fit:contain;
 
 }
 
@@ -3650,17 +3528,6 @@ nav a{
     }
 
 }
-@keyframes whyThinkingMove{
-
-    0%{
-        background-position: 0% center;
-    }
-
-    100%{
-        background-position: 300% center;
-    }
-
-}
 /*==========================================================
 PIXEL PERFECT ADJUSTMENTS
 ==========================================================*/
@@ -3763,14 +3630,6 @@ PIXEL PERFECT ADJUSTMENTS
 .learning-card:hover .card-image img{
 
     transform:translateY(-8px) scale(1.04);
-
-}
-
-/* Animación del gradiente del título */
-
-.learning-title span{
-
-    animation:gradientMove 4s linear infinite;
 
 }
 
@@ -3880,12 +3739,6 @@ PIXEL PERFECT ADJUSTMENTS
 
 @media(max-width:768px){
 
-    .why-thinking h2{
-
-        font-size:42px;
-
-    }
-
     .why-container{
 
         gap:40px;
@@ -3933,12 +3786,6 @@ PIXEL PERFECT ADJUSTMENTS
 }
 
 @media(max-width:480px){
-
-    .why-thinking h2{
-
-        font-size:34px;
-
-    }
 
     .why-icon{
 
