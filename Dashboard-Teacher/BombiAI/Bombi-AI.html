@@ -1,1 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <!-- ==========================================
+                    META
+    =========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================================
+                    TITLE
+    =========================================== -->
+
+    <title>Bombi AI | Thinking</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
+
+    <!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="Bombi-AI.css">
+
+    <!-- ==========================================
+                GOOGLE FONTS
+    =========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================
+                LUCIDE ICONS
+    =========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<body class="dark-theme">
+
+<div class="app">
+
+    <!-- ==========================================
+            AURORA BACKGROUND
+    =========================================== -->
+
+    <div class="aurora"></div>
+
+    <!-- ==========================================
+                SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-mark">
+                <img src="../Images/LOGO1.png" alt="Thinking">
+            </div>
+
+            <div class="logo-text">
+
+                <h2>Thinking</h2>
+
+                <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="Teacher-Dashboard.html">
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span data-i18n="navHome">Home</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="file-check"></i>
+
+                <span data-i18n="navTest">Test</span>
+
+            </a>
+
+            <a href="Students-Teacher/Students-Teacher.html">
+
+                <i data-lucide="graduation-cap"></i>
+
+                <span data-i18n="navStudents">Students</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="book-open-text"></i>
+
+                <span data-i18n="navAssigments">Assigments</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="chart-column-increasing"></i>
+
+                <span data-i18n="navResources">Resources</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="calendar-days"></i>
+
+                <span data-i18n="navSchedule">Schedule</span>
+
+            </a>
+
+            <a href="Bombi-AI.html" class="active">
+
+                <i data-lucide="bot"></i>
+
+                <span data-i18n="navBombi">Bombi AI</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">
+                <img src="../Images/teacher-avatar.png" alt="Irving">
+            </div>
+
+            <div class="user-info">
+
+                <h3 id="userName">Irving</h3>
+
+                <p data-i18n="roleTeacher">Teacher</p>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+
+            <a href="#">
+
+                <i data-lucide="settings"></i>
+
+                <span data-i18n="footerSettings">Settings</span>
+
+            </a>
+
+            <a href="#">
+
+                <i data-lucide="log-out"></i>
+
+                <span data-i18n="footerLogout">Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ==========================================
+                MAIN
+    =========================================== -->
+
+    <main class="main">
+
+        <!-- =====================================================
+                    TOPBAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="page-heading">
+
+                    <h1><i data-lucide="bot"></i> <span data-i18n="bombiPageTitle">Bombi AI</span></h1>
+
+                    <p data-i18n="bombiPageSubtitle">Your instant teaching assistant</p>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="dropdown-wrap">
+
+                    <button class="notification-btn" id="notificationBtn">
+
+                        <i data-lucide="bell"></i>
+
+                        <span class="notification-count">3</span>
+
+                    </button>
+
+                    <div class="dropdown-panel" id="notificationPanel"></div>
+
+                </div>
+
+                <button class="theme-toggle" id="themeToggle">
+
+                    <i data-lucide="sun"></i>
+
+                    <div class="toggle-circle"></div>
+
+                    <i data-lucide="moon"></i>
+
+                </button>
+
+                <div class="dropdown-wrap">
+
+                    <div class="user-profile" id="profileBtn">
+
+                        <div class="profile-avatar">
+                            <img src="../Images/teacher-avatar.png" alt="Irving">
+                        </div>
+
+                        <div class="profile-info">
+
+                            <h4 id="profileName">Irving</h4>
+
+                        </div>
+                        <i data-lucide="chevron-down"></i>
+
+                    </div>
+
+                    <div class="dropdown-panel" id="profilePanel"></div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- =====================================================
+                    CHAT CARD
+        ====================================================== -->
+
+        <section class="dashboard-card chat-card">
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- generado por JS -->
+            </div>
+
+            <div class="chat-input-bar">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    data-i18n-placeholder="chatPlaceholder"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                >
+
+                <button class="chat-mic-btn" id="chatMicBtn" title="Voice input (coming soon)">
+                    <i data-lucide="mic"></i>
+                </button>
+
+                <button class="chat-send-btn" id="chatSendBtn" disabled>
+                    <i data-lucide="send"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ==========================================
+                JAVASCRIPT
+=========================================== -->
+
+<script src="Bombi-AI.js"></script>
+
+</body>
+
+</html>
