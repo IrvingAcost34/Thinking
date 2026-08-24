@@ -473,9 +473,13 @@ async function loadTeacherProfile(){
 
     if(!db || !currentUserId){
 
+        showToast("DEBUG: no hay db o no hay currentUserId (sin sesión)", "alert-triangle");
+
         return;
 
     }
+
+    showToast("DEBUG: buscando auth_id = " + currentUserId, "search");
 
     const { data, error } = await db
         .from("teachers")
@@ -485,11 +489,15 @@ async function loadTeacherProfile(){
 
     if(error){
 
+        showToast("DEBUG ERROR: " + error.message, "alert-triangle");
+
         console.error("Error cargando datos del profesor:", error);
 
         return;
 
     }
+
+    showToast("DEBUG: encontrado -> " + data.Nombre_Usuario, "check");
 
     const nombre = data.Nombre_Usuario;
 
@@ -760,13 +768,25 @@ async function init(){
                 await loadTeacherProfile();
 
             }
+            else{
+
+                showToast("DEBUG: no se detectó ninguna sesión activa", "alert-triangle");
+
+            }
 
         }
         catch(err){
 
+            showToast("DEBUG: Supabase no disponible - " + err.message, "alert-triangle");
+
             console.warn("Supabase no disponible en este entorno, usando datos de ejemplo.", err);
 
         }
+
+    }
+    else{
+
+        showToast("DEBUG: la variable db es null (no cargó supabase-js)", "alert-triangle");
 
     }
 
