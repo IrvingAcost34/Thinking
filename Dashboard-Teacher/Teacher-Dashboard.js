@@ -462,6 +462,56 @@ let quickActions = [
 ];
 
 /* ======================================================
+        PERFIL REAL DEL PROFESOR (tabla "teachers")
+    IMPORTANTE: la tabla "teachers" tiene su propio "id"
+    (primary key de la tabla), pero el usuario logueado en
+    Supabase Auth se identifica con "auth_id". Por eso la
+    consulta de abajo filtra por auth_id, no por id.
+====================================================== */
+
+async function loadTeacherProfile(){
+
+    if(!db || !currentUserId){
+
+        return;
+
+    }
+
+    const { data, error } = await db
+        .from("teachers")
+        .select("Nombre_Usuario, subject, Escuela")
+        .eq("auth_id", currentUserId)
+        .single();
+
+    if(error){
+
+        console.error("Error cargando datos del profesor:", error);
+
+        return;
+
+    }
+
+    const nombre = data.Nombre_Usuario;
+
+    const userNameEl = document.getElementById("userName");
+
+    if(userNameEl){
+
+        userNameEl.textContent = nombre;
+
+    }
+
+    const profileNameEl = document.getElementById("profileName");
+
+    if(profileNameEl){
+
+        profileNameEl.textContent = nombre;
+
+    }
+
+}
+
+/* ======================================================
         FUTURO: CARGA REAL DESDE SUPABASE
 ====================================================== */
 
@@ -706,6 +756,8 @@ async function init(){
             if(session){
 
                 currentUserId = session.user.id;
+
+                await loadTeacherProfile();
 
             }
 
