@@ -75,22 +75,22 @@
                     <span>Board</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navLearningStyles">
                     <i data-lucide="brain"></i>
                     <span>Learning Styles</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navCourses">
                     <i data-lucide="book-open"></i>
                     <span>Courses</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navProgress">
                     <i data-lucide="chart-column"></i>
                     <span>Progress</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navDailyMission">
                     <i data-lucide="target"></i>
                     <span>Daily Mission</span>
                 </a>
@@ -100,12 +100,12 @@
                     <span>Schedule</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navAchievements">
                     <i data-lucide="trophy"></i>
                     <span>Achievements</span>
                 </a>
 
-                <a href="#">
+                <a href="#" id="navBombiSidebar">
                     <i data-lucide="bot"></i>
                     <span>Bombi AI</span>
                 </a>
@@ -121,7 +121,7 @@
             </div>
 
             <div class="sidebar-footer">
-                <a href="#">
+                <a href="#" id="sidebarSettingsBtn">
                     <i data-lucide="settings"></i>
                     <span>Settings</span>
                 </a>
@@ -207,12 +207,12 @@
 
                         <div class="dropdown-panel" id="profilePanel">
 
-                            <a href="#" class="dropdown-item">
+                            <a href="#" class="dropdown-item" id="profileMyProfileBtn">
                                 <i data-lucide="user"></i>
                                 <span>My Profile</span>
                             </a>
 
-                            <a href="#" class="dropdown-item">
+                            <a href="#" class="dropdown-item" id="profileSettingsBtn">
                                 <i data-lucide="settings"></i>
                                 <span>Settings</span>
                             </a>
@@ -247,8 +247,8 @@
                         <h2>Learn Smarter with Bombi AI</h2>
                         <p>Complete today's mission, earn XP, unlock achievements and discover your learning style.</p>
                         <div class="hero-buttons">
-                            <button class="primary-btn">Start Learning</button>
-                            <button class="secondary-btn">Explore</button>
+                            <button class="primary-btn" id="heroStartLearningBtn">Start Learning</button>
+                            <button class="secondary-btn" id="heroExploreBtn">Explore</button>
                         </div>
                     </div>
 
@@ -405,7 +405,7 @@
                         <h2>Bombi AI</h2>
                         <span class="bombi-status">● Online</span>
                         <p id="bombi-message">Ready to help you learn today.</p>
-                        <button class="primary-btn bombi-button">Ask Bombi</button>
+                        <button class="primary-btn bombi-button" id="askBombiBtn">Ask Bombi</button>
                     </section>
 
                     <section class="dashboard-card achievements">
@@ -454,6 +454,12 @@
         </main>
 
     </div>
+
+    <!-- =====================================================
+                TOASTS (avisos no intrusivos)
+    ====================================================== -->
+
+    <div class="toast-container" id="toastContainer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="Student Dashboard.js"></script>
