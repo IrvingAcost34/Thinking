@@ -307,6 +307,72 @@ function calculateNewStreak(lastActivityDate, currentStreak){
 }
 
 // ======================================================
+// TOASTS (avisos "próximamente" para lo aún no conectado)
+// ======================================================
+
+const toastContainer = document.getElementById("toastContainer");
+
+function showToast(message, icon){
+
+    if(!toastContainer){
+        return;
+    }
+
+    const toast = document.createElement("div");
+
+    toast.classList.add("toast");
+
+    toast.innerHTML = `
+        <div class="toast-icon"><i data-lucide="${icon}"></i></div>
+        <span>${message}</span>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    lucide.createIcons();
+
+    setTimeout(() => {
+
+        toast.classList.add("leaving");
+
+        setTimeout(() => toast.remove(), 250);
+
+    }, 3200);
+
+}
+
+function wireComingSoon(id, message){
+
+    const el = document.getElementById(id);
+
+    if(!el){
+        return;
+    }
+
+    el.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        showToast(message, "sparkles");
+
+    });
+
+}
+
+wireComingSoon("navLearningStyles", "Learning Styles is coming soon.");
+wireComingSoon("navCourses", "Courses is coming soon.");
+wireComingSoon("navProgress", "Progress is coming soon.");
+wireComingSoon("navDailyMission", "Daily Mission is coming soon.");
+wireComingSoon("navAchievements", "This full page is coming soon.");
+wireComingSoon("navBombiSidebar", "Bombi AI chat is coming soon.");
+wireComingSoon("sidebarSettingsBtn", "Settings is coming soon.");
+wireComingSoon("profileMyProfileBtn", "My Profile is coming soon.");
+wireComingSoon("profileSettingsBtn", "Settings is coming soon.");
+wireComingSoon("heroStartLearningBtn", "This will jump into your next lesson soon.");
+wireComingSoon("heroExploreBtn", "Explore is coming soon.");
+wireComingSoon("askBombiBtn", "Bombi AI chat is coming soon.");
+
+// ======================================================
 // ACHIEVEMENTS (calculados al vuelo, sin tabla nueva)
 // ======================================================
 
