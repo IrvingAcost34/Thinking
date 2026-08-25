@@ -307,6 +307,47 @@ function calculateNewStreak(lastActivityDate, currentStreak){
 }
 
 // ======================================================
+// ACHIEVEMENTS (calculados al vuelo, sin tabla nueva)
+// ======================================================
+
+function setAchievementState(el, unlocked){
+
+    if(!el){
+        return;
+    }
+
+    if(unlocked){
+        el.style.opacity = "1";
+        el.style.filter = "none";
+    } else {
+        el.style.opacity = "0.4";
+        el.style.filter = "grayscale(1)";
+    }
+
+}
+
+function renderAchievements(level, streak){
+
+    const firstVictoryEl = document.getElementById("achFirstVictory");
+    const sevenDayStreakEl = document.getElementById("ach7DayStreak");
+    const levelUpEl = document.getElementById("achLevelUp");
+
+    const firstVictoryUnlocked = level >= 2;
+    const sevenDayStreakUnlocked = streak >= 7;
+    const levelUpUnlocked = level >= 3;
+
+    setAchievementState(firstVictoryEl, firstVictoryUnlocked);
+    setAchievementState(sevenDayStreakEl, sevenDayStreakUnlocked);
+    setAchievementState(levelUpEl, levelUpUnlocked);
+
+    const unlockedCount = [firstVictoryUnlocked, sevenDayStreakUnlocked, levelUpUnlocked]
+        .filter(Boolean).length;
+
+    return unlockedCount;
+
+}
+
+// ======================================================
 // LOAD USER DATA
 // ======================================================
 
@@ -385,7 +426,8 @@ async function loadUserData(){
     const xp = data.total_xp ?? 0;
     const streak = newStreak;
     const nextGoal = data.next_goal ?? "-";
-    const achievements = data.achievements_count ?? 0;
+
+    const achievements = renderAchievements(level, streak);
 
     document.getElementById("stat-progress").textContent = `${percent}%`;
     document.getElementById("stat-progress-fill").style.width = `${percent}%`;
