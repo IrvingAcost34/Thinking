@@ -27,6 +27,31 @@ else{
 let currentUserId = null;
 
 /* ======================================================
+                    LOGOUT REAL
+====================================================== */
+
+async function handleLogout(e){
+
+    if(e){
+
+        e.preventDefault();
+
+    }
+
+    if(db){
+
+        await db.auth.signOut();
+
+    }
+
+    // TODO: confirmar/ajustar esta ruta con el archivo real de Login del profesor
+    window.location.href = "../Login-Teacher/Login-Teacher.html";
+
+}
+
+document.getElementById("logoutBtnSidebar").addEventListener("click", handleLogout);
+
+/* ======================================================
                     LUCIDE ICONS
 ====================================================== */
 
@@ -358,13 +383,15 @@ function renderProfilePanel(){
             <i data-lucide="circle-help"></i>
             <span>${t("profileHelp")}</span>
         </button>
-        <button class="dropdown-item">
+        <button class="dropdown-item" id="logoutBtnProfile">
             <i data-lucide="log-out"></i>
             <span>${t("profileLogout")}</span>
         </button>
     `;
 
     refreshIcons();
+
+    document.getElementById("logoutBtnProfile").addEventListener("click", handleLogout);
 
 }
 
@@ -473,13 +500,9 @@ async function loadTeacherProfile(){
 
     if(!db || !currentUserId){
 
-        showToast("DEBUG: no hay db o no hay currentUserId (sin sesión)", "alert-triangle");
-
         return;
 
     }
-
-    showToast("DEBUG: buscando auth_id = " + currentUserId, "search");
 
     const { data, error } = await db
         .from("teachers")
@@ -489,15 +512,11 @@ async function loadTeacherProfile(){
 
     if(error){
 
-        showToast("DEBUG ERROR: " + error.message, "alert-triangle");
-
         console.error("Error cargando datos del profesor:", error);
 
         return;
 
     }
-
-    showToast("DEBUG: encontrado -> " + data.Nombre_Usuario, "check");
 
     const nombre = data.Nombre_Usuario;
 
@@ -768,25 +787,13 @@ async function init(){
                 await loadTeacherProfile();
 
             }
-            else{
-
-                showToast("DEBUG: no se detectó ninguna sesión activa", "alert-triangle");
-
-            }
 
         }
         catch(err){
 
-            showToast("DEBUG: Supabase no disponible - " + err.message, "alert-triangle");
-
             console.warn("Supabase no disponible en este entorno, usando datos de ejemplo.", err);
 
         }
-
-    }
-    else{
-
-        showToast("DEBUG: la variable db es null (no cargó supabase-js)", "alert-triangle");
 
     }
 
