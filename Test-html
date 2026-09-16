@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Style Assessment | Thinking</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="dark-theme">
+
+<div class="app">
+
+  <div class="aurora"></div>
+
+  <div class="particles">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- corner controls: language + theme, nothing else -->
+  <div class="corner-controls">
+
+    <button class="lang-toggle" id="langToggle">
+      <i data-lucide="languages"></i>
+      <span id="langLabel">EN</span>
+    </button>
+
+    <button class="theme-toggle" id="themeToggle">
+      <i data-lucide="sun"></i>
+      <div class="toggle-circle"></div>
+      <i data-lucide="moon"></i>
+    </button>
+
+  </div>
+
+  <main class="quiz-wrap">
+
+    <!-- ============ INTRO SCREEN (Bombi) ============ -->
+    <section class="screen dashboard-card intro-card active" id="screenIntro">
+
+      <div class="bombi-stage">
+        <span class="bombi-shape shape-a"></span>
+        <span class="bombi-shape shape-b"></span>
+        <!-- TODO: point this to your real Bombi asset path (e.g. ../Images/Bombi.png) -->
+        <img class="bombi-img" src="../Images/Bombi.png" alt="Bombi"
+             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><text x=%2212%22 y=%2218%22 font-size=%2220%22 text-anchor=%22middle%22>💡</text></svg>';">
+      </div>
+
+      <div class="speech-bubble">
+        <p class="bombi-greeting" id="bombiGreeting">Hi, I'm Bombi! 👋</p>
+        <p class="bombi-message" id="bombiMessage"></p>
+      </div>
+
+      <div class="intro-facts">
+        <div class="fact-item">
+          <i data-lucide="list-checks"></i>
+          <span id="factQuestions">36 questions</span>
+        </div>
+        <div class="fact-item">
+          <i data-lucide="clock"></i>
+          <span id="factTime">~5 minutes</span>
+        </div>
+        <div class="fact-item">
+          <i data-lucide="shield-check"></i>
+          <span id="factNoWrong">No right or wrong answers</span>
+        </div>
+      </div>
+
+      <button class="primary-btn" id="startBtn">
+        <span id="startLabel">Start Assessment</span> <i data-lucide="arrow-right"></i>
+      </button>
+
+    </section>
+
+    <!-- ============ QUIZ SCREEN ============ -->
+    <section class="screen dashboard-card quiz-card" id="screenQuiz">
+
+      <div class="quiz-top">
+        <span class="q-count" id="qCount">Question 1 of 36</span>
+        <span class="q-percent" id="qPercent">3%</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <h1 class="question-text" id="questionText"></h1>
+
+      <div class="options-list" id="optionsList"></div>
+
+      <div class="quiz-footer">
+        <button class="secondary-btn" id="backBtn">
+          <i data-lucide="arrow-left"></i> <span id="backLabel">Back</span>
+        </button>
+        <button class="primary-btn" id="nextBtn">
+          <span id="nextLabel">Next</span> <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ============ ANALYZING SCREEN ============ -->
+    <section class="screen dashboard-card center-card" id="screenAnalyzing">
+
+      <div class="spinner-ring"></div>
+
+      <h1 class="center-title" id="analyzingTitle">Analyzing your answers...</h1>
+      <p class="center-text" id="analyzingText">Bombi is discovering how you learn best.</p>
+
+    </section>
+
+    <!-- ============ RESULTS SCREEN ============ -->
+    <section class="screen dashboard-card results-card" id="screenResults">
+
+      <p class="results-eyebrow" id="resultsEyebrow">Your Learning Style is...</p>
+      <h1 class="results-style" id="resultStyleName">VISUAL LEARNER</h1>
+      <p class="results-sub" id="resultStyleSub">You learn especially well through images, colors, diagrams and visual examples.</p>
+
+      <div class="results-body">
+
+        <div class="results-ring-wrap">
+          <div class="results-ring" id="resultsRing">
+            <div class="results-ring-inner">
+              <strong id="resultsRingPct">82%</strong>
+              <span id="resultsRingLabel">Visual</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-bars" id="resultsBars"></div>
+
+      </div>
+
+      <h3 class="stats-heading" id="techniquesHeading">Recommended Techniques</h3>
+      <div class="techniques-list" id="techniquesList"></div>
+
+      <div class="quiz-footer">
+        <button class="secondary-btn" id="exploreBtn">
+          <i data-lucide="compass"></i> <span id="exploreLabel">Explore My Techniques</span>
+        </button>
+        <button class="primary-btn" id="continueBtn">
+          <span id="continueLabel">Continue</span> <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ============ DONE SCREEN ============ -->
+    <section class="screen dashboard-card center-card" id="screenDone">
+
+      <div class="done-badge"><i data-lucide="check"></i></div>
+
+      <h1 class="center-title" id="doneTitle">You're all set!</h1>
+      <p class="center-text" id="doneText">Your results have been saved and are now available in your dashboard.</p>
+
+      <button class="primary-btn" id="dashboardBtn">
+        <span id="dashboardLabel">Go to Dashboard</span> <i data-lucide="arrow-right"></i>
+      </button>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
