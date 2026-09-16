@@ -1,0 +1,633 @@
+/* ======================================================
+                    LUCIDE ICONS
+====================================================== */
+
+function refreshIcons(){
+
+    if(window.lucide){
+
+        lucide.createIcons();
+
+    }
+
+}
+
+refreshIcons();
+
+/* ======================================================
+                    THEME TOGGLE
+====================================================== */
+
+const body = document.body;
+
+const themeToggle = document.getElementById("themeToggle");
+
+const toggleCircle = themeToggle.querySelector(".toggle-circle");
+
+function enableDarkMode(){
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+    toggleCircle.style.left = "10px";
+}
+
+function enableLightMode(){
+    body.classList.remove("dark-theme");
+    body.classList.add("light-theme");
+    toggleCircle.style.left = "46px";
+}
+
+themeToggle.addEventListener("click", () => {
+    body.classList.contains("dark-theme") ? enableLightMode() : enableDarkMode();
+});
+
+/* ======================================================
+                    I18N (EN / ES)
+====================================================== */
+
+let currentLang = "en";
+
+const I18N = {
+
+  en: {
+
+    langLabel: "EN",
+
+    questions: [
+      "Can I remember something better if I write it down.",
+      "When reading, I hear the words in my head or read them aloud.",
+      "I need to talk things through in order to understand them better.",
+      "I do not like reading or listening to instructions I prefer to just start doing things.",
+      "I can visualize images in my mind.",
+      "I study better if I listen to music.",
+      "I need frequent breaks when I study.",
+      "I think better when I am free to move around; sitting behind a desk is not for me.",
+      "I take lots of notes about what I read and hear.",
+      "Looking at the person who is speaking helps me stay focused.",
+      "I find it difficult to understand what someone is saying if there is background noise.",
+      "I would rather have someone tell me how to do something than read the instructions.",
+      "I prefer listening to a lecture or recording rather than reading a book.",
+      "When I cannot think of a specific word, I use my hands and refer to the object as \"thing.\"",
+      "I can easily follow someone who is speaking even if I am looking out a window or my head is down.",
+      "It is easier for me to work in a quiet place.",
+      "I find it easy to understand maps, tables, and graphs.",
+      "When I begin reading an article or book, I like to look at the last page first.",
+      "I remember what people say better than what they look like.",
+      "I remember better if I study out loud with someone.",
+      "I take notes, but I never read them again.",
+      "When I am focused on reading or writing, the radio distracts me.",
+      "I find it difficult to create images in my mind.",
+      "It helps me to say my tasks out loud.",
+      "My notebook and desk may look messy, but I know where everything is.",
+      "During a test, I can see the page in the textbook where the answer is.",
+      "I can't remember a joke well enough to tell it later.",
+      "When learning something new, I prefer to listen, then read, and then do it.",
+      "I like to finish one task before starting another.",
+      "I use my fingers to count and move my lips when I read.",
+      "I don't like rereading my work.",
+      "To remember something new, it helps me create a mental picture.",
+      "For extra credit, I would rather record a report than write one.",
+      "I daydream in class.",
+      "For extra credit, I would rather create a project than write a report.",
+      "When I have a great idea, I must write it down immediately or I forget it."
+    ],
+
+    options: ["Never", "Rarely", "Sometimes", "Often", "Almost always"],
+
+    questionLabel: (n, total) => `Question ${n} of ${total}`,
+    back: "Back",
+    next: "Next",
+    finish: "Finish",
+
+    analyzingTitle: "Analyzing your answers...",
+    analyzingText: "Bombi is discovering how you learn best.",
+
+    resultsEyebrow: "Your Learning Style is...",
+    recommendedTechniques: "Recommended Techniques",
+    exploreBtn: "Explore My Techniques",
+    continueBtn: "Continue",
+
+    doneTitle: "You're all set!",
+    doneText: "Your results have been saved and are now available in your dashboard.",
+    goToDashboard: "Go to Dashboard",
+
+    bombiGreeting: "Hi, I'm Bombi! 👋",
+    bombiMessage: "I'll ask you 36 quick questions about how you like to learn. Pick the option that feels most like you — there's no right or wrong answer. Ready?",
+    factQuestions: "36 questions",
+    factTime: "~5 minutes",
+    factNoWrong: "No right or wrong answers",
+    startAssessment: "Start Assessment",
+
+    styles: {
+      visual: {
+        label: "Visual",
+        name: "VISUAL LEARNER",
+        blurb: "You learn especially well through images, colors, diagrams and visual examples.",
+        techniques: [
+          { icon: "brain", label: "Mind Maps" },
+          { icon: "palette", label: "Color Coding" },
+          { icon: "image", label: "Diagrams" },
+          { icon: "layout-grid", label: "Flashcards" },
+          { icon: "sticky-note", label: "Visual Notes" }
+        ]
+      },
+      auditory: {
+        label: "Auditory",
+        name: "AUDITORY LEARNER",
+        blurb: "You learn especially well by listening, discussing and talking things through out loud.",
+        techniques: [
+          { icon: "headphones", label: "Recorded Lectures" },
+          { icon: "message-circle", label: "Group Discussion" },
+          { icon: "mic", label: "Read Aloud" },
+          { icon: "music", label: "Rhymes & Music" },
+          { icon: "users", label: "Study Groups" }
+        ]
+      },
+      kinesthetic: {
+        label: "Kinesthetic",
+        name: "KINESTHETIC LEARNER",
+        blurb: "You learn especially well by doing, moving and practicing hands-on.",
+        techniques: [
+          { icon: "hand", label: "Hands-on Practice" },
+          { icon: "footprints", label: "Movement Breaks" },
+          { icon: "puzzle", label: "Building Models" },
+          { icon: "flask-conical", label: "Experiments" },
+          { icon: "repeat", label: "Role Play" }
+        ]
+      }
+    }
+
+  },
+
+  es: {
+
+    langLabel: "ES",
+
+    questions: [
+      "¿Puedo recordar algo mejor si lo escribo?",
+      "Cuando leo, escucho las palabras en mi mente o las leo en voz alta.",
+      "Necesito hablar las cosas para entenderlas mejor.",
+      "No me gusta leer ni escuchar instrucciones; prefiero simplemente empezar a hacer las cosas.",
+      "Puedo visualizar imágenes en mi mente.",
+      "Estudio mejor si escucho música.",
+      "Necesito descansos frecuentes cuando estudio.",
+      "Pienso mejor cuando puedo moverme libremente; quedarme sentado en un escritorio no es lo mío.",
+      "Tomo muchas notas de lo que leo y escucho.",
+      "Mirar a la persona que habla me ayuda a mantenerme concentrado.",
+      "Me cuesta entender lo que alguien dice si hay ruido de fondo.",
+      "Prefiero que alguien me diga cómo hacer algo en lugar de leer las instrucciones.",
+      "Prefiero escuchar una clase o una grabación en lugar de leer un libro.",
+      "Cuando no encuentro una palabra específica, uso mis manos y me refiero al objeto como \"cosa\".",
+      "Puedo seguir fácilmente a alguien que habla aunque esté mirando por la ventana o con la cabeza agachada.",
+      "Me resulta más fácil trabajar en un lugar silencioso.",
+      "Me resulta fácil entender mapas, tablas y gráficos.",
+      "Cuando empiezo a leer un artículo o libro, me gusta mirar primero la última página.",
+      "Recuerdo mejor lo que dice la gente que su aspecto.",
+      "Recuerdo mejor si estudio en voz alta con alguien.",
+      "Tomo notas, pero nunca las vuelvo a leer.",
+      "Cuando estoy concentrado leyendo o escribiendo, la radio me distrae.",
+      "Me cuesta crear imágenes en mi mente.",
+      "Me ayuda decir mis tareas en voz alta.",
+      "Mi cuaderno y mi escritorio pueden verse desordenados, pero sé dónde está todo.",
+      "Durante un examen, puedo visualizar la página del libro donde está la respuesta.",
+      "No logro recordar un chiste lo suficientemente bien como para contarlo después.",
+      "Al aprender algo nuevo, prefiero escuchar, luego leer y después hacerlo.",
+      "Me gusta terminar una tarea antes de empezar otra.",
+      "Uso los dedos para contar y muevo los labios cuando leo.",
+      "No me gusta releer mi trabajo.",
+      "Para recordar algo nuevo, me ayuda crear una imagen mental.",
+      "Para un punto extra, prefiero grabar un reporte en lugar de escribirlo.",
+      "Me distraigo pensando en otras cosas durante la clase.",
+      "Para un punto extra, prefiero hacer un proyecto en lugar de escribir un reporte.",
+      "Cuando tengo una gran idea, debo escribirla de inmediato o se me olvida."
+    ],
+
+    options: ["Nunca", "Rara vez", "A veces", "Frecuentemente", "Casi siempre"],
+
+    questionLabel: (n, total) => `Pregunta ${n} de ${total}`,
+    back: "Atrás",
+    next: "Siguiente",
+    finish: "Finalizar",
+
+    analyzingTitle: "Analizando tus respuestas...",
+    analyzingText: "Bombi está descubriendo cómo aprendes mejor.",
+
+    resultsEyebrow: "Tu estilo de aprendizaje es...",
+    recommendedTechniques: "Técnicas Recomendadas",
+    exploreBtn: "Explorar mis Técnicas",
+    continueBtn: "Continuar",
+
+    doneTitle: "¡Todo listo!",
+    doneText: "Tus resultados se han guardado y ya están disponibles en tu panel.",
+    goToDashboard: "Ir al Panel",
+
+    bombiGreeting: "¡Hola, soy Bombi! 👋",
+    bombiMessage: "Te haré 36 preguntas rápidas sobre cómo te gusta aprender. Elige la opción que más se parezca a ti — no hay respuestas correctas ni incorrectas. ¿Listo?",
+    factQuestions: "36 preguntas",
+    factTime: "~5 minutos",
+    factNoWrong: "Sin respuestas correctas o incorrectas",
+    startAssessment: "Comenzar Evaluación",
+
+    styles: {
+      visual: {
+        label: "Visual",
+        name: "APRENDIZ VISUAL",
+        blurb: "Aprendes especialmente bien a través de imágenes, colores, diagramas y ejemplos visuales.",
+        techniques: [
+          { icon: "brain", label: "Mapas Mentales" },
+          { icon: "palette", label: "Código de Colores" },
+          { icon: "image", label: "Diagramas" },
+          { icon: "layout-grid", label: "Tarjetas de Estudio" },
+          { icon: "sticky-note", label: "Notas Visuales" }
+        ]
+      },
+      auditory: {
+        label: "Auditivo",
+        name: "APRENDIZ AUDITIVO",
+        blurb: "Aprendes especialmente bien escuchando, discutiendo y hablando las cosas en voz alta.",
+        techniques: [
+          { icon: "headphones", label: "Clases Grabadas" },
+          { icon: "message-circle", label: "Discusión en Grupo" },
+          { icon: "mic", label: "Leer en Voz Alta" },
+          { icon: "music", label: "Rimas y Música" },
+          { icon: "users", label: "Grupos de Estudio" }
+        ]
+      },
+      kinesthetic: {
+        label: "Kinestésico",
+        name: "APRENDIZ KINESTÉSICO",
+        blurb: "Aprendes especialmente bien haciendo, moviéndote y practicando de forma manual.",
+        techniques: [
+          { icon: "hand", label: "Práctica Manual" },
+          { icon: "footprints", label: "Pausas de Movimiento" },
+          { icon: "puzzle", label: "Construir Modelos" },
+          { icon: "flask-conical", label: "Experimentos" },
+          { icon: "repeat", label: "Juego de Roles" }
+        ]
+      }
+    }
+
+  }
+
+};
+
+function t(key){
+    return I18N[currentLang][key];
+}
+
+/* ======================================================
+                    LANGUAGE TOGGLE
+====================================================== */
+
+const langToggle = document.getElementById("langToggle");
+const langLabel = document.getElementById("langLabel");
+
+langToggle.addEventListener("click", () => {
+
+    currentLang = currentLang === "en" ? "es" : "en";
+    langLabel.textContent = t("langLabel");
+
+    applyStaticLabels();
+    renderQuestion();
+
+    if(screenResults.classList.contains("active")){
+        computeResults();
+        refreshIcons();
+    }
+
+});
+
+/* ======================================================
+                    QUESTIONS DATA
+====================================================== */
+
+// TODO: this is NOT an official VARK/Barsch scoring key — it's a placeholder
+// that simply splits the 36 questions into 3 equal blocks (1-12 / 13-24 / 25-36)
+// and maps them to Visual / Auditory / Kinesthetic so the results screen has
+// real numbers to show. Swap this for the real per-question scoring rubric
+// once you have it (each question usually maps to a specific style, not a block).
+const STYLE_BLOCKS = [
+  { key: "visual", range: [0, 12] },
+  { key: "auditory", range: [12, 24] },
+  { key: "kinesthetic", range: [24, 36] }
+];
+
+const TOTAL_QUESTIONS = 36;
+const answers = new Array(TOTAL_QUESTIONS).fill(null);
+let current = 0;
+
+/* ======================================================
+                    ELEMENTS
+====================================================== */
+
+const screenIntro = document.getElementById("screenIntro");
+const screenQuiz = document.getElementById("screenQuiz");
+const screenAnalyzing = document.getElementById("screenAnalyzing");
+const screenResults = document.getElementById("screenResults");
+const screenDone = document.getElementById("screenDone");
+
+const bombiGreeting = document.getElementById("bombiGreeting");
+const bombiMessage = document.getElementById("bombiMessage");
+const factQuestions = document.getElementById("factQuestions");
+const factTime = document.getElementById("factTime");
+const factNoWrong = document.getElementById("factNoWrong");
+const startLabel = document.getElementById("startLabel");
+const startBtn = document.getElementById("startBtn");
+
+const questionText = document.getElementById("questionText");
+const optionsList = document.getElementById("optionsList");
+const qCount = document.getElementById("qCount");
+const qPercent = document.getElementById("qPercent");
+const progressFill = document.getElementById("progressFill");
+const nextBtn = document.getElementById("nextBtn");
+const nextLabel = document.getElementById("nextLabel");
+const backBtn = document.getElementById("backBtn");
+const backLabel = document.getElementById("backLabel");
+
+const analyzingTitle = document.getElementById("analyzingTitle");
+const analyzingText = document.getElementById("analyzingText");
+
+const resultsEyebrow = document.getElementById("resultsEyebrow");
+const resultStyleName = document.getElementById("resultStyleName");
+const resultStyleSub = document.getElementById("resultStyleSub");
+const resultsRing = document.getElementById("resultsRing");
+const resultsRingPct = document.getElementById("resultsRingPct");
+const resultsRingLabel = document.getElementById("resultsRingLabel");
+const resultsBars = document.getElementById("resultsBars");
+const techniquesHeading = document.getElementById("techniquesHeading");
+const techniquesList = document.getElementById("techniquesList");
+const exploreLabel = document.getElementById("exploreLabel");
+const continueLabel = document.getElementById("continueLabel");
+
+const doneTitle = document.getElementById("doneTitle");
+const doneText = document.getElementById("doneText");
+const dashboardLabel = document.getElementById("dashboardLabel");
+
+const continueBtn = document.getElementById("continueBtn");
+const exploreBtn = document.getElementById("exploreBtn");
+const dashboardBtn = document.getElementById("dashboardBtn");
+
+/* ======================================================
+                    STATIC LABELS (per language)
+====================================================== */
+
+function applyStaticLabels(){
+
+    bombiGreeting.textContent = t("bombiGreeting");
+    factQuestions.textContent = t("factQuestions");
+    factTime.textContent = t("factTime");
+    factNoWrong.textContent = t("factNoWrong");
+    startLabel.textContent = t("startAssessment");
+
+    renderBombiMessage();
+
+    backLabel.textContent = t("back");
+    analyzingTitle.textContent = t("analyzingTitle");
+    analyzingText.textContent = t("analyzingText");
+    resultsEyebrow.textContent = t("resultsEyebrow");
+    techniquesHeading.textContent = t("recommendedTechniques");
+    exploreLabel.textContent = t("exploreBtn");
+    continueLabel.textContent = t("continueBtn");
+    doneTitle.textContent = t("doneTitle");
+    doneText.textContent = t("doneText");
+    dashboardLabel.textContent = t("goToDashboard");
+
+}
+
+/* ======================================================
+                    QUIZ RENDER
+====================================================== */
+
+function renderQuestion(){
+
+    const questionNumber = current + 1;
+
+    questionText.textContent = t("questions")[current];
+    qCount.textContent = t("questionLabel")(questionNumber, TOTAL_QUESTIONS);
+
+    const percent = Math.round((questionNumber / TOTAL_QUESTIONS) * 100);
+    qPercent.textContent = `${percent}%`;
+    progressFill.style.width = `${percent}%`;
+
+    optionsList.innerHTML = "";
+
+    t("options").forEach((label, index) => {
+
+        const option = document.createElement("div");
+        option.className = "option";
+        if(answers[current] === index){ option.classList.add("selected"); }
+
+        option.innerHTML = `
+            <span class="option-radio"></span>
+            <span class="option-label">${label}</span>
+            <span class="option-check"><i data-lucide="check"></i></span>
+        `;
+
+        option.addEventListener("click", () => {
+            answers[current] = index;
+            renderQuestion();
+        });
+
+        optionsList.appendChild(option);
+
+    });
+
+    backBtn.disabled = current === 0;
+    backBtn.style.visibility = current === 0 ? "hidden" : "visible";
+
+    nextLabel.textContent = questionNumber === TOTAL_QUESTIONS ? t("finish") : t("next");
+    nextBtn.disabled = answers[current] === null;
+
+    refreshIcons();
+
+}
+
+nextBtn.addEventListener("click", () => {
+
+    if(answers[current] === null){ return; }
+
+    if(current === TOTAL_QUESTIONS - 1){
+        goToAnalyzing();
+        return;
+    }
+
+    current++;
+    renderQuestion();
+
+});
+
+backBtn.addEventListener("click", () => {
+
+    if(current === 0){ return; }
+
+    current--;
+    renderQuestion();
+
+});
+
+/* ======================================================
+                    SCREEN SWITCHING
+    Cada pantalla vive en su propia sección con la clase
+    .screen; solo se le agrega .active a la que se debe
+    mostrar y se quita de las demás — nunca puede haber
+    más de una visible al mismo tiempo.
+====================================================== */
+
+const ALL_SCREENS = [screenIntro, screenQuiz, screenAnalyzing, screenResults, screenDone];
+
+function showScreen(target){
+
+    ALL_SCREENS.forEach((screen) => {
+        screen.classList.toggle("active", screen === target);
+    });
+
+}
+
+/* ======================================================
+                    BOMBI INTRO (typing effect)
+====================================================== */
+
+let bombiTyped = false;
+let bombiTypeTimer = null;
+
+function renderBombiMessage(){
+
+    const message = t("bombiMessage");
+
+    if(!bombiTyped){
+
+        typewriter(bombiMessage, message, 18);
+        bombiTyped = true;
+
+    }
+    else{
+
+        clearInterval(bombiTypeTimer);
+        bombiMessage.textContent = message;
+
+    }
+
+}
+
+function typewriter(el, text, speed){
+
+    el.textContent = "";
+
+    const cursor = document.createElement("span");
+    cursor.className = "typing-cursor";
+    el.appendChild(cursor);
+
+    let i = 0;
+
+    bombiTypeTimer = setInterval(() => {
+
+        cursor.insertAdjacentText("beforebegin", text[i]);
+        i++;
+
+        if(i >= text.length){
+            clearInterval(bombiTypeTimer);
+            cursor.remove();
+        }
+
+    }, speed);
+
+}
+
+startBtn.addEventListener("click", () => {
+    showScreen(screenQuiz);
+});
+
+function goToAnalyzing(){
+
+    showScreen(screenAnalyzing);
+
+    // TODO: send `answers` to Supabase / run the real scoring here.
+    console.log("Quiz answers:", answers);
+
+    setTimeout(() => {
+        computeResults();
+        showScreen(screenResults);
+        refreshIcons();
+    }, 1800);
+
+}
+
+/* ======================================================
+                    RESULTS
+====================================================== */
+
+function computeResults(){
+
+    const scores = STYLE_BLOCKS.map((block) => {
+
+        const [start, end] = block.range;
+        const blockAnswers = answers.slice(start, end);
+        const maxPerQuestion = t("options").length - 1; // 4
+        const sum = blockAnswers.reduce((acc, val) => acc + (val ?? 0), 0);
+        const max = blockAnswers.length * maxPerQuestion;
+        const percent = max === 0 ? 0 : Math.round((sum / max) * 100);
+
+        return { key: block.key, percent };
+
+    });
+
+    scores.sort((a, b) => b.percent - a.percent);
+
+    const top = scores[0];
+    const topInfo = t("styles")[top.key];
+
+    resultStyleName.textContent = topInfo.name;
+    resultStyleSub.textContent = topInfo.blurb;
+
+    resultsRing.style.setProperty("--pct", top.percent);
+    resultsRingPct.textContent = `${top.percent}%`;
+    resultsRingLabel.textContent = topInfo.label;
+
+    resultsBars.innerHTML = scores.slice(1).map((s) => {
+
+        const info = t("styles")[s.key];
+
+        return `
+            <div class="results-bar-row">
+                <span class="results-bar-label">${info.label}</span>
+                <div class="results-bar-track">
+                    <div class="results-bar-fill" style="width:${s.percent}%;"></div>
+                </div>
+                <span class="results-bar-pct">${s.percent}%</span>
+            </div>
+        `;
+
+    }).join("");
+
+    techniquesList.innerHTML = topInfo.techniques.map((tech) => `
+        <div class="technique-item">
+            <i data-lucide="${tech.icon}"></i>
+            <span>${tech.label}</span>
+        </div>
+    `).join("");
+
+}
+
+/* ======================================================
+                    NAVIGATION BUTTONS
+====================================================== */
+
+continueBtn.addEventListener("click", () => {
+    showScreen(screenDone);
+});
+
+exploreBtn.addEventListener("click", () => {
+    // TODO: point this to the real "techniques" page/route.
+    console.log("Explore My Techniques clicked");
+});
+
+dashboardBtn.addEventListener("click", () => {
+    // TODO: point this to the real dashboard route.
+    window.location.href = "Dashboard-Student/Student Dashboard.html";
+});
+
+/* ======================================================
+                    INIT
+====================================================== */
+
+applyStaticLabels();
+renderQuestion();
