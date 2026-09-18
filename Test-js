@@ -15,6 +15,50 @@ function refreshIcons(){
 refreshIcons();
 
 /* ======================================================
+                    SUPABASE
+    Pega aquí tu Project URL y tu clave "anon public"
+    (Supabase → Project Settings → API).
+    NUNCA pegues la clave "service_role" en este archivo.
+====================================================== */
+
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
+
+let db = null;
+
+if(window.supabase && SUPABASE_URL.startsWith("https://")){
+
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+}
+
+/* ======================================================
+                    TOAST (mensajes en pantalla)
+====================================================== */
+
+function showToast(message, type){
+
+    const old = document.getElementById("appToast");
+    if(old){ old.remove(); }
+
+    const toast = document.createElement("div");
+    toast.id = "appToast";
+    toast.textContent = message;
+
+    toast.style.cssText =
+        "position:fixed;left:50%;bottom:28px;transform:translateX(-50%);" +
+        "z-index:100;max-width:90%;padding:14px 22px;border-radius:14px;" +
+        "font-size:14px;font-weight:600;color:#fff;text-align:center;" +
+        "box-shadow:0 12px 30px rgba(0,0,0,.35);" +
+        "background:" + (type === "error" ? "#E5484D" : "#2FA36B") + ";";
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => { toast.remove(); }, 7000);
+
+}
+
+/* ======================================================
                     THEME TOGGLE
 ====================================================== */
 
@@ -109,6 +153,11 @@ const I18N = {
     doneTitle: "You're all set!",
     doneText: "Your results have been saved and are now available in your dashboard.",
     goToDashboard: "Go to Dashboard",
+
+    saveOk: "Results saved to your account ✓",
+    saveError: "Could not save your results:",
+    saveNotLoggedIn: "You are not logged in. Please log in and take the assessment again.",
+    saveNoConnection: "No database connection (Supabase is not configured on this page).",
 
     bombiGreeting: "Hi, I'm Bombi! 👋",
     bombiMessage: "I'll ask you 36 quick questions about how you like to learn. Pick the option that feels most like you — there's no right or wrong answer. Ready?",
@@ -219,6 +268,11 @@ const I18N = {
     doneTitle: "¡Todo listo!",
     doneText: "Tus resultados se han guardado y ya están disponibles en tu panel.",
     goToDashboard: "Ir al Panel",
+
+    saveOk: "Resultados guardados en tu cuenta ✓",
+    saveError: "No se pudieron guardar tus resultados:",
+    saveNotLoggedIn: "No has iniciado sesión. Inicia sesión y vuelve a hacer la evaluación.",
+    saveNoConnection: "Sin conexión a la base de datos (Supabase no está configurado en esta página).",
 
     bombiGreeting: "¡Hola, soy Bombi! 👋",
     bombiMessage: "Te haré 36 preguntas rápidas sobre cómo te gusta aprender. Elige la opción que más se parezca a ti — no hay respuestas correctas ni incorrectas. ¿Listo?",
@@ -536,18 +590,66 @@ startBtn.addEventListener("click", () => {
     showScreen(screenQuiz);
 });
 
+/* ======================================================
+                    SAVE RESULTS (Supabase)
+    Guarda una fila por cuenta en la tabla learning_results.
+    Si el estudiante repite el test, se actualiza su fila.
+====================================================== */
+
+let resultsSaved = false;
+
+async function saveResults(){
+
+    if(resultsSaved){ return true; }
+
+    if(!db){
+        showToast(t("saveNoConnection"), "error");
+        return false;
+    }
+
+    const sessionResult = await db.auth.getSession();
+    const session = sessionResult.data ? sessionResult.data.session : null;
+
+    if(sessionResult.error || !session){
+        showToast(t("saveNotLoggedIn"), "error");
+        return false;
+    }
+
+    const scores = calculateScores();
+    const top = scores[0];
+
+    const saveResult = await db.from("learning_results").upsert({
+        user_id: session.user.id,
+        answers: answers,
+        scores: scores,
+        top_style: top.key,
+        top_percent: top.percent,
+        lang: currentLang,
+        updated_at: new Date().toISOString()
+    }, { onConflict: "user_id" });
+
+    if(saveResult.error){
+        showToast(t("saveError") + " " + saveResult.error.message, "error");
+        return false;
+    }
+
+    resultsSaved = true;
+    showToast(t("saveOk"), "ok");
+    return true;
+
+}
+
 function goToAnalyzing(){
 
     showScreen(screenAnalyzing);
 
-    // TODO: send `answers` to Supabase / run the real scoring here.
-    console.log("Quiz answers:", answers);
+    const minWait = new Promise((resolve) => setTimeout(resolve, 1800));
 
-    setTimeout(() => {
+    Promise.all([saveResults(), minWait]).then(() => {
         computeResults();
         showScreen(screenResults);
         refreshIcons();
-    }, 1800);
+    });
 
 }
 
@@ -555,7 +657,7 @@ function goToAnalyzing(){
                     RESULTS
 ====================================================== */
 
-function computeResults(){
+function calculateScores(){
 
     const scores = STYLE_BLOCKS.map((block) => {
 
@@ -571,6 +673,14 @@ function computeResults(){
     });
 
     scores.sort((a, b) => b.percent - a.percent);
+
+    return scores;
+
+}
+
+function computeResults(){
+
+    const scores = calculateScores();
 
     const top = scores[0];
     const topInfo = t("styles")[top.key];
@@ -611,8 +721,18 @@ function computeResults(){
                     NAVIGATION BUTTONS
 ====================================================== */
 
-continueBtn.addEventListener("click", () => {
-    showScreen(screenDone);
+continueBtn.addEventListener("click", async () => {
+
+    continueBtn.disabled = true;
+
+    const saved = await saveResults();
+
+    continueBtn.disabled = false;
+
+    if(saved){
+        showScreen(screenDone);
+    }
+
 });
 
 exploreBtn.addEventListener("click", () => {
