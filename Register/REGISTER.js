@@ -8,7 +8,12 @@
 const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC"; // clave pública (anon)
  
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let db = null;
+try {
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+} catch (e) {
+  console.warn('No se pudo conectar a Supabase (revisa tu conexión a internet):', e);
+}
  
 // ======================
 // CALCULAR EDAD
