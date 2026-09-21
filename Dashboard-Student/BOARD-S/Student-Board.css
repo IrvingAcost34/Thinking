@@ -993,6 +993,8 @@ animation-delay:8s;
 
     font-size:20px;
 
+    line-height:1.4;
+
     outline:none;
 
     overflow:hidden;
@@ -1002,6 +1004,24 @@ animation-delay:8s;
     pointer-events:auto;
 
     user-select:text;
+
+    /* FIX: forzar escritura horizontal, algunos navegadores
+       podían interpretar mal el flujo del texto */
+    display:block;
+
+    writing-mode:horizontal-tb;
+
+    unicode-bidi:normal;
+
+    direction:ltr;
+
+    white-space:pre-wrap;
+
+    word-break:normal;
+
+    overflow-wrap:break-word;
+
+    text-orientation:mixed;
 
 }
 /* ======================================================
@@ -1050,6 +1070,23 @@ animation-delay:8s;
         );
 
     background-size:100% 32px;
+
+    /* FIX: forzar escritura horizontal, igual que en text-box */
+    display:block;
+
+    writing-mode:horizontal-tb;
+
+    unicode-bidi:normal;
+
+    direction:ltr;
+
+    white-space:pre-wrap;
+
+    word-break:normal;
+
+    overflow-wrap:break-word;
+
+    text-orientation:mixed;
 
 }
 /* ======================================================
@@ -1823,22 +1860,23 @@ animation-delay:8s;
 
     position:absolute;
 
-    width:200px;
+    width:170px;
 
-    height:70px;
+    height:210px;
 
-    min-width:120px;
+    min-width:130px;
 
-    min-height:56px;
+    min-height:150px;
 
-    padding:16px;
+    padding:12px;
 
     display:flex;
- 
+
+    flex-direction:column;
 
     align-items:center;
 
-    gap:12px;
+    gap:10px;
 
     border-radius:14px;
 
@@ -1864,9 +1902,49 @@ animation-delay:8s;
 
 }
 
+/* Contenedor de la miniatura de la primera página */
+
+.pdf-thumb{
+
+    width:100%;
+
+    flex:1;
+
+    min-height:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+.pdf-thumb-canvas{
+
+    max-width:100%;
+
+    max-height:100%;
+
+    object-fit:contain;
+
+    border-radius:6px;
+
+    background:#fff;
+
+}
+
 .pdf-object .pdf-icon{
 
-    font-size:28px;
+    font-size:34px;
 
     pointer-events:none;
 
@@ -1874,11 +1952,15 @@ animation-delay:8s;
 
 .pdf-object .pdf-name{
 
-    font-size:13px;
+    font-size:12px;
+
+    text-align:center;
 
     word-break:break-word;
 
     pointer-events:none;
+
+    flex-shrink:0;
 
 }
 
@@ -2566,5 +2648,266 @@ animation-delay:8s;
 .canvas-wrapper.dark{
 
     --board-ink:#F5F5F7;
+
+}
+
+/* ##########################################################################
+#
+#                       RESPONSIVE (TABLET / MOBILE)
+#
+#  El layout original usaba posiciones absolutas fijas en píxeles, pensado
+#  solo para pantallas grandes. En pantallas angostas eso hacía que la
+#  barra superior, la barra de herramientas y el panel se encimaran o se
+#  salieran de la pantalla. Estas reglas convierten todo en un layout
+#  apilado (columna) que sí cabe y funciona en vertical.
+#
+############################################################################ */
+
+@media (max-width:1024px){
+
+    .board-container{
+
+        grid-template-columns:1fr;
+
+        grid-template-rows:auto auto;
+
+    }
+
+    .tool-panel{
+
+        flex-direction:row;
+
+        flex-wrap:wrap;
+
+        gap:16px;
+
+    }
+
+    .tool-group{
+
+        flex:1 1 160px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    /* Convertimos el layout de posiciones absolutas a flujo normal */
+
+    .topbar,
+    .toolbar,
+    .board-container,
+    .board-footer{
+
+        position:relative;
+
+        top:auto;
+        left:auto;
+        right:auto;
+        bottom:auto;
+
+        transform:none;
+
+        width:auto;
+
+    }
+
+    .app{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:16px;
+
+        padding:16px;
+
+        min-height:100vh;
+
+    }
+
+    .topbar{
+
+        height:auto;
+
+        flex-wrap:wrap;
+
+        gap:14px;
+
+        padding:16px;
+
+    }
+
+    .topbar-center{
+
+        order:3;
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .logo-text span{
+
+        display:none;
+
+    }
+
+    .toolbar{
+
+        width:100%;
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+
+        justify-content:flex-start;
+
+        padding:12px;
+
+        -webkit-overflow-scrolling:touch;
+
+    }
+
+    .toolbar::-webkit-scrollbar{
+
+        height:4px;
+
+    }
+
+    .board-container{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:16px;
+
+    }
+
+    .canvas-wrapper{
+
+        width:100%;
+
+        height:60vh;
+
+        min-height:340px;
+
+    }
+
+    .tool-panel{
+
+        flex-direction:column;
+
+    }
+
+    .board-footer{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:12px;
+
+        padding:14px;
+
+        border-radius:20px;
+
+        background:var(--surface);
+
+        border:1px solid var(--border);
+
+    }
+
+    .footer-left,
+    .footer-right{
+
+        display:none;
+
+    }
+
+    #boardSidebar{
+
+        width:82vw;
+
+        max-width:320px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .canvas-wrapper{
+
+        height:52vh;
+
+        min-height:280px;
+
+    }
+
+    .top-btn,
+    .zoom-btn{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+    .tool{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .board-logo img{
+
+        width:44px;
+
+        height:44px;
+
+    }
+
+    .user-profile .profile-info{
+
+        display:none;
+
+    }
+
+}
+
+/* Los objetos (imágenes, PDFs, notas) se ajustan un poco en pantallas
+   angostas para que no ocupen toda la pizarra de una sola vez */
+
+@media (max-width:600px){
+
+    .sticky-note{
+
+        width:200px;
+
+        min-height:150px;
+
+    }
+
+    .image-object{
+
+        width:180px;
+
+        height:130px;
+
+    }
+
+    .pdf-object{
+
+        width:150px;
+
+        height:190px;
+
+    }
 
 }
