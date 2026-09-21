@@ -2,7 +2,7 @@
 #
 #                       THINKING BOARD
 #
-#                   WHITEBOARD V1.0
+#                   WHITEBOARD V1.1
 #
 ############################################################################ */
 
@@ -11,6 +11,17 @@
 ====================================================== */
 
 lucide.createIcons();
+
+/* ======================================================
+                PDF.JS WORKER
+====================================================== */
+
+if(typeof pdfjsLib !== "undefined"){
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+}
 
 /* ======================================================
                     ELEMENTS
@@ -56,21 +67,6 @@ const appEl = document.querySelector(".app");
 const boardSidebar = document.getElementById("boardSidebar");
 const sidebarTab = document.getElementById("sidebarTab");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
-/* ======================================================
-                MULTI-BOARD SUPPORT
-====================================================== */
-
-const urlParams = new URLSearchParams(window.location.search);
-const currentBoardId = urlParams.get("board");
-const currentBoardName = urlParams.get("name");
-
-const BOARD_STORAGE_KEY = currentBoardId
-    ? ("thinkingBoardState_" + currentBoardId)
-    : "thinkingBoardState";
-
-if(currentBoardName){
-    document.querySelector(".logo-text span").textContent = currentBoardName;
-}
 /* ======================================================
                     VARIABLES
 ====================================================== */
@@ -431,9 +427,15 @@ canvas.addEventListener("mousedown",(e)=>{
 
 });
 
+let lastPointerX = 0;
+let lastPointerY = 0;
+
 canvas.addEventListener("mousemove",(e)=>{
 
     const pos = getCanvasPos(e);
+
+    lastPointerX = pos.x;
+    lastPointerY = pos.y;
 
     if(creationPreview){
 
@@ -480,6 +482,32 @@ canvas.addEventListener(
     stopDrawing
 
 );
+
+/* ======================================================
+                FALLBACK: SOLTAR FUERA DEL CANVAS
+====================================================== */
+// FIX: si arrastras para crear una figura/texto/sticky y sueltas
+// el mouse fuera del <canvas> (por ejemplo sobre el panel de la
+// derecha), el "mouseup" del canvas nunca se disparaba y el
+// preview con las líneas punteadas se quedaba pegado para
+// siempre. Este listener global lo detecta y lo cierra igual.
+
+document.addEventListener("mouseup", () => {
+
+    if(creationPreview){
+
+        finishObjectCreation(lastPointerX, lastPointerY);
+
+    }
+
+    if(drawing){
+
+        stopDrawing();
+
+    }
+
+});
+
 /* ======================================================
                     TOUCH EVENTS
 ====================================================== */
@@ -560,6 +588,35 @@ function applySnapshot(state){
 
 }
 
+/* ======================================================
+                PERSISTENCIA (localStorage)
+====================================================== */
+// Antes solo se guardaba al presionar el botón Save, así que
+// borrar un objeto y recargar la página lo hacía "reaparecer"
+// (porque el estado guardado seguía siendo el viejo).
+// Ahora persistBoardState() se llama automáticamente cada vez
+// que hay un cambio real (dibujar, borrar, duplicar, crear,
+// mover, cambiar fondo), y el botón Save sigue funcionando
+// como confirmación visual manual.
+
+function persistBoardState(){
+
+    const state = {
+
+        drawing: canvas.toDataURL(),
+
+        objects: objectLayer.innerHTML,
+
+        zoom: currentZoom,
+
+        canvasStyle: canvasWrapper.className
+
+    };
+
+    localStorage.setItem("thinkingBoardState", JSON.stringify(state));
+
+}
+
 function saveState(){
 
     history.push(snapshot());
@@ -571,6 +628,8 @@ function saveState(){
     }
 
     redoHistory = [];
+
+    persistBoardState();
 
 }
 
@@ -600,6 +659,8 @@ function undo(){
 
     applySnapshot(history.pop());
 
+    persistBoardState();
+
 }
 
 /* ======================================================
@@ -613,6 +674,8 @@ function redo(){
     history.push(snapshot());
 
     applySnapshot(redoHistory.pop());
+
+    persistBoardState();
 
 }
 /* ======================================================
@@ -634,6 +697,8 @@ function clearBoard(){
         canvas.height
 
     );
+
+    persistBoardState();
 
 }
 document
@@ -724,10 +789,18 @@ function attachObjectBehavior(el){
 
         if(!el.classList.contains("locked")){
 
+            // FIX: el desplazamiento ahora se calcula respecto al
+            // propio elemento y al zoom actual, para que el arrastre
+            // (ver el listener de mousemove global más abajo) sea
+            // preciso sin importar el nivel de zoom.
+
             draggingText = true;
 
-            offsetX = e.offsetX;
-            offsetY = e.offsetY;
+            const rect = el.getBoundingClientRect();
+            const scale = currentZoom / 100;
+
+            offsetX = (e.clientX - rect.left) / scale;
+            offsetY = (e.clientY - rect.top) / scale;
 
         }
 
@@ -765,6 +838,37 @@ el.addEventListener("blur", function(){
 
 });
 }
+/* ======================================================
+                MOVER OBJETOS (drag real)
+====================================================== */
+// Antes se guardaba el punto de clic (offsetX/offsetY) pero nunca
+// existía el código que realmente movía el objeto mientras se
+// arrastraba el mouse — por eso imágenes, PDFs y notas no se
+// podían reposicionar. Este bloque lo agrega.
+
+document.addEventListener("mousemove", (e) => {
+
+    if(!draggingText || !selectedObject) return;
+
+    if(selectedObject.classList.contains("locked")) return;
+
+    if(resizingObject) return;
+
+    const canvasRect = zoomLayer.getBoundingClientRect();
+
+    const scale = currentZoom / 100;
+
+    const newLeft = (e.clientX - canvasRect.left) / scale - offsetX;
+
+    const newTop = (e.clientY - canvasRect.top) / scale - offsetY;
+
+    selectedObject.style.left = newLeft + "px";
+    selectedObject.style.top = newTop + "px";
+
+    showToolbar(selectedObject);
+
+});
+
 /* ======================================================
                 RESIZE HANDLES
 ====================================================== */
@@ -866,6 +970,12 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("mouseup", () => {
 
+    if(resizingObject){
+
+        saveState();
+
+    }
+
     resizingObject = null;
     resizeDir = null;
 
@@ -929,9 +1039,78 @@ function createTextBox(x, y, width, height){
 
     attachObjectBehavior(box);
 
+    sanitizeEditableText(box);
+
     box.focus();
 
     return box;
+
+}
+
+/* ======================================================
+                SANITIZAR TEXTO EDITABLE
+====================================================== */
+// FIX: en algunos navegadores, escribir dentro de un elemento
+// contentEditable hace que cada línea nueva quede envuelta en su
+// propio <div> interno. Si esos <div> no tienen su propia altura
+// definida, terminan renderizando uno encima del otro (se ve como
+// letras solapadas/verticales). Esto normaliza el contenido a
+// texto plano con saltos de línea simples (<br>) en cada input,
+// evitando que se acumulen divs anidados.
+
+function sanitizeEditableText(el){
+
+    el.addEventListener("input", () => {
+
+        const hasBlockChildren = el.querySelector("div, p");
+
+        if(!hasBlockChildren) return;
+
+        const selection = window.getSelection();
+
+        const wasFocused = document.activeElement === el;
+
+        // Reconstruye el contenido como líneas de texto plano
+        const lines = [];
+
+        el.childNodes.forEach(node => {
+
+            if(node.nodeType === Node.TEXT_NODE){
+
+                lines.push(node.textContent);
+
+            } else if(node.nodeName === "BR"){
+
+                lines.push("");
+
+            } else {
+
+                lines.push(node.textContent);
+
+            }
+
+        });
+
+        el.innerHTML = lines
+            .join("\n")
+            .split("\n")
+            .map(line => line.length ? line : "&nbsp;")
+            .join("<br>");
+
+        if(wasFocused){
+
+            // Coloca el cursor al final para que se pueda seguir escribiendo
+            const range = document.createRange();
+
+            range.selectNodeContents(el);
+            range.collapse(false);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+        }
+
+    });
 
 }
 
@@ -955,6 +1134,8 @@ function createStickyNote(x, y, width, height){
     objectLayer.appendChild(note);
 
     attachObjectBehavior(note);
+
+    sanitizeEditableText(note);
 
     return note;
 
@@ -1091,6 +1272,8 @@ document
     document.getElementById("toolbarPin").style.opacity =
         selectedObject.classList.contains("locked") ? "1" : "0.55";
 
+    persistBoardState();
+
 });
 
 document
@@ -1125,7 +1308,13 @@ document
 
     });
 
-    picker.addEventListener("change", () => picker.remove());
+    picker.addEventListener("change", () => {
+
+        picker.remove();
+
+        saveState();
+
+    });
 
     picker.click();
 
@@ -1259,7 +1448,9 @@ function createPdfObject(x, y, file){
 
     card.innerHTML = `
 
-        <span class="pdf-icon">📄</span>
+        <div class="pdf-thumb">
+            <span class="pdf-icon">📄</span>
+        </div>
 
         <span class="pdf-name">${file.name}</span>
 
@@ -1276,6 +1467,77 @@ function createPdfObject(x, y, file){
     objectLayer.appendChild(card);
 
     attachObjectBehavior(card);
+
+    renderPdfThumbnail(file, card);
+
+}
+
+/* ======================================================
+                PDF PREVIEW (primera página)
+====================================================== */
+// Antes la tarjeta de PDF solo mostraba un ícono genérico y el
+// nombre del archivo. Esto renderiza la primera página real del
+// PDF como miniatura usando pdf.js, con el ícono como respaldo
+// si algo falla (por ejemplo un PDF corrupto o muy pesado).
+
+function renderPdfThumbnail(file, card){
+
+    if(typeof pdfjsLib === "undefined") return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        const typedarray = new Uint8Array(this.result);
+
+        pdfjsLib.getDocument(typedarray).promise
+
+            .then(pdf => pdf.getPage(1))
+
+            .then(page => {
+
+                const viewport = page.getViewport({ scale: 0.6 });
+
+                const thumbCanvas = document.createElement("canvas");
+                thumbCanvas.width = viewport.width;
+                thumbCanvas.height = viewport.height;
+
+                const thumbCtx = thumbCanvas.getContext("2d");
+
+                return page
+                    .render({ canvasContext: thumbCtx, viewport })
+                    .promise
+                    .then(() => thumbCanvas);
+
+            })
+
+            .then(thumbCanvas => {
+
+                const thumbWrapper = card.querySelector(".pdf-thumb");
+
+                if(thumbWrapper){
+
+                    thumbWrapper.innerHTML = "";
+
+                    thumbCanvas.classList.add("pdf-thumb-canvas");
+
+                    thumbWrapper.appendChild(thumbCanvas);
+
+                }
+
+                persistBoardState();
+
+            })
+
+            .catch(err => {
+
+                console.warn("No se pudo generar la vista previa del PDF:", err);
+
+            });
+
+    };
+
+    reader.readAsArrayBuffer(file);
 
 }
 
@@ -1318,6 +1580,8 @@ canvasStyle.addEventListener("change", () => {
         brushColor = ink;
         colorPicker.value = ink;
         ctx.strokeStyle = brushColor;
+
+        persistBoardState();
 
     });
 
@@ -1424,28 +1688,7 @@ loadThemePreference();
 
 document.getElementById("saveBtn").addEventListener("click", () => {
 
-    const state = {
-
-        drawing: canvas.toDataURL(),
-
-        objects: objectLayer.innerHTML,
-
-        zoom: currentZoom,
-
-        canvasStyle: canvasWrapper.className
-
-    };
-
-    localStorage.setItem(BOARD_STORAGE_KEY, JSON.stringify(state));
-
-if(currentBoardId){
-    const boards = JSON.parse(localStorage.getItem("thinkingBoards") || "[]");
-    const board = boards.find(b => b.id === currentBoardId);
-    if(board){
-        board.updatedAt = new Date().toISOString();
-        localStorage.setItem("thinkingBoards", JSON.stringify(boards));
-    }
-}
+    persistBoardState();
 
     const btn = document.getElementById("saveBtn");
 
@@ -1505,7 +1748,7 @@ document.getElementById("shareBtn").addEventListener("click", async () => {
 
 function loadBoardState(){
 
-    const raw = localStorage.getItem(BOARD_STORAGE_KEY);
+    const raw = localStorage.getItem("thinkingBoardState");
 
     if(!raw) return;
 
@@ -1584,6 +1827,14 @@ document.addEventListener("mouseup", () => {
 
     }
 
+    // FIX: antes esta bandera nunca se reseteaba en un mouseup
+    // global, así que después del primer arrastre quedaba en
+    // "true" para siempre y cualquier movimiento del mouse en
+    // cualquier parte de la pantalla intentaba mover el último
+    // objeto seleccionado.
+
+    draggingText = false;
+
 });
 
 const originalDeleteAnimated = deleteObjectAnimated;
@@ -1616,7 +1867,7 @@ const CREATION_DEFAULTS = {
     text:   { w:220, h:60  },
     sticky: { w:240, h:180 },
     image:  { w:220, h:160 },
-    pdf:    { w:200, h:70  }
+    pdf:    { w:170, h:210 }
 
 };
 
