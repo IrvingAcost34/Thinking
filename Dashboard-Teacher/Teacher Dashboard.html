@@ -1,472 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- ==========================================
-                    META
-    =========================================== -->
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ==========================================
-                    TITLE
-    =========================================== -->
-
     <title>Home | Thinking</title>
-<!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
-<link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Thinking">
-<meta name="application-name" content="Thinking">
-    <!-- ==========================================
-                    CSS
-    =========================================== -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Thinking">
+    <meta name="application-name" content="Thinking">
 
     <link rel="stylesheet" href="Teacher-Dashboard.css">
 
-    <!-- ==========================================
-                GOOGLE FONTS
-    =========================================== -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- ==========================================
-                LUCIDE ICONS
-    =========================================== -->
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.383.0"></script>
 
 </head>
 
-<!-- ==========================================
-                    BODY
-========================================== -->
-
 <body class="dark-theme">
 
-<div class="app">
+    <div class="app">
 
-    <!-- ==========================================
-            AURORA BACKGROUND
-    =========================================== -->
+        <div class="aurora"></div>
 
-    <div class="aurora"></div>
+        <div class="particles">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+        </div>
 
-    <div class="particles">
+        <!-- ==========================================
+                    SIDEBAR
+        =========================================== -->
 
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-mark">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2>Thinking</h2>
+                    <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="Teacher Dashboard.html" class="active">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span data-i18n="navHome">Home</span>
+                </a>
+
+                <a href="Test/Test-Teacher.html">
+                    <i data-lucide="file-check"></i>
+                    <span data-i18n="navTest">Test</span>
+                </a>
+
+                <a href="Students-Teacher/Students-Teacher.html">
+                    <i data-lucide="users"></i>
+                    <span data-i18n="navStudents">Students</span>
+                </a>
+
+                <a href="Assigments/Teacher-Assigments.html">
+                    <i data-lucide="clipboard-list"></i>
+                    <span data-i18n="navAssignments">Assignments</span>
+                </a>
+
+                <a href="Resources-T/Resources-Teacher.html">
+                    <i data-lucide="folder-open"></i>
+                    <span data-i18n="navResources">Resources</span>
+                </a>
+
+                <a href="Schedule-T/Schedule-Teacher.html">
+                    <i data-lucide="calendar-days"></i>
+                    <span data-i18n="navSchedule">Schedule</span>
+                </a>
+
+                <a href="BombiAI/Bombi-AI.html">
+                    <i data-lucide="bot"></i>
+                    <span data-i18n="navBombi">Bombi AI</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar"><i data-lucide="user-round"></i></div>
+                <div class="user-info">
+                    <h3 id="userName">Irving</h3>
+                    <p data-i18n="roleTeacher">Teacher</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="#" id="settingsLink">
+                    <i data-lucide="settings"></i>
+                    <span data-i18n="footerSettings">Settings</span>
+                </a>
+                <a href="#" id="logoutLink">
+                    <i data-lucide="log-out"></i>
+                    <span data-i18n="footerLogout">Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==========================================
+                    MAIN
+        =========================================== -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <div class="search-box topbar-search">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="globalSearch" data-i18n-placeholder="searchPlaceholder" placeholder="Search students, assignments...">
+                        <span class="search-kbd" id="searchKbd">Ctrl /</span>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="dropdown-wrap">
+                        <button class="notification-btn" id="notificationBtn" type="button" aria-label="Notifications">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-count" id="notificationCount">3</span>
+                        </button>
+                        <div class="dropdown-panel" id="notificationPanel"></div>
+                    </div>
+
+                    <button class="lang-toggle" id="langToggle" type="button" aria-label="Language">
+                        <i data-lucide="languages"></i>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme">
+                        <i data-lucide="sun"></i>
+                        <div class="toggle-circle"></div>
+                        <i data-lucide="moon"></i>
+                    </button>
+
+                    <div class="dropdown-wrap">
+                        <div class="user-profile" id="profileBtn" role="button" tabindex="0">
+                            <div class="profile-avatar"><i data-lucide="user-round"></i></div>
+                            <div class="profile-info">
+                                <h4 id="profileName">Irving</h4>
+                                <p data-i18n="roleTeacher">Teacher</p>
+                            </div>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                        <div class="dropdown-panel" id="profilePanel"></div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- HERO -->
+
+            <section class="home-hero dashboard-card">
+
+                <div class="home-hero-left">
+                    <div class="home-hero-icon"><i data-lucide="layout-dashboard"></i></div>
+                    <div>
+                        <h1 class="home-title" id="heroTitle">Home</h1>
+                        <p id="heroSubtitle">Welcome back. Here is your class summary for today.</p>
+                    </div>
+                </div>
+
+                <div class="home-hero-bombi"><i data-lucide="lightbulb"></i></div>
+
+                <a class="primary-btn" href="BombiAI/Bombi-AI.html">
+                    <i data-lucide="bot"></i>
+                    <span data-i18n="askBombi">Ask Bombi AI</span>
+                </a>
+
+            </section>
+
+            <!-- STAT CARDS -->
+
+            <section class="quick-cards-row" id="statsRow"></section>
+
+            <!-- QUICK ACTIONS -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+                    <h2 class="panel-title" data-i18n="quickActionsTitle">Quick actions</h2>
+                </div>
+
+                <div class="actions-row" id="actionsRow"></div>
+
+            </section>
+
+            <!-- GRID: ASSIGNMENTS + SCHEDULE -->
+
+            <section class="home-grid">
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="panel-title" data-i18n="reviewTitle">Assignments to review</h2>
+                        <a class="view-all-link" href="Assigments/Teacher-Assigments.html">
+                            <span data-i18n="viewAll">View all</span>
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+                    </div>
+                    <div class="item-list" id="assignmentList"></div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="panel-title" data-i18n="todayTitle">Today's classes</h2>
+                        <a class="view-all-link" href="Schedule-T/Schedule-Teacher.html">
+                            <span data-i18n="viewAll">View all</span>
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+                    </div>
+                    <div class="item-list" id="scheduleList"></div>
+                </div>
+
+            </section>
+
+            <!-- GRID: STUDENT ACTIVITY + LEARNING STYLES -->
+
+            <section class="home-grid">
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="panel-title" data-i18n="activityTitle">Recent student activity</h2>
+                        <a class="view-all-link" href="Students-Teacher/Students-Teacher.html">
+                            <span data-i18n="viewAll">View all</span>
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+                    </div>
+                    <div class="item-list" id="activityList"></div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="panel-title" data-i18n="styleTitle">Learning styles in your groups</h2>
+                    </div>
+                    <div class="style-bars single" id="styleBars"></div>
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
-    <!-- ==========================================
-                SIDEBAR
-    =========================================== -->
+    <div class="toast-container" id="toastContainer"></div>
 
-    <aside class="sidebar">
-
-        <div class="sidebar-logo">
-
-            <div class="logo-mark">
-                <img src="../Images/LOGO1.png" alt="Thinking">
-            </div>
-
-            <div class="logo-text">
-
-                <h2>Thinking</h2>
-
-                <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
-
-            </div>
-
-        </div>
-
-        <nav class="sidebar-menu">
-
-            <a href="Teacher Dashboard.html" class="active">
-
-                <i data-lucide="layout-dashboard"></i>
-
-                <span data-i18n="navHome">Home</span>
-
-            </a>
-
-            <a href="Test/Test-Teacher.html">
-
-                <i data-lucide="file-check"></i>
-
-                <span data-i18n="navTest">Test</span>
-
-            </a>
-
-            <a href="Students-Teacher/Students-Teacher.html">
-
-                <i data-lucide="users"></i>
-
-                <span data-i18n="navStudents">Students</span>
-
-            </a>
-
-            <a href="Assigments/Teacher-Assigments.html">
-
-                <i data-lucide="clipboard-list"></i>
-
-                <span data-i18n="navAssigments">Assigments</span>
-
-            </a>
-
-            <a href="Resoucers/Resoucers-Teacher.html">
-
-                <i data-lucide="folder-open"></i>
-
-                <span data-i18n="navResources">Resources</span>
-
-            </a>
-
-            <a href="Schedule-T/Schedule-Teacher.html">
-
-                <i data-lucide="calendar-days"></i>
-
-                <span data-i18n="navSchedule">Schedule</span>
-
-            </a>
-
-            <a href="BombiAI/Bombi-AI.html">
-
-                <i data-lucide="bot"></i>
-
-                <span data-i18n="navBombi">Bombi AI</span>
-
-            </a>
-
-        </nav>
-
-        <div class="sidebar-user">
-
-            <div class="user-avatar">
-                <img src="../Images/teacher-avatar.png" alt="Irving">
-            </div>
-
-            <div class="user-info">
-
-                <h3 id="userName">Irving</h3>
-
-                <p data-i18n="roleTeacher">Teacher</p>
-
-            </div>
-
-        </div>
-
-        <div class="sidebar-footer">
-
-            <a href="#">
-
-                <i data-lucide="settings"></i>
-
-                <span data-i18n="footerSettings">Settings</span>
-
-            </a>
-
-            <a href="#" id="logoutBtnSidebar">
-
-                <i data-lucide="log-out"></i>
-
-                <span data-i18n="footerLogout">Logout</span>
-
-            </a>
-
-        </div>
-
-    </aside>
-
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- ==========================================
-                MAIN
-    =========================================== -->
-
-    <main class="main">
-
-        <!-- =====================================================
-                    TOPBAR
-        ====================================================== -->
-
-        <header class="topbar">
-
-            <div class="topbar-left">
-
-                <button class="menu-toggle" id="menuToggle">
-                    <i data-lucide="menu"></i>
-                </button>
-
-                <div class="page-heading">
-
-                    <h1><span data-i18n="pageTitle">Home</span> <i data-lucide="sparkles" class="title-spark"></i></h1>
-
-                    <p data-i18n="pageSubtitle">Welcome back, here's what's happening today</p>
-
-                </div>
-
-            </div>
-
-            <div class="topbar-right">
-
-                <div class="search-box topbar-search">
-
-                    <i data-lucide="search"></i>
-
-                    <input type="text" id="homeSearch" data-i18n-placeholder="searchHome" placeholder="Search...">
-
-                </div>
-
-                <div class="dropdown-wrap">
-
-                    <button class="notification-btn" id="notificationBtn">
-
-                        <i data-lucide="bell"></i>
-
-                        <span class="notification-count">3</span>
-
-                    </button>
-
-                    <div class="dropdown-panel" id="notificationPanel"></div>
-
-                </div>
-
-                <button class="lang-toggle" id="langToggle">
-                    <i data-lucide="languages"></i>
-                    <span id="langLabel">EN</span>
-                </button>
-
-                <button class="theme-toggle" id="themeToggle">
-
-                    <i data-lucide="sun"></i>
-
-                    <div class="toggle-circle"></div>
-
-                    <i data-lucide="moon"></i>
-
-                </button>
-
-                <div class="dropdown-wrap">
-
-                    <div class="user-profile" id="profileBtn">
-
-                        <div class="profile-avatar">
-                            <img src="../Images/teacher-avatar.png" alt="Irving">
-                        </div>
-
-                        <div class="profile-info">
-
-                            <h4 id="profileName">Irving</h4>
-                            <p data-i18n="roleTeacher">Teacher</p>
-
-                        </div>
-                        <i data-lucide="chevron-down"></i>
-
-                    </div>
-
-                    <div class="dropdown-panel" id="profilePanel"></div>
-
-                </div>
-
-            </div>
-
-        </header>
-
-        <!-- =====================================================
-                    HOME CONTENT GRID
-        ====================================================== -->
-
-        <section class="home-grid">
-
-            <!-- =====================================
-                    HERO BANNER
-            ====================================== -->
-
-            <div class="dashboard-card hero-card">
-
-                <span class="hero-pill" data-i18n="heroGreeting">Good Morning</span>
-
-                <h1 class="hero-title" data-i18n="heroTitle">Everything you need to teach in one place.</h1>
-
-                <p class="hero-sub" data-i18n="heroSub">Organize your classes, assignments, schedules and student progress with Thinking.</p>
-
-                <div class="hero-actions">
-
-                    <button class="primary-btn" id="heroMyClassesBtn">
-                        <span data-i18n="btnMyClasses">My classes</span>
-                    </button>
-
-                    <button class="secondary-btn hero-outline-btn" id="heroAnalyticsBtn">
-                        <span data-i18n="btnAnalytics">Analytics</span>
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- =====================================
-                    LEFT COLUMN
-            ====================================== -->
-
-            <div class="home-left">
-
-                <div class="dashboard-card bombi-card">
-
-                    <div class="bombi-text">
-
-                        <h2 data-i18n="bombiTitle">Bombi AI</h2>
-
-                        <p data-i18n="bombiSub">Get instant teaching support with Bombi.</p>
-
-                        <button class="secondary-btn bombi-btn" id="askBombiBtn">
-                            <i data-lucide="bot"></i>
-                            <span data-i18n="askBombi">Ask Bombi</span>
-                        </button>
-
-                    </div>
-
-                    <div class="bombi-illustration" id="bombiIllustration">
-                        <video class="bombi-media" autoplay loop muted playsinline poster="../Images/bombi-mascot.png">
-                            <source src="../Images/bombi-mascot.mp4" type="video/mp4">
-                            <img src="../Images/bombi-mascot.png" alt="Bombi AI">
-                        </video>
-                    </div>
-
-                </div>
-
-                <div class="dashboard-card schedule-card">
-
-                    <div class="section-title">
-
-                        <div>
-                            <h2 data-i18n="scheduleTitle">Today's Schedule</h2>
-                        </div>
-
-                        <span class="day-tag" id="scheduleDay" data-i18n="scheduleDay">Monday</span>
-
-                    </div>
-
-                    <div class="schedule-list" id="scheduleList">
-                        <!-- generado por JS -->
-                    </div>
-
-                </div>
-
-                <div class="dashboard-card classes-card">
-
-                    <div class="section-title">
-
-                        <div>
-                            <h2 data-i18n="myClassesTitle">My Classes</h2>
-                        </div>
-
-                        <span class="link-btn" id="viewAllClassesBtn" data-i18n="viewAllClasses">View All</span>
-
-                    </div>
-
-                    <div class="class-list" id="classList">
-                        <!-- generado por JS -->
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- =====================================
-                    RIGHT COLUMN
-            ====================================== -->
-
-            <div class="home-right">
-
-                <div class="dashboard-card create-material-card">
-
-                    <span class="cm-badge" data-i18n="newBadge">New</span>
-
-                    <div class="cm-icon">
-                        <i data-lucide="sparkles"></i>
-                    </div>
-
-                    <div class="cm-text">
-
-                        <h2 data-i18n="createMaterialTitle">Create Material</h2>
-
-                        <p data-i18n="createMaterialSub">Generate personalized study materials instantly with AI.</p>
-
-                    </div>
-
-                    <a href="Create-Material/Create-Material.html" class="primary-btn cm-btn">
-                        <i data-lucide="sparkles"></i>
-                        <span data-i18n="createMaterialBtn">Create Material</span>
-                    </a>
-
-                </div>
-
-                <div class="dashboard-card quick-actions-card">
-
-                    <div class="section-title">
-                        <div>
-                            <h2 data-i18n="quickActionsTitle">Quick Actions</h2>
-                        </div>
-                    </div>
-
-                    <div class="quick-actions" id="quickActionsList">
-                        <!-- generado por JS -->
-                    </div>
-
-                </div>
-
-                <div class="dashboard-card deadlines-card">
-
-                    <div class="section-title">
-                        <div>
-                            <h2 data-i18n="deadlinesTitle">Upcoming Deadlines</h2>
-                        </div>
-                    </div>
-
-                    <div class="deadline-list" id="deadlineList">
-                        <!-- generado por JS -->
-                    </div>
-
-                    <button class="secondary-btn view-more-btn" id="viewMoreDeadlinesBtn">
-                        <span data-i18n="viewMoreDeadlines">View More</span>
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<!-- =====================================================
-            TOASTS (confirmaciones no intrusivas)
-====================================================== -->
-
-<div class="toast-container" id="toastContainer"></div>
-
-    <!-- ==========================================
-                JAVASCRIPT
-    =========================================== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="Teacher-Dashboard.js"></script>
 
