@@ -83,7 +83,7 @@ const I18N = {
     en:{
         pageTitle:"Home | Thinking",
         sidebarSubtitle:"Student Dashboard",
-        navHome:"Home", navTest:"Test", navAssignments:"Assignments",
+        navHome:"Home", navGroups:"Groups", navTest:"Test", navAssignments:"Assignments",
         navResources:"Resources", navSchedule:"Schedule", navBombi:"Bombi AI",
         roleStudent:"Student", footerSettings:"Settings", footerLogout:"Logout",
         searchPlaceholder:"Search assignments, classes...",
@@ -119,7 +119,7 @@ const I18N = {
     es:{
         pageTitle:"Inicio | Thinking",
         sidebarSubtitle:"Panel del Estudiante",
-        navHome:"Inicio", navTest:"Examen", navAssignments:"Tareas",
+        navHome:"Inicio", navGroups:"Grupos", navTest:"Examen", navAssignments:"Tareas",
         navResources:"Recursos", navSchedule:"Horario", navBombi:"Bombi IA",
         roleStudent:"Estudiante", footerSettings:"Ajustes", footerLogout:"Cerrar sesi\u00f3n",
         searchPlaceholder:"Buscar tareas, clases...",
