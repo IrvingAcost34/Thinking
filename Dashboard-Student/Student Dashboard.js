@@ -369,13 +369,24 @@ wireComingSoon("navCourses", "Courses is coming soon.");
 wireComingSoon("navProgress", "Progress is coming soon.");
 wireComingSoon("navDailyMission", "Daily Mission is coming soon.");
 wireComingSoon("navAchievements", "This full page is coming soon.");
-wireComingSoon("navBombiSidebar", "Bombi AI chat is coming soon.");
 wireComingSoon("sidebarSettingsBtn", "Settings is coming soon.");
 wireComingSoon("profileMyProfileBtn", "My Profile is coming soon.");
 wireComingSoon("profileSettingsBtn", "Settings is coming soon.");
 wireComingSoon("heroStartLearningBtn", "This will jump into your next lesson soon.");
 wireComingSoon("heroExploreBtn", "Explore is coming soon.");
-wireComingSoon("askBombiBtn", "Bombi AI chat is coming soon.");
+
+// navBombiSidebar ya NO lleva wireComingSoon: ahora es un
+// <a href="Bombi-Seccion/BOMBI-AI.html"> real. Si le dejamos
+// el wireComingSoon de antes, su preventDefault() bloquearía
+// la navegación y nunca llegarías a la pantalla de chat.
+
+// askBombiBtn es un <button> sin href, así que necesita su
+// propio listener para llevarte a la pantalla real:
+document.getElementById("askBombiBtn").addEventListener("click", () => {
+
+    window.location.href = "Bombi-Seccion/BOMBI-AI.html";
+
+});
 
 // ======================================================
 // ACHIEVEMENTS (calculados al vuelo, sin tabla nueva)
