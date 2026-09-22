@@ -502,12 +502,11 @@ button:hover, a:hover{
 
 }
 
-.thinking-pill img{
+.thinking-pill i{
 
-    width:18px;
-    height:18px;
+    font-size:16px;
 
-    object-fit:contain;
+    color:#7d4dff;
 
 }
 
@@ -659,12 +658,9 @@ button:hover, a:hover{
 
 }
 
-.bulb-card img{
+.bulb-card i{
 
-    width:48px;
-    height:48px;
-
-    object-fit:contain;
+    font-size:38px;
 
 }
 
@@ -958,12 +954,9 @@ button:hover, a:hover{
 
 }
 
-.books-card img{
+.books-card i{
 
-    width:42px;
-    height:42px;
-
-    object-fit:contain;
+    font-size:34px;
 
 }
 
@@ -998,6 +991,20 @@ button:hover, a:hover{
     margin-bottom:12px;
 
     color:var(--text-main);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.list-card li i{
+
+    color:#8c52ff;
+
+    font-size:14px;
 
 }
 
@@ -1291,12 +1298,11 @@ BADGE
 
 }
 
-.badge-icon img{
+.badge-icon i{
 
-    width:14px;
-    height:14px;
+    font-size:12px;
 
-    object-fit:contain;
+    color:white;
 
 }
 
@@ -1456,6 +1462,14 @@ ICONOS
 
 }
 
+.card-icon i{
+
+    font-size:22px;
+
+    color:white;
+
+}
+
 .purple{
 
     background:linear-gradient(
@@ -1586,7 +1600,7 @@ CARD BODY
 }
 
 /*==========================================================
-IMAGE
+IMAGE / ICONO GRANDE
 ==========================================================*/
 
 .card-image{
@@ -1603,11 +1617,9 @@ IMAGE
 
 }
 
-.card-image img{
+.big-icon{
 
-    width:180px;
-
-    max-width:none;
+    font-size:110px;
 
     position:relative;
 
@@ -1617,9 +1629,15 @@ IMAGE
 
     transform:translate(15px,10px);
 
+    filter:drop-shadow(0 10px 18px rgba(140,82,255,.25));
+
 }
 
-.learning-card:hover .card-image img{
+.purple-text{ color:#8c52ff; }
+.cyan-text{ color:#00c2ff; }
+.blue-text{ color:#3d6bff; }
+
+.learning-card:hover .big-icon{
 
     transform:translate(15px,-5px) scale(1.05);
 
@@ -1739,9 +1757,9 @@ RESPONSIVE
 
     }
 
-    .card-image img{
+    .big-icon{
 
-        width:150px;
+        font-size:80px;
 
         transform:none;
 
@@ -1891,10 +1909,10 @@ RESPONSIVE
     transition:.4s;
 }
 
-.technique-icon img{
-    width:70px;
-    height:70px;
-    object-fit:contain;
+.technique-icon i{
+    font-size:36px;
+    color:#8c52ff;
+    transition:.4s;
 }
 
 .technique-card:hover .technique-icon{
@@ -1904,6 +1922,12 @@ RESPONSIVE
     background:linear-gradient(135deg,#8c52ff,#00c2ff);
 
     box-shadow:0 18px 32px rgba(140,82,255,.3);
+}
+
+.technique-card:hover .technique-icon i{
+
+    color:white;
+
 }
 
 [data-theme="dark"] .technique-icon{
@@ -1943,7 +1967,7 @@ RESPONSIVE
     }
 }
 /* =========================================================================================================================================================================
-   ABOUT US
+   ABOUT US — MEET THE TEAM
 ================================================================================================================================================================================================= */
 
 .about-us{
@@ -1978,193 +2002,302 @@ RESPONSIVE
     line-height:1.8;
 }
 
-/* CONTENIDO PRINCIPAL */
+/* ================== TEAM CAROUSEL ================== */
 
-.about-main{
+.team-carousel{
 
     display:flex;
-
-    justify-content:space-between;
 
     align-items:center;
 
-    gap:60px;
+    justify-content:center;
 
-    margin-bottom:80px;
+    gap:18px;
+
+    max-width:900px;
+
+    margin:0 auto;
+
 }
 
-.about-text{
+.team-track-wrapper{
 
-    flex:1;
+    width:100%;
 
-    text-align:left;
+    max-width:640px;
+
+    overflow:hidden;
+
 }
 
-.about-text h3{
-
-    font-size:40px;
-
-    margin-bottom:20px;
-
-    color:var(--text-main);
-}
-
-.about-text p{
-
-    color:var(--text-secondary);
-
-    font-size:18px;
-
-    line-height:1.9;
-
-    margin-bottom:15px;
-}
-
-/* IMAGEN */
-
-.about-image{
-
-    flex:1;
+.team-track{
 
     display:flex;
 
-    justify-content:center;
+    transition:transform .55s cubic-bezier(.4,.0,.2,1);
+
 }
 
-.about-image img{
+.team-card{
 
-    width:500px;
+    flex:0 0 100%;
 
     max-width:100%;
 
-    animation:float 15s ease-in-out infinite;
-}
-
-/* TARJETAS */
-
-.about-cards{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:30px;
-
-    flex-wrap:wrap;
-}
-
-.about-card{
-
-  width:min(100%,320px);
-
     background:var(--card-bg);
 
-    padding:35px;
+    border:1px solid rgba(140,82,255,.10);
 
-    border-radius:25px;
+    border-radius:28px;
 
-    border:1px solid rgba(140,82,255,.08);
-
-    box-shadow:
-        0 10px 30px rgba(140,82,255,.08),
-        0 4px 14px rgba(0,194,255,.05);
-
-    transition:.4s;
-}
-
-[data-theme="dark"] .about-card{
-
-    border-color:rgba(255,255,255,.06);
-}
-
-.about-card:hover{
-
-    transform:translateY(-10px);
-
-    border:2px solid #8c52ff;
+    padding:45px 35px;
 
     box-shadow:
-        0 20px 40px rgba(140,82,255,.15);
-}
+        0 15px 35px rgba(140,82,255,.10),
+        0 4px 16px rgba(0,194,255,.06);
 
-.about-icon{
-
-    width:88px;
-    height:88px;
+    text-align:center;
 
     display:flex;
-    justify-content:center;
+
+    flex-direction:column;
+
     align-items:center;
 
-    margin:0 auto 20px;
+    transition:.4s;
+
+}
+
+[data-theme="dark"] .team-card{
+
+    border-color:rgba(255,255,255,.06);
+
+}
+
+.team-avatar{
+
+    width:92px;
+
+    height:92px;
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
+    display:flex;
 
-    box-shadow:0 12px 24px rgba(140,82,255,.14);
+    justify-content:center;
 
-    transition:.4s;
-}
+    align-items:center;
 
-.about-icon img{
+    font-size:28px;
 
-    width:40px;
-    height:40px;
+    font-weight:800;
 
-    object-fit:contain;
+    color:white;
 
-}
-
-.about-card:hover .about-icon{
-
-    transform:scale(1.08) rotate(-6deg);
+    margin-bottom:22px;
 
     background:linear-gradient(135deg,#8c52ff,#00c2ff);
 
-    box-shadow:0 18px 32px rgba(140,82,255,.3);
+    box-shadow:0 15px 30px rgba(140,82,255,.35);
+
 }
 
-[data-theme="dark"] .about-icon{
-
-    background:linear-gradient(135deg,rgba(140,82,255,.22),rgba(0,194,255,.22));
-}
-
-.about-card h3{
+.team-card h3{
 
     font-size:24px;
 
-    margin-bottom:15px;
+    font-weight:700;
 
     color:var(--text-main);
+
+    margin-bottom:10px;
+
 }
 
-.about-card p{
+.team-role{
+
+    display:inline-block;
+
+    padding:7px 18px;
+
+    border-radius:999px;
+
+    background:#f3edff;
+
+    color:#7d5cff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:16px;
+
+}
+
+[data-theme="dark"] .team-role{
+
+    background:rgba(140,82,255,.15);
+
+    color:#bfa8ff;
+
+}
+
+.team-skills{
 
     color:var(--text-secondary);
 
-    line-height:1.7;
+    font-size:15px;
+
+    line-height:1.6;
+
+    max-width:320px;
+
 }
 
-/* RESPONSIVE */
+.team-nav{
 
-@media(max-width:900px){
+    width:52px;
 
-    .about-main{
+    height:52px;
 
-        flex-direction:column;
-    }
+    flex-shrink:0;
 
-    .about-text{
+    border-radius:50%;
 
-        text-align:center;
-    }
+    border:none;
 
-    .about-image img{
+    background:linear-gradient(135deg,#8c52ff,#00c2ff);
 
-        width:300px;
-    }
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 10px 22px rgba(140,82,255,.3);
+
+    transition:.3s;
+
 }
+
+.team-nav:hover{
+
+    transform:scale(1.1);
+
+}
+
+.team-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.team-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#ddd;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    border:none;
+
+    padding:0;
+
+}
+
+[data-theme="dark"] .team-dot{
+
+    background:#3a3a4a;
+
+}
+
+.team-dot.active{
+
+    width:28px;
+
+    border-radius:6px;
+
+    background:linear-gradient(90deg,#8c52ff,#00c2ff);
+
+}
+
+@media(max-width:768px){
+
+    .team-carousel{
+
+        gap:10px;
+
+    }
+
+    .team-nav{
+
+        width:42px;
+
+        height:42px;
+
+        font-size:15px;
+
+    }
+
+    .team-card{
+
+        padding:35px 22px;
+
+    }
+
+    .team-card h3{
+
+        font-size:20px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .team-nav{
+
+        width:36px;
+
+        height:36px;
+
+        font-size:13px;
+
+    }
+
+    .team-avatar{
+
+        width:76px;
+
+        height:76px;
+
+        font-size:22px;
+
+    }
+
+}
+
 /* =========================
    THEME BUTTON
 ========================= */
@@ -3344,11 +3477,10 @@ nav a{
 
 }
 
-.why-icon img{
-    width:80%;
-    height:80%;
-    object-fit:cover;
-    border-radius:50%;
+.why-icon i{
+    font-size:40px;
+    color:#8c52ff;
+    transition:.4s;
 }
 
 .why-card:hover .why-icon{
@@ -3358,6 +3490,12 @@ nav a{
     background:linear-gradient(135deg,#8c52ff,#00c2ff);
 
     box-shadow:0 20px 40px rgba(140,82,255,.35);
+
+}
+
+.why-card:hover .why-icon i{
+
+    color:white;
 
 }
 
@@ -3582,7 +3720,7 @@ PIXEL PERFECT ADJUSTMENTS
 
 }
 
-/* Imagen */
+/* Imagen / icono */
 
 .card-image{
 
@@ -3596,13 +3734,11 @@ PIXEL PERFECT ADJUSTMENTS
 
     height:170px;
 
-}
+    display:flex;
 
-.card-image img{
+    align-items:flex-end;
 
-    width:170px;
-
-    object-fit:contain;
+    justify-content:flex-end;
 
 }
 
@@ -3617,14 +3753,6 @@ PIXEL PERFECT ADJUSTMENTS
     right:-55px;
 
     bottom:-45px;
-
-}
-
-/* Hover */
-
-.learning-card:hover .card-image img{
-
-    transform:translateY(-8px) scale(1.04);
 
 }
 
@@ -3700,14 +3828,6 @@ PIXEL PERFECT ADJUSTMENTS
 
     }
 
-    .card-image img{
-
-        width:150px;
-
-        object-fit:contain;
-
-    }
-
     .card-header h3{
 
         font-size:22px;
@@ -3752,9 +3872,13 @@ PIXEL PERFECT ADJUSTMENTS
 
         height:85px;
 
-        font-size:36px;
-
         margin:0 auto 20px;
+
+    }
+
+    .why-icon i{
+
+        font-size:30px;
 
     }
 
@@ -3788,7 +3912,11 @@ PIXEL PERFECT ADJUSTMENTS
 
         height:75px;
 
-        font-size:32px;
+    }
+
+    .why-icon i{
+
+        font-size:26px;
 
     }
 
@@ -3968,6 +4096,8 @@ PIXEL PERFECT ADJUSTMENTS
 
     font-size:18px;
 
+    color:#8c52ff;
+
     background:linear-gradient(135deg,rgba(140,82,255,.12),rgba(0,194,255,.12));
 
     transition:.35s;
@@ -3977,6 +4107,8 @@ PIXEL PERFECT ADJUSTMENTS
 .social-icons a:hover{
 
     background:linear-gradient(135deg,#8c52ff,#00c2ff);
+
+    color:white;
 
     transform:translateY(-4px);
 
