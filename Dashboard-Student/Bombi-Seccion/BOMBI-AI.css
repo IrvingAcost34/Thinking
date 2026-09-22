@@ -34,7 +34,7 @@ body{
 
 /* ======================================================
                     THEME VARIABLES
-    (idénticas al Teacher Dashboard para que ambas
+    (idénticas a Student Dashboard.css para que ambas
     pantallas se vean consistentes)
 ====================================================== */
 
@@ -51,13 +51,21 @@ body{
 body.dark-theme{
 
     --background:#070B1D;
+
     --surface:rgba(255,255,255,.06);
+
     --surface-hover:rgba(255,255,255,.10);
+
     --border:rgba(255,255,255,.10);
+
     --title:#FFFFFF;
+
     --text:#D7D7D7;
+
     --primary:#7C5CFF;
+
     --secondary:#00D4FF;
+
     --shadow:0 20px 45px rgba(0,0,0,.35);
 
 }
@@ -65,13 +73,21 @@ body.dark-theme{
 body.light-theme{
 
     --background:#F7FAFF;
+
     --surface:rgba(255,255,255,.65);
+
     --surface-hover:rgba(255,255,255,.92);
+
     --border:rgba(255,255,255,.75);
+
     --title:#1F2937;
+
     --text:#5B6475;
+
     --primary:#6C63FF;
+
     --secondary:#3CCEFF;
+
     --shadow:0 20px 45px rgba(108,99,255,.10);
 
 }
@@ -181,6 +197,61 @@ body{
     100%{ transform:translate(-170px,-130px) scale(1.2); }
 
 }
+
+/* ======================================================
+                    PARTICLES
+====================================================== */
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:-5;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    animation:particleFloat linear infinite;
+
+}
+
+@keyframes particleFloat{
+
+    0%{ transform:translateY(110vh) scale(.5); opacity:0; }
+
+    20%{ opacity:.5; }
+
+    80%{ opacity:.5; }
+
+    100%{ transform:translateY(-20vh) scale(1.4); opacity:0; }
+
+}
+
+.particles span:nth-child(1){ left:8%; animation-duration:12s; animation-delay:0s; }
+.particles span:nth-child(2){ left:20%; animation-duration:16s; animation-delay:2s; }
+.particles span:nth-child(3){ left:35%; animation-duration:14s; animation-delay:5s; }
+.particles span:nth-child(4){ left:52%; animation-duration:18s; animation-delay:1s; }
+.particles span:nth-child(5){ left:68%; animation-duration:15s; animation-delay:3s; }
+.particles span:nth-child(6){ left:80%; animation-duration:20s; animation-delay:7s; }
+.particles span:nth-child(7){ left:90%; animation-duration:17s; animation-delay:2s; }
+.particles span:nth-child(8){ left:96%; animation-duration:22s; animation-delay:6s; }
 
 /* ======================================================
                     MAIN
@@ -312,16 +383,6 @@ body{
 
 }
 
-.logo-mark img{
-
-    width:70%;
-
-    height:70%;
-
-    object-fit:contain;
-
-}
-
 .logo-text h2{
 
     color:var(--title);
@@ -432,8 +493,7 @@ body{
 
 }
 
-.user-avatar,
-.profile-avatar{
+.user-avatar{
 
     width:55px;
 
@@ -451,47 +511,9 @@ body{
 
     color:white;
 
-    flex-shrink:0;
+    font-weight:700;
 
-}
-
-.user-avatar i,
-.profile-avatar i{
-
-    width:26px;
-
-    height:26px;
-
-    color:white;
-
-}
-
-.user-avatar img,
-.profile-avatar img{
-
-    width:100%;
-
-    height:100%;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-}
-
-.profile-avatar{
-
-    width:48px;
-
-    height:48px;
-
-}
-
-.profile-avatar i{
-
-    width:22px;
-
-    height:22px;
+    font-size:18px;
 
 }
 
@@ -737,6 +759,18 @@ body{
 
 }
 
+.user-profile img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
 .user-profile h4{
 
     color:var(--title);
@@ -745,7 +779,7 @@ body{
 
 }
 
-.user-profile span{
+.user-profile p{
 
     font-size:13px;
 
@@ -825,33 +859,17 @@ body{
 
 }
 
-.dropdown-panel-title{
-
-    font-size:12px;
-
-    font-weight:700;
-
-    color:var(--text);
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
-
-    padding:8px 10px 6px;
-
-}
-
 .dropdown-item{
 
     display:flex;
 
-    align-items:flex-start;
+    align-items:center;
 
     gap:10px;
 
     width:100%;
 
-    padding:10px;
+    padding:12px 10px;
 
     border:none;
 
@@ -861,11 +879,13 @@ body{
 
     color:var(--title);
 
-    font-size:13px;
+    font-size:14px;
 
     font-family:inherit;
 
     text-align:left;
+
+    text-decoration:none;
 
     cursor:pointer;
 
@@ -887,19 +907,7 @@ body{
 
     flex-shrink:0;
 
-    margin-top:2px;
-
     color:var(--secondary);
-
-}
-
-.dropdown-item .item-sub{
-
-    font-size:11px;
-
-    color:var(--text);
-
-    margin-top:2px;
 
 }
 
