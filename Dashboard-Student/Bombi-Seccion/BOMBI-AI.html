@@ -3,13 +3,20 @@
 
 <head>
 
+    <!-- ==========================================
+                    META
+    =========================================== -->
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- ==========================================
+                    TITLE
+    =========================================== -->
+
     <title>Bombi AI | Thinking</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../Images/LOGO1.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../Images/LOGO1.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../Images/LOGO1.png">
@@ -18,11 +25,23 @@
     <meta name="apple-mobile-web-app-title" content="Thinking">
     <meta name="application-name" content="Thinking">
 
-    <link rel="stylesheet" href="Bombi-AI-Student.css">
+    <!-- ==========================================
+                    CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="Bombi-AI.css">
+
+    <!-- ==========================================
+                GOOGLE FONTS
+    =========================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================
+                LUCIDE ICONS
+    =========================================== -->
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -33,11 +52,10 @@
 <!-- ==========================================
         ANTI-FLASH: aplica el tema guardado
         ANTES de que se pinte nada en pantalla
-        (misma key que usa Student Dashboard.js)
 =========================================== -->
 <script>
     (function(){
-        var savedTheme = localStorage.getItem("thinking-theme");
+        var savedTheme = localStorage.getItem("thinkingTheme");
         if(savedTheme === "light"){
             document.body.classList.remove("dark-theme");
             document.body.classList.add("light-theme");
@@ -45,248 +63,262 @@
     })();
 </script>
 
-    <div class="app">
+<div class="app">
 
-        <div class="aurora"></div>
+    <!-- ==========================================
+            AURORA BACKGROUND
+    =========================================== -->
 
-        <div class="particles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="aurora"></div>
+
+    <!-- ==========================================
+                SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-mark">
+                <img src="../Images/LOGO1.png" alt="Thinking">
+            </div>
+
+            <div class="logo-text">
+
+                <h2>Thinking</h2>
+
+                <span data-i18n="sidebarSubtitle">Teacher Dashboard</span>
+
+            </div>
+
         </div>
 
-        <!-- ==========================================
-                    SIDEBAR
-        =========================================== -->
+        <nav class="sidebar-menu">
 
-        <aside class="sidebar">
+            <a href="../Teacher-Dashboard.html">
 
-            <div class="sidebar-logo">
-                <div class="logo-mark">
-                    <i data-lucide="brain-circuit"></i>
-                </div>
-                <div class="logo-text">
-                    <h2>Thinking</h2>
-                    <span>Student Dashboard</span>
-                </div>
+                <i data-lucide="layout-dashboard"></i>
+
+                <span data-i18n="navHome">Home</span>
+
+            </a>
+
+            <a href="../Test/Test-Teacher.html">
+
+                <i data-lucide="file-check"></i>
+
+                <span data-i18n="navTest">Test</span>
+
+            </a>
+
+            <a href="../Students-Teacher/Students-Teacher.html">
+
+                <i data-lucide="graduation-cap"></i>
+
+                <span data-i18n="navStudents">Students</span>
+
+            </a>
+
+            <a href="../Assigments/Teacher-Assigments.html">
+
+                <i data-lucide="book-open-text"></i>
+
+                <span data-i18n="navAssigments">Assigments</span>
+
+            </a>
+
+            <a href="../Resoucers/Resoucers-Teacher.html">
+
+                <i data-lucide="folder-open"></i>
+
+                <span data-i18n="navResources">Resources</span>
+
+            </a>
+
+            <a href="../Schedule-T/Schedule-Teacher.html">
+
+                <i data-lucide="calendar-days"></i>
+
+                <span data-i18n="navSchedule">Schedule</span>
+
+            </a>
+
+            <a href="Bombi-AI.html" class="active">
+
+                <i data-lucide="bot"></i>
+
+                <span data-i18n="navBombi">Bombi AI</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">
+                <img src="../Images/teacher-avatar.png" alt="Irving">
             </div>
 
-            <nav class="sidebar-menu">
+            <div class="user-info">
 
-                <a href="Student Dashboard.html">
-                    <i data-lucide="layout-dashboard"></i>
-                    <span>Dashboard</span>
-                </a>
+                <h3 id="userName">Irving</h3>
 
-                <a href="BOARD-S/Student-Board.html">
-                    <i data-lucide="pen-tool"></i>
-                    <span>Board</span>
-                </a>
+                <p data-i18n="roleTeacher">Teacher</p>
 
-                <a href="#" id="navLearningStyles">
-                    <i data-lucide="brain"></i>
-                    <span>Learning Styles</span>
-                </a>
+            </div>
 
-                <a href="#" id="navCourses">
-                    <i data-lucide="book-open"></i>
-                    <span>Courses</span>
-                </a>
+        </div>
 
-                <a href="#" id="navProgress">
-                    <i data-lucide="chart-column"></i>
-                    <span>Progress</span>
-                </a>
+        <div class="sidebar-footer">
 
-                <a href="#" id="navDailyMission">
-                    <i data-lucide="target"></i>
-                    <span>Daily Mission</span>
-                </a>
+            <a href="#">
 
-                <a href="Schedule/Student Schedule.html">
-                    <i data-lucide="calendar-days"></i>
-                    <span>Schedule</span>
-                </a>
+                <i data-lucide="settings"></i>
 
-                <a href="#" id="navAchievements">
-                    <i data-lucide="trophy"></i>
-                    <span>Achievements</span>
-                </a>
+                <span data-i18n="footerSettings">Settings</span>
 
-                <a href="Bombi-AI-Student.html" class="active">
-                    <i data-lucide="bot"></i>
-                    <span>Bombi AI</span>
-                </a>
+            </a>
 
-            </nav>
+            <a href="#">
 
-            <div class="sidebar-user">
-                <div class="user-avatar" id="userAvatar">IA</div>
-                <div class="user-info">
-                    <h3 id="userName">Irving</h3>
-                    <p>Student</p>
+                <i data-lucide="log-out"></i>
+
+                <span data-i18n="footerLogout">Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ==========================================
+                MAIN
+    =========================================== -->
+
+    <main class="main">
+
+        <!-- =====================================================
+                    TOPBAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="page-heading">
+
+                    <h1><i data-lucide="bot"></i> <span data-i18n="bombiPageTitle">Bombi AI</span></h1>
+
+                    <p data-i18n="bombiPageSubtitle">Your instant teaching assistant</p>
+
                 </div>
+
             </div>
 
-            <div class="sidebar-footer">
-                <a href="#" id="sidebarSettingsBtn">
-                    <i data-lucide="settings"></i>
-                    <span>Settings</span>
-                </a>
-                <a href="#" id="logoutBtnSidebar">
-                    <i data-lucide="log-out"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
+            <div class="topbar-right">
 
-        </aside>
+                <div class="dropdown-wrap">
 
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+                    <button class="notification-btn" id="notificationBtn">
 
-        <!-- ==========================================
-                    MAIN
-        =========================================== -->
+                        <i data-lucide="bell"></i>
 
-        <main class="main">
+                        <span class="notification-count">3</span>
 
-            <header class="topbar">
-
-                <div class="topbar-left">
-
-                    <button class="menu-toggle" id="menuToggle">
-                        <i data-lucide="menu"></i>
                     </button>
 
-                    <div class="page-heading">
+                    <div class="dropdown-panel" id="notificationPanel"></div>
 
-                        <h1><i data-lucide="bot"></i> Bombi AI</h1>
+                </div>
 
-                        <p>Your instant study buddy</p>
+                <button class="theme-toggle" id="themeToggle">
+
+                    <i data-lucide="sun"></i>
+
+                    <div class="toggle-circle"></div>
+
+                    <i data-lucide="moon"></i>
+
+                </button>
+
+                <div class="dropdown-wrap">
+
+                    <div class="user-profile" id="profileBtn">
+
+                        <div class="profile-avatar">
+                            <img src="../Images/teacher-avatar.png" alt="Irving">
+                        </div>
+
+                        <div class="profile-info">
+
+                            <h4 id="profileName">Irving</h4>
+
+                        </div>
+                        <i data-lucide="chevron-down"></i>
 
                     </div>
 
-                </div>
-
-                <div class="topbar-right">
-
-                    <div class="dropdown-wrap">
-
-                        <button class="notification-btn" id="notificationBtn">
-                            <i data-lucide="bell"></i>
-                            <span class="notification-count">3</span>
-                        </button>
-
-                        <div class="dropdown-panel" id="notificationsPanel">
-
-                            <a href="#" class="dropdown-item">
-                                <i data-lucide="trophy"></i>
-                                <span>New achievement unlocked!</span>
-                            </a>
-
-                            <a href="#" class="dropdown-item">
-                                <i data-lucide="flame"></i>
-                                <span>Keep your streak alive today</span>
-                            </a>
-
-                            <a href="#" class="dropdown-item">
-                                <i data-lucide="bot"></i>
-                                <span>Bombi has a new study tip for you</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <button class="theme-toggle">
-                        <i data-lucide="sun"></i>
-                        <div class="toggle-circle"></div>
-                        <i data-lucide="moon"></i>
-                    </button>
-
-                    <div class="dropdown-wrap">
-
-                        <div class="user-profile" id="profileBtn">
-                            <img src="../Images/Bombi_EMOTIONweb.webp" alt="Profile">
-                            <div class="profile-info">
-                                <h4 id="profileName">Irving</h4>
-                                <p>Student</p>
-                            </div>
-                            <i data-lucide="chevron-down"></i>
-                        </div>
-
-                        <div class="dropdown-panel" id="profilePanel">
-
-                            <a href="#" class="dropdown-item" id="profileMyProfileBtn">
-                                <i data-lucide="user"></i>
-                                <span>My Profile</span>
-                            </a>
-
-                            <a href="#" class="dropdown-item" id="profileSettingsBtn">
-                                <i data-lucide="settings"></i>
-                                <span>Settings</span>
-                            </a>
-
-                            <a href="#" id="logoutBtn" class="dropdown-item">
-                                <i data-lucide="log-out"></i>
-                                <span>Logout</span>
-                            </a>
-
-                        </div>
-
-                    </div>
+                    <div class="dropdown-panel" id="profilePanel"></div>
 
                 </div>
 
-            </header>
+            </div>
 
-            <!-- =====================================================
-                        CHAT CARD
-            ====================================================== -->
+        </header>
 
-            <section class="dashboard-card chat-card">
+        <!-- =====================================================
+                    CHAT CARD
+        ====================================================== -->
 
-                <div class="chat-messages" id="chatMessages">
-                    <!-- generado por JS -->
-                </div>
+        <section class="dashboard-card chat-card">
 
-                <div class="chat-input-bar">
+            <div class="chat-messages" id="chatMessages">
+                <!-- generado por JS -->
+            </div>
 
-                    <input
-                        type="text"
-                        id="chatInput"
-                        placeholder="Type your message..."
-                        autocomplete="off"
-                    >
+            <div class="chat-input-bar">
 
-                    <button class="chat-mic-btn" id="chatMicBtn" title="Voice input (coming soon)">
-                        <i data-lucide="mic"></i>
-                    </button>
+                <input
+                    type="text"
+                    id="chatInput"
+                    data-i18n-placeholder="chatPlaceholder"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                >
 
-                    <button class="chat-send-btn" id="chatSendBtn" disabled>
-                        <i data-lucide="send"></i>
-                    </button>
+                <button class="chat-mic-btn" id="chatMicBtn" title="Voice input (coming soon)">
+                    <i data-lucide="mic"></i>
+                </button>
 
-                </div>
+                <button class="chat-send-btn" id="chatSendBtn" disabled>
+                    <i data-lucide="send"></i>
+                </button>
 
-            </section>
+            </div>
 
-        </main>
+        </section>
 
-    </div>
+    </main>
 
-    <!-- =====================================================
-                TOASTS (avisos no intrusivos)
-    ====================================================== -->
+</div>
 
-    <div class="toast-container" id="toastContainer"></div>
+<!-- =====================================================
+            TOASTS (avisos de error, no intrusivos)
+====================================================== -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="Bombi-AI-Student.js"></script>
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ==========================================
+                JAVASCRIPT
+=========================================== -->
+
+<script src="Bombi-AI.js"></script>
 
 </body>
 
