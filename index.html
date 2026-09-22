@@ -18,6 +18,8 @@
 <link rel="icon" type="image/png" href="Images/LOGO1.png">
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Font Awesome (iconos) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 <body>
@@ -28,7 +30,7 @@
 <header class="navbar">
 
     <!-- Logo -->
-    <div class="brand">
+    <div class="brand notranslate" translate="no">
         Thinking
     </div>
         <nav>
@@ -37,7 +39,7 @@
 
                 <li><a href="#top">Home</a></li>
 
-               <li><a href="#how-it-works">What is Thinking?</a></li>
+               <li><a href="#how-it-works">What is <span class="notranslate" translate="no">Thinking</span>?</a></li>
 
                 <li><a href="#learning-styles">Learning Styles</a></li>
 
@@ -127,11 +129,11 @@
     <div class="thinking-left">
 
         <span class="thinking-pill">
-            <img src="Images/icon-sparkle.png" alt=""> What is Thinking?
+            <i class="fa-solid fa-sparkles" aria-hidden="true"></i> What is <span class="notranslate" translate="no">Thinking</span>?
         </span>
 
         <h2 class="section-title">
-            <span>Thinking</span> is your personalized study companion.
+            <span class="notranslate" translate="no">Thinking</span> is your personalized study companion.
         </h2>
 
         <p class="thinking-description">
@@ -153,7 +155,7 @@
 
         <div class="floating bulb-card">
 
-            <img src="Images/icon-bulb.png" alt="">
+            <i class="fa-solid fa-lightbulb icon-purple" aria-hidden="true"></i>
 
         </div>
 
@@ -213,7 +215,7 @@
 
         <div class="floating books-card">
 
-            <img src="Images/icon-books.png" alt="">
+            <i class="fa-solid fa-book-open-reader icon-blue" aria-hidden="true"></i>
 
         </div>
 
@@ -225,11 +227,11 @@
 
             <ul>
 
-                <li>✓ Mind Maps</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Mind Maps</li>
 
-                <li>✓ Flashcards</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Flashcards</li>
 
-                <li>✓ Active Recall</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Active Recall</li>
 
             </ul>
 
@@ -246,14 +248,14 @@
 <section class="why-thinking">
 
     <h2 class="section-title">
-        Why <span>Thinking?</span>
+        Why <span class="notranslate" translate="no">Thinking</span>?
     </h2>
 
     <div class="why-container">
 
         <div class="why-card">
 
-            <div class="why-icon"><img src="Images/mision.webp" alt=""></div>
+            <div class="why-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
 
             <h3>Personalized Learning</h3>
 
@@ -267,7 +269,7 @@
 
         <div class="why-card">
 
-            <div class="why-icon"><img src="Images/icon-target.png" alt=""></div>
+            <div class="why-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
 
             <h3>Proven Techniques</h3>
 
@@ -281,7 +283,7 @@
 
         <div class="why-card">
 
-            <div class="why-icon"><img src="Images/icon-clock.png" alt=""></div>
+            <div class="why-icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div>
 
             <h3>Save Time</h3>
 
@@ -295,7 +297,7 @@
 
         <div class="why-card">
 
-            <div class="why-icon"><img src="Images/icon-chart.png" alt=""></div>
+            <div class="why-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
 
             <h3>Better Results</h3>
 
@@ -319,7 +321,7 @@
 <div class="learning-badge">
 
     <span class="badge-icon">
-        <img src="Images/icon-star.png" alt="">
+        <i class="fa-solid fa-star" aria-hidden="true"></i>
     </span>
 
     <span>
@@ -348,7 +350,7 @@
             <div class="card-header">
 
                <div class="card-icon purple">
-    <img src="Images/run-icon.png" alt="">
+    <i class="fa-solid fa-person-running" aria-hidden="true"></i>
 </div>
 
                 <h3>Kinesthetic</h3>
@@ -379,7 +381,7 @@
 
                 <div class="card-image">
 
-                    <img src="Images/kinesthetic.png" alt="Kinesthetic">
+                    <i class="fa-solid fa-hands-holding-circle big-icon purple-text" aria-hidden="true"></i>
 
                 </div>
 
@@ -394,7 +396,7 @@
             <div class="card-header">
 
               <div class="card-icon cyan">
-    <img src="Images/eye-icon.png" alt="">
+    <i class="fa-solid fa-eye" aria-hidden="true"></i>
 </div>
 
                 <h3>Visual</h3>
@@ -425,7 +427,7 @@
 
                 <div class="card-image">
 
-                    <img src="Images/visual.png" alt="Visual">
+                    <i class="fa-solid fa-chart-pie big-icon cyan-text" aria-hidden="true"></i>
 
                 </div>
 
@@ -440,7 +442,7 @@
             <div class="card-header">
 
                <div class="card-icon blue">
-    <img src="Images/audio-icon.png" alt="">
+    <i class="fa-solid fa-headphones-simple" aria-hidden="true"></i>
 </div>
 
                 <h3>Auditory</h3>
@@ -470,7 +472,7 @@
 
                 <div class="card-image">
 
-                    <img src="Images/auditory.png" alt="Auditory">
+                    <i class="fa-solid fa-comments big-icon blue-text" aria-hidden="true"></i>
 
                 </div>
 
@@ -496,7 +498,7 @@
     <div class="techniques-container">
 
         <div class="technique-card">
-            <div class="technique-icon"><img src="Images/glass.webp" alt=""></div>
+            <div class="technique-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
             <h3>Visual Techniques</h3>
 
             <ul>
@@ -507,7 +509,7 @@
         </div>
 
         <div class="technique-card">
-            <div class="technique-icon"><img src="Images/icon-headphones.png" alt=""></div>
+            <div class="technique-icon"><i class="fa-solid fa-headphones" aria-hidden="true"></i></div>
             <h3>Auditory Techniques</h3>
 
             <ul>
@@ -518,7 +520,7 @@
         </div>
 
         <div class="technique-card">
-            <div class="technique-icon"><img src="Images/icon-hand.png" alt=""></div>
+            <div class="technique-icon"><i class="fa-solid fa-hand" aria-hidden="true"></i></div>
             <h3>Kinesthetic Techniques</h3>
 
             <ul>
@@ -533,69 +535,115 @@
 </section>
 
 <!-- ================================================================================================================================================================
-     ABOUT US
+     ABOUT US — MEET THE TEAM (flashcards dinámicas)
 ===================================================================================================================================================================== -->
 
 <section id="about" class="about-us">
 
-    <h2 class="section-title">About <span>Us</span></h2>
+    <h2 class="section-title">Meet <span>Our Team</span></h2>
 
     <p class="section-subtitle">
-        Helping students discover their learning potential through personalized study strategies.
+        Different skills, one goal — the people behind <span class="notranslate" translate="no">Thinking</span>.
     </p>
 
-    <div class="about-main">
+    <div class="team-carousel" id="team-carousel">
 
-        <div class="about-text">
+        <button class="team-nav team-prev" id="team-prev" aria-label="Previous member">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
 
-            <h3>Learn Smarter with Thinking</h3>
+        <div class="team-track-wrapper">
 
-            <p>
-                Thinking is an educational platform designed to help students understand how they learn best.
-                By identifying learning styles and providing personalized study techniques, we make learning
-                more effective, engaging, and enjoyable.
-            </p>
+            <div class="team-track" id="team-track">
 
-            <p>
-                Our goal is to empower every learner with the tools and knowledge needed to reach their full
-                academic potential.
-            </p>
+                <article class="team-card">
+                    <div class="team-avatar">HM</div>
+                    <h3>Hannah Morris</h3>
+                    <span class="team-role">Project Leader · UI/UX Designer</span>
+                    <p class="team-skills">Dirección · Coordinación · UI/UX</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">ER</div>
+                    <h3>Emanuel Rodríguez</h3>
+                    <span class="team-role">Deputy Leader · UI Designer</span>
+                    <p class="team-skills">Coordinación · Diseño · Revisión</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">OS</div>
+                    <h3>Orianny Sánchez</h3>
+                    <span class="team-role">UI/UX Designer</span>
+                    <p class="team-skills">Prototipos · Interfaces · Experiencia</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">IA</div>
+                    <h3>Irving Acosta</h3>
+                    <span class="team-role">Lead Web Developer</span>
+                    <p class="team-skills">Arquitectura · Desarrollo · Integración</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">DC</div>
+                    <h3>Dereck Chavarría</h3>
+                    <span class="team-role">Backend Developer</span>
+                    <p class="team-skills">Supabase · Base de datos · Autenticación</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">KB</div>
+                    <h3>Kristian Brown</h3>
+                    <span class="team-role">Web Developer</span>
+                    <p class="team-skills">Interacciones · Animaciones · Navegación</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">LB</div>
+                    <h3>Lis Bustamante</h3>
+                    <span class="team-role">AI Assistant Developer</span>
+                    <p class="team-skills">Bombi AI · Asistencia · Integración</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">AM</div>
+                    <h3>Allison Miranda</h3>
+                    <span class="team-role">Frontend Developer</span>
+                    <p class="team-skills">Home · Dashboard · Responsive</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">AA</div>
+                    <h3>Adan Andrade</h3>
+                    <span class="team-role">Graphic Designer</span>
+                    <p class="team-skills">Gráficos · Identidad · Recursos visuales</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">LB</div>
+                    <h3>Lenys Barria</h3>
+                    <span class="team-role">Systems Analyst</span>
+                    <p class="team-skills">Requisitos · Análisis · Cuestionario</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-avatar">AS</div>
+                    <h3>Andrea Serna</h3>
+                    <span class="team-role">Systems Analyst</span>
+                    <p class="team-skills">Análisis · Planificación · Documentación</p>
+                </article>
+
+            </div>
 
         </div>
 
-        <div class="about-image">
-            <img src="Images/Bombi_EMOTIONweb.webp" alt="Thinking Mascot">
-        </div>
+        <button class="team-nav team-next" id="team-next" aria-label="Next member">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
 
     </div>
 
-    <div class="about-cards">
-
-        <div class="about-card">
-            <div class="about-icon"><img src="Images/icon-target.png" alt=""></div>
-            <h3>Mission</h3>
-            <p>
-                Help students achieve their goals through personalized learning strategies.
-            </p>
-        </div>
-
-        <div class="about-card">
-            <div class="about-icon"><img src="Images/brain.webp" alt=""></div>
-            <h3>Vision</h3>
-            <p>
-                Create a future where every student can learn in the way that works best for them.
-            </p>
-        </div>
-
-        <div class="about-card">
-            <div class="about-icon"><img src="Images/icon-bulb.png" alt=""></div>
-            <h3>Innovation</h3>
-            <p>
-                Combine technology and educational research to improve learning experiences.
-            </p>
-        </div>
-
-    </div>
+    <div class="team-dots" id="team-dots"></div>
 
 </section>
 
@@ -622,7 +670,7 @@
 <div id="bombi-chat">
 
     <div class="chat-header">
-        <span>💡 Bombi AI</span>
+        <span>💡 <span class="notranslate" translate="no">Bombi</span> AI</span>
         <button id="close-chat">✕</button>
     </div>
 
@@ -642,7 +690,7 @@
 
         <div class="footer-brand">
 
-            <h3 class="footer-logo">Thinking</h3>
+            <h3 class="footer-logo notranslate" translate="no">Thinking</h3>
 
             <p>
                 Helping students discover the way they learn best,
@@ -657,7 +705,7 @@
 
             <ul>
                 <li><a href="#top">Home</a></li>
-                <li><a href="#how-it-works">What is Thinking?</a></li>
+                <li><a href="#how-it-works">What is <span class="notranslate" translate="no">Thinking</span>?</a></li>
                 <li><a href="#learning-styles">Learning Styles</a></li>
                 <li><a href="#techniques">Techniques</a></li>
                 <li><a href="#about">About us</a></li>
@@ -681,9 +729,9 @@
             <h4>Follow us</h4>
 
             <div class="social-icons">
-               <a href="#" aria-label="Instagram">
-               <a href="#" aria-label="TikTok"> </a>
-               <a href="#" aria-label="YouTube"></a>
+               <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+               <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+               <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
             </div>
 
         </div>
@@ -692,7 +740,7 @@
 
     <div class="footer-bottom">
 
-        <p>© 2026 Thinking. All rights reserved.</p>
+        <p>© 2026 <span class="notranslate" translate="no">Thinking</span>. All rights reserved.</p>
 
     </div>
 
