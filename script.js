@@ -799,7 +799,7 @@ if(discoverBtn){
 ==========================*/
 
 const revealTargets = document.querySelectorAll(
-    ".learning-card, .technique-card, .about-card, .why-card"
+    ".learning-card, .technique-card, .why-card, .team-card"
 );
 
 revealTargets.forEach((el, i) => {
@@ -836,3 +836,166 @@ if("IntersectionObserver" in window){
     revealTargets.forEach(el => el.classList.add("active"));
 
 }
+
+/* ==========================================================
+   TEAM CAROUSEL — "About Us" flashcards dinámicas
+   Recorre a cada miembro del equipo una por una,
+   con autoplay, flechas, dots y swipe en móvil.
+========================================================== */
+
+(function initTeamCarousel(){
+
+    const track = document.getElementById("team-track");
+    const prevBtn = document.getElementById("team-prev");
+    const nextBtn = document.getElementById("team-next");
+    const dotsWrap = document.getElementById("team-dots");
+
+    if(!track || !prevBtn || !nextBtn || !dotsWrap) return;
+
+    const cards = Array.from(track.children);
+    const total = cards.length;
+
+    let current = 0;
+    let autoplayTimer = null;
+
+    // ---------- CREAR DOTS ----------
+
+    cards.forEach((_, i) => {
+
+        const dot = document.createElement("button");
+
+        dot.classList.add("team-dot");
+
+        dot.setAttribute("aria-label", "Ir al miembro " + (i + 1));
+
+        if(i === 0) dot.classList.add("active");
+
+        dot.addEventListener("click", () => {
+
+            goTo(i);
+
+            restartAutoplay();
+
+        });
+
+        dotsWrap.appendChild(dot);
+
+    });
+
+    const dots = Array.from(dotsWrap.children);
+
+    // ---------- IR A UNA TARJETA ----------
+
+    function goTo(index){
+
+        current = (index + total) % total;
+
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        dots.forEach((d, i) => {
+
+            d.classList.toggle("active", i === current);
+
+        });
+
+    }
+
+    function next(){
+
+        goTo(current + 1);
+
+    }
+
+    function prev(){
+
+        goTo(current - 1);
+
+    }
+
+    nextBtn.addEventListener("click", () => {
+
+        next();
+
+        restartAutoplay();
+
+    });
+
+    prevBtn.addEventListener("click", () => {
+
+        prev();
+
+        restartAutoplay();
+
+    });
+
+    // ---------- AUTOPLAY ----------
+
+    function startAutoplay(){
+
+        autoplayTimer = setInterval(next, 3800);
+
+    }
+
+    function stopAutoplay(){
+
+        clearInterval(autoplayTimer);
+
+    }
+
+    function restartAutoplay(){
+
+        stopAutoplay();
+
+        startAutoplay();
+
+    }
+
+    const carousel = document.getElementById("team-carousel");
+
+    if(carousel){
+
+        carousel.addEventListener("mouseenter", stopAutoplay);
+
+        carousel.addEventListener("mouseleave", startAutoplay);
+
+    }
+
+    // ---------- SWIPE (móvil) ----------
+
+    let touchStartX = 0;
+
+    track.addEventListener("touchstart", (e) => {
+
+        touchStartX = e.touches[0].clientX;
+
+        stopAutoplay();
+
+    }, { passive:true });
+
+    track.addEventListener("touchend", (e) => {
+
+        const touchEndX = e.changedTouches[0].clientX;
+
+        const diff = touchStartX - touchEndX;
+
+        if(diff > 40){
+
+            next();
+
+        }else if(diff < -40){
+
+            prev();
+
+        }
+
+        startAutoplay();
+
+    }, { passive:true });
+
+    // ---------- INICIO ----------
+
+    goTo(0);
+
+    startAutoplay();
+
+})();
