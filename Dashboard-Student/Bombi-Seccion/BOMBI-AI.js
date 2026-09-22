@@ -1,6 +1,7 @@
 /* ======================================================
                     THINKING
-        BOMBI AI SCREEN — v2 (conectado a Botpress Chat API)
+    BOMBI AI SCREEN (STUDENT) — v2 (conectado a Botpress
+    Chat API) — vive en Dashboard-Student/Bombi-Seccion/
 ====================================================== */
 
 /* ======================================================
@@ -13,6 +14,24 @@ const BOTPRESS_API = "https://chat.botpress.cloud";
 let bpUserId = null;
 let bpUserKey = null;
 let bpConversationId = null;
+
+// ======================================================
+// SUPABASE
+// ======================================================
+
+const SUPABASE_URL = "https://lihwjqcimyysxlluiwcj.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_ebg_1KjxrX6KuKQRAlExFg_XNKKQ_rC";
+
+let db = null;
+try {
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+} catch (e) {
+  console.warn('No se pudo conectar a Supabase (revisa tu conexión a internet):', e);
+}
 
 /* ======================================================
                     LUCIDE ICONS
@@ -31,132 +50,14 @@ function refreshIcons(){
 refreshIcons();
 
 /* ======================================================
-                    IDIOMA (EN / ES)
-====================================================== */
-
-let currentLang = "en";
-
-const I18N = {
-
-    en:{
-
-        sidebarSubtitle:"Teacher Dashboard",
-        navHome:"Home",
-        navTest:"Test",
-        navStudents:"Students",
-        navAssigments:"Assigments",
-        navResources:"Resources",
-        navSchedule:"Schedule",
-        navBombi:"Bombi AI",
-        roleTeacher:"Teacher",
-        footerSettings:"Settings",
-        footerLogout:"Logout",
-        bombiPageTitle:"Bombi AI",
-        bombiPageSubtitle:"Your instant teaching assistant",
-        chatPlaceholder:"Type your message...",
-        notifTitle:"Notifications",
-        notif1Title:"Anatomy Quiz tomorrow",
-        notif1Sub:"Don't forget to prepare Biology 102's quiz",
-        notif2Title:"3 new submissions",
-        notif2Sub:"Biology 101 just got new homework submissions",
-        notif3Title:"Faculty meeting moved",
-        notif3Sub:"Today's meeting is now at 11:00 AM",
-        profileSettings:"Account settings",
-        profileHelp:"Help & support",
-        profileLogout:"Log out",
-        welcomeMessage:"Hi Irving! I'm Bombi, your teaching assistant. I can help you plan lessons, create materials or answer quick questions. What are we working on today?",
-        suggestion1:"Suggest a lesson idea",
-        suggestion2:"Help me plan a quiz",
-        suggestion3:"Tips for visual learners",
-        connectingError:"Couldn't reach Bombi's AI right now.",
-        slowReply:"Bombi is taking a bit long to respond — try again in a moment.",
-        connectionTrouble:"I'm having trouble connecting right now — please try again in a bit."
-
-    },
-
-    es:{
-
-        sidebarSubtitle:"Panel del Maestro",
-        navHome:"Inicio",
-        navTest:"Examen",
-        navStudents:"Estudiantes",
-        navAssigments:"Tareas",
-        navResources:"Recursos",
-        navSchedule:"Horario",
-        navBombi:"Bombi IA",
-        roleTeacher:"Maestro",
-        footerSettings:"Ajustes",
-        footerLogout:"Cerrar sesión",
-        bombiPageTitle:"Bombi IA",
-        bombiPageSubtitle:"Tu asistente docente al instante",
-        chatPlaceholder:"Escribe tu mensaje...",
-        notifTitle:"Notificaciones",
-        notif1Title:"Examen de Anatomía mañana",
-        notif1Sub:"No olvides preparar el examen de Biología 102",
-        notif2Title:"3 entregas nuevas",
-        notif2Sub:"Biología 101 recibió nuevas tareas entregadas",
-        notif3Title:"Reunión de facultad movida",
-        notif3Sub:"La reunión de hoy ahora es a las 11:00 AM",
-        profileSettings:"Configuración de cuenta",
-        profileHelp:"Ayuda y soporte",
-        profileLogout:"Cerrar sesión",
-        welcomeMessage:"¡Hola Irving! Soy Bombi, tu asistente docente. Puedo ayudarte a planear lecciones, crear materiales o resolver dudas rápidas. ¿En qué trabajamos hoy?",
-        suggestion1:"Sugiere una idea de lección",
-        suggestion2:"Ayúdame a planear un examen",
-        suggestion3:"Tips para estudiantes visuales",
-        connectingError:"No se pudo conectar con la IA de Bombi.",
-        slowReply:"Bombi está tardando en responder — intenta de nuevo en un momento.",
-        connectionTrouble:"Estoy teniendo problemas de conexión — intenta de nuevo en un momento."
-
-    }
-
-};
-
-function t(key){
-
-    return I18N[currentLang][key];
-
-}
-
-function applyStaticTranslations(){
-
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-
-        const key = el.getAttribute("data-i18n");
-
-        if(I18N[currentLang][key] !== undefined){
-
-            el.textContent = I18N[currentLang][key];
-
-        }
-
-    });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-
-        const key = el.getAttribute("data-i18n-placeholder");
-
-        if(I18N[currentLang][key] !== undefined){
-
-            el.setAttribute("placeholder", I18N[currentLang][key]);
-
-        }
-
-    });
-
-}
-
-/* ======================================================
-                    THEME
+                    THEME (igual a Student Dashboard)
 ====================================================== */
 
 const body = document.body;
 
-body.classList.add("dark-theme");
+const themeToggle = document.querySelector(".theme-toggle");
 
-const themeToggle = document.getElementById("themeToggle");
-
-const toggleCircle = themeToggle.querySelector(".toggle-circle");
+const toggleCircle = document.querySelector(".toggle-circle");
 
 function enableDarkMode(){
 
@@ -165,8 +66,6 @@ function enableDarkMode(){
     body.classList.add("dark-theme");
 
     toggleCircle.style.left = "11px";
-
-    localStorage.setItem("thinkingTheme", "dark");
 
 }
 
@@ -178,15 +77,43 @@ function enableLightMode(){
 
     toggleCircle.style.left = "49px";
 
-    localStorage.setItem("thinkingTheme", "light");
-
 }
 
 themeToggle.addEventListener("click", () => {
 
-    body.classList.contains("dark-theme") ? enableLightMode() : enableDarkMode();
+    if(body.classList.contains("dark-theme")){
+        enableLightMode();
+    } else {
+        enableDarkMode();
+    }
+
+    saveTheme();
 
 });
+
+function saveTheme(){
+
+    if(body.classList.contains("dark-theme")){
+        localStorage.setItem("thinking-theme", "dark");
+    } else {
+        localStorage.setItem("thinking-theme", "light");
+    }
+
+}
+
+function loadTheme(){
+
+    const savedTheme = localStorage.getItem("thinking-theme");
+
+    if(savedTheme === "light"){
+        enableLightMode();
+    } else {
+        enableDarkMode();
+    }
+
+}
+
+loadTheme();
 
 /* ======================================================
                 MOBILE SIDEBAR TOGGLE
@@ -216,11 +143,25 @@ function closeSidebar(){
 
 menuToggle.addEventListener("click", () => {
 
-    sidebarEl.classList.contains("open") ? closeSidebar() : openSidebar();
+    if(sidebarEl.classList.contains("open")){
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
 
 });
 
 sidebarOverlay.addEventListener("click", closeSidebar);
+
+document.querySelectorAll(".sidebar-menu a, .sidebar-footer a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+});
+
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        closeSidebar();
+    }
+});
 
 /* ======================================================
                 DROPDOWNS (notificaciones / perfil)
@@ -228,7 +169,7 @@ sidebarOverlay.addEventListener("click", closeSidebar);
 
 const notificationBtn = document.getElementById("notificationBtn");
 
-const notificationPanel = document.getElementById("notificationPanel");
+const notificationsPanel = document.getElementById("notificationsPanel");
 
 const profileBtn = document.getElementById("profileBtn");
 
@@ -236,73 +177,7 @@ const profilePanel = document.getElementById("profilePanel");
 
 function closeAllDropdowns(){
 
-    [notificationPanel, profilePanel].forEach((p) => p.classList.remove("open"));
-
-}
-
-function toggleDropdown(panel){
-
-    const wasOpen = panel.classList.contains("open");
-
-    closeAllDropdowns();
-
-    if(!wasOpen){
-
-        panel.classList.add("open");
-
-    }
-
-}
-
-function renderNotificationPanel(){
-
-    notificationPanel.innerHTML = `
-        <div class="dropdown-panel-title">${t("notifTitle")}</div>
-        <button class="dropdown-item">
-            <i data-lucide="calendar-clock"></i>
-            <span>
-                ${t("notif1Title")}
-                <div class="item-sub">${t("notif1Sub")}</div>
-            </span>
-        </button>
-        <button class="dropdown-item">
-            <i data-lucide="clipboard-check"></i>
-            <span>
-                ${t("notif2Title")}
-                <div class="item-sub">${t("notif2Sub")}</div>
-            </span>
-        </button>
-        <button class="dropdown-item">
-            <i data-lucide="users"></i>
-            <span>
-                ${t("notif3Title")}
-                <div class="item-sub">${t("notif3Sub")}</div>
-            </span>
-        </button>
-    `;
-
-    refreshIcons();
-
-}
-
-function renderProfilePanel(){
-
-    profilePanel.innerHTML = `
-        <button class="dropdown-item">
-            <i data-lucide="settings"></i>
-            <span>${t("profileSettings")}</span>
-        </button>
-        <button class="dropdown-item">
-            <i data-lucide="circle-help"></i>
-            <span>${t("profileHelp")}</span>
-        </button>
-        <button class="dropdown-item">
-            <i data-lucide="log-out"></i>
-            <span>${t("profileLogout")}</span>
-        </button>
-    `;
-
-    refreshIcons();
+    [notificationsPanel, profilePanel].forEach((p) => p && p.classList.remove("open"));
 
 }
 
@@ -310,9 +185,13 @@ notificationBtn.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
-    renderNotificationPanel();
+    const wasOpen = notificationsPanel.classList.contains("open");
 
-    toggleDropdown(notificationPanel);
+    closeAllDropdowns();
+
+    if(!wasOpen){
+        notificationsPanel.classList.add("open");
+    }
 
 });
 
@@ -320,9 +199,13 @@ profileBtn.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
-    renderProfilePanel();
+    const wasOpen = profilePanel.classList.contains("open");
 
-    toggleDropdown(profilePanel);
+    closeAllDropdowns();
+
+    if(!wasOpen){
+        profilePanel.classList.add("open");
+    }
 
 });
 
@@ -333,7 +216,7 @@ document.addEventListener("click", () => {
 });
 
 /* ======================================================
-                TOASTS (avisos de error, no intrusivos)
+                TOASTS
 ====================================================== */
 
 const toastContainer = document.getElementById("toastContainer");
@@ -364,6 +247,116 @@ function showToast(message, icon){
         setTimeout(() => toast.remove(), 250);
 
     }, 3200);
+
+}
+
+function wireComingSoon(id, message){
+
+    const el = document.getElementById(id);
+
+    if(!el){
+        return;
+    }
+
+    el.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        showToast(message, "sparkles");
+
+    });
+
+}
+
+wireComingSoon("navLearningStyles", "Learning Styles is coming soon.");
+wireComingSoon("navCourses", "Courses is coming soon.");
+wireComingSoon("navProgress", "Progress is coming soon.");
+wireComingSoon("navDailyMission", "Daily Mission is coming soon.");
+wireComingSoon("navAchievements", "This full page is coming soon.");
+wireComingSoon("sidebarSettingsBtn", "Settings is coming soon.");
+wireComingSoon("profileMyProfileBtn", "My Profile is coming soon.");
+wireComingSoon("profileSettingsBtn", "Settings is coming soon.");
+
+/* ======================================================
+                LOGOUT REAL
+
+    AVISO: no vi tu carpeta de login de Student en la
+    captura, así que asumí "LOGIN-Student" (con guion),
+    igual que ya tenía tu Student Dashboard.js, solo con
+    un "../" extra por estar un nivel más profundo. Si tu
+    carpeta real se llama distinto (ej. "LOGIN Student"
+    con espacio, como "LOGIN Teacher"), dime el nombre
+    exacto y lo ajusto.
+====================================================== */
+
+async function handleLogout(e){
+
+    e.preventDefault();
+
+    if(typeof db !== "undefined" && db.auth){
+
+        await db.auth.signOut();
+
+    }
+
+    window.location.href = "../../LOGIN-Student/STUDENT LOGIN.html";
+
+}
+
+document.getElementById("logoutBtn").addEventListener("click", handleLogout);
+
+document.getElementById("logoutBtnSidebar").addEventListener("click", handleLogout);
+
+/* ======================================================
+                LOAD USER DATA (solo nombre/avatar,
+                esta pantalla no muestra stats)
+====================================================== */
+
+async function loadUserData(){
+
+    if(!db || !db.auth){
+
+        return;
+
+    }
+
+    const { data: { session }, error: sessionError } = await db.auth.getSession();
+
+    if(sessionError){
+        console.error(sessionError);
+    }
+
+    if(!session){
+        window.location.href = "../../LOGIN-Student/STUDENT LOGIN.html";
+        return;
+    }
+
+    const user = session.user;
+
+    const { data, error } = await db
+        .from("THINKING")
+        .select("Nombre_Usuario")
+        .eq("id", user.id)
+        .single();
+
+    if(error){
+        console.error(error);
+        return;
+    }
+
+    const nombre = data.Nombre_Usuario;
+
+    document.getElementById("userName").textContent = nombre;
+    document.getElementById("profileName").textContent = nombre;
+
+    const iniciales = nombre
+        .split(" ")
+        .map(p => p[0])
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
+
+    document.getElementById("userAvatar").textContent = iniciales;
 
 }
 
@@ -504,7 +497,7 @@ async function sendBombiRealReply(userText){
         if(reply){
             appendMessage(reply, "bot");
         } else {
-            appendMessage(t("slowReply"), "bot");
+            appendMessage("Bombi is taking a bit long to respond — try again in a moment.", "bot");
         }
 
     }
@@ -514,9 +507,9 @@ async function sendBombiRealReply(userText){
 
         console.error("Error de Botpress:", err);
 
-        showToast(t("connectingError"), "alert-triangle");
+        showToast("Couldn't reach Bombi's AI right now.", "alert-triangle");
 
-        appendMessage(t("connectionTrouble"), "bot");
+        appendMessage("I'm having trouble connecting right now — please try again in a bit.", "bot");
 
     }
 
@@ -536,6 +529,14 @@ const chatSendBtn = document.getElementById("chatSendBtn");
 
 const chatMicBtn = document.getElementById("chatMicBtn");
 
+const welcomeMessage = "Hey! I'm Bombi, your study buddy. I can help you review a topic, prep for a quiz or give you tips for how you learn best. What are we working on today?";
+
+const suggestions = [
+    "Explain a topic simply",
+    "Quiz me on today's lesson",
+    "Give me a study tip"
+];
+
 /* ------------------------------------------------------
         Crea una burbuja de mensaje (usuario o bot)
 ------------------------------------------------------ */
@@ -547,7 +548,7 @@ function appendMessage(text, sender){
     wrap.classList.add("chat-message", sender);
 
     const avatarHtml = sender === "bot"
-        ? `<img src="../Images/bombi-mascot.png" alt="Bombi">`
+        ? `<img src="../../Images/Bombi_EMOTIONweb.webp" alt="Bombi">`
         : `<i data-lucide="user"></i>`;
 
     wrap.innerHTML = `
@@ -578,7 +579,7 @@ function showTypingIndicator(){
     wrap.id = "typingIndicator";
 
     wrap.innerHTML = `
-        <div class="chat-avatar"><img src="../Images/bombi-mascot.png" alt="Bombi"></div>
+        <div class="chat-avatar"><img src="../../Images/Bombi_EMOTIONweb.webp" alt="Bombi"></div>
         <div class="chat-bubble chat-typing">
             <span></span><span></span><span></span>
         </div>
@@ -662,53 +663,39 @@ function renderWelcome(){
 
     chatMessages.innerHTML = "";
 
-    appendMessage(t("welcomeMessage"), "bot");
+    appendMessage(welcomeMessage, "bot");
 
-    const suggestions = document.createElement("div");
+    const suggestionsWrap = document.createElement("div");
 
-    suggestions.classList.add("chat-suggestions");
+    suggestionsWrap.classList.add("chat-suggestions");
 
-    suggestions.id = "chatSuggestions";
+    suggestionsWrap.id = "chatSuggestions";
 
-    ["suggestion1", "suggestion2", "suggestion3"].forEach((key) => {
+    suggestions.forEach((text) => {
 
         const chip = document.createElement("button");
 
         chip.classList.add("suggestion-chip");
 
-        chip.textContent = t(key);
+        chip.textContent = text;
 
         chip.addEventListener("click", () => {
 
-            chatInput.value = t(key);
+            chatInput.value = text;
 
             chatSendBtn.disabled = false;
 
             handleSend();
 
-            suggestions.remove();
+            suggestionsWrap.remove();
 
         });
 
-        suggestions.appendChild(chip);
+        suggestionsWrap.appendChild(chip);
 
     });
 
-    chatMessages.appendChild(suggestions);
-
-}
-
-/* ======================================================
-                LANGUAGE TOGGLE (si se agrega botón)
-====================================================== */
-
-function setLanguage(lang){
-
-    currentLang = lang;
-
-    applyStaticTranslations();
-
-    renderWelcome();
+    chatMessages.appendChild(suggestionsWrap);
 
 }
 
@@ -716,19 +703,13 @@ function setLanguage(lang){
                 INITIALIZE
 ====================================================== */
 
-function init(){
-
-    if(localStorage.getItem("thinkingTheme") === "light"){
-        enableLightMode();
-    } else {
-        enableDarkMode();
-    }
-
-    applyStaticTranslations();
+async function init(){
 
     renderWelcome();
 
-    console.log("Thinking Bombi AI Screen Loaded 🤖 (conectado a Botpress Chat API)");
+    await loadUserData();
+
+    console.log("Thinking Bombi AI Screen (Student) Loaded 🤖 (conectado a Botpress Chat API)");
 
 }
 
