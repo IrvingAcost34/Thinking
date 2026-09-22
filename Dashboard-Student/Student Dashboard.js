@@ -369,21 +369,13 @@ wireComingSoon("navCourses", "Courses is coming soon.");
 wireComingSoon("navProgress", "Progress is coming soon.");
 wireComingSoon("navDailyMission", "Daily Mission is coming soon.");
 wireComingSoon("navAchievements", "This full page is coming soon.");
+wireComingSoon("navBombiSidebar", "Bombi AI chat is coming soon.");
 wireComingSoon("sidebarSettingsBtn", "Settings is coming soon.");
 wireComingSoon("profileMyProfileBtn", "My Profile is coming soon.");
 wireComingSoon("profileSettingsBtn", "Settings is coming soon.");
 wireComingSoon("heroStartLearningBtn", "This will jump into your next lesson soon.");
 wireComingSoon("heroExploreBtn", "Explore is coming soon.");
-
-// navBombiSidebar y askBombiBtn ya NO son "coming soon":
-// navBombiSidebar es un <a href="Bombi-AI-Student.html"> real (sin JS necesario).
-// askBombiBtn es un <button>, así que necesita su propio listener:
-
-document.getElementById("askBombiBtn").addEventListener("click", () => {
-
-    window.location.href = "Bombi-Seccion/BOMBI-AI.html";
-
-});
+wireComingSoon("askBombiBtn", "Bombi AI chat is coming soon.");
 
 // ======================================================
 // ACHIEVEMENTS (calculados al vuelo, sin tabla nueva)
